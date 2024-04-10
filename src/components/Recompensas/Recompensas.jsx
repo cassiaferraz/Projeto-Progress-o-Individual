@@ -2,7 +2,7 @@ import Navmenu from "../Navbar/Navmenu"
 import { Link } from 'react-router-dom'
 import usuario from '../../img/Usuario.svg'
 import '../Recompensas/recompensas.css'
-  
+
 
 function Recompensas () {
     return (

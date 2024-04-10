@@ -1,0 +1,51 @@
+{ "avaliacao-postura": [
+    {
+      "funcionario": "João",
+      "habilidades": {
+        "comunicacao": 4,
+        "Uniforme": 5,
+        "Organização": 3
+      }
+    },
+    {
+      "funcionario": "Pedro",
+      "habilidades": {
+        "comunicacao": 4,
+        "Uniforme": 5,
+        "Organização": 3
+      }
+    },
+    {
+      "funcionario": "Pedro Santos",
+      "habilidades": {
+        "comunicacao": 4,
+        "Uniforme": 5,
+        "Organização": 3
+      }
+    },
+    {
+      "funcionario": "Ricardo",
+      "habilidades": {
+        "comunicacao": 4,
+        "Uniforme": 5,
+        "Organização": 3
+      }
+    },
+    {
+      "funcionario": "Bruno",
+      "habilidades": {
+        "comunicacao": 4,
+        "Uniforme": 5,
+        "Organização": 3
+      }
+    },
+    {
+      "funcionario": "Adson",
+      "habilidades": {
+        "comunicacao": 4,
+        "Uniforme": 5,
+        "Organização": 3
+      }
+    }
+  ]
+}

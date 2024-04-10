@@ -2,6 +2,7 @@ import Navmenu from "../Navbar/Navmenu"
 import '../meu-perfil/perfil.css'
 import '../meu-perfil/tabela.css'
 
+
 function Perfil () {
     return (
      <div className="todocontainer">
@@ -14,10 +15,9 @@ function Perfil () {
              </div>
 
          <table className="tabela-perfil">
-           
             <thead>
                 <tr>
-                <th scope="col">Habilidades</th>
+                <th scope="col">habili</th>
                 <th scope="col">Progresso</th>
                 <th scope="col">%</th>
                 </tr>

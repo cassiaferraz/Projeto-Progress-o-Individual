@@ -1,0 +1,36 @@
+{
+    "recompensas": [
+        { "id": "1", "text": "Consultoria Excel"},
+        { "id": "2", "text": "Consultoria Casa Inteligente"},
+        { "id": "3", "text": "Consultoria Áudio/Video"},
+        { "id": "4", "text": "Consultoria Power Poitn"},
+        { "id": "5", "text": "Palestra Gestão" },
+        { "id": "6", "text": "Quick Massage" },
+        { "id": "6", "text": "Sala Gaming" }
+      ],
+    "niveis":[
+        {"id": "1", "text": "Nível 10"},
+        {"id": "2", "text": "Nível 20"},
+        {"id": "3", "text": "Nível 30"},
+        {"id": "4", "text": "Nível 40"},
+        {"id": "5", "text": "Nível 50"},
+        {"id": "6", "text": "Nível 60"},
+        {"id": "7", "text": "Nível 70"},
+        {"id": "8", "text": "Nível 80"},
+        {"id": "9", "text": "Nível 90"},
+        {"id": "10", "text": "Nível 100"}
+
+    ],
+    "preço":[
+        {"id": "1", "text": "100"},
+        {"id": "2", "text": "200"},
+        {"id": "3", "text": "300"},
+        {"id": "4", "text": "400"},
+        {"id": "5", "text": "500"},
+        {"id": "6", "text": "600"},
+        {"id": "7", "text": "700"},
+        {"id": "8", "text": "800"},
+        {"id": "9", "text": "900"},
+        {"id": "10", "text": "1000"}
+    ]
+}

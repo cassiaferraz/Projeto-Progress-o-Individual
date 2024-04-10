@@ -7,10 +7,9 @@ import '../meu-perfil/Perfil'
 
 
 
-function Missoes () {
+export default function Missoes () {
 
     return (
-
     <>
             <Navmenu />
             
@@ -126,8 +125,5 @@ function Missoes () {
         
 
     </>
-    
     )
 }
-
-export default Missoes
