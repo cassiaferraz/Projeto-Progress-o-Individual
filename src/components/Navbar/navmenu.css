@@ -1,0 +1,27 @@
+.botoesdenavegacao {
+    width: 25%;
+    display:inline;
+    background-color: #d9d1dd;
+    padding: 0;
+    text-align: center;
+    
+}
+
+.botoesdenavegacao:hover {
+    background-color: #ffffff;
+    
+}
+
+.Navmenu {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+    left: 25%;
+    border-radius: 10px;
+    background-color: #d9d1dd;
+    
+}
+
