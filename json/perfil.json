@@ -1,12 +1,4 @@
 {
-    "tecnico": [
-        { "id": "1", "name": "João", "author": "example <example@gmail.com>"},
-        { "id": "2", "name": "Ricardo", "author": "example <example@gmail.com>"},
-        { "id": "3", "name": "Marcos", "author": "example <example@gmail.com>"},
-        { "id": "4", "name": "Bruno", "author": "example <example@gmail.com>"},
-        { "id": "5", "name": "Adson", "author": "example <example@gmail.com>"},
-        { "id": "6", "name": "Marcos", "author": "example <example@gmail.com>"}
-      ],
       "habilidades": [
         { "id": "1", "text": "Conectividade"},
         { "id": "2", "text": "Casa Inteligente"},
@@ -14,33 +6,6 @@
         { "id": "4", "text": "Metálico"},
         { "id": "5", "text": "PABX" },
         { "id": "6", "text": "Elétrica" }
-      ],
+      ]
+   }
       
-      "avaliacoes": [
-          {
-            "funcionario": "João",
-            "habilidades": {
-              "comunicacao": 4,
-              "trabalho_em_equipe": 5,
-              "resolucao_problemas": 3
-            }
-          },
-          {
-            "funcionario": "Marcos",
-            "habilidades": {
-              "comunicacao": 5,
-              "trabalho_em_equipe": 4,
-              "resolucao_problemas": 5
-            }
-          },
-          {
-            "funcionario": "Bruno",
-            "habilidades": {
-              "comunicacao": 3,
-              "trabalho_em_equipe": 4,
-              "resolucao_problemas": 4
-            }
-          }
-        ]
-      
-}

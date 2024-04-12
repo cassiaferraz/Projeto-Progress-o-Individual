@@ -3,8 +3,12 @@ import '../meu-perfil/perfil.css'
 import '../meu-perfil/tabela.css'
 
 
+
+
 function Perfil () {
     return (
+
+
      <div className="todocontainer">
          <Navmenu /> 
          

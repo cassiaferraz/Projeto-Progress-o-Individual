@@ -1,12 +1,12 @@
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
 
-import './email_style.css'
+import './emailInput_style.css'
 
 function EmailInput({onChange, value}) {
     return (
         <input 
             className='loginEmail-input'
-            required 
+            required
             type="email" 
             placeholder='Insira seu e-mail'
             value={value}
