@@ -2,8 +2,9 @@ import Navmenu from "../Navbar/Navmenu"
 import usuario from '../../img/Usuario.svg'
 import '../pages/pages.css'
 import { Link } from "react-router-dom"
-import Casa from'../../img/Casa.svg'
+import '../Missoes/missoes.css'
 import '../meu-perfil/Perfil'
+import Logo from '/public/img/Vivo Purpura RGB.jpg';
 
 
 
@@ -11,22 +12,21 @@ export default function Missoes () {
 
     return (
     <>
-            <Navmenu />
-            
-        <div className="todocontainer">
-        <Link to="/"> 
-                    <div id="imagem"> 
-                        <img src={Casa} /> 
-                    </div> </Link>
+     <Navmenu />
+      <div className="todocontainer">
+        { <Link to="/"> 
+            <div id="Logo"> 
+              <img src={Logo} /> 
+            </div> </Link> }
                  <header className="headermissoes">
-                    <div className="perfil">
-                   
-                    <Link to= "/Perfil">Roberto da Silva <img className= "usuario" src={usuario} alt="usuario" /></Link>
-                   <br />
+                    <div>
+                        <div>
+                          <img className= "usuario" src={usuario} alt="usuario" />
+                       </div>
+                    <Link to= "/Perfil">Roberto da Silva</Link><br />
                    <h5>Nível 20</h5>
                      </div>
-
-                 </header> <br />
+                 </header>
                   
                 <div id="toolbar">
                         <h3>Filtrar: <i className="fa-solid fa-list-check"></i></h3>
@@ -107,7 +107,7 @@ export default function Missoes () {
                     </div>
 
                     <div className= "todo">
-                        <p>Laudos Feitos:</p>
+                        <h5>Laudos Feitos:</h5>
                         <p>4/15</p>
                     
                     </div>

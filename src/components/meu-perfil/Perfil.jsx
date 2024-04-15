@@ -19,14 +19,14 @@ function Perfil () {
              </div>
 
          <table className="tabela-perfil">
-            <thead>
+            <thead className="cabecalho">
                 <tr>
-                <th scope="col">habili</th>
-                <th scope="col">Progresso</th>
-                <th scope="col">%</th>
+                <th className="titulodocabecalho" scope="col">Habilidades</th>
+                <th className="titulodocabecalho" scope="col">Progresso</th>
+                <th className="titulodocabecalho" scope="col">%</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="corpodatabela">
                 <tr>
                 <th  className= "linhas" scope="row">Conectividade</th>
                     <td><progress value="97" max="100"></progress></td>
@@ -65,10 +65,10 @@ function Perfil () {
          </table>
 
             
-         <table className="medalhas-perfil">
+         <table className="cabecalho">
          <thead>
                 <tr>
-                <th scope="col">MEDALHAS</th>
+                <th className="titulodocabecalho2" scope="col">MEDALHAS</th>
                 </tr>
             </thead>
 

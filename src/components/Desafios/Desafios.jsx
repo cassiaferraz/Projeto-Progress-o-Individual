@@ -19,9 +19,12 @@ function Desafios () {
          </div>
         
           <div className="tabela-desafios">
-            <h2> DESAFIOS</h2> 
-         
-         <table>
+            <table>
+            <thead className="cabecalho">
+                <tr>
+                <th className="titulodocabecalho2" scope="col">Desafios:</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
                      <td className='tabela-lado-esquerdo'>

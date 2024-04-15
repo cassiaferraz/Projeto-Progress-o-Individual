@@ -8,15 +8,20 @@
 }
 
 .register-form button {
-    width: 130px;
-    height: 50px;
+    width: 140px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 30px;
+    margin: 10px 10px 10px 10px;
+    font-size: 15px;
+    color: #660099;
+    text-align: center;
+    border: solid 1.5px #660099;
+    transition: all 0.2s;
+
+    margin-top: 15px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 4px;
-    margin-top: 10px;
-    border: none;
-    background: linear-gradient(to bottom, #660099, #590185);
-    color: white;
 }
 
 .register-fields {

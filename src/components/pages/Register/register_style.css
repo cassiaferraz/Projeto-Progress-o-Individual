@@ -27,13 +27,15 @@
     margin-top: 3vh;
     font-size: 25px;
     font-weight: bold;
-    color: #0B2739;
+    color: #660099;
     text-align: center;
 }
 
 .btn-backPage {
-    height: 35px;
+    height: 26px;
+    margin-top: 2px;
     border-radius: 10px;
+    box-shadow: 3px 3px #c2c2c2;
 }
 
 .register-container a {

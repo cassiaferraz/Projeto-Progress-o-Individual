@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import "./register_style.css"
 
 import Logo from "../../../img/logovivo.svg"
-import BackArrow from "/img/svgs/back-arrow.svg"
+import BackArrow from "/img/svgs/setaberta.svg"
 
 import RegisterForm from '../../userSessions/RegisterForm/RegisterForm';
 

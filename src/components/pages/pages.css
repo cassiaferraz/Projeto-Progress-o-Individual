@@ -70,7 +70,7 @@ select {
     text-align: center;
     padding: 0 1rem 0.3rem;
     border-bottom: 1px solid #ccc;
-    background-color: #eae3e3;
+    background-color: #f6f6f6;
     
 }
 
@@ -78,13 +78,6 @@ select {
     padding: 2rem;
     border-bottom: 1px solid #ccc;
     
-}
-.logovivo {
-    width: 60%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    background-color: white;
 }
 
 .casa {
@@ -166,14 +159,6 @@ select {
     margin-left: .4rem;
 }
 
-.atributodeavaliacao {
-    flex: 1;
-    font-size: 1rem;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #eae3e3;
-}
-
 .laudosfeitos {
     align-items: center;
     display: flex;
@@ -189,19 +174,4 @@ select {
     border-style:outset;
 
    
-}
-
-#imagem {
-    height: 30px;
-    width: 40px;
-    display: flex;
-    margin-left: 92%;
-    
-}
-
-.icon{
-    height: 4%;
-    width: 36px;
-    display: flex;
-    margin-left: 32%;
 }

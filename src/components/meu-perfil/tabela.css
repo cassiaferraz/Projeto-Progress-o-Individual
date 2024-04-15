@@ -9,17 +9,20 @@ table {
     margin-top: 10%;
   }
 
-  thead,
-  tfoot {
-    background-color: #df90e7;
-    
-  }
-  
-  th,
-  td {
+  .titulodocabecalho, .titulodocabecalho2{
+    background-color: #461e5f;
+    color: white;
     border: 1px solid rgb(160 160 160);
     padding: 8px 10px;
   }
+
+  
+  /* th,
+  td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+    
+  } */
 
   
   td:last-of-type {

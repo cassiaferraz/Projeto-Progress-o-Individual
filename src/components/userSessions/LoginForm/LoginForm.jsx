@@ -65,7 +65,7 @@
 import { useState } from 'react';
 import EmailInput from '../EmailInput/EmailInput';
 import PasswordInput from '../PasswordInput/passwordInput';
-import Logo from '../../../../public/img/Vivo Horizontal Purpura RGB.jpg'
+import Logo from '/public/img/Vivo Purpura RGB.jpg';
 import loginData from '../../../assets/login.json'; // Importando os dados de login
 import './loginForm_style.css';
  

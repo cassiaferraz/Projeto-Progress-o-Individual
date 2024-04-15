@@ -1,0 +1,16 @@
+#Logo {
+    width: auto;
+    height: 60px;
+    margin-bottom: 10px;
+    margin-left: 30%;
+    display: flex;
+}
+
+.atributodeavaliacao {
+    flex: 1;
+    font-size: 1rem;
+    justify-content: space-around;
+    background-color: #461e5f;
+    color: white;
+}
+

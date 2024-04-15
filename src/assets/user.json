@@ -3,61 +3,40 @@
         {
         "id": "1", 
         "name": "João", 
+        "nível": "30",
         "author": "joao.joaoxample@telefonica.com"
       },
 
         {
         "id": "2", 
         "name": "Ricardo",
+        "nível": "30",
         "author": "Ricardo.Ricardo@example@telefonica.com"
       },
         { 
         "id": "3", 
         "name": "Pedro",
+        "nível": "30",
         "author": "Pedro.Pedro@telefonica.com>"
       },
         { 
         "id": "4", 
         "name": "Bruno",
+        "nível": "30",
         "author": "Bruno.Bruno@telefonica.com>"
       },
         { 
         "id": "5", 
         "name": "Adson",
+        "nível": "30",
         "author": "Adson.Adson@telefonica.com>"
       },
         { 
        "id": "6", 
        "name": "Marcos",
+       "nível": "30",
        "author": "marcos.marcos@telefonica.com>"
       }
-      ],
-      
-      "habilidades": [
-        { 
-        "id": "1",
-        "text": "Conectividade"
-       },
-        { 
-        "id": "2",
-        "text": "Casa Inteligente"
-       },
-        {
-         "id": "3",
-         "text": "Áudio/Video"
-        },
-        { 
-         "id": "4", 
-         "text": "Metálico"
-        },
-        { 
-         "id": "5",
-         "text": "PABX" 
-        },
-        { 
-         "id": "6",
-         "text": "Elétrica" 
-        }
       ]
      
 }

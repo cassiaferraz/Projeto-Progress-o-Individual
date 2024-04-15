@@ -1,27 +1,27 @@
 .botoesdenavegacao {
-    width: 25%;
+    width: 48%;
     display:inline;
-    background-color: #d9d1dd;
     padding: 0;
     text-align: center;
-    
 }
 
 .botoesdenavegacao:hover {
     background-color: #ffffff;
-    
 }
 
 .Navmenu {
     position: fixed;
     bottom: 0;
     display: flex;
-    justify-content: center;
     width: 50%;
-    align-items: center;
     left: 25%;
+    align-items: center;
     border-radius: 10px;
     background-color: #d9d1dd;
-    
 }
 
+.icon{
+    width: 34px;
+    display: flex;
+    margin-left: 32%;
+}

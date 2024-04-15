@@ -1,18 +1,9 @@
 {
     "users": [
     {
-        "id": "1",
-        "login": "ads@sistemas.com",
-        "senha": "Sistemas07#"
-    },
-    {
         "id": "2",
         "login": "teste@teste",
         "senha": "Teste1#"
-    },
-    {
-        "login": 14216421,
-        "senha": 232084
     },
     {
         "id": "3",

@@ -3,8 +3,38 @@ import { Link } from 'react-router-dom'
 import usuario from '../../img/Usuario.svg'
 import '../Recompensas/recompensas.css'
 
+import '../../assets/recompensas.json'
+import '../../assets/user.json'
 
 function Recompensas () {
+// definindo objetos de recompensa
+
+    const recompensas = [
+        {"recompensas": "recompensa 1", "Nível": 10, "preço": 100},
+        {"recompensas": "recompensa 2", "Nível": 10, "preço": 100},
+        {"recompensas": "recompensa 3", "Nível": 20, "preço": 750},
+        {"recompensas": "recompensa 4", "Nível": 25, "preço": 800},
+        {"recompensas": "recompensa 5", "Nível": 30, "preço": 900},
+        {"recompensas": "recompensa 6", "Nível": 40, "preço": 100},
+        {"recompensas": "recompensa 7", "Nível": 50, "preço": 100},
+      ];
+      
+      function verificarRecompensa(user) {
+        const nivelUser = user.Nível;
+        const recompensa = recompensas.find(r => r.Nível <= nivelUser);
+        if (recompensa) {
+          return `Você desbloqueou a ${recompensas.recompensa} por ${recompensa.preço} moedas.`;
+        } 
+        else {
+          return "Você ainda não desbloqueou nenhuma recompensa.";
+        }
+      }
+      
+      // Exemplo de uso:
+      const user = {"tecnico": "Joao"};
+      console.log(verificarRecompensa(user));
+
+
     return (
         <div className="todocontainer">
           <div>
@@ -19,14 +49,12 @@ function Recompensas () {
          </div>
 
            <div className="table">
-              <h2>RECOMPENSAS:</h2>
-
             <table >
-            <thead className="colunas">
+            <thead className="cabecalho">
                 <tr>
-                <th scope="col">Recompensas:</th>
-                <th scope="col">Nível:</th>
-                <th scope="col">Preço:</th>
+                <th className="titulodocabecalho2" scope="col">Recompensas:</th>
+                <th className="titulodocabecalho2" scope="col">Nível:</th>
+                <th className="titulodocabecalho2" scope="col">Preço:</th>
                 </tr>
             </thead>
 
@@ -55,12 +83,12 @@ function Recompensas () {
 
                   <tr>
                   <th  className= "linhas" scope="row">Palestra Gestão </th>
-                      <td className="bloqueado">Req. Nível 40</td>
+                      <td className="bloqueado">Req. Nível 30</td>
                       <td>900  ♦</td>
                   </tr>
                   <tr>
                   <th className= "linhas"scope="row">Quick Massage</th>
-                      <td className="bloqueado">Req. Nível 30</td>
+                      <td className="bloqueado">Req. Nível 40</td>
                       <td>1000 ♦</td>
                   </tr>
 
