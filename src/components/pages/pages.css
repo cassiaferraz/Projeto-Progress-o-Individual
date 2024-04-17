@@ -15,7 +15,7 @@ body {
 }
 
 button {
-    border: 2px solid #660099;
+    border: 1px solid #660099;
     padding: 0.8% 0.9%;
     font-size: 1rem;
     cursor:pointer;
@@ -23,32 +23,10 @@ button {
     justify-content: center;
     align-items: start;
     transition: 0.4s;
-
 }
 
-
-button:hover {
-
-    background-color: #660099;
-}
-
-.finish-todo:hover {
-
-    background-color: rgb(5, 226, 138);
-}
-
-.remove-todo:hover {
-    background-color: red;
-}
-
-
-button:hover > i {
-    color: #fdfdfd;
-}
-
-input, 
-select {
-    padding: 0.25rem 5rem;
+input, select {
+    padding: 0.25rem;
 }
 
 .hide {
@@ -71,34 +49,8 @@ select {
     padding: 0 1rem 0.3rem;
     border-bottom: 1px solid #ccc;
     background-color: #f6f6f6;
-    
 }
 
-#todo-form #edit-form {
-    padding: 2rem;
-    border-bottom: 1px solid #ccc;
-    
-}
-
-.casa {
-    width: 10%;
-    display: flex;
-    align-items:center;
-
-}
-
-.form-controle {
-    display: flex;
-  
-}
-.form-controle input {
-    margin-right: 0.5rem;
-}
-
-.cancel-edit-btn {
-    margin-top: 1rem;
-   
-}
 
 #toolbar {
     padding: 1rem;
@@ -111,33 +63,10 @@ select {
 
 }
 
-.search {
-    border-radius: 1px solid #ddd;
-    padding-right: 1rem;
-    margin-right: 1rem;
-    width: 65%;
-    display: flex;
-    flex-direction: column;
-}
-
-.search form{ 
-    display: flex;
-}
-
-.search input{
-    width: 100%;
-    margin-right: 0.3rem;
-}
-
 .filter {
-
-    width: 35%;
+    width: 25%;
     display: flex;
     flex-direction: column;
-}
-
-.filter select { 
-    flex: 1;
 }
 
 .todo{
@@ -147,7 +76,6 @@ select {
     padding: 1rem;
     border-bottom: 1px solid #918686 ;
     transition: .5s;
-
 }
 
 .todo h5, h3{
@@ -159,12 +87,6 @@ select {
     margin-left: .4rem;
 }
 
-.laudosfeitos {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
 .usuario {
     padding: 8;
     display: fixed;
@@ -172,6 +94,4 @@ select {
     justify-content: space-between;
     border-radius: 30px;
     border-style:outset;
-
-   
 }

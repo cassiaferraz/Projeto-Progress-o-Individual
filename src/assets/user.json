@@ -4,32 +4,32 @@
         "id": "1", 
         "name": "João", 
         "nível": "30",
-        "author": "joao.joaoxample@telefonica.com"
+        "author": "joao.joao@telefonica.com"
       },
 
         {
         "id": "2", 
         "name": "Ricardo",
         "nível": "30",
-        "author": "Ricardo.Ricardo@example@telefonica.com"
+        "author": "ricardo.ricardo@telefonica.com"
       },
         { 
         "id": "3", 
         "name": "Pedro",
         "nível": "30",
-        "author": "Pedro.Pedro@telefonica.com>"
+        "author": "pedro.pedro@telefonica.com>"
       },
         { 
         "id": "4", 
         "name": "Bruno",
         "nível": "30",
-        "author": "Bruno.Bruno@telefonica.com>"
+        "author": "bruno.bruno@telefonica.com>"
       },
         { 
         "id": "5", 
         "name": "Adson",
         "nível": "30",
-        "author": "Adson.Adson@telefonica.com>"
+        "author": "adson.adson@telefonica.com>"
       },
         { 
        "id": "6", 

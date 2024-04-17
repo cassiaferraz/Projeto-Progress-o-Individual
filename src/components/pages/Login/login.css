@@ -61,6 +61,10 @@
     font-weight: bold;
 }
 
+button:hover{
+background-color: #ddcbe5;
+}
+
 .vivo-icon {
     width: auto;
     height: 80px;

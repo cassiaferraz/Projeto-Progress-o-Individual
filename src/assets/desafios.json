@@ -2,8 +2,24 @@
     "desafios": [
     {
         "id": "1",
-        "xp": "teste@teste",
-        "moedas": "Teste1#"
+        "xp": "300xp",
+        "moedas": "100"
+    },
+    {
+        "id": "2",
+        "xp": "300xp",
+        "moedas": "100"
+    },
+    {
+        "id": "3",
+        "xp": "300xp",
+        "moedas": "100"
+    },
+    {
+        "id": "4",
+        "xp": "300xp",
+        "moedas": "100"
     }
+    
 
 ]}

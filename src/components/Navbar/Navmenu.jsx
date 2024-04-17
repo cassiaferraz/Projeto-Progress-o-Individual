@@ -9,17 +9,19 @@ function Navmenu () {
     return (
         <div className='Navmenu'> 
             <li className='botoesdenavegacao'>
-             <Link to= "/Missoes">Missões <img className= "icon" src={alvo} /> </Link>
+            
+             <Link to= "/Missoes" style={{ textDecoration: 'none' }}> <img className= "icon" src={alvo} />Missões </Link>
             </li>
 
              <li className='botoesdenavegacao'>
-              <Link to= "/Desafios">Desafios <img className= "icon"  src={foguete} /> </Link>
+            
+              <Link to= "/Desafios" style={{ textDecoration: 'none' }}> <img className= "icon"  src={foguete} />Desafios </Link>
              </li>
 
              <li className='botoesdenavegacao'>
-              <Link to= "/Recompensas">
-                         
-                     Recompensas <img className= "icon" src={Premio} /></Link>
+              <Link to= "/Recompensas" style={{ textDecoration: 'none' }}>
+              <img className= "icon" src={Premio} />   Recompensas </Link>
+                     
              </li>
         </div>
     )

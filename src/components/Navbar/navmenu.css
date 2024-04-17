@@ -1,27 +1,29 @@
 .botoesdenavegacao {
     width: 48%;
     display:inline;
-    padding: 0;
     text-align: center;
+    font-family:"Roboto", sans-serif;
 }
 
-.botoesdenavegacao:hover {
-    background-color: #ffffff;
+.botoesdenavegacao :active{
+    background-color: #4d24d6;
 }
 
 .Navmenu {
     position: fixed;
     bottom: 0;
     display: flex;
-    width: 50%;
-    left: 25%;
+    width: 49%;
+    left: 25.5%;
     align-items: center;
-    border-radius: 10px;
-    background-color: #d9d1dd;
+    border-radius: 4px;
+    background-color: #f6f6f6;
 }
 
 .icon{
     width: 34px;
     display: flex;
-    margin-left: 32%;
+    margin-left: 40%;
+    margin-top: 2%;
 }
+

@@ -1,0 +1,21 @@
+{
+    "postura": [
+        {
+        "id": "1", 
+        "name": "comunicacao",
+        "avaliacao": 1
+      },
+
+        {
+        "id": "2", 
+        "name": "uniforme",
+        "avaliacao": 5
+      },
+      {
+        "id": "2", 
+        "name": "organizacao",
+        "avaliacao": 4
+      }
+      ]
+     
+}

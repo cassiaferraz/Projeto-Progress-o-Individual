@@ -33,7 +33,7 @@
       }
       ],
       
-      "habilidades": [
+      "tabelahabilidades": [
         { 
         "id": "1",
         "text": "Conectividade"

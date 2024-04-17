@@ -14,16 +14,15 @@ export default function Missoes () {
     <>
      <Navmenu />
       <div className="todocontainer">
-        { <Link to="/"> 
             <div id="Logo"> 
               <img src={Logo} /> 
-            </div> </Link> }
+            </div>
                  <header className="headermissoes">
                     <div>
                         <div>
                           <img className= "usuario" src={usuario} alt="usuario" />
                        </div>
-                    <Link to= "/Perfil">Roberto da Silva</Link><br />
+                    <Link to= "/Perfil" style={{ textDecoration: 'none' }}>Roberto da Silva</Link><br />
                    <h5>Nível 20</h5>
                      </div>
                  </header>
@@ -48,57 +47,57 @@ export default function Missoes () {
                         <hr />
                         <h5>Comunicação</h5>
                         <button className="finish-todo">
-                            <i className="fa-solid fa-check"></i>
+                            
                         </button>
 
                         <button className="finish-todo">
-                            <i className="fa-solid fa-check"></i>
+                            
                         </button>
                         
                         <button className="remove-todo">
-                            <i className="fa-solid fa-xmark"></i>
+                            
                         </button>
 
                         <button className="remove-todo">
-                            <i className="fa-solid fa-xmark"></i>
+                           
                         </button>
                     </div>
 
                     <div className= "todo">
                         <h5>Uniforme</h5>
                         <button className="finish-todo">
-                            <i className="fa-solid fa-check"></i>
+                            
                         </button>
 
                         <button className="finish-todo">
-                            <i className="fa-solid fa-check"></i>
+                            
                         </button>
 
                         <button className="finish-todo">
-                            <i className="fa-solid fa-check"></i>
+                            
                         </button>
                         
                         <button className="remove-todo">
-                            <i className="fa-solid fa-xmark"></i>
+                            
                         </button>
                     </div>
 
                     <div class= "todo">
                         <h5>Organização</h5>
                         <button className="finish-todo">
-                            <i className="fa-solid fa-check"></i>
+                            
                         </button>
 
                         <button className="finish-todo">
-                            <i className="fa-solid fa-check"></i>
+                           
                         </button>
 
                         <button className="remove-todo">
-                            <i className="fa-solid fa-xmark"></i>
+                            
                         </button>
                         
                         <button className="remove-todo">
-                            <i className="fa-solid fa-xmark"></i>
+                            
                         </button>
                     </div> <hr />
 
