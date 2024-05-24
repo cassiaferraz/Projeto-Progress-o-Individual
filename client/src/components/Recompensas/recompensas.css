@@ -1,0 +1,43 @@
+.tablerecompensas {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    
+  }
+
+  * {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+/* 
+ td {
+    padding-inline-start: 2%;
+    border:  solid rgb(144, 142, 142);
+    padding:  10px;
+  } */
+
+  
+ .linhas {
+    border: 1px solid rgb(144, 142, 142);
+    padding: 10px;
+    padding-inline-start: 2%;
+  }
+
+  
+  td:last-of-type {
+    text-align: center;
+  }
+
+  .bloqueado {
+    color: #CC1F59;
+  }
+
+  .roboto-thin-italic{
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }

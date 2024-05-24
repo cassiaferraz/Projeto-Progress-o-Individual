@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+
+:root {
+  --vivo-red: #cc1f59;
+  --vivo-darkred: #972a1d;
+  --vivo-green: #99cc33;
+  --vivo-lightyellow: #f2ca50;
+  --vivo-yellow: #ff9900;
+  --vivo-gray: #666666;
+  --vivo-lightgray: #d9d9d9;
+  --vivo-pink: #eb3d7d;
+  --vivo-purple: #660099;
+  --vivo-lightpurple: #efe5f4
+}

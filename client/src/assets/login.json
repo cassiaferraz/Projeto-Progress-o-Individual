@@ -1,0 +1,14 @@
+{
+    "users": [
+    {
+        "id": "2",
+        "login": "teste@teste",
+        "senha": "Teste1#"
+    },
+    {
+        "id": "3",
+        "login": "roberta.silva@telefonica.com",
+        "senha": "Sistemas07#"
+    }
+
+]}
