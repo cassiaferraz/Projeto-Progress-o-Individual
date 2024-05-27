@@ -4,7 +4,7 @@
  import EmailInput from '../EmailInput/EmailInput';
  import PasswordInput from '../PasswordInput/passwordInput';
  import './loginForm_style.css';
- import Logo from '../../../../public/img/svgs/logoprogressao.png'
+ import Logo from '/img/svgs/logoprogressao.png'
 
  
  function LoginForm() {
