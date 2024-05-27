@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const updateUser = require('./controler/updateController'); // Importe a função updateUser do arquivo back.js
+const updateUser = require('../controller/UpdateController'); // Importe a função updateUser do arquivo back.js
 
 router.post('/reset-password', async (req, res) => {
     const { token, newPassword, newPasswordConfirmed } = req.body;

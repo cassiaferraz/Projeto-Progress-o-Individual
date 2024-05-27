@@ -1,4 +1,4 @@
-const sqlServer = require('sqlserver'); // Supondo que você tenha um módulo `sqlserver` para executar consultas SQL
+const sqlServer = require('../models/Update'); // Supondo que você tenha um módulo `sqlserver` para executar consultas SQL
 
 async function updateUser(id, field, value) {
     try {
