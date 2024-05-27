@@ -1,0 +1,66 @@
+
+
+/* abaixo css da tabela de medalhas */
+
+.tabela-medalhas-recompensas{
+  margin-top: 6%;
+  background-color: #dddddd;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.icon-medalhas-perfil {
+ width: 30%;
+ display: flex;
+ align-items: center;
+}
+
+.cabecalho-medalhas{
+  background-color: #dddddd;
+  color: black;
+  font-weight: 600;
+  padding: 8px 10px;
+  font-size: larger;
+  border-radius: 15px;
+}
+
+.medalhas-adquiridas{
+  display: flex;
+  margin-bottom: 2.5rem;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.2rem;
+  /* background-color: #fff; */
+  
+}
+
+.tabela-medalhas-recompensas p{
+ font-size: small;
+}
+
+.coluna-medalhas h4{
+  align-items: center;
+}
+
+.coluna-medalhas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#config{
+  width: 5%;
+  margin-top: 1rem;
+}
+
+#titulo-config{
+  display: flex;
+  justify-content: space-between;
+}
+
+#alerta{
+  display: flex;
+  justify-content: center;
+  border: #dddddd;
+}

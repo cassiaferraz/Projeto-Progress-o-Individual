@@ -1,5 +1,5 @@
 import Navmenu from "../Navbar/Navmenu"
-import '../meu-perfil/Perfil'
+import '../meu-perfil/Perfil/Perfil'
 import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
 
 import Laudos from "./Laudos"
@@ -10,7 +10,6 @@ import QualityProgressIcon from "./QualityProgresso/QualityProgressIcon"
 
 import coin from "../../../public/img/svgs/moedaroxa.svg"
 import check from "../../../public/img/svgs/check.svg"
-import xmark from "../../../public/img/svgs/xmark.svg"
 
 import { useState, useEffect} from 'react'
 

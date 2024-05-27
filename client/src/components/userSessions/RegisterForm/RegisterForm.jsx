@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import PasswordInput from '../PasswordInput/passwordInput';
-// import EmailInput from '../EmailInput/EmailInput';
+ import EmailInput from '../EmailInput/EmailInput';
 import './registerForm_style.css';
 
  
 function RegisterForm() {
-    // const [userEmail, setUserEmail] = useState("");
+    const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [userConfirmedPassword, setUserConfirmedPassword] = useState("");
     const [resultRegex, setResultRegex] = useState(false);
@@ -26,7 +26,7 @@ function RegisterForm() {
                     });
  
                     if (response.ok) {
-                        window.location.href = "/login"; // Redirecionar para a página de login após o cadastro
+                        window.location.href = "/perfil"; 
                     } else {
                         alert("Ocorreu um erro ao cadastrar. Por favor, tente novamente.");
                     }
@@ -48,12 +48,12 @@ function RegisterForm() {
         <form className="register-form" onSubmit={handleSubmit}>
             <div className="register-fields">
 
-                <h4>jose.afonso@telefonica.com</h4>
+                <h4>Altere sua senha para ter acesso ao app!</h4>
 
-                {/* <EmailInput
+                <EmailInput
                     value={userEmail}
                     onChange={setUserEmail}
-                /> */}
+                />
                 <PasswordInput
                     placeholder={"Insira sua senha"}
                     state={userPassword}
@@ -73,7 +73,7 @@ function RegisterForm() {
                     <h4 className='differentPasswordsError'>Senhas divergentes!</h4>
                 </div>
             )}
-            <button type='submit'>Cadastrar</button>
+            <button type='submit'>Alterar</button>
         </form>
     );
 }

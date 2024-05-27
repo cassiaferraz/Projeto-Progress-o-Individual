@@ -15,7 +15,7 @@ function Register() {
 
             <div className="register-container">
               
-                <a href="/">
+                <a href="/perfil">
                     <img 
                         className="btn-backPage"
                         src={BackArrow} 
@@ -24,11 +24,8 @@ function Register() {
                 </a>
                 <div className='subtitulo-cadastro'>
 
-                  Altere sua senha para acessar o app
                 </div>
                 <RegisterForm/>
-
-                 {/* <h3>Primeiro Acesso</h3> */}
 
             </div>
         </div>

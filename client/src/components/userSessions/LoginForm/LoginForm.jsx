@@ -1,4 +1,6 @@
  import { useState } from 'react';
+ import Swal from 'sweetalert2';
+ 
  import EmailInput from '../EmailInput/EmailInput';
  import PasswordInput from '../PasswordInput/passwordInput';
  import './loginForm_style.css';
@@ -11,31 +13,51 @@
      const [loginError, setLoginError] = useState(false);
  
      const handleSubmit = async (event) => {
-         event.preventDefault();
- 
-         try {
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ userEmail: userEmail, userPassword: userPassword })
-            });
-    
-            console.log('Status:', response.status);
-            const responseData = await response.json(); // Armazene o resultado em uma variável
-            console.log('Response:', responseData);
-    
-            if (response.ok) {
-                window.location.href = "/perfil"; // Redirecionar para a página do perfil após o login bem-sucedido
-            } else {
-                setLoginError(true); // Exibir mensagem de erro caso o login falhe
-            }
-        } catch (error) {
-            console.error('Erro ao fazer login:', error);
-            alert("Ocorreu um erro ao fazer login. Por favor, tente novamente.");
-        }
-    };
+      event.preventDefault();
+  
+      try {
+          const response = await fetch('http://localhost:3000/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ userEmail: userEmail, userPassword: userPassword })
+          });
+  
+          console.log('Status:', response.status);
+          const responseData = await response.json(); // Armazene o resultado em uma variável
+          console.log('Response:', responseData);
+  
+          if (response.ok) {
+              // Verifique se o usuário já fez login antes
+              const isFirstLogin = !localStorage.getItem('hasLoggedIn');
+  
+              if (isFirstLogin) {
+                  Swal.fire({
+                      title: 'Aviso',
+                      text: 'Por favor, altere sua senha após o primeiro acesso.',
+                      icon: 'warning',
+                      confirmButtonText: 'OK',
+                  }).then(() => {
+                      window.location.href = '/register'; // Redireciona para a página de alterar senha
+                  });
+              } else {
+                  // Não é o primeiro acesso, redirecione para a página principal
+                  window.location.href = '/perfil';
+              }
+  
+              // Marque que o usuário já fez login
+              localStorage.setItem('hasLoggedIn', 'true');
+          } else {
+              setLoginError(true); // Exibir mensagem de erro caso o login falhe
+          }
+      } catch (error) {
+          console.error('Erro ao fazer login:', error);
+          alert("Ocorreu um erro ao fazer login. Por favor, tente novamente.");
+      }
+  };
+
+
      return (
              <div className="login-container">
                <form className='login-form' onSubmit={handleSubmit}>
@@ -53,7 +75,7 @@
                  />
                  <button type='submit'>Acessar</button>
                </form>
-               <small className='register-text'>Primeiro acesso? <a href="/register">Clique aqui</a></small>
+               {/* <small className='register-text'>Primeiro acesso? <a href="/register">Clique aqui</a></small> */}
                  {loginError && <p className="login-error">Email ou senha incorretos</p>}
                </div>
      );

@@ -1,42 +1,8 @@
-// const bcrypt = require('bcryptjs');
-// const Register = require('../models/Register.js');
- 
- 
- 
-//     async function register(req, res) {
-//         const { cpf, password, confirmedPassword } = req.body;
- 
-//         // Verificar se a senha e a confirmação são iguais
-//         if (password !== confirmedPassword) {
-//             return res.status(400).json({ error: 'As senhas não coincidem.' });
-//         }
- 
-//         // Verificar se a senha é composta pelos 6 primeiros números do CPF
-//         const cpfVerification = cpf.substring(0, 6);
-//         if (password !== cpfVerification) {
-//             return res.status(400).json({ error: 'A senha deve ser os 6 primeiros números do CPF.' });
-//         }
- 
-//         try {
-//             const userController = new UserController();
-//             await userController.createUser(cpf, password);
-//             res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
-//         } catch (error) {
-//             res.status(500).json({ error: error.message });
-//         }
-//     }
- 
- 
-// module.exports = {
-//     register
-// }
 
 const bcrypt = require('bcryptjs');
 const Register = require('../models/Register.js');
  
- 
- 
- 
+
     async function register(req, res) {
         const { userPassword, userConfirmedPassword } = req.body;
  
@@ -65,8 +31,34 @@ const Register = require('../models/Register.js');
         res.status(500).json({ error: 'Erro ao criar usuário no banco de dados' });
     }
 }
+
+function updateUser(id, field, value) {
+    // Consulta com parâmetros nomeados
+    const sql = `UPDATE dbo.COLABORADORES SET ${field} = @newValue WHERE userEmail = @id`;
+ 
+    // Criar um objeto de parâmetros
+    const params = {
+      id: id,
+      newValue: value
+    };
+ 
+    // Executar consulta usando prepared statement
+    return sqlServer.executeQuery(sql, params)
+      .then((results) => {
+        // Processar o resultado da consulta (opcional)
+        return results;
+      })
+      .catch((error) => {
+        console.error("Erro ao atualizar usuário:", error);
+        // Tratar o erro de forma adequada
+      });
+  }
+ 
  
  
 module.exports = {
-    register
+    register,
+    updateUser
 }
+ 
+ 

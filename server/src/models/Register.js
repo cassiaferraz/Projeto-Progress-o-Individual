@@ -43,14 +43,25 @@ function createUser() {
 }  
  
 //UPDATE
-function updateUser(id, userPassword) {
-    const sql = `UPDATE Usuarios SET userPassword = '${userPassword}' WHERE userEmail = teste@elite `;
-    const results = sqlServer.dispatchQuery(sql, [id])
+function updateUser(id, field, value) {
+    const sql = `UPDATE dbo.COLABORADORES SET ${field} = '${value}' WHERE userEmail = '${id}'`;
+    const results = sqlServer.dispatchQuery(sql)
     return results;
 }  
  
  
- 
+// async function updateUser(id, userPassword) {
+//     try {
+//         const sql = `UPDATE Usuarios SET userPassword = ? WHERE userEmail = ?`;
+//         const results = await sqlServer.dispatchQuery(sql, [userPassword, id]);
+//         return results;
+//     } catch (error) {
+//         console.error('Erro ao atualizar a senha:', error);
+//         throw new Error('Ocorreu um erro ao atualizar a senha. Tente novamente.');
+//     }
+// }
+
+
 module.exports = {
     createUser,
     updateUser

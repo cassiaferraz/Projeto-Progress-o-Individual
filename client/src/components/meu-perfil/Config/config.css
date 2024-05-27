@@ -1,0 +1,25 @@
+.pag-config{
+    display: flex;
+    margin-left: 1rem;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+#itens-config button{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    align-items: center;
+    border-radius: 8px;
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    z-index: 1000; 
+}
+
+#itens-config {
+    display: flex;
+    flex-direction: column;
+}
+
+#lua, #notificacao{
+    width: 2%;
+}
