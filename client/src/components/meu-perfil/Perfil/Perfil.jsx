@@ -2,6 +2,8 @@ import Navmenu from "../../Navbar/Navmenu"
 import Habilidades from '../Habilidades/Habilidades'
 import BoxPerfil from "../BoxPerfil/BoxPerfil"
 
+import Button from 'react-bootstrap/Button';
+
 import '../Perfil/perfil.css'
 import '../tabela.css'
 
@@ -9,7 +11,7 @@ import Ajustes from '../../../../public/img/svgs/Ajustes.svg'
 import Premio from '../../../../public/img/svgs/Premio.svg'
 
 import { Link } from "react-router-dom"
-import Swal from 'sweetalert2';
+
 
 function Perfil () {
      //deve conter esse cod abaixo em todas as pag para exigir login
@@ -38,7 +40,7 @@ function Perfil () {
         <div className="tabela-medalhas-recompensas">
         
             <div className="cabecalho-medalhas">Medalhas</div>
-            <div className="medalhas-adquiridas">
+             <div className="medalhas-adquiridas">
                 <div className="coluna-medalhas">
                 <img className= "icon-medalhas-perfil" src={Premio}/> 
                     <h4>Curiosidade</h4>
@@ -64,7 +66,14 @@ function Perfil () {
                 </div> 
             </div>
         </div>
-         
+{/*        
+        <div id="botoes">
+        <Button style={{ textDecoration: 'none' }} href="laudospendentes">
+            Laudos Pendentes
+        </Button>
+        </div>
+ */}
+
      </div>
     )
 }

@@ -9,7 +9,7 @@ const cors = require ('cors');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const loginRoutes = require('./routes/loginRoutes')
-const registerRoutes = require('./routes/registerRoutes.js')
+const registerRoutes = require('./routes/resetPassword.js')
 
 
 app.use(cors());

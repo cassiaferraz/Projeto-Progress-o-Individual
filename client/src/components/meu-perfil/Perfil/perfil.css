@@ -64,3 +64,13 @@
   justify-content: center;
   border: #dddddd;
 }
+
+#botoes{
+  background-color: #CC1F59;
+  width: 30%;
+  padding: .8rem;
+  border-radius: 8px;
+}
+#botoes button{
+  color: white;
+}

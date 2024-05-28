@@ -15,7 +15,7 @@ export default function Config () {
             <div className="pag-config">
                  <h2 className="titulodapagina">Configurações</h2>
                <div id="itens-config">
-                    <Link to="/register">
+                    <Link to="/Update">
                         <button>Alterar Senha</button>
                     </Link>
 
