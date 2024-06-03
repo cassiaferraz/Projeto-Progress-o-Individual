@@ -4,7 +4,7 @@ import "./register_style.css"
 
 import BackArrow from "/img/svgs/voltar.svg"
 
-import ResetPasswordForm from '../../userSessions/UpdateForm/UpdateForm';
+import UpdateForm from '../../userSessions/UpdateForm/UpdateForm';
 
 function Update() {
 
@@ -24,7 +24,7 @@ function Update() {
                 <div className='subtitulo-cadastro'>
 
                 </div>
-                <ResetPasswordForm/>
+                <UpdateForm/>
 
             </div>
         </div>

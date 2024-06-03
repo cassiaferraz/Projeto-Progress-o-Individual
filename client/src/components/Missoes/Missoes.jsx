@@ -8,8 +8,8 @@ import Veivulo from "./Veiculo"
 import Assiduidade from "./Assiduidade"
 import QualityProgressIcon from "./QualityProgresso/QualityProgressIcon"
 
-import coin from "../../../public/img/svgs/moedaroxa.svg"
-import check from "../../../public/img/svgs/check.svg"
+import coin from "/img/svgs/moedaroxa.svg"
+import check from "/img/svgs/check.svg"
 
 import { useState, useEffect} from 'react'
 
@@ -83,6 +83,7 @@ export default function Missoes () {
                          value= {TDNA}
                          realMax= "5"
                          referenceValue="5"
+                         
                         /></h5> 
                     </div> 
 
@@ -91,6 +92,7 @@ export default function Missoes () {
                          value= {IFI}
                          referenceValue="1"
                          percent= "true"
+                         style={{ backgroundColor: IFI >= 1 ? 'blue' : 'yellow' }}
                         /></h5>
                     </div> 
 

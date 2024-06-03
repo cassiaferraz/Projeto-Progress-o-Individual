@@ -21,6 +21,8 @@ async function authenticateUser(userEmail, userPassword) {
         const passwordMatch = await bcrypt.compare(userPassword, user.SENHA);
       
         return passwordMatch ? user : false;
+
+        // return user
     } catch (err) {
         console.error(err);
         throw err;

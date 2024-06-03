@@ -53,10 +53,10 @@ function Habilidades() {
                 <h4>Habilidades</h4>
                 <div className='coluna2'>
                     <div className='coluna-avaliacao'>
-                      <span >Auto</span>Avaliação <button className="avaliacao-auto"></button> 
+                      <span style={{visibility:'hidden'}}>s</span>Sugerido <button className="avaliacao-sugerido"></button>
                     </div>
                     <div className='coluna-avaliacao'>
-                      <span style={{visibility:'hidden'}}>s</span>Sugerido <button className="avaliacao-sugerido"></button>
+                    <span >Auto</span>Avaliação <button className="avaliacao-auto"></button> 
                     </div>
                 </div>
             </div>

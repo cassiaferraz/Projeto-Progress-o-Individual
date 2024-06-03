@@ -88,7 +88,7 @@
 
 .atribuicao .quality_progress_bar progress[value]::-webkit-progress-value {
     /* Cor da barra de progresso no Chrome, Safari e Opera */
-    background-color: var(--vivo-pink);
+    /* background-color: var(--vivo-pink); */
     padding: 1px;
 }
 
@@ -104,3 +104,5 @@
 .atribuicao .quality_progress_value {
     color: black;
 }
+
+

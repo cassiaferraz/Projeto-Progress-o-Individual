@@ -8,7 +8,7 @@ function createUser() {
 }   
 
 function getUser(id) {
-    const sql = `SELECT TDNA, IFI, IRR FROM dbo.Indicadores_individuais WHERE  ID_TECNICO = 40417836`;
+    const sql = `SELECT TDNA, IFI, IRR FROM dbo.Indicadores_individuais WHERE  ID_TECNICO = 40455664`;
     const results = sqlServer.dispatchQuery(sql, [id])
     return results;
 }   

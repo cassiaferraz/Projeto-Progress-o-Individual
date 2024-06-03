@@ -11,6 +11,7 @@
   .icon-usuario {
     display: flex;
     width: 28%;
+    padding: .8rem;
   }
   
   .info .subinfo, .exp-perfil{

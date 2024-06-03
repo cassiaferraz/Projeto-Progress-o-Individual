@@ -66,13 +66,13 @@ function Perfil () {
                 </div> 
             </div>
         </div>
-{/*        
-        <div id="botoes">
+       
+        {/* <div id="botoes">
         <Button style={{ textDecoration: 'none' }} href="laudospendentes">
             Laudos Pendentes
         </Button>
-        </div>
- */}
+        </div> */}
+
 
      </div>
     )
