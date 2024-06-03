@@ -6,6 +6,13 @@ import './laudospendentes.css'
 import BackArrow from "../../../../public/img/svgs/voltar.svg"
 
 export default function LaudosPendentes() {
+    // deve conter esse cod abaixo em todas as pag para exigir login
+    // const token = sessionStorage.getItem("token")
+    // console.log(token)
+    // if(!token) {
+    //     window.location.href = "/";
+    // }
+
     return (
         <div className="todocontainer">
             <BoxPerfil />

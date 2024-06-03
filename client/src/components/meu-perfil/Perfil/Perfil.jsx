@@ -14,12 +14,12 @@ import { Link } from "react-router-dom"
 
 
 function Perfil () {
-     //deve conter esse cod abaixo em todas as pag para exigir login
-    //  const token = sessionStorage.getItem("token")
-    //  console.log(token)
-    //  if(!token) {
-    //      window.location.href = "/Login";
-    //  }
+    // deve conter esse cod abaixo em todas as pag para exigir login
+    //   const token = sessionStorage.getItem("token")
+    //   console.log(token)
+    //   if(!token) {
+    //       window.location.href = "/";
+    //   }
 
     return (
 

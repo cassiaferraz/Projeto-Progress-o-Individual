@@ -2,32 +2,46 @@ import BoxPerfil from "../BoxPerfil/BoxPerfil"
 import { Link } from "react-router-dom"
 import Navmenu from "../../Navbar/Navmenu"
 
-import Lua from '../../../../public/img/svgs/Lua.svg'
+import Lua from '/img/svgs/Lua.svg'
+import sair from '/img/svgs/VoltarSair.svg'
+
+import LogoutButton from "../../userSessions/Logout/LogoutButton"
 
 import '../Config/config.css'
 
 export default function Config () {
+
+    // const token = sessionStorage.getItem("token")
+    // console.log(token)
+    // if(!token) {
+    //     window.location.href = "/";
+    // }
 
     return(
      <div className="todocontainer">
         <BoxPerfil />
         <Navmenu />
             <div className="pag-config">
-                 <h2 className="titulodapagina">Configurações</h2>
+                <div id="sair-app">
+                    <h2 className="titulodapagina">Configurações</h2>
+                    <LogoutButton></LogoutButton>
+                    {/* <img id= "sair"src={sair} alt="sair_app" /> */}
+                    
+                </div>
                <div id="itens-config">
-                    <Link to="/Update">
+                    <Link style={{ textDecoration: 'none' }} to="/Update">
                         <button>Alterar Senha</button>
                     </Link>
 
-                    <Link to="">
+                    <Link to="" style={{ textDecoration: 'none' }}>
                         <button>Notificações</button>
                     </Link>
 
-                    <Link to="">
+                    <Link to="" style={{ textDecoration: 'none' }}>
                         <button>Tema <img id="lua" src={Lua}/></button>
                     </Link>
 
-                    <Link to="">
+                    <Link to="" style={{ textDecoration: 'none' }}>
                         <button>Privacidade</button>
                     </Link>
                 </div>
