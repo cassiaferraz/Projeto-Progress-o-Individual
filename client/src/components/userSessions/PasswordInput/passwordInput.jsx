@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import eye_icon from "../../../../public/img/svgs/olhoroxoaberto.svg"
-import hiddenEye_icon from "../../../../public/img/svgs/olhofechado.svg"
+import eye_icon from "/img/svgs/olhoroxoaberto.svg"
+import hiddenEye_icon from "/img/svgs/olhofechado.svg"
 
 import "./passwordInput_style.css";
 

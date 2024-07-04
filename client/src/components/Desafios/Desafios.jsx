@@ -1,104 +1,200 @@
-import { Link } from 'react-router-dom'
-import usuario from "../../img/Usuario.svg"
-import {FaStar} from "react-icons/fa"
-
+import { useState, useEffect } from 'react'
+import { Tooltip } from 'react-tooltip'
 import Navmenu from '../Navbar/Navmenu'
+import LogoutButton from '../userSessions/Logout/LogoutButton'
 
 import '../Desafios/desafios.css'
 import "../Navbar/navmenu.css"
+
 import BoxPerfil from '../meu-perfil/BoxPerfil/BoxPerfil'
 
+import coin from "/img/svgs/moedaroxa.svg"
 
-const yellowStarStyle = {
-color: 'rgb(255, 255, 0)',
-};
 
-function Desafios () {
+export default function Desafios () {
+    // const token = sessionStorage.getItem("token")
+    // console.log(token)
+    // if(!token) {
+    //     window.location.href = "/perfil";
+    // }
+
+    //FECH DESAFIOS
+    const [ID_DESAFIOS, setID_DESAFIOS] = useState('')
+    const [NOME_DESAFIOS, setNOME_DESAFIOS] = useState('')
+    const [xp, setXp] = useState('')
+    const [moedas, setMoedas] = useState('')
+    const [descricao, setDescricao] = useState('')
+   
+   useEffect(() => {
+ 
+     async function pegarDadosDesafios(){
+       try {
+         const response = await fetch ('http://localhost:3000/desafios', {method: 'GET'
+       // headers:{
+       //   'Content-Type': 'application/json',
+       //     }
+         })
+ 
+         const data = await response.json()
+         // setTecnico(data[0].tecnico.ID_TECNICO);
+         setID_DESAFIOS(data[0].ID_DESAFIOS)
+         
+         setNOME_DESAFIOS(data[0].NOME_DESAFIOS);
+         setXp(data[0].XP);
+         setMoedas(data[0].MOEDAS);
+         setDescricao(data[0].DESCRICAO);
+ 
+         console.log(data)
+         console.log(data[0])
+      } catch (error){
+        console.log('Erro ao buscar dados',error)
+        }
+ 
+      
+     }
+     pegarDadosDesafios();
+ 
+   }, [])
+
+
     return (
     <div className="todocontainer">
           <Navmenu />
           <BoxPerfil/>
-        
 
-     <div className="tabela-desafios">
-            <div className="cabecalho">
-                <h4>Desafios</h4>
-                <div className="cabecalho2">
-                    <h4>Moedas</h4>
-                    <h4>EXP+</h4>
+          <div id="pag-desafios">
+                <div id="sair-app">
+                        <h2 className="titulodapagina">Meus Desafios</h2>
+                        <LogoutButton />
                 </div>
-            </div>
 
-            <div>
-                <tr>
-                     <td className='tabela-lado-esquerdo'>
-                       Mentalidade de Crescimento
-                    </td>
-                    <td className='tabela-lado-esquerdo'>300 <i class="fa-solid fa-coins"></i> 
-                    </td>
-                    <td className="tabela-lado-esquerdo">250 <FaStar/></td>
-                </tr>
+             <div className='coluna-tabela-desafios'>
+                    <li>Desafios</li>
+                    <li>Moedas</li>
+                    <li>XP</li>
+             </div>
 
-                <tr>
-                    <td className='tabela-lado-direito'>
-                       Apresentar certificado de algum curso; worshop; palestra ou atividades realizadas em 2024. 
-                     </td>
-                       <td className="tabela-lado-direito"> <i className="fa-solid fa-xmark"></i> </td>
-                </tr>
+                <div className='corpodatabela-desafios'>
+                    <div className='linha-tabela-desafios'>
+                        <h4                     
+                        data-tooltip-id="nomeItem"
+                        data-tooltip-content={status ? status : 'Mentalidade de Crescimento'}
+                        data-tooltip-place="top">Mentalidade de Cresc...</h4>
+                        <Tooltip id="nomeItem" />
+                        <div>
+                          <p>300 <img className= "moeda-roxa" src={coin} /></p>                          
+                        </div>
+                        <div>
+                         <p>+250 EXP</p>     
+                        </div>
+                    </div>
+                    <p>Apresentar certificado de algum curso; worshop; palestra ou atividades realizadas em 2024. </p>
 
-                <tr>
-                    <td className='tabela-lado-esquerdo'>
-                       Execute uma ação com objetivo de melhorar algum indicador  
-                    </td>
-                    <td className="tabela-lado-esquerdo">400 <i class="fa-solid fa-coins"></i>
-                    </td>
-                         <td className="tabela-lado-esquerdo">550 <FaStar/></td>
-                </tr>
+                    <div className='linha-tabela-desafios'>
+                        <h4>Empático</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                <p>+250 EXP</p>
+                            </div>
+                    </div>
+                     <p>Pesquise sobre e pratique a escuta ativa e empatia cognitiva</p>
 
-                <tr>
-                    <td className='tabela-lado-direito'>
-                        Aumentar desempenho  
-                    </td>
-                    <td className="tabela-lado-direito"> <i className="fa-solid fa-check"></i> </td>
-                </tr>
+                     <div className='linha-tabela-desafios'>
+                        <h4>Questionador</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                <p>+250 EXP</p>
+                            </div>
+                    </div>
+                     <p>Deve propor novas formas de fazer as coisas, 
+                        questione as práticas atuais da empresa e buscar soluções inovadoras</p>
 
-                <tr>
-                     <td className='tabela-lado-esquerdo'>
-                        Recomendar um livro 
-                    </td>
-                    <td className="tabela-lado-esquerdo">650 <i class="fa-solid fa-coins"></i> 
-                     </td>
-                         <td className="tabela-lado-esquerdo">850 <FaStar/></td>
-                </tr>
+                        <div className='linha-tabela-desafios'>
+                        <h4>Curiosidade</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                <p>+250 EXP</p>
+                            </div>
+                        
+                    </div>
+                     <p>Elaborar um projeto inovador que resolva um problema real, ou gere oportunidade de negócio.
+                        Também pode ser sugestão de produtos, serviços, 
+                        ou tecnologias que poderiam ser realizados pela equipe Elite.</p>
 
-                <tr>
-                    <td className='tabela-lado-direito'>
-                        Comprometido com Resultado
-                    </td>
-                    <td className="tabela-lado-direito">  <i className="fa-solid fa-check"></i></td>
-                </tr>
+                        <div className='linha-tabela-desafios'>
+                        <h4>Ambidestria</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                <p>+250 EXP</p>
+                            </div>
+                        
+                    </div>
+                     <p>Apresentar algum certificado desse ano de algum curso, workshop, 
+                        palestra ou atividade que não esteja relacionada com suas atividades atuais no trabalho.</p>
 
-                <tr>
-                    <td className='tabela-lado-esquerdo'>
-                      Engajado com cliente
-                    </td>
-                    <td className="tabela-lado-esquerdo">790  <i class="fa-solid fa-coins"></i>
-                    </td>
-                         <td className="tabela-lado-esquerdo">850 <FaStar/></td>
-                </tr>
+                        <div className='linha-tabela-desafios'>
+                        <h4>Agil e Eficiente</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                 <p>+250 EXP</p>
+                            </div>
+                       
+                    </div>
+                     <p>Crie uma lista de todas as tarefas e pendências 
+                        que você possui das suas atividades</p>
 
-                <tr>
-                    <td className='tabela-lado-direito'>
-                        Receba 5 avaliações 100%
-                    </td>
-                    <td className="tabela-lado-direito">  <i className="fa-solid fa-xmark"></i></td>
-                </tr>
+                        <div className='linha-tabela-desafios'>
+                        <h4>Conectado</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                 <p>+250 EXP</p>
+                            </div>
+                       
+                    </div>
+                     <p>Participe de um programa de voluntariado para conhecer novas pessoas. 
+                        Ou envie uma mensagem para um colega de trabalho que foi importante pra você, 
+                        e que faz algum tempo que não se falam, diga que está fazendo participando dessa dinâmica</p>
 
-            </div>
-         </div>
+                        <div className='linha-tabela-desafios'>
+                        <h4>Protagonista</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                <p>+250 EXP</p>
+                            </div>
+                        
+                    </div>
+                     <p>pegar contato de pessoas que podem te 
+                        ajudar e ser independente, exemplo: comercial,implantação, etc. Você irá acioná-los quando for necessário</p>
+
+                        <div className='linha-tabela-desafios'>
+                        <h4>Corajoso</h4>
+                            <div>
+                             <p>300 <img className= "moeda-roxa" src={coin} /></p>           
+                            </div>
+                            <div>
+                                 <p>+250 EXP</p>
+                            </div>
+                       
+                    </div>
+                     <p>Você irá liderar uma instalação/projeto, enquanto o colega irá te auxiliar nas demandas.</p>
+                </div>
+
+          </div>
     </div>
- )
-    
-}
 
-export default Desafios
+        )
+}

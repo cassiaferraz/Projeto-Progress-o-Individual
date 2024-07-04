@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import './navmenu.css'
-import alvo from '../../../public/img/svgs/alvo.svg'
-import Trofeu from '../../../public/img/svgs/trofeu.svg'
-import desafios from '../../../public/img/svgs/desafios.svg'
+import alvo from '/img/svgs/alvo.svg'
+import Trofeu from '/img/svgs/trofeu.svg'
+import desafios from '/img/svgs/desafios.svg'
 
 import React, { useState } from 'react';
 
@@ -20,7 +20,7 @@ function Navmenu () {
             <li className='botoesdenavegacao' style={activePage == 'Missoes' ? { backgroundColor: 'rgb(178, 128, 204)' } : {textDecoration: ''}}
         onClick={() => handleSetActive('Missoes')}>
             
-             <Link to= "/Missoes" style={{ textDecoration: 'none' }}> 
+             <Link to= "/" style={{ textDecoration: 'none' }}> 
              <img className= "icon" src={alvo} />Missões </Link>
             </li>
 

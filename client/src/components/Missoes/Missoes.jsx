@@ -11,12 +11,37 @@ import QualityProgressIcon from "./QualityProgresso/QualityProgressIcon"
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
 
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useContext} from 'react'
 
 import '../Missoes/missoes.css'
 import '../pages/pages.css'
+import LogoutButton from "../userSessions/Logout/LogoutButton"
+
+import UserContext from '../meu-perfil/BoxPerfil/UserContext';
+
 
 export default function Missoes () {
+    // const token = sessionStorage.getItem("token")
+    // console.log(token)
+    // if(!token) {
+    //     window.location.href = "/perfil";
+    // }
+
+    
+  const { user, setUser } = useContext(UserContext);
+
+  // Função para completar missão de qualidade
+  function completeQualityMission() {
+    // Verifique se a missão de qualidade foi concluída
+    if (TDNA >= 5 && IFI >= 1 && IRR >= 20) {
+      // Atualize o xp e as moedas do usuário
+      setUser(user => ({
+        ...user,
+        xp: user.xp + 250,  
+        moedas: user.moedas + 250  
+      }));
+    }
+  }
 
     const [TDNA, setTDNA] = useState('')
     const [IFI, setIFI] = useState('')
@@ -40,7 +65,6 @@ export default function Missoes () {
          setIFI(data[0].IFI);
          setIRR(data[0].IRR);
          setFISCALIZACAO(data[0].FISCALIZACAO)
-         setLAUDO(data[0].LAUDO)
  
          console.log(data[0].TDNA)
          console.log(data[0].IFI)
@@ -65,17 +89,19 @@ export default function Missoes () {
      <Navmenu />
       <div className="todocontainer">
             <BoxPerfil />
-
-                <h2 className="titulodapagina">Missões</h2>
+                <div id="paginamissoes">
+                       <h2 className="titulodapagina">Missões</h2>
+                       <LogoutButton/>
+                </div>
+             
                         <Laudos />
 
-                    {/* ATRIBUTO NOVO */}
                     <div className= "todo">
-                        <div className="atributodeavaliacao">
+                    <div className="atributodeavaliacao">
                         <h3>Qualidade</h3>
-                        <img className="check"src={check} />+250
-                        <img className= "moeda-roxa" src={coin} />   +250 EXP
-                        </div>
+                        <img className="check" src={check} onClick={completeQualityMission} />+250
+                        <img className="moeda-roxa" src={coin} />   +250 EXP
+                    </div>
                     </div>   
                     
                     <div className= "todo">
@@ -105,15 +131,11 @@ export default function Missoes () {
 
                     <div className= "todo">
                         <h5 className="atribuicao">Fiscalização</h5>
-
-                        {FISCALIZACAO === true ? (<button className="finish-todo"></button>) : (<button className="remove-todo"></button>)} 
-
+                        {((FISCALIZACAO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {((FISCALIZACAO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {(FISCALIZACAO2 == 'null') ? <button className="null"></button> : <NotNullButton FISCALIZACAO={FISCALIZACAO2}/>}
-
                         {(FISCALIZACAO2 == 'null') ? <button className="null"></button> : <NotNullButton FISCALIZACAO={FISCALIZACAO2}/>}
-                       
-                        {(FISCALIZACAO2 == 'null') ? <button className="null"></button> : <NotNullButton FISCALIZACAO={FISCALIZACAO2}/>}
-                    </div>
+                    </div>  
 
  {/* ATRIBUTO NOVO */}                       
 
@@ -134,7 +156,7 @@ export default function Missoes () {
     )
 }
 
-function NotNullButton({FISCALIZACAO, LAUDO}){
+function NotNullButton({FISCALIZACAO}){
     return (
         <div>
               <>
@@ -142,12 +164,7 @@ function NotNullButton({FISCALIZACAO, LAUDO}){
         <button className="finish-todo"></button> : 
         <button className="remove-todo"></button>)}
         </>
-        <>
-        {((LAUDO == true) ? 
-        <button className="finish-todo"></button> : 
-        <button className="remove-todo"></button>)}
-        </>
-            
+
         </div>
     )
 }

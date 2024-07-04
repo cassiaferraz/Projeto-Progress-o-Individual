@@ -19,6 +19,7 @@
 #itens-config {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1.2rem;
 }
 
 #lua, #notificacao{

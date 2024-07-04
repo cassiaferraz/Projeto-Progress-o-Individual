@@ -65,8 +65,45 @@
   }
 
   .titulodapagina{
-    margin-left: 1.2rem;
     margin-top: 1rem;
-
+    padding-left: 1rem;
     font-weight:600;
   }
+
+  #paginamissoes{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
+
+  .caixa {
+    display: inline-block;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    margin: 0 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #461e5f;
+  border-color: #461e5f;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}

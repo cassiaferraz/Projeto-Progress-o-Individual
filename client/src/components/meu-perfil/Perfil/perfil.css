@@ -1,10 +1,15 @@
 
-
+#titulopagina{
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
 /* abaixo css da tabela de medalhas */
 
 .tabela-medalhas-recompensas{
   margin-top: 6%;
-  background-color: #dddddd;
+  background-color: #e0cceb;
   justify-content: space-between;
   align-items: center;
   border-radius: 15px;
@@ -17,7 +22,7 @@
 }
 
 .cabecalho-medalhas{
-  background-color: #dddddd;
+  background-color: #e0cceb;
   color: black;
   font-weight: 600;
   padding: 8px 10px;
@@ -65,12 +70,19 @@
   border: #dddddd;
 }
 
-#botoes{
-  background-color: #CC1F59;
-  width: 30%;
-  padding: .8rem;
-  border-radius: 8px;
+#botao-laudospendentes{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 10px;
+  padding-left: 2.5rem;
 }
-#botoes button{
+
+#botao-laudospendentes a{
+  background-color: #eb3d7d;
+  border-radius: 15%;
+  border-radius: 15px;
+  font-size: small;
+  border: #eb3d7d solid 8px;
   color: white;
 }

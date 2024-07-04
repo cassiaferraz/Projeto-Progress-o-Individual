@@ -1,10 +1,10 @@
 // routes/apiRoutes.js
 const express = require('express');
 const app = express.Router();
-const apiController = require('../controller/APIHabmedalhas');
+const apiController = require('../controller/APIHabilidades.js');
 
 // Rota para exibir "Olá, mundo!"
-app.get('/habmedalhas', apiController.getUserHabmedalhas);
+app.get('/habilidades', apiController.getUserHabilidades);
 
 
 module.exports = app;

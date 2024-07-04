@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import "./register_style.css"
 
-import Logo from '../../../../public/img/svgs/logoprogressao.png'
 import BackArrow from "/img/svgs/voltar.svg"
 
 import RegisterForm from '../../userSessions/RegisterForm/RegisterForm';

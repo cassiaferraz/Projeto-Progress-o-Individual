@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser')
 
-const avaliacaoModel = require('../models/avaliacaoModel');
+const avaliacaoModel = require('../models/avaliacaoMissoesModel');
 
 const getUserAvaliations = async (req, res) => {
   try {

@@ -1,113 +1,56 @@
-import Navmenu from "../Navbar/Navmenu"
-import { Link } from 'react-router-dom'
-import {FaStar, FaCoins} from "react-icons/fa";
 
+import Navmenu from "../Navbar/Navmenu"
+import coin from '/img/svgs/moedaroxa.svg'
 import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
 
 import '../Recompensas/recompensas.css'
 
-// import TabelaRecompensas from "./TabelaRecompensas";
+export default function Recompensas () {
 
-// import '../../assets/recompensas.json'
-// import '../../assets/user.json'
-
-
-
-function Recompensas () {
-// definindo objetos de recompensa
-
-    // const recompensas = [
-    //     {"recompensas": "recompensa 1", "Nível": 10, "preço": 100},
-    //     {"recompensas": "recompensa 2", "Nível": 10, "preço": 100},
-    //     {"recompensas": "recompensa 3", "Nível": 20, "preço": 750},
-    //     {"recompensas": "recompensa 4", "Nível": 25, "preço": 800},
-    //     {"recompensas": "recompensa 5", "Nível": 30, "preço": 900},
-    //     {"recompensas": "recompensa 6", "Nível": 40, "preço": 100},
-    //     {"recompensas": "recompensa 7", "Nível": 50, "preço": 100},
-    //   ];
-      
-    //   function verificarRecompensa(user) {
-    //     const nivelUser = user.Nível;
-    //     const recompensa = recompensas.find(r => r.Nível <= nivelUser);
-    //     if (recompensa) {
-    //       return `Você desbloqueou a ${recompensas.recompensa} por ${recompensa.preço} moedas.`;
-    //     } 
-    //     else {
-    //       return "Você ainda não desbloqueou nenhuma recompensa.";
-    //     }
-    //   }
-      
-    //   // Exemplo de uso:
-    //   const user = {"tecnico": "Joao"};
-    //   console.log(verificarRecompensa(user));
-
-
-
-    return (
+    return(
         <div className="todocontainer">
-            
-          <div>
-          <Navmenu />
-          <BoxPerfil/>
-         </div>
+            <Navmenu />
+            <BoxPerfil />
+                <div className="tablerecompensas">
+                <div className='coluna-tabela-recompensas'>
+                    <li>Recompesa</li>
+                    <li>Nível</li>
+                    <li>Preço</li>
+                </div>
 
-           <div className="tablerecompensas">
-            {/* <TabelaRecompensas /> */}
-            <table >
-            <thead className="cabecalho">
-                <tr>
-                <th className="titulodocabecalho2" scope="col"><h3>Recompensas</h3></th>
-                <th className="titulodocabecalho2" scope="col"><h3>Nível</h3></th>
-                <th className="titulodocabecalho2" scope="col"><h3>Preço</h3></th>
-                </tr>
-            </thead>
+                <div className='corpodatabela'>
+                    <div className='linha-tabela-recompensa'>
+                        <h4>Consultoria Excel</h4>
+                        <p>Req. Nível 10</p>
+                        <p>300 <img className= "moeda-roxa" src={coin} /></p>
+                    </div>
 
-              <tbody>
-                  <tr>
-                  <th  className= "linhas" scope="row">Consultoria Excel</th>
-                      <td >Req. Nível 10</td>
-                      <td>100 <FaCoins/></td>
-                  </tr>
-                  <tr>
-                  <th className= "linhas"scope="row">Consultoria Casa Inteligente</th>
-                      <td>Req. Nível 10</td>
-                      <td>250 <FaCoins/></td>
-                  </tr>
-                  
-                  <tr>
-                  <th  className= "linhas" scope="row">Consultoria Áudio/Vídeo</th>
-                      <td>Req. Nível 20</td>
-                      <td>350 <FaCoins/></td>
-                  </tr>
-                  <tr>
-                  <th  className= "linhas" scope="row">Consultoria Power Poitn</th>
-                      <td className="bloqueado"> Req. Nível 25</td>
-                      <td>400 <FaCoins/></td>
-                  </tr>
+                    <div className='linha-tabela-recompensa'>
+                        <h4>Cons. Casa Intelig</h4>
+                        <p>Req. Nível 10</p>
+                        <p>300 <img className= "moeda-roxa" src={coin} /></p>
+                    </div>
 
-                  <tr>
-                  <th  className= "linhas" scope="row">Palestra Gestão </th>
-                      <td className="bloqueado">Req. Nível 30</td>
-                      <td>500 <FaCoins/></td>
-                  </tr>
-                  <tr>
-                  <th className= "linhas"scope="row">Quick Massage</th>
-                      <td className="bloqueado">Req. Nível 40</td>
-                      <td>700 <FaCoins/></td>
-                  </tr>
+                    <div className='linha-tabela-recompensa'>
+                        <h4>Cons.Power Point</h4>
+                        <p>Req. Nível 20</p>
+                        <p>400 <img className= "moeda-roxa" src={coin} /></p>
+                    </div>
 
-                  <tr>
-                  <th  className= "linhas" scope="row">Sala Gaming</th>
-                      <td className="bloqueado">Req. Nível 50 </td>
-                      <td>800 <FaCoins/></td>
-                  </tr>
-                  
-              </tbody>
-              
-            </table>
-         </div>
-  </div>
+                    <div className='linha-tabela-recompensa'>
+                        <h4> Quick Massage</h4>
+                        <p>Req. Nível 25</p>
+                        <p>500 <img className= "moeda-roxa" src={coin} /></p>
+                    </div>
+
+                    <div className='linha-tabela-recompensa'>
+                        <h4> Sala Gaming </h4>
+                        <p>Req. Nível 30</p>
+                        <p>600 <img className= "moeda-roxa" src={coin} /></p>
+                    </div>
+                </div>
+
+                </div>
+        </div>
     )
 }
-
-export default Recompensas

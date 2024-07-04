@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 
-import coin from "../../../public/img/svgs/moedaroxa.svg"
-import xmark from "../../../public/img/svgs/xmark.svg"
+import coin from "/img/svgs/moedaroxa.svg"
+import check from "/img/svgs/check.svg"
 
 export default function Postura(){
-    const [COMUNICACAO, setCOMUNICACAO] = useState('')
-    const [UNIFORME, setUNIFORME] = useState('')
-    const [CRACHA, setCRACHA] = useState('')
-    const [BOTA, setBOTA] = useState('')
-    const [MALA, setMALA] = useState('')
-    const COMUNICACAO2 = "null"
-    const MALA2 = "null"
-    const CRACHA2 = "null"
-    const UNIFORME2 = "null"
-    const BOTA2 = "null"
+    const [POSTURA_COMUNICACAO, setCOMUNICACAO] = useState(true)
+    const [POSTURA_UNIFORME, setUNIFORME] = useState(true)
+    const [POSTURA_CRACHA, setCRACHA] = useState(true)
+    const [POSTURA_BOTA, setBOTA] = useState(true)
+    const [POSTURA_MALA, setMALA] = useState(false)
+    const POSTURA_COMUNICACAO2 = "null"
+    const POSTURA_MALA2 = "null"
+    const POSTURA_CRACHA2 = "null"
+    const POSTURA_UNIFORME2 = "null"
+    const POSTURA_BOTA2 = "null"
 
 
     useEffect(() => {
@@ -25,11 +25,11 @@ export default function Postura(){
           })
 
           const data = await response.json()
-          setCOMUNICACAO(data[0].COMUNICACAO)
-          setUNIFORME(data[0].UNIFORME)
-          setCRACHA(data[0].CRACHA)
-          setBOTA(data[0].BOTA)
-          setMALA(data[0].MALA)
+          setCOMUNICACAO(data[0].POSTURA_COMUNICACAO)
+          setUNIFORME(data[0].POSTURA_UNIFORME)
+          setCRACHA(data[0].POSTURA_CRACHA)
+          setBOTA(data[0].POSTURA_BOTA)
+          setMALA(data[0].POSTURA_MALA)
 
         //   console.log(data[0].COMUNICACAO)
 
@@ -48,7 +48,7 @@ export default function Postura(){
             <div className= "todo">
                  <div className="atributodeavaliacao">
                     <h3>Postura</h3>
-                     <img className="xmark"src={xmark} />+250
+                     <img className="xmark"src={check} />+250
                      <img className= "moeda-roxa" src={coin}/>+250 EXP
                  </div>
             </div>
@@ -57,66 +57,50 @@ export default function Postura(){
 
                     <div className= "todo">
                         <h5 className="atribuicao">Comunicação</h5>
-
-                        {((COMUNICACAO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
-
-                        {COMUNICACAO === true ? (<button className="finish-todo"></button>) : (<button className="remove-todo"></button>)}
-
-                        {(COMUNICACAO2 == 'null') ? <button className="null"></button> : <NotNullButton COMUNICACAO={COMUNICACAO2}/>}
-
-                        {(COMUNICACAO2 == 'null') ? <button className="null"></button> : <NotNullButton COMUNICACAO={COMUNICACAO2}/>}
-                    </div>
+                {((POSTURA_COMUNICACAO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                {((POSTURA_COMUNICACAO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                {(POSTURA_COMUNICACAO2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_COMUNICACAO={POSTURA_COMUNICACAO2}/>}
+                {(POSTURA_COMUNICACAO2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_COMUNICACAO={POSTURA_COMUNICACAO2}/>}
+                    </div>  
 
 {/* ITEM 2 DE POSTURA */}
                     <div className= "todo">
                         <h5 className="atribuicao">Uniforme</h5>
-                        {((UNIFORME == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
-
-                        {((UNIFORME == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}  
-
-                        {(UNIFORME2 == 'null') ? <button className="null"></button> : <NotNullButton UNIFORME={UNIFORME2}/>}
-
-                        {(UNIFORME2 == 'null') ? <button className="null"></button> : <NotNullButton UNIFORME={UNIFORME2}/>}
-                    </div>
+                        {((POSTURA_UNIFORME == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {((POSTURA_UNIFORME == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {(POSTURA_UNIFORME2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_UNIFORME={POSTURA_UNIFORME2}/>}
+                        {(POSTURA_UNIFORME2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_UNIFORME={POSTURA_UNIFORME2}/>}
+ </div>
 {/* ITEM 3 DE POSTURA */}
                     <div class= "todo">
                         <h5 className="atribuicao">Bota</h5>
-                        {((BOTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
-
-                        {(BOTA2 == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>}
-
-                        {(BOTA2 == 'null') ? <button className="null"></button> : <NotNullButton BOTA={BOTA2}/>}
-
-                        {(BOTA2 == 'null') ? <button className="null"></button> : <NotNullButton BOTA={BOTA2}/>}
+                        {((POSTURA_BOTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {((POSTURA_BOTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {(POSTURA_BOTA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_BOTA={POSTURA_BOTA2}/>}
+                        {(POSTURA_BOTA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_BOTA={POSTURA_BOTA2}/>}
                     </div>
                     <div class= "todo">
                         <h5 className="atribuicao">Crachá</h5>
-                        {((CRACHA == true) ? <button className="remove-todo"></button> : <button className="finish-todo"></button>)} 
-
-                        {(CRACHA === true) ? (<button className="finish-todo"></button>) : (<button className="remove-todo"></button>)}
-
-                        {(CRACHA2 == 'null') ? <button className="null"></button> : <NotNullButton CRACHA={CRACHA2}/>}
-
-                        {(CRACHA2 == 'null') ? <button className="null"></button> : <NotNullButton CRACHA={CRACHA2}/>}
+                        {((POSTURA_CRACHA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {((POSTURA_CRACHA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {(POSTURA_CRACHA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_CRACHA={POSTURA_CRACHA2}/>}
+                        {(POSTURA_CRACHA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_CRACHA={POSTURA_CRACHA2}/>}
                     </div>
                     <div class= "todo">
                         <h5 className="atribuicao">Mala</h5>
-                        {((MALA == true) ? <button className="remove-todo"></button> : <button className="finish-todo"></button>)} 
-
-                        {((MALA == true) ? <button className="remove-todo"></button> : <button className="finish-todo"></button>)} 
-
-                        {(MALA2 == 'null') ? <button className="null"></button> : <NotNullButton MALA={MALA2}/>}
-
-                        {(MALA2 == 'null') ? <button className="null"></button> : <NotNullButton MALA={MALA2}/>}
+                        {((POSTURA_MALA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {((POSTURA_MALA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                        {(POSTURA_MALA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_MALA={POSTURA_MALA2}/>}
+                        {(POSTURA_MALA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_MALA={POSTURA_MALA2}/>}
                     </div>
             </div>
         )
 }
 
- function NotNullButton({COMUNICACAO}){
+ function NotNullButton({POSTURA_COMUNICACAO}){
      return (
          <>
-         {((COMUNICACAO == true) ? 
+         {((POSTURA_COMUNICACAO == true) ? 
          <button className="finish-todo"></button> : 
          <button className="remove-todo"></button>)}
          </>

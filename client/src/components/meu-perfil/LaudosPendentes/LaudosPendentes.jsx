@@ -1,9 +1,10 @@
 import Navmenu from "../../Navbar/Navmenu"
 import BoxPerfil from "../BoxPerfil/BoxPerfil"
 
+import { useState, useEffect } from "react"
 import './laudospendentes.css'
 
-import BackArrow from "../../../../public/img/svgs/voltar.svg"
+import BackArrow from "/img/svgs/voltar.svg"
 
 export default function LaudosPendentes() {
     // deve conter esse cod abaixo em todas as pag para exigir login
@@ -12,6 +13,13 @@ export default function LaudosPendentes() {
     // if(!token) {
     //     window.location.href = "/";
     // }
+
+    const [data, setData] = useState ('');
+    const [tipo, setTipo] = useState ('');
+    const [cidade, setCidade] = useState ('');
+    const [bairro, setBairro] = useState ('');
+
+    useEffect 
 
     return (
         <div className="todocontainer">
@@ -29,7 +37,7 @@ export default function LaudosPendentes() {
             </div>
 
             <div id="laudo-pendente">
-                <ul id="cabecalho-tabelalaudo">
+                <ul className="cabecalho-tabelalaudo">
                     <li>Data</li>
                     <li>Tipo</li>
                     <li>Cidade</li>
@@ -42,25 +50,43 @@ export default function LaudosPendentes() {
                     <li>Instalação</li>
                     <li>São Paulo</li>
                     <li>Moema</li>
-                    <a href="">
+                    <a href="/PreenchimentoLaudo">
                     <button type="submit">Preencher</button></a>
                 </div>
 
                 <div className="lista-pendente">
-                    <li>21/05/2024</li>
-                    <li>Mudança</li>
+                    <li>18/06/2024</li>
+                    <li>Instalação</li>
                     <li>São Paulo</li>
-                    <li>Barra Funda</li>
-                    <a href="">
+                    <li>B. Funda</li>
+                    <a href="/PreenchimentoLaudo">
                     <button type="submit">Preencher</button></a>
                 </div>
 
                 <div className="lista-pendente">
-                    <li>20/06/2024</li>
+                    <li>19/06/2024</li>
                     <li>Reparo</li>
                     <li>São Paulo</li>
                     <li>Lapa</li>
-                    <a href="/">
+                    <a href="/PreenchimentoLaudo">
+                    <button type="submit">Preencher</button></a>
+                </div>
+
+                <div className="lista-pendente">
+                    <li>19/06/2024</li>
+                    <li>Reparo</li>
+                    <li>São Paulo</li>
+                    <li>Lapa</li>
+                    <a href="/PreenchimentoLaudo">
+                    <button type="submit">Preencher</button></a>
+                </div>
+
+                <div className="lista-pendente">
+                    <li>19/06/2024</li>
+                    <li>Reparo</li>
+                    <li>São Paulo</li>
+                    <li>B.  Funda</li>
+                    <a href="/PreenchimentoLaudo">
                     <button type="submit">Preencher</button></a>
                 </div>
             </div>

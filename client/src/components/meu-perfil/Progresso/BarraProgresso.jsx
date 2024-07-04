@@ -20,6 +20,8 @@ function BarraProgresso({xp}) {
             bgColor="#F24194"
              customLabel= {string}
              labelClassName="label "
+             transitionDuration="2s"
+             transitionTimingFunction="ease-in-out"
 />
     </div>
 

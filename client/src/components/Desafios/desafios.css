@@ -1,37 +1,45 @@
-.cabecalho{
+#pag-desafios{
+    display: flex;
+    flex-direction: column;
+}
+.corpodatabela-desafios {
+    display: flex;
+    flex-direction: column;
+    padding: .8rem;
+    align-content: center;
+    
+  }
+
+  .coluna-tabela-desafios{
     display: flex;
     justify-content: space-between;
-    padding: .6rem;
-    background-color: #dddddd;
-    font-size: medium;
+    margin-top: 1.4rem;
+    background-color: #e0cceb;
+    border-radius: 8px;
+    padding: 1rem;
 }
 
-.cabecalho h4{
+  .coluna-tabela-desafios li{
     font-weight: 600;
+    font-size: large;
 }
 
-.cabecalho2{
+.linha-tabela-desafios{
     display: flex;
     justify-content: space-between;
-    
+    background-color: #EFE5F4;
+    padding: .8rem;
+
+  }
+
+.coluna-tabela-desafios > div, .linha-tabela-desafios {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
 }
 
-
-.tabela-lado-esquerdo {
-   text-align: center;
-    background-color: rgb(239, 229, 244);
-    border: 1.2px solid;
-    
+.corpodatabela-desafios p{
+  padding-left: 2.2rem;
+  margin-bottom: 5%;
 }
 
-.tabela-lado-direito {
-    background-color: #f6f6f6;
-    text-align: left;
-    border: 1.2px;
-}
-
-.tabela-desafios{
-    margin-top: 30px;
-    background-color: #dddddd;
-    text-align: center;
-}

@@ -1,7 +1,6 @@
 import { React } from 'react';
 
 import './login.css'
-// import Logo from '../../../../public/img/Vivo Horizontal Purpura RGB.jpg'
 import LoginForm from '../../userSessions/LoginForm/LoginForm';
 function Login() {
 

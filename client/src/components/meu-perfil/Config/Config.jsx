@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Navmenu from "../../Navbar/Navmenu"
 
 import Lua from '/img/svgs/Lua.svg'
-import sair from '/img/svgs/VoltarSair.svg'
+import BackArrow from "/img/svgs/voltar.svg"
 
 import LogoutButton from "../../userSessions/Logout/LogoutButton"
 
@@ -11,11 +11,11 @@ import '../Config/config.css'
 
 export default function Config () {
 
-    // const token = sessionStorage.getItem("token")
-    // console.log(token)
-    // if(!token) {
-    //     window.location.href = "/";
-    // }
+//    const token = sessionStorage.getItem("token")
+//    console.log(token)
+//    if(!token) {
+//        window.location.href = "/perfil";
+//    }
 
     return(
      <div className="todocontainer">
@@ -23,10 +23,15 @@ export default function Config () {
         <Navmenu />
             <div className="pag-config">
                 <div id="sair-app">
-                    <h2 className="titulodapagina">Configurações</h2>
+                <a href="/perfil">
+                    <img
+                        className="btn-backPage"
+                        src={BackArrow}
+                        alt="Voltar"
+                    />
+                </a>
+                    <h2 id="titulopagina">Configurações</h2>
                     <LogoutButton></LogoutButton>
-                    {/* <img id= "sair"src={sair} alt="sair_app" /> */}
-                    
                 </div>
                <div id="itens-config">
                     <Link style={{ textDecoration: 'none' }} to="/Update">

@@ -24,6 +24,7 @@ button {
     display: fixed;
     justify-content: center;
     align-items: start;
+    animation: none;
 }
 
 input, select {
@@ -37,9 +38,9 @@ input, select {
 .todocontainer {
     position: flex;
     margin: 4rem auto;
-    max-width: 650px;
+    max-width: 600px;
     background-color: #fdfdfd;
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 16px;
     justify-content: center;
    

@@ -11,7 +11,6 @@ const cookieParser = require('cookie-parser')
 const loginRoutes = require('./routes/loginRoutes')
 const registerRoutes = require('./routes/resetPassword.js')
 
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
