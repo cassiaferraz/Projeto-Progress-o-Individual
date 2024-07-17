@@ -19,22 +19,37 @@ export default function Veivulo(){
     const VEICULO_MULTAS2 = "null"
     const VEICULO_SINISTROS2 = "null"
  
+    const token = sessionStorage.getItem('token')
+ 
     useEffect(() => {
   
       async function pegarDadosVeivulo(){
         try {
-          const response = await fetch ('http://localhost:3000/avaliacao/user', {method: 'GET'
+          const response = await fetch ('http://localhost:3000/avaliacao/user', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            }
         
           })
   
           const data = await response.json()
+          console.log(data)
           setVEICULO_LIMPEZAINTERNA(data[0].VEICULO_LIMPEZAINTERNA)
+          sessionStorage.setItem('veiculointerna', data.VEICULO_LIMPEZAINTERNA)
           setVEICULO_LIMPEZAEXTERNA(data[0].VEICULO_LIMPEZAEXTERNA)
+          sessionStorage.setItem('veiculoexterna', data.VEICULO_LIMPEZAEXTERNA)
           setVEICULO_ORGANIZACAOFRENTE(data[0].VEICULO_ORGANIZACAOFRENTE)
+          sessionStorage.setItem('veiculorganizacao', data.VEICULO_ORGANIZACAOFRENTE)
           setVEICULO_ORGANIZACAOBAU(data[0].VEICULO_ORGANIZACAOBAU)
+          sessionStorage.setItem('veiculobau', data.VEICULO_ORGANIZACAOBAU)
           setVEICULO_MULTAS(data[0].VEICULO_MULTAS)
+          sessionStorage.setItem('veiculomultas', data.VEICULO_MULTAS)
           setVEICULO_RECARGA(data[0].VEICULO_RECARGA)
+          sessionStorage.setItem('veiculorecarga', data.VEICULO_RECARGA)
           setVEICULO_SINISTROS(data[0].VEICULO_SINISTROS)
+          sessionStorage.setItem('veiculosinistros', data.VEICULO_SINISTROS)
   
         //   console.log(data[0].COMUNICACAO)
   

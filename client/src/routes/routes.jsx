@@ -23,7 +23,6 @@ export default function Router() {
         <UserContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
             <Routes>
-                {/* <Route path= "/" element={<Home />} /> */}
                 <Route path= "/login" element={<Login />} />
                 <Route path= "/" element={<Missoes />} />
                 <Route path= "/Desafios" element={<Desafios />} />

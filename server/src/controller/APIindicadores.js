@@ -4,8 +4,9 @@ const indicadoresModel = require('../models/indicadoresModel');
 
 const getUserindicadores = async (req, res) => {
   try {
-    const id = req.params.id;
-    const indicadoresData = await indicadoresModel.getUser(id)
+    const userId = req.userId;
+    console.log(userId)
+    const indicadoresData = await indicadoresModel.getUser(userId)
     res.status(200).json(indicadoresData)
   } catch (err) {
     console.log(err)
@@ -16,4 +17,3 @@ const getUserindicadores = async (req, res) => {
 module.exports = {
     getUserindicadores
 }
-

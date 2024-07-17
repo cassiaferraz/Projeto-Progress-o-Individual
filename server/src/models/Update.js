@@ -1,8 +1,8 @@
 const sqlServer = require('../utils/sqlServer');
  
 // UPDATE
-function updateUser(userEmail, userPassword) {
-    const sql = `UPDATE dbo.COLABORADORES SET SENHA = '${userPassword}' WHERE EMAIL = '${userEmail}'`;
+function updateUser(id, userPassword) {
+    const sql = `UPDATE dbo.COLABORADORES SET SENHA = '${userPassword}' WHERE ID_COLABORADOR = '${id}'`;
     const results = sqlServer.dispatchQuery(sql);
     return results;
 }

@@ -1,9 +1,11 @@
-// routes/resetPassword.js
 const express = require('express');
 const router = express.Router();
-const { updateUserPassword } = require('../controller/UpdateController'); // Importe o controlador adequado
+const  updateUser  = require('../controller/UpdateController'); // Importe o controlador adequado
+const authenticateToken = require('../middleware/authMiddleware');
+
+
 
 // Rota para redefinir a senha
-router.post('/reset-password', updateUserPassword);
+router.post('/reset-password',  authenticateToken,updateUser.updateUserPassword);
 
 module.exports = router;

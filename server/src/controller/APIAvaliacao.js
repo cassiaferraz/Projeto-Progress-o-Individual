@@ -4,8 +4,8 @@ const avaliacaoModel = require('../models/avaliacaoMissoesModel');
 
 const getUserAvaliations = async (req, res) => {
   try {
-    const id = req.params.id;
-    const avaliacaoData = await avaliacaoModel.getUser(id)
+    const userId = req.userId
+    const avaliacaoData = await avaliacaoModel.getUser(userId)
     res.status(200).json(avaliacaoData)
   } catch (err) {
     console.log(err)

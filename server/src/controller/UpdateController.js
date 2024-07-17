@@ -1,31 +1,31 @@
 const bcrypt = require('bcryptjs');
-const updateUser = require('../models/update.js');
- 
- 
+const update = require('../models/update.js');
+
+
 const updateUserPassword = async (req, res) => {
-   
     try {
-        const userEmail = req.body.email
+        const userId = req.userId;
         const userPassword = req.body.password;
-        const saltRounds = 10;      
- 
-        bcrypt.hash(userPassword, saltRounds, (err, hash) => {
-            if (err) console.log(err);
- 
-            updateUser.updateUser(userEmail, hash);
-           
-            console.log("\n-> Atualização DE Senha:");
-            console.log("EMAIL: ", userPassword);
-            console.log("HASH: ", hash);
- 
-            res.status(201).json({message: 'Usuário criado'});
-        });
- 
+        // const userConfirmedPassword = req.body.confirmPassword
+
+        // if (userPassword == userConfirmedPassword){
+        const saltRounds = 10;
+        const hash = await bcrypt.hash(userPassword, saltRounds);
+
+      
+        await update.updateUser(userId, hash);
+
+        console.log("\n-> Atualização DE Senha:");
+        console.log("ID USUARIO:", userId);
+        console.log("SENHA: ", userPassword);
+        console.log("HASH: ", hash);
+
+        res.status(201).json({ message: 'Senha do usuário atualizada com sucesso' });
+        // }
     } catch (err) {
-        console.log(err);
+        console.error("Erro em updateUserPassword:", err);
         res.status(500).json({ error: 'Erro ao atualizar a senha no banco de dados.' });
     }
-}
- 
+};
+
 module.exports = { updateUserPassword };
- 

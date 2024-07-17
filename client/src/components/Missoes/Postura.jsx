@@ -16,20 +16,34 @@ export default function Postura(){
     const POSTURA_BOTA2 = "null"
 
 
+    const token = sessionStorage.getItem('token')
+
+
     useEffect(() => {
 
       async function pegarDadosPostura(){
         try {
-          const response = await fetch ('http://localhost:3000/avaliacao/user', {method: 'GET'
+          const response = await fetch ('http://localhost:3000/avaliacao/user', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            }
 
           })
 
           const data = await response.json()
+          console.log(data)
           setCOMUNICACAO(data[0].POSTURA_COMUNICACAO)
+          sessionStorage.setItem('posturacomunicacao', data.POSTURA_COMUNICACAO)
           setUNIFORME(data[0].POSTURA_UNIFORME)
+          sessionStorage.setItem('posturauniforme', data.POSTURA_UNIFORME)
           setCRACHA(data[0].POSTURA_CRACHA)
+          sessionStorage.setItem('posturacracha', data.POSTURA_CRACHA)
           setBOTA(data[0].POSTURA_BOTA)
+          sessionStorage.setItem('posturabota', data.POSTURA_BOTA)
           setMALA(data[0].POSTURA_MALA)
+          sessionStorage.setItem('posturamala', data.POSTURA_MALA)
 
         //   console.log(data[0].COMUNICACAO)
 

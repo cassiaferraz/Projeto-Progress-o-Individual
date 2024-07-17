@@ -85,66 +85,64 @@
 
 
 // MOSTRAR A MENSAGEM DE ALTERAR A SENHA EM TODOS OS ACESSOS
-   import { useState } from 'react';
-   import Swal from 'sweetalert2';
- 
-   import EmailInput from '../EmailInput/EmailInput';
-   import PasswordInput from '../PasswordInput/passwordInput';
-   import Logo from '/img/svgs/logoprogressao.png'
- 
-  function LoginForm() {
+import { useState } from 'react';
+import Swal from 'sweetalert2';
+
+import EmailInput from '../EmailInput/EmailInput';
+import PasswordInput from '../PasswordInput/passwordInput';
+import Logo from '/img/svgs/logoprogressao.png';
+
+function LoginForm() {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
- 
- const handleSubmit = async (event) => {
-     event.preventDefault();
 
-     try {
-         const response = await fetch('http://localhost:3000/login', {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json'
-             },
-             body: JSON.stringify({ userEmail: userEmail, userPassword: userPassword })
-         });
-         
-         const data = await response.json()
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-         if (response.ok) {
-          sessionStorage.setItem('token' , data.token)
-            if(data.isFirstAccess) {
-              Swal.fire({
-                title: 'Aviso!',
-                text: 'Por favor, altere sua senha após o primeiro acesso.',
-                icon: 'warning',
-                confirmButtonText: 'OK',
-            }).then(() => {
-                // Redirecionamento após o login
-                
-                window.location.href = '/update';
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userEmail: userEmail, userPassword: userPassword })
             });
-          }
-          else {
-            // Redireciona para a página inicial
-            window.location.href = '/';
-          }
-         
-         } else {
-             setLoginError(true);  
-         }
-     } catch (error) {
-         console.error('Erro ao fazer login:', error);
-         alert("Ocorreu um erro ao fazer login. Por favor, tente novamente.");
-     }
- }
 
+            const data = await response.json();
+            console.log('Resposta da API:', data); // Log da resposta da API
+
+            if (response.ok) {
+                console.log('Login bem-sucedido, armazenando token');
+                sessionStorage.setItem('token', data.token);
+                console.log('Token armazenado no sessionStorage:', sessionStorage.getItem('token')); // Log do token armazenado
+
+                if (data.isFirstAccess) {
+                    Swal.fire({
+                        title: 'Aviso!',
+                        text: 'Por favor, altere sua senha após o primeiro acesso.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    }).then(() => {
+                        window.location.href = '/update';
+                    });
+                } else {
+                    window.location.href = '/';
+                }
+            } else {
+                setLoginError(true);
+                console.log('Falha no login:', data.message); // Log da falha no login
+            }
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            alert("Ocorreu um erro ao fazer login. Por favor, tente novamente.");
+        }
+    };
 
     return (
-            <div className="login-container">
-              <form className='login-form' onSubmit={handleSubmit}>
-              <img src={Logo} className="vivo-icon" alt="vivo icon" />
-
+        <div className="login-container">
+            <form className='login-form' onSubmit={handleSubmit}>
+                <img src={Logo} className="vivo-icon" alt="vivo icon" />
                 <EmailInput
                     value={userEmail}
                     onChange={setUserEmail}
@@ -156,11 +154,10 @@
                     showRegexError={false}
                 />
                 <button type='submit'>Acessar</button>
-              </form>
-              {/* <small className='register-text'>Primeiro acesso? <a href="/register">Clique aqui</a></small> */}
-                {loginError && <p className="login-error">Email ou senha incorretos</p>}
-              </div>
+            </form>
+            {loginError && <p className="login-error">Email ou senha incorretos</p>}
+        </div>
     );
- }
+}
 
- export default LoginForm;
+export default LoginForm;

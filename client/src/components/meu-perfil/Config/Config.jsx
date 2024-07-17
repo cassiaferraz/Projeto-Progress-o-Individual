@@ -1,13 +1,15 @@
 import BoxPerfil from "../BoxPerfil/BoxPerfil"
-import { Link } from "react-router-dom"
 import Navmenu from "../../Navbar/Navmenu"
+import LogoutButton from "../../userSessions/Logout/LogoutButton"
+
+import { Link } from "react-router-dom"
 
 import Lua from '/img/svgs/Lua.svg'
 import BackArrow from "/img/svgs/voltar.svg"
 
-import LogoutButton from "../../userSessions/Logout/LogoutButton"
-
 import '../Config/config.css'
+
+
 
 export default function Config () {
 
@@ -16,6 +18,7 @@ export default function Config () {
 //    if(!token) {
 //        window.location.href = "/perfil";
 //    }
+
 
     return(
      <div className="todocontainer">
@@ -34,6 +37,7 @@ export default function Config () {
                     <LogoutButton></LogoutButton>
                 </div>
                <div id="itens-config">
+
                     <Link style={{ textDecoration: 'none' }} to="/Update">
                         <button>Alterar Senha</button>
                     </Link>

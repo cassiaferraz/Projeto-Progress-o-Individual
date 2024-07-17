@@ -5,7 +5,7 @@ const create = async (req, res) => {
     try {
         console.log(req.body)
  
-        // const userId = req.userId;
+        const userId = req.userId;
         const conectividade = req.body.CONECTIVIDADE;
         const casainteligente = req.body.CASA_INTELIGENTE;
         const Eletrica = req.body.ELETRICA;
@@ -17,7 +17,7 @@ const create = async (req, res) => {
  
         if (
  
-            // userId === undefined ||
+            userId === undefined ||
             conectividade === undefined ||
             casainteligente === undefined ||
             Eletrica === undefined ||
@@ -36,7 +36,7 @@ const create = async (req, res) => {
  
         const newHabilidade = {
  
-            // ID_COLABORADOR: userId,
+            ID_COLABORADOR: userId,
             CONECTIVIDADE: conectividade,
             CASA_INTELIGENTE: casainteligente,
             ELETRICA: Eletrica,

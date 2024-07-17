@@ -2,9 +2,10 @@
 const express = require('express');
 const app = express.Router();
 const apiController = require('../controller/APIAvaliacao');
+const authenticateToken = require('../middleware/authMiddleware')
 
-// Rota para exibir "Olá, mundo!"
-app.get('/avaliacao/user', apiController.getUserAvaliations);
+
+app.get('/avaliacao/user', authenticateToken ,apiController.getUserAvaliations);
 
 
 module.exports = app;

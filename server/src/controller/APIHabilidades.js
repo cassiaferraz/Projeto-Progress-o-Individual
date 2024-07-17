@@ -6,8 +6,8 @@ const habilidadesModel = require('../models/habilidadesModel');
  
 const getUserHabilidades = async (req, res) => {
   try {
-    const id = req.params.id;
-    const HabData = await habilidadesModel.getUser(id)
+    const userId = req.userId
+    const HabData = await habilidadesModel.getUser(userId)
     res.status(200).json(HabData)
   } catch (err) {
     console.log(err)

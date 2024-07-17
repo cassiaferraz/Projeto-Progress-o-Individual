@@ -29,3 +29,26 @@
     font-style: normal;
   }
 
+
+  /* media query para dispositivos com largura menor que 600px */
+@media (max-width: 600px) {
+    .Navmenu {
+        width: 100%; /* Faz o navbar ocupar toda a largura */
+        left: 0; /* Alinha à borda esquerda */
+    }
+    .icon {
+        margin-left: 10%; /* Ajusta a margem para telas menores */
+    }
+}
+
+/* media query para dispositivos com largura entre 600px e 1200px */
+@media (min-width: 601px) and (max-width: 1200px) {
+    .Navmenu {
+        width: 76%; /* Faz o navbar ocupar 80% da largura */
+        left: 10%;
+        margin-right: 1%;
+    }
+    .icon {
+        margin-left: 42%; /* Ajusta a margem para telas médias */
+    }
+}

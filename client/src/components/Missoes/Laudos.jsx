@@ -4,18 +4,30 @@ import check from "/img/svgs/check.svg"
 import { useState, useEffect} from 'react'
  
 export default function Laudos() {
-      const [LAUDOS, setLAUDOS] = useState('');
-      const LAUDOS2 = "null";
+      const [LAUDOS_PREENCHIDOS, setLAUDOS_PREENCHIDOS] = useState('');
+      const LAUDOS_PREENCHIDOS2 = "null";
+
+
+      const token = sessionStorage.getItem('token')
 
       useEffect(() => {
         async function pegarDadosLaudos() {
           try {
-            const response = await fetch('http://localhost:3000/indicadores', {
+            const response = await fetch('http://localhost:3000/avaliacao/user', {
               method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            }          
             });
 
             const data = await response.json();
-            setLAUDOS(data[0].LAUDOS);
+            console.log(data)
+            setLAUDOS_PREENCHIDOS(data[0].LAUDOS_PREENCHIDOS);
+            sessionStorage.setItem('userlaudo', data.LAUDOS_PREENCHIDOS)
+
+
+
           } catch (error) {
             console.log('Erro ao buscar dados', error);
           }
@@ -37,29 +49,12 @@ export default function Laudos() {
           <div className="todo">
             <h5 className="atribuicao">Preenchidos</h5>
 
-            {LAUDOS === true ? (
-              <button className="remove-todo" style={{ backgroundColor: 'rgb(224, 19, 19)' }}></button>
-            ) : (
-              <button className="finish-todo" style={{ backgroundColor: 'rgb(96, 211, 165)' }}></button>
-            )}
+            {((LAUDOS_PREENCHIDOS == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+            {((LAUDOS_PREENCHIDOS == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+            {(LAUDOS_PREENCHIDOS2 == 'null') ? <button className="null"></button> : <NotNullButton LAUDOS_PREENCHIDOS={LAUDOS_PREENCHIDOS2}/>}
+            {(LAUDOS_PREENCHIDOS2 == 'null') ? <button className="null"></button> : <NotNullButton LAUDOS_PREENCHIDOS={LAUDOS_PREENCHIDOS2}/>}
 
-            {LAUDOS === true ? (
-              <button className="remove-todo" style={{ backgroundColor: 'rgb(224, 19, 19)' }}></button>
-            ) : (
-              <button className="finish-todo" style={{ backgroundColor: 'rgb(96, 211, 165)' }}></button>
-            )}
 
-            {LAUDOS === true ? (
-              <button className="remove-todo" style={{ backgroundColor: 'rgb(224, 19, 19)' }}></button>
-            ) : (
-              <button className="finish-todo" style={{ backgroundColor: 'rgb(96, 211, 165)' }}></button>
-            )}
-
-            {LAUDOS2 === 'null' ? (
-              <button className="null" style={{ backgroundColor: '#fff' }}></button>
-            ) : (
-              <NotNullButton LAUDOS={LAUDOS2} />
-            )} 
 
           </div>
              <div className="todo">

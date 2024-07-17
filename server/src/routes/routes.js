@@ -31,13 +31,11 @@ app.use('/', autoRoutes)
 const autoavaliacaoRoutes = require('./buscarAvaliacaoRoutes.js') //  Importe o arquivo de rotas das Auto Avaliações
 app.use('/', autoavaliacaoRoutes) // Use as rotas das  Auto Avaliações
  
- 
- 
- 
- 
-// TESTE API NOME DA BOX PERFIL
-// const NomePerfilRoutes = require('./nomePerfilRoutes.js') //  Importe o arquivo de rotas das  Medalhas
-// app.use('/', NomePerfilRoutes) // Use as rotas das  Medalhas
+const Boxperfil_Routes = require('./Boxperfil_Routes');
+app.use('/', Boxperfil_Routes);
+
+const userGetRoutes = require('./getUserRoutes.js')
+app.use('/', userGetRoutes)
  
  
  

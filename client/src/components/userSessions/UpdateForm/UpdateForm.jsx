@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import PasswordInput from '../PasswordInput/passwordInput';
- import EmailInput from '../EmailInput/EmailInput';
+//  import EmailInput from '../EmailInput/EmailInput';
 import './updateForm_style.css';
 
  
 function UpdateForm() {
-    const [userEmail, setUserEmail] = useState("");
+    // const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [userConfirmedPassword, setUserConfirmedPassword] = useState("");
     const [resultRegex, setResultRegex] = useState(false);
     const [showDifferentPasswordsError, setShowDifferentPasswordsError] = useState(false);
+
+    const token = sessionStorage.getItem('token')
  
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,13 +22,14 @@ function UpdateForm() {
                     const response = await fetch('http://localhost:3000/reset-password', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'x-access-token': token
                         },
-                        body: JSON.stringify({ email: userEmail, password: userPassword })
+                        body: JSON.stringify({  password: userPassword })
                     });
  
                     if (response.ok) {
-                        window.location.href = "/"; 
+                        window.location.href = "/perfil"; 
                     } else {
                         alert("Ocorreu um erro ao redefinir a senha. Por favor, tente novamente.");
                     }
@@ -50,10 +53,10 @@ function UpdateForm() {
 
                 <h4>Altere sua senha para ter acesso ao app!</h4>
 
-                <EmailInput
+                {/* <EmailInput
                     value={userEmail}
                     onChange={setUserEmail}
-                />
+                /> */}
                 <PasswordInput
                     placeholder={"Insira sua senha"}
                     state={userPassword}

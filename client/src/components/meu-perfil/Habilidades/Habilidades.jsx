@@ -15,6 +15,7 @@ function Habilidades() {
   const [HAB_PABX_VOIP, setHAB_PABX_VOIP] = useState('')
   const [HAB_METALICO, setHAB_METALICO] = useState('')
  
+  const token = sessionStorage.getItem('token')
  
   const [CONECTIVIDADE, setCONECTIVIDADE] = useState('')
   const [CASA_INTELIGENTE, setCASA_INTELIGENTE] = useState('')
@@ -23,69 +24,90 @@ function Habilidades() {
   const [PABX_VOIP, setPABX_VOIP] = useState('')
   const [METALICO, setMETALICO] = useState('')
  
-    useEffect(() => {
- 
-        async function pegarDadosHabilidades(){
-          try {
-            const response = await fetch ('http://localhost:3000/habilidades', {method: 'GET'
-          // headers:{
-          //   'Content-Type': 'application/json',
-          //     }
-            })
- 
-            const data = await response.json()
-            setHAB_CONECTIVIDADE(data[0].HAB_CONECTIVIDADE)
-            setHAB_CASA_INTELIGENTE(data[0].HAB_CASA_INTELIGENTE)
-            setHAB_ELETRICA(data[0].HAB_ELETRICA)
-            setHAB_AUDIO_VIDEO(data[0].HAB_AUDIO_VIDEO)
-            setHAB_PABX_VOIP(data[0].HAB_PABX_VOIP)
-            setHAB_METALICO(data[0].HAB_METALICO)
- 
-            console.log(data[0].LAUDOS)
- 
- 
-            // console.log(response);
-            // console.log(response.json());
-            console.log(data)
-            console.log(data[0])
-         } catch (error){
-           console.log('Erro ao buscar dados',error)
-           }
+  useEffect(() => {
+
+    async function pegarDadosHabilidades(){
+      try {
+        const response = await fetch ('http://localhost:3000/habilidades', {
+          method: 'GET',
+          headers:{
+              'Content-Type': 'application/json',
+              'x-access-token': token
+          }
+        })
+
+        const data = await response.json()
+        console.log(data)
+        setHAB_CONECTIVIDADE(data[0].HAB_CONECTIVIDADE)
+        sessionStorage.setItem('habconectividade', data.HAB_CONECTIVIDADE)
+        setHAB_CASA_INTELIGENTE(data[0].HAB_CASA_INTELIGENTE)
+        sessionStorage.setItem('habcasainteligente', data.HAB_CASA_INTELIGENTE)
+        setHAB_ELETRICA(data[0].HAB_ELETRICA)
+        sessionStorage.setItem('habeletrica', data.HAB_ELETRICA)
+        setHAB_AUDIO_VIDEO(data[0].HAB_AUDIO_VIDEO)
+        sessionStorage.setItem('habaudiovideo', data.HAB_AUDIO_VIDEO)
+        setHAB_PABX_VOIP(data[0].HAB_PABX_VOIP)
+        sessionStorage.setItem('habpabxvoip', data.HAB_PABX_VOIP)
+        setHAB_METALICO(data[0].HAB_METALICO)
+        sessionStorage.setItem('habmetalico', data.HAB_METALICO)
+
+        console.log(data[0].LAUDOS)
+
+
+        // console.log(response);
+        // console.log(response.json());
+        console.log(data)
+        console.log(data[0])
+     } catch (error){
+       console.log('Erro ao buscar dados',error)
        }
-       pegarDadosHabilidades();
- 
- 
- 
-       async function pegarDadosAutoavaliacao(){
-        try {
-          const response = await fetch ('http://localhost:3000/Auto', {method: 'GET'
-        // headers:{
-        //   'Content-Type': 'application/json',
-        //     }
-          })
- 
-          const data = await response.json()
-          setCONECTIVIDADE(data[0].CONECTIVIDADE)
-          setCASA_INTELIGENTE(data[0].CASA_INTELIGENTE)
-          setELETRICA(data[0].ELETRICA)
-          setAUDIO_VIDEO(data[0].AUDIO_VIDEO)
-          setPABX_VOIP(data[0].PABX_VOIP)
-          setMETALICO(data[0].METALICO)
- 
-          console.log(data[0].LAUDOS)
- 
- 
-          // console.log(response);
-          // console.log(response.json());
-          console.log(data)
-          console.log(data[0])
-       } catch (error){
-         console.log('Erro ao buscar dados',error)
-         }
+   }
+   pegarDadosHabilidades();
+
+
+
+   async function pegarDadosAutoavaliacao(){
+    try {
+      const response = await fetch ('http://localhost:3000/Auto', {
+        method: 'GET',
+    headers:{
+      'Content-Type': 'application/json',
+      'x-access-token': token
+
+        }
+      })
+
+      const data = await response.json()
+      console.log(data)
+      setCONECTIVIDADE(data[0].CONECTIVIDADE)
+      sessionStorage.setItem('conectividade', data.CONECTIVIDADE)
+      setCASA_INTELIGENTE(data[0].CASA_INTELIGENTE)
+      sessionStorage.setItem('casainteligente', data.CASA_INTELIGENTE)
+      setELETRICA(data[0].ELETRICA)
+      sessionStorage.setItem('eletrica', data.ELETRICA)
+      setAUDIO_VIDEO(data[0].AUDIO_VIDEO)
+      sessionStorage.setItem('audiovideo', data.AUDIO_VIDEO)
+      setPABX_VOIP(data[0].PABX_VOIP)
+      sessionStorage.setItem('pabxvoip', data.PABX_VOIP)
+      setMETALICO(data[0].METALICO)
+      sessionStorage.setItem('metalico', data.METALICO)
+
+      console.log(data[0].LAUDOS)
+
+
+      // console.log(response);
+      // console.log(response.json());
+      console.log(data)
+      console.log(data[0])
+   } catch (error){
+     console.log('Erro ao buscar dados',error)
      }
-     pegarDadosAutoavaliacao();
- 
-   }, [])
+ }
+ pegarDadosAutoavaliacao();
+
+}, [])
+
+   
     return(
         <div className="tabela-perfil">
             <div className='coluna-tabela-habilidades'>

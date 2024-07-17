@@ -12,7 +12,7 @@ function validateAndConvertValue(value) {
 }
  
 function createHabilidade(habilidade) {
-    // const ID_COLABORADOR = validateAndConvertValue(habilidade.ID_COLABORADOR);
+    const ID_COLABORADOR = validateAndConvertValue(habilidade.ID_COLABORADOR);
     const CONECTIVIDADE = validateAndConvertValue(habilidade.CONECTIVIDADE);
     const CASA_INTELIGENTE = validateAndConvertValue(habilidade.CASA_INTELIGENTE);
     const ELETRICA = validateAndConvertValue(habilidade.ELETRICA);
@@ -21,8 +21,8 @@ function createHabilidade(habilidade) {
     const METALICO = validateAndConvertValue(habilidade.METALICO);
  
     const sqlQuery = `INSERT INTO dbo.HABILIDADES_TECNICOS
-        (CONECTIVIDADE, CASA_INTELIGENTE, ELETRICA, AUDIO_VIDEO, PABX_VOIP, METALICO)
-        VALUES (${CONECTIVIDADE}, ${CASA_INTELIGENTE}, ${ELETRICA}, ${AUDIO_VIDEO}, ${PABX_VOIP}, ${METALICO})`;
+        (ID_COLABORADOR, CONECTIVIDADE, CASA_INTELIGENTE, ELETRICA, AUDIO_VIDEO, PABX_VOIP, METALICO)
+        VALUES (${ID_COLABORADOR}, ${CONECTIVIDADE}, ${CASA_INTELIGENTE}, ${ELETRICA}, ${AUDIO_VIDEO}, ${PABX_VOIP}, ${METALICO})`;
  
  
  

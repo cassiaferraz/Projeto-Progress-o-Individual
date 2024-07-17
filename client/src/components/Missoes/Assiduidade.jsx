@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import React, { useContext } from 'react';
-import UserContext from '../meu-perfil/BoxPerfil/UserContext';
 
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
 
 export default function Assiduidade(){
 
-    const { user, setUser } = useContext(UserContext);
 
     const [ASSIDUIDADE_ALMOX, setASSIDUIDADE_ALMOX] = useState('')
     const [ASSIDUIDADE_BANCO, setASSIDUIDADE_BANCO] = useState('')
@@ -21,41 +19,42 @@ export default function Assiduidade(){
     const ASSIDUIDADE_INICIO2 = "null"
   
  
+    const token = sessionStorage.getItem('token')
+    
     useEffect(() => {
   
-      async function pegarDadosAssiduidade(){
-        try {
-          const response = await fetch ('http://localhost:3000/avaliacao/user', {method: 'GET'
-        
-          })
-  
-          const data = await response.json()
-          setASSIDUIDADE_ALMOX(data[0].ASSIDUIDADE_ALMOX)
-          setASSIDUIDADE_BANCO(data[0].ASSIDUIDADE_BANCO)
-          setASSIDUIDADE_ROTA(data[0].ASSIDUIDADE_ROTA)
-          setASSIDUIDADE_ALMOCO(data[0].ASSIDUIDADE_ALMOCO)
-          setASSIDUIDADE_INICIO(data[0].ASSIDUIDADE_INICIO)
+        async function pegarDadosAssiduidade(){
+          try {
+            const response = await fetch ('http://localhost:3000/avaliacao/user', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'x-access-token': token
+              }
           
-               // Conta quantos campos são verdadeiros
-            const trueCount = [data[0].ASSIDUIDADE_ALMOX, data[0].ASSIDUIDADE_BANCO, data[0].ASSIDUIDADE_ROTA, 
-            data[0].ASSIDUIDADE_ALMOCO, data[0].ASSIDUIDADE_INICIO].filter(Boolean).length;
-
-            // Adicione as moedas ao perfil do usuário se pelo menos metade dos campos são verdadeiros
-            if (trueCount >= 3) {
-                setUser({
-                ...user,
-                moedas: user.moedas + 200,
-                });
-            }
-
-          console.log(data)
-          console.log(data[0])
-       } catch (error){
-         console.log('Erro ao buscar dados',error)
-         }
-     } 
-     pegarDadosAssiduidade();
- }, [])
+            })
+    
+            const data = await response.json()
+            console.log(data)
+            setASSIDUIDADE_ALMOX(data[0].ASSIDUIDADE_ALMOX)
+            sessionStorage.setItem('assiduidadealmox', data.ASSIDUIDADE_ALMOX)
+            setASSIDUIDADE_BANCO(data[0].ASSIDUIDADE_BANCO)
+            sessionStorage.setItem('assiduidadebanco', data.ASSIDUIDADE_BANCO)
+            setASSIDUIDADE_ROTA(data[0].ASSIDUIDADE_ROTA)
+            sessionStorage.setItem('assiduidaderota', data.ASSIDUIDADE_ROTA)
+            setASSIDUIDADE_ALMOCO(data[0].ASSIDUIDADE_ALMOCO)
+            sessionStorage.setItem('assiduidadealmoco', data.ASSIDUIDADE_ALMOCO)
+            setASSIDUIDADE_INICIO(data[0].ASSIDUIDADE_INICIO)
+            sessionStorage.setItem('assiduidadeinicio', data.ASSIDUIDADE_INICIO)
+            
+            console.log(data)
+            console.log(data[0])
+         } catch (error){
+           console.log('Erro ao buscar dados',error)
+           }
+       } 
+       pegarDadosAssiduidade();
+   }, [])
 
  
 
