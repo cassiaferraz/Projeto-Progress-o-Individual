@@ -5,7 +5,6 @@ const getPerfil = require('../models/perfilModel.js');
 const getUserData = async (req, res) => {
   try {
     const userId = req.userId;
-    console.log('User ID:', userId);
     const userName = await getUsuario.getUser(userId);
     const userPerfil = await getPerfil.getUser(userId);
 

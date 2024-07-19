@@ -2,8 +2,8 @@ const buscaravaliacao = require ('../models/buscarautoavaliacaoModel')
  
 const getAutoAvaliacao = async(req, res) => {
     try{
-        const habilidades = req.params.habilidades;
-        const autoavaliacao = await buscaravaliacao.getUser(habilidades)
+        const userId = req.userId
+        const autoavaliacao = await buscaravaliacao.getUser(userId)
         res.status(200).json(autoavaliacao)
     } catch (err) {
         console.log(err)

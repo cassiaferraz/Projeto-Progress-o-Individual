@@ -13,7 +13,7 @@ async function getUser(id) {
 //funcao para atualizar moedas e xp do usuario
 
 async function updateUser(id, coins, xp) {
-    const sql = `UPDATE dbo.COLABORADORES SET MOEDAS = ${coins}, XP = ${xp} WHERE ID_COLABORADOR = '${id}'`;
+    const sql = `UPDATE dbo.Tecnico SET MOEDAS = ${coins}, XP = ${xp} WHERE ID_COLABORADOR = '${id}'`;
     await sqlServer.dispatchQuery(sql);
 }
 

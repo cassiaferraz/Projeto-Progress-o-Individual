@@ -5,7 +5,7 @@ const Fiscalizacao = {
     const request = pool.request();
     const result = await request
       .input('id', sql.Int, id)
-      .query('SELECT FISCALIZACAO FROM dbo.Indicadores_individuais WHERE id = @id');
+      .query('SELECT FISCALIZACAO FROM dbo.Avaliacao_individuais WHERE ID_COLABORADOR = @id');
     return result.recordset[0];
   },
 
