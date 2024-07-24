@@ -6,7 +6,7 @@ function validateAndConvertValue(value) {
     if (value === undefined || value === null || value === NaN ) {
       console.log(value)
        
-        return 0; // Valor padrão, ajuste conforme necessário
+        return 0; 
     }
      return value;
 }

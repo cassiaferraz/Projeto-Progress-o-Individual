@@ -5,7 +5,7 @@ const indicadoresModel = require('../models/indicadoresModel');
 const getUserindicadores = async (req, res) => {
   try {
     const userId = req.userId;
-    console.log(userId)
+    // console.log(userId)
     const indicadoresData = await indicadoresModel.getUser(userId)
     res.status(200).json(indicadoresData)
   } catch (err) {

@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser')
 
-const planilhasModel = require('../models/planilhaModel.js');
+const planilhasModel = require('../models/planilhaAvaliacao.js');
 
 
 

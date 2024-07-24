@@ -2,10 +2,11 @@
 const express = require('express');
 const app = express.Router();
 const apiController = require('../controller/APIBuscarautoavaliacao.js');
+const authenticateToken = require('../middleware/authMiddleware');
  
  
-// Rota para exibir "Olá, mundo!"
-app.get('/Auto', apiController.getAutoAvaliacao);
+
+app.get('/Auto', authenticateToken, apiController.getAutoAvaliacao);
  
  
 module.exports = app;
