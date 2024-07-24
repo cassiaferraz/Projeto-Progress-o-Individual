@@ -24,11 +24,13 @@ function Habilidades() {
   const [PABX_VOIP, setPABX_VOIP] = useState('')
   const [METALICO, setMETALICO] = useState('')
  
+  const serverIP = 'http://192.168.15.56:3000';
+
   useEffect(() => {
 
     async function pegarDadosHabilidades(){
       try {
-        const response = await fetch ('http://localhost:3000/habilidades', {
+        const response = await fetch (`${serverIP}/habilidades`, {
           method: 'GET',
           headers:{
               'Content-Type': 'application/json',
@@ -68,7 +70,7 @@ function Habilidades() {
 
    async function pegarDadosAutoavaliacao(){
     try {
-      const response = await fetch ('http://localhost:3000/Auto', {
+      const response = await fetch (`${serverIP}/Auto`, {
         method: 'GET',
     headers:{
       'Content-Type': 'application/json',

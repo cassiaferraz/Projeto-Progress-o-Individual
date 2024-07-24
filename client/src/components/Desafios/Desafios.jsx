@@ -25,11 +25,13 @@ export default function Desafios () {
     const [moedas, setMoedas] = useState('')
     const [descricao, setDescricao] = useState('')
    
+    const serverIP = 'http://192.168.15.56:3000';
+
    useEffect(() => {
  
      async function pegarDadosDesafios(){
        try {
-         const response = await fetch ('http://localhost:3000/desafios', {method: 'GET'
+         const response = await fetch (`${serverIP}/desafios`, {method: 'GET'
        // headers:{
        //   'Content-Type': 'application/json',
        //     }

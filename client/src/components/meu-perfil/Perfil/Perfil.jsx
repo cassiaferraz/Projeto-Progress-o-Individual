@@ -20,13 +20,13 @@ function Perfil () {
     const [NOME_MEDALHAS3, setNOME_MEDALHAS3] = useState('')
     const [NOME_MEDALHAS4, setNOME_MEDALHAS4] = useState('')
    
-   
+    const serverIP = 'http://192.168.15.56:3000';
    
     useEffect(() => {
  
         async function pegarDadosNomeMedalhas(){
           try {
-            const response = await fetch ('http://localhost:3000/medalhas', {method: 'GET'
+            const response = await fetch (`${serverIP}/medalhas`, {method: 'GET'
           // headers:{
           //   'Content-Type': 'application/json',
           //     }

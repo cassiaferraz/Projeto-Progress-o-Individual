@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import React, { useContext } from 'react';
 
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
@@ -17,25 +16,25 @@ export default function Assiduidade(){
     const ASSIDUIDADE_ROTA2 = "null"
     const ASSIDUIDADE_ALMOCO2 = "null"
     const ASSIDUIDADE_INICIO2 = "null"
-  
- 
+
+    const serverIP = 'http://192.168.15.56:3000';
     const token = sessionStorage.getItem('token')
-    
+
     useEffect(() => {
-  
+
         async function pegarDadosAssiduidade(){
           try {
-            const response = await fetch ('http://localhost:3000/avaliacao/user', {
+            const response = await fetch (`${serverIP}/avaliacao/user`, {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
                   'x-access-token': token
               }
-          
+
             })
-    
+
             const data = await response.json()
-            console.log(data)
+            //console.log(data)
             setASSIDUIDADE_ALMOX(data[0].ASSIDUIDADE_ALMOX)
             sessionStorage.setItem('assiduidadealmox', data.ASSIDUIDADE_ALMOX)
             setASSIDUIDADE_BANCO(data[0].ASSIDUIDADE_BANCO)
@@ -46,17 +45,17 @@ export default function Assiduidade(){
             sessionStorage.setItem('assiduidadealmoco', data.ASSIDUIDADE_ALMOCO)
             setASSIDUIDADE_INICIO(data[0].ASSIDUIDADE_INICIO)
             sessionStorage.setItem('assiduidadeinicio', data.ASSIDUIDADE_INICIO)
-            
-            console.log(data)
-            console.log(data[0])
+
+            // console.log(data)
+            // console.log(data[0])
          } catch (error){
            console.log('Erro ao buscar dados',error)
            }
-       } 
+       }
        pegarDadosAssiduidade();
    }, [])
 
- 
+
 
      return(
         <div>
@@ -64,57 +63,57 @@ export default function Assiduidade(){
                 <div  className="atributodeavaliacao">
                 <h3>Assiduidade</h3>
                     <img className="check"src={check} /> +200
-                    <img className= "moeda-roxa" src={coin}/>+200 EXP 
+                    <img className= "moeda-roxa" src={coin}/>+200 EXP
                 </div>
             </div>
 
                 <div class= "todo">
                     <h5 className="atribuicao">Comparecimento Alm</h5>
-                    {((ASSIDUIDADE_ALMOX == true) ? <button className="finish-todo"></button> : <button className="finish-todo"></button>)} 
-                    {((ASSIDUIDADE_ALMOX == true) ? <button className="finish-todo"></button> : <button className="finish-todo"></button>)} 
+                    {((ASSIDUIDADE_ALMOX == true) ? <button className="finish-todo"></button> : <button className="finish-todo"></button>)}
+                    {((ASSIDUIDADE_ALMOX == true) ? <button className="finish-todo"></button> : <button className="finish-todo"></button>)}
                     {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>}
-                    {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>}
-                </div>   
+                    {/* {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>} */}
+                </div>
                 <div class= "todo">
                     <h5 className="atribuicao">Horário de Almoço</h5>
-                    {((ASSIDUIDADE_ALMOCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
-                    {((ASSIDUIDADE_ALMOCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                    {((ASSIDUIDADE_ALMOCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {((ASSIDUIDADE_ALMOCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
                     {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>}
-                    {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>}
-                </div> 
+                    {/* {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>} */}
+                </div>
 
                 <div class= "todo">
                     <h5 className="atribuicao">Gestão de Rota</h5>
-                    {((ASSIDUIDADE_ROTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
-                    {((ASSIDUIDADE_ROTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                    {((ASSIDUIDADE_ROTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {((ASSIDUIDADE_ROTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
                     {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>}
-                    {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>}
-                </div> 
+                    {/* {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>} */}
+                </div>
 
                 <div class= "todo">
                     <h5 className="atribuicao">Banco de Horas</h5>
-                    {((ASSIDUIDADE_BANCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
-                    {((ASSIDUIDADE_BANCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                    {((ASSIDUIDADE_BANCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {((ASSIDUIDADE_BANCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
                     {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>}
-                    {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>}
-                </div> 
+                    {/* {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>} */}
+                </div>
 
                 <div class= "todo">
                     <h5 className="atribuicao">Inicio Atividade</h5>
-                    {((ASSIDUIDADE_INICIO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
-                    {((ASSIDUIDADE_INICIO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
+                    {((ASSIDUIDADE_INICIO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {((ASSIDUIDADE_INICIO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
                     {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>}
-                    {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>}
+                    {/* {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>} */}
                 </div>
         </div>
     )
-}      
+}
 
 function NotNullButton({ASSIDUIDADE_INICIO}){
     return (
         <>
-        {((ASSIDUIDADE_INICIO == true) ? 
-        <button className="finish-todo"></button> : 
+        {((ASSIDUIDADE_INICIO == true) ?
+        <button className="finish-todo"></button> :
         <button className="remove-todo"></button>)}
         </>
     )

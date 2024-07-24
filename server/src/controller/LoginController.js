@@ -15,7 +15,7 @@ async function login(req, res) {
         // Verifica se a senha é composta apenas por números
         let isFirstAccess = false
      
-        if (/^\d+$/.test(userPassword)) {
+        if (userPassword == user.ID_COLABORADOR) {
             isFirstAccess = true
             console.log(isFirstAccess)
             console.log('Primeiro acesso desse usuario, Por favor, altere sua senha. ')

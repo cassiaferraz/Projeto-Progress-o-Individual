@@ -13,7 +13,7 @@ async function getUser(id) {
 //funcao para atualizar moedas e xp do usuario
 
 async function updateUser(id, coins, xp) {
-    const sql = `UPDATE dbo.COLABORADORES SET MOEDAS = ${coins}, XP = ${xp} WHERE ID_COLABORADOR = '${id}'`;
+    const sql = `UPDATE dbo.Tecnico SET MOEDAS = ${coins}, XP = ${xp} WHERE ID_COLABORADOR = '${id}'`;
     await sqlServer.dispatchQuery(sql);
 }
 
@@ -22,3 +22,24 @@ module.exports = {
     getUser,
     updateUser
 }
+
+//TESTAR ESSE CODIGO ABAIXO
+// // userModel.js
+// const sqlServer = require('../utils/sqlServer');
+
+// async function getUser(id) {
+//   const sql = `SELECT NOME, MOEDAS, XP FROM dbo.COLABORADORES WHERE ID_COLABORADOR = '${id}'`;
+//   const results = await sqlServer.dispatchQuery(sql);
+//   return results[0];
+// }
+
+// async function updateUser(id, coins, xp) {
+//   const sql = `UPDATE dbo.COLABORADORES SET MOEDAS = ${coins}, XP = ${xp} WHERE ID_COLABORADOR = '${id}'`;
+//   await sqlServer.dispatchQuery(sql);
+//   return getUser(id); // Retorna os dados atualizados
+// }
+
+// module.exports = {
+//   getUser,
+//   updateUser
+// };

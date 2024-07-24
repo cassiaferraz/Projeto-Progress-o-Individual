@@ -14,7 +14,7 @@ export default function Postura(){
     const POSTURA_CRACHA2 = "null"
     const POSTURA_UNIFORME2 = "null"
     const POSTURA_BOTA2 = "null"
-
+    const serverIP = 'http://192.168.15.56:3000';
 
     const token = sessionStorage.getItem('token')
 
@@ -23,7 +23,7 @@ export default function Postura(){
 
       async function pegarDadosPostura(){
         try {
-          const response = await fetch ('http://localhost:3000/avaliacao/user', {
+          const response = await fetch (`${serverIP}/avaliacao/user`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export default function Postura(){
           })
 
           const data = await response.json()
-          console.log(data)
+          // console.log(data)
           setCOMUNICACAO(data[0].POSTURA_COMUNICACAO)
           sessionStorage.setItem('posturacomunicacao', data.POSTURA_COMUNICACAO)
           setUNIFORME(data[0].POSTURA_UNIFORME)
@@ -47,8 +47,8 @@ export default function Postura(){
 
         //   console.log(data[0].COMUNICACAO)
 
-          console.log(data)
-          console.log(data[0])
+          // console.log(data)
+          // console.log(data[0])
        } catch (error){
          console.log('Erro ao buscar dados',error)
          }
@@ -74,7 +74,7 @@ export default function Postura(){
                 {((POSTURA_COMUNICACAO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                 {((POSTURA_COMUNICACAO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                 {(POSTURA_COMUNICACAO2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_COMUNICACAO={POSTURA_COMUNICACAO2}/>}
-                {(POSTURA_COMUNICACAO2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_COMUNICACAO={POSTURA_COMUNICACAO2}/>}
+                {/* {(POSTURA_COMUNICACAO2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_COMUNICACAO={POSTURA_COMUNICACAO2}/>} */}
                     </div>  
 
 {/* ITEM 2 DE POSTURA */}
@@ -83,7 +83,7 @@ export default function Postura(){
                         {((POSTURA_UNIFORME == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {((POSTURA_UNIFORME == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {(POSTURA_UNIFORME2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_UNIFORME={POSTURA_UNIFORME2}/>}
-                        {(POSTURA_UNIFORME2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_UNIFORME={POSTURA_UNIFORME2}/>}
+                        {/* {(POSTURA_UNIFORME2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_UNIFORME={POSTURA_UNIFORME2}/>} */}
  </div>
 {/* ITEM 3 DE POSTURA */}
                     <div class= "todo">
@@ -91,21 +91,21 @@ export default function Postura(){
                         {((POSTURA_BOTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {((POSTURA_BOTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {(POSTURA_BOTA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_BOTA={POSTURA_BOTA2}/>}
-                        {(POSTURA_BOTA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_BOTA={POSTURA_BOTA2}/>}
+                        {/* {(POSTURA_BOTA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_BOTA={POSTURA_BOTA2}/>} */}
                     </div>
                     <div class= "todo">
                         <h5 className="atribuicao">Crachá</h5>
                         {((POSTURA_CRACHA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {((POSTURA_CRACHA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {(POSTURA_CRACHA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_CRACHA={POSTURA_CRACHA2}/>}
-                        {(POSTURA_CRACHA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_CRACHA={POSTURA_CRACHA2}/>}
+                        {/* {(POSTURA_CRACHA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_CRACHA={POSTURA_CRACHA2}/>} */}
                     </div>
                     <div class= "todo">
                         <h5 className="atribuicao">Mala</h5>
                         {((POSTURA_MALA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {((POSTURA_MALA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)} 
                         {(POSTURA_MALA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_MALA={POSTURA_MALA2}/>}
-                        {(POSTURA_MALA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_MALA={POSTURA_MALA2}/>}
+                        {/* {(POSTURA_MALA2 == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_MALA={POSTURA_MALA2}/>} */}
                     </div>
             </div>
         )

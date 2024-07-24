@@ -12,14 +12,15 @@ function UpdateForm() {
     const [showDifferentPasswordsError, setShowDifferentPasswordsError] = useState(false);
 
     const token = sessionStorage.getItem('token')
- 
+    const serverIP = 'http://192.168.15.56:3000';
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
  
         if (userPassword === userConfirmedPassword) {
             if (resultRegex) {
                 try {
-                    const response = await fetch('http://localhost:3000/reset-password', {
+                    const response = await fetch(`${serverIP}/reset-password`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

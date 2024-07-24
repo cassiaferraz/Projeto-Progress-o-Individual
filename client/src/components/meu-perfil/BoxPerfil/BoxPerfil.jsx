@@ -4,6 +4,7 @@ import novoAvatar from '/img/svgs/avatarmasculino.png';
 import BarraProgresso from '../Progresso/BarraProgresso'
 import coin from '/img/svgs/Dolar_Dinero_Moneda_1Light.svg'
 
+
 import { Link } from 'react-router-dom'
  import { useState, useEffect, useContext} from 'react'
 
@@ -28,11 +29,13 @@ function BoxPerfil (props) {
   const [userName, setUsername] = useState('')
   const [avatar, setAvatar] = useState(sessionStorage.getItem('avatar') || usuario);
 
+  const serverIP = 'http://192.168.15.56:3000';
+
   const token = sessionStorage.getItem('token')
 
   async function fetchData() {
     try {
-      const response = await fetch(`http://localhost:3000/getUserData`, {
+      const response = await fetch(`${serverIP}/getUserData`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +43,7 @@ function BoxPerfil (props) {
         }
       });
       const data = await response.json();
-      console.log('Dados do usuário:', data);
+      //console.log('Dados do usuário:', data);
       setUsername(data.NOME);
       sessionStorage.setItem('username', data.NOME);
       setMoedas(data.MOEDAS);
@@ -84,6 +87,7 @@ fetchData()
           </div>
       </header>
   </Link>
+ 
 </div>
 );
 }

@@ -97,11 +97,13 @@ function LoginForm() {
     const [userPassword, setUserPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
 
+    const serverIP = 'http://192.168.15.56:3000';
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:3000/login', {
+            const response = await fetch(`${serverIP}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

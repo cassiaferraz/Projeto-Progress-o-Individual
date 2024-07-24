@@ -5,7 +5,7 @@ const Laudos = {
     const request = pool.request();
     const result = await request
       .input('id', sql.Int, id)
-      .query('SELECT LAUDOS FROM dbo.Indicadores_individuais WHERE id = @id');
+      .query('SELECT LAUDOS_PREENCHIDOS FROM dbo.Avaliacoes_individuais WHERE ID_COLABORADOR = @id');
     return result.recordset[0];
   },
 

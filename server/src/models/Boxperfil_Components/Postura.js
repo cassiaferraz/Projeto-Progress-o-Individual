@@ -5,7 +5,7 @@ const Postura = {
     const request = pool.request();
     const result = await request
       .input('id', sql.Int, id)
-      .query('SELECT POSTURA FROM dbo.Indicadores_individuais WHERE id = @id');
+      .query('SELECT POSTURA_UNIFORME, POSTURA_CRACHA, POSTURA_BOTA, POSTURA_MALA, POSTURA_COMUNICACAO FROM dbo.Avaliacoes_individuais WHERE id = @id');
     return result.recordset[0];
   },
 
