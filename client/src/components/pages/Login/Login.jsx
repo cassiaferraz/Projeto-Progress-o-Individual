@@ -2,12 +2,13 @@ import { React } from 'react';
 
 import './login.css'
 import LoginForm from '../../userSessions/LoginForm/LoginForm';
-function Login() {
+
+function Login({serverIP}) {
 
     return (
         <div className='body-container'>
             
-            <LoginForm/>
+            <LoginForm serverIP={serverIP}/>
         </div>
     );
 }

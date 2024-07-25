@@ -6,7 +6,7 @@ import 'primeicons/primeicons.css';
  
 import { useState, useEffect} from 'react'
  
-function Habilidades() {
+function Habilidades({serverIP}) {
  
   const [HAB_CONECTIVIDADE, setHAB_CONECTIVIDADE] = useState('')
   const [HAB_CASA_INTELIGENTE, setHAB_CASA_INTELIGENTE] = useState('')
@@ -24,7 +24,7 @@ function Habilidades() {
   const [PABX_VOIP, setPABX_VOIP] = useState('')
   const [METALICO, setMETALICO] = useState('')
  
-  const serverIP = 'http://192.168.15.56:3000';
+
 
   useEffect(() => {
 
@@ -107,7 +107,7 @@ function Habilidades() {
  }
  pegarDadosAutoavaliacao();
 
-}, [])
+}, [serverIP])
 
    
     return(

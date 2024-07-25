@@ -12,31 +12,34 @@ import LaudosPendentes from "../components/meu-perfil/LaudosPendentes/LaudosPend
 import AutoAvaliacao from "../components/meu-perfil/Habilidades/AutoAvaliacao/AutoAvaliacao";
 import PreenchimentoLaudo from '../components/meu-perfil/LaudosPendentes/PreenchimentoLaudo'
 import UserContext from "../components/meu-perfil/BoxPerfil/UserContext";
+import BoxPerfil from "../components/meu-perfil/BoxPerfil/BoxPerfil";
 
 export default function Router() {
     
     const [user, setUser] = useState(null);
 
+    const port = '3000'
+    const ipAddress = '192.168.15.56';
+    const serverIP = `http://${ipAddress}:${port}`;
 
-    return(
-        
+    return (
         <UserContext.Provider value={{ user, setUser }}>
-        <BrowserRouter>
-            <Routes>
-                <Route path= "/login" element={<Login />} />
-                <Route path= "/" element={<Missoes />} />
-                <Route path= "/Desafios" element={<Desafios />} />
-                <Route path= "/Recompensas" element={<Recompensas />} />
-                <Route path= "/Perfil" element={<Perfil />} />
-                <Route path= "/Update" element={<Update />} />
-                <Route path= "/Config" element={<Config />} />
-                <Route path= "/LaudosPendentes" element={<LaudosPendentes />} />
-                <Route path= "/PreenchimentoLaudo" element={<PreenchimentoLaudo />} />
-                <Route path= "/AutoAvaliacao" element={<AutoAvaliacao />} />
-                <Route path= "/UserContext" element={<UserContext />} />
-
-            </Routes>
-        </BrowserRouter>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login serverIP={serverIP} />} />
+                    <Route path="/Missoes" element={<Missoes serverIP={serverIP} />} />
+                    <Route path="/Desafios" element={<Desafios />} />
+                    <Route path="/Recompensas" element={<Recompensas />} />
+                    <Route path="/Perfil" element={<Perfil serverIP={serverIP} />} />
+                    <Route path="/Update" element={<Update serverIP={serverIP} />} />
+                    <Route path="/BoxPerfil" element={<BoxPerfil serverIP={serverIP} />} />
+                    <Route path="/Config" element={<Config />} />
+                    <Route path="/LaudosPendentes" element={<LaudosPendentes serverIP={serverIP} />} />
+                    <Route path="/PreenchimentoLaudo" element={<PreenchimentoLaudo serverIP={serverIP} />} />
+                    <Route path="/AutoAvaliacao" element={<AutoAvaliacao serverIP={serverIP} />} />
+                    <Route path="/UserContext" element={<UserContext  />} />
+                </Routes>
+            </BrowserRouter>
         </UserContext.Provider>
     )
 }

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
 
-export default function Postura(){
+export default function Postura({ serverIP }){
     const [POSTURA_COMUNICACAO, setCOMUNICACAO] = useState(true)
     const [POSTURA_UNIFORME, setUNIFORME] = useState(true)
     const [POSTURA_CRACHA, setCRACHA] = useState(true)
@@ -14,7 +14,6 @@ export default function Postura(){
     const POSTURA_CRACHA2 = "null"
     const POSTURA_UNIFORME2 = "null"
     const POSTURA_BOTA2 = "null"
-    const serverIP = 'http://192.168.15.56:3000';
 
     const token = sessionStorage.getItem('token')
 
@@ -55,7 +54,7 @@ export default function Postura(){
      }
      pegarDadosPostura();
 
- }, [])
+ }, [serverIP])
 
         return(
           <div>

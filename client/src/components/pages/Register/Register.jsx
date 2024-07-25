@@ -6,7 +6,7 @@ import BackArrow from "/img/svgs/voltar.svg"
 
 import RegisterForm from '../../userSessions/RegisterForm/RegisterForm';
 
-function Register() {
+function Register({serverIP}) {
 
     return (
 
@@ -24,7 +24,7 @@ function Register() {
                 <div className='subtitulo-cadastro'>
 
                 </div>
-                <RegisterForm/>
+                <RegisterForm serverIP={serverIP}/>
 
             </div>
         </div>

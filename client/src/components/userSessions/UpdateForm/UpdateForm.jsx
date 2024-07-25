@@ -4,7 +4,7 @@ import PasswordInput from '../PasswordInput/passwordInput';
 import './updateForm_style.css';
 
  
-function UpdateForm() {
+function UpdateForm({ serverIP }) {
     // const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [userConfirmedPassword, setUserConfirmedPassword] = useState("");
@@ -12,7 +12,6 @@ function UpdateForm() {
     const [showDifferentPasswordsError, setShowDifferentPasswordsError] = useState(false);
 
     const token = sessionStorage.getItem('token')
-    const serverIP = 'http://192.168.15.56:3000';
     
     const handleSubmit = async (e) => {
         e.preventDefault();

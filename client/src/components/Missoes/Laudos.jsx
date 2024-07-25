@@ -3,10 +3,9 @@ import check from "/img/svgs/check.svg"
 
 import { useState, useEffect} from 'react'
  
-export default function Laudos() {
+export default function Laudos({serverIP}) {
       const [LAUDOS_PREENCHIDOS, setLAUDOS_PREENCHIDOS] = useState('');
       const LAUDOS_PREENCHIDOS2 = "null";
-      const serverIP = 'http://192.168.15.56:3000';
 
       const token = sessionStorage.getItem('token')
 
@@ -34,7 +33,7 @@ export default function Laudos() {
         }
 
         pegarDadosLaudos();
-      }, []);
+      }, [serverIP]);
 
       return (
         <>

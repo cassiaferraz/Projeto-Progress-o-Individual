@@ -6,7 +6,7 @@ import BackArrow from "/img/svgs/voltar.svg"
 
 import UpdateForm from '../../userSessions/UpdateForm/UpdateForm';
 
-function Update() {
+function Update({serverIP}) {
 
     return (
 
@@ -14,7 +14,7 @@ function Update() {
 
             <div className="register-container">
               
-                <a href="/">
+                <a href="/missoes">
                     <img 
                         className="btn-backPage"
                         src={BackArrow} 
@@ -24,7 +24,7 @@ function Update() {
                 <div className='subtitulo-cadastro'>
 
                 </div>
-                <UpdateForm/>
+                <UpdateForm serverIP={serverIP}/>
 
             </div>
         </div>

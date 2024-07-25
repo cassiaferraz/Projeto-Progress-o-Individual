@@ -14,14 +14,15 @@ import Premio from '/img/svgs/Premio.svg'
 
 import { Link } from "react-router-dom"
 
-function Perfil () {
+function Perfil ({serverIP}) {
+
+    
     const [NOME_MEDALHAS1, setNOME_MEDALHAS1] = useState('')
     const [NOME_MEDALHAS2, setNOME_MEDALHAS2] = useState('')
     const [NOME_MEDALHAS3, setNOME_MEDALHAS3] = useState('')
     const [NOME_MEDALHAS4, setNOME_MEDALHAS4] = useState('')
    
-    const serverIP = 'http://192.168.15.56:3000';
-   
+
     useEffect(() => {
  
         async function pegarDadosNomeMedalhas(){
@@ -48,7 +49,7 @@ function Perfil () {
        }
        pegarDadosNomeMedalhas();
  
-   }, [])
+   }, [serverIP]);
  
  
 
@@ -58,7 +59,7 @@ function Perfil () {
 
      <div className="todocontainer">
          <Navmenu /> 
-         <BoxPerfil/>
+         <BoxPerfil serverIP={serverIP}/>
             
             <div id="titulo-config">
             <h2 className="titulodapagina">Meu Perfil</h2>
@@ -71,7 +72,7 @@ function Perfil () {
                    </Link> <Tooltip id="config" />
                 </div>
             </div>
-         <Habilidades />
+         <Habilidades serverIP={serverIP}/>
         
         
         <div className="tabela-medalhas-recompensas">

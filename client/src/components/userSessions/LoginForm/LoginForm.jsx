@@ -92,12 +92,11 @@ import EmailInput from '../EmailInput/EmailInput';
 import PasswordInput from '../PasswordInput/passwordInput';
 import Logo from '/img/svgs/logoprogressao.png';
 
-function LoginForm() {
+function LoginForm({ serverIP }) {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
 
-    const serverIP = 'http://192.168.15.56:3000';
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -112,7 +111,7 @@ function LoginForm() {
             });
 
             const data = await response.json();
-            console.log('Resposta da API:', data); // Log da resposta da API
+            //console.log('Resposta da API:', data); 
 
             if (response.ok) {
                 console.log('Login bem-sucedido, armazenando token');

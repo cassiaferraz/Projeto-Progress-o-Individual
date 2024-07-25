@@ -6,11 +6,10 @@ import coin from '/img/svgs/Dolar_Dinero_Moneda_1Light.svg'
 
 
 import { Link } from 'react-router-dom'
- import { useState, useEffect, useContext} from 'react'
+ import { useState, useEffect} from 'react'
 
 import '../BoxPerfil/boxperfil.css'
 
-import UserContext from './UserContext';
 
 export const handleAvatarChange = (currentAvatar, setAvatar, defaultAvatar, newAvatar) => {
   const newAvatarState = currentAvatar === defaultAvatar ? newAvatar : defaultAvatar;
@@ -19,9 +18,8 @@ export const handleAvatarChange = (currentAvatar, setAvatar, defaultAvatar, newA
 };
 
 
-function BoxPerfil (props) {
-
-  // const { user } = useContext(UserContext);
+function BoxPerfil ({ serverIP }) {
+  //console.log('serverIP:', serverIP); 
    // const [notificationCount, setNotificationCount] = useState(0); 
   const [nivel, setNivel] = useState('')
   const [xp, setXp] = useState('')
@@ -29,37 +27,35 @@ function BoxPerfil (props) {
   const [userName, setUsername] = useState('')
   const [avatar, setAvatar] = useState(sessionStorage.getItem('avatar') || usuario);
 
-  const serverIP = 'http://192.168.15.56:3000';
-
   const token = sessionStorage.getItem('token')
 
-  async function fetchData() {
-    try {
-      const response = await fetch(`${serverIP}/getUserData`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-access-token': token
-        }
-      });
-      const data = await response.json();
-      //console.log('Dados do usuário:', data);
-      setUsername(data.NOME);
-      sessionStorage.setItem('username', data.NOME);
-      setMoedas(data.MOEDAS);
-      sessionStorage.setItem('usermoedas', data.MOEDAS);
-      setNivel(data.NIVEL);
-      sessionStorage.setItem('usernivel', data.NIVEL);
-      setXp(data.XP);
-      sessionStorage.setItem('userxp', data.XP);
-    } catch (error) {
-      console.log('Erro ao buscar os dados:', error);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`${serverIP}/getUserData`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': token
+          }
+        });
+        const data = await response.json();
+        setUsername(data.NOME);
+        sessionStorage.setItem('username', data.NOME);
+        setMoedas(data.MOEDAS);
+        sessionStorage.setItem('usermoedas', data.MOEDAS);
+        setNivel(data.NIVEL);
+        sessionStorage.setItem('usernivel', data.NIVEL);
+        setXp(data.XP);
+        sessionStorage.setItem('userxp', data.XP);
+      } catch (error) {
+        console.log('Erro ao buscar os dados:', error);
+      }
     }
-  }
+  
+    fetchData();
+  }, [serverIP]);
 
-useEffect(()=> {
-fetchData()
-}, [])
 
   // const handleNotificationClick = () => {
       

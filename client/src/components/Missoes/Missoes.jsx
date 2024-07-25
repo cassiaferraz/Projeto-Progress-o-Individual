@@ -20,7 +20,7 @@ import LogoutButton from "../userSessions/Logout/LogoutButton"
 import UserContext from '../meu-perfil/BoxPerfil/UserContext';
 
 
-export default function Missoes () {
+export default function Missoes ({ serverIP }) {
     // const token = sessionStorage.getItem("token")
     // console.log(token)
     // if(!token) {
@@ -28,7 +28,6 @@ export default function Missoes () {
     // }
 
     const token = sessionStorage.getItem('token')
-    const serverIP = 'http://192.168.15.56:3000';
 
     const allMissionsComplete = true; 
     const { user, setUser, isFetching } = useContext(UserContext); // Usando o contexto do usuário
@@ -37,7 +36,8 @@ export default function Missoes () {
     const [IRR, setIRR] = useState('');
     const [FISCALIZACAO, setFISCALIZACAO] = useState('');
     const FISCALIZACAO2 = "null";
-    
+     
+
     useEffect(() => {
       async function pegarDadosQualidade() {
           try {
@@ -56,19 +56,18 @@ export default function Missoes () {
               sessionStorage.setItem('userifi', data.IFI)
               setIRR(data[0].IRR);
               sessionStorage.setItem('userirr', data.IRR)
-
             //   console.log(data);
           } catch (error) {
               console.log('Erro ao buscar dados', error);
           }
       }
       pegarDadosQualidade();
-  }, []);
+  }, [serverIP]);
 
   useEffect(() => {
     async function pegarDadosFiscalizacao() {
         try {
-            const response = await fetch('http://localhost:3000/avaliacao/user', { 
+            const response = await fetch(`${serverIP}/avaliacao/user`, { 
               method: 'GET', 
               headers: {
                   'Content-Type': 'application/json',
@@ -86,48 +85,48 @@ export default function Missoes () {
         }
     }
     pegarDadosFiscalizacao();
-}, []);
+}, [serverIP]);
 
  
-const completeMission = async (missionId) => {
-    const mission = missions.find(m => m.id === missionId);
-    if (mission) {
-      try {
-        const response = await fetch('http://localhost:3000/complete', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-access-token': token
+// const completeMission = async (missionId) => {
+//     const mission = missions.find(m => m.id === missionId);
+//     if (mission) {
+//       try {
+//         const response = await fetch('http://localhost:3000/complete', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//             'x-access-token': token
             
-          },
-          body: JSON.stringify({ userId: 1, coins: mission.reward, xp: mission.rewardXP }) // Substitua 1 pelo ID real do usuário e adicione rewardXP
-        });
-        if (response.ok) {
-          const updatedUser = await response.json();
-          setMoedas(updatedUser.MOEDAS);
-          setXp(updatedUser.XP);
-          sessionStorage.setItem('usermoedas', updatedUser.MOEDAS);
-          sessionStorage.setItem('userxp', updatedUser.XP);
-          alert(`Missão completada! Você ganhou ${mission.reward} moedas e ${mission.rewardXP} XP.`);
-        } else {
-          alert('Erro ao atualizar moedas e XP');
-        }
-      } catch (error) {
-        console.error('Erro ao completar missão:', error);
-      }
-    }
-  };
+//           },
+//           body: JSON.stringify({ userId: 1, coins: mission.reward, xp: mission.rewardXP }) // Substitua 1 pelo ID real do usuário e adicione rewardXP
+//         });
+//         if (response.ok) {
+//           const updatedUser = await response.json();
+//           setMoedas(updatedUser.MOEDAS);
+//           setXp(updatedUser.XP);
+//           sessionStorage.setItem('usermoedas', updatedUser.MOEDAS);
+//           sessionStorage.setItem('userxp', updatedUser.XP);
+//           alert(`Missão completada! Você ganhou ${mission.reward} moedas e ${mission.rewardXP} XP.`);
+//         } else {
+//           alert('Erro ao atualizar moedas e XP');
+//         }
+//       } catch (error) {
+//         console.error('Erro ao completar missão:', error);
+//       }
+//     }
+//   };
 
   return (
       <>
-          <Navmenu />
+          <Navmenu serverIP={serverIP}/>
           <div className="todocontainer">
-              <BoxPerfil />
+              <BoxPerfil serverIP={serverIP}/>
               <div id="paginamissoes">
                   <h2 className="titulodapagina">Missões</h2>
                   <LogoutButton />
               </div>
-              <Laudos />
+              <Laudos serverIP={serverIP}/>
               <div className="todo">
                   <div className="atributodeavaliacao">
                       <h3>Qualidade</h3>
@@ -153,10 +152,9 @@ const completeMission = async (missionId) => {
                   {FISCALIZACAO ? <button className="finish-todo"></button> : <button className="remove-todo"></button>}
                   {FISCALIZACAO2 === 'null' ? <button className="null"></button> : <NotNullButton FISCALIZACAO={FISCALIZACAO2} />}
               </div>
-              <Postura />
-              <Veiculo />
-              <Assiduidade />
-              {/* <button onClick={() => completeMission}>completar</button> */}
+              <Postura serverIP={serverIP}/>
+              <Veiculo serverIP={serverIP} />
+              <Assiduidade serverIP={serverIP}/>
           </div>
       </>
   );

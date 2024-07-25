@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
 
-export default function Veivulo(){
+export default function Veivulo({ serverIP }){
+
+    
     const [VEICULO_LIMPEZAINTERNA, setVEICULO_LIMPEZAINTERNA] = useState('')
     const [VEICULO_LIMPEZAEXTERNA, setVEICULO_LIMPEZAEXTERNA] = useState('')
     const [VEICULO_ORGANIZACAOFRENTE, setVEICULO_ORGANIZACAOFRENTE] = useState('')
@@ -19,7 +21,6 @@ export default function Veivulo(){
     const VEICULO_MULTAS2 = "null"
     const VEICULO_SINISTROS2 = "null"
  
-    const serverIP = 'http://192.168.15.56:3000';
     const token = sessionStorage.getItem('token')
  
     useEffect(() => {
@@ -62,7 +63,7 @@ export default function Veivulo(){
      } 
      pegarDadosVeivulo();
  
- }, [])
+ }, [serverIP])
 
         return(
           <div>
