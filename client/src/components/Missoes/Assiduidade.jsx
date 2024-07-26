@@ -44,7 +44,7 @@ export default function Assiduidade({serverIP}){
             setASSIDUIDADE_INICIO(data[0].ASSIDUIDADE_INICIO)
             sessionStorage.setItem('assiduidadeinicio', data.ASSIDUIDADE_INICIO)
 
-            // console.log(data)
+             console.log(data)
             // console.log(data[0])
          } catch (error){
            console.log('Erro ao buscar dados',error)
@@ -67,41 +67,64 @@ export default function Assiduidade({serverIP}){
 
                 <div class= "todo">
                     <h5 className="atribuicao">Comparecimento Alm</h5>
-                    {((ASSIDUIDADE_ALMOX == true) ? <button className="finish-todo"></button> : <button className="finish-todo"></button>)}
-                    {((ASSIDUIDADE_ALMOX == true) ? <button className="finish-todo"></button> : <button className="finish-todo"></button>)}
+                    {ASSIDUIDADE_ALMOX === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ALMOX === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                    {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>}
                     {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>}
                     {/* {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>} */}
                 </div>
+                        
                 <div class= "todo">
                     <h5 className="atribuicao">Horário de Almoço</h5>
-                    {((ASSIDUIDADE_ALMOCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                    {((ASSIDUIDADE_ALMOCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {ASSIDUIDADE_ALMOCO === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ALMOCO === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+
                     {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>}
-                    {/* {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>} */}
+                    {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>}
                 </div>
 
                 <div class= "todo">
                     <h5 className="atribuicao">Gestão de Rota</h5>
-                    {((ASSIDUIDADE_ROTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                    {((ASSIDUIDADE_ROTA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {ASSIDUIDADE_ROTA === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ROTA === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
                     {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>}
-                    {/* {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>} */}
+                    {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>}
                 </div>
 
                 <div class= "todo">
                     <h5 className="atribuicao">Banco de Horas</h5>
-                    {((ASSIDUIDADE_BANCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                    {((ASSIDUIDADE_BANCO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {ASSIDUIDADE_BANCO === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_BANCO === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
                     {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>}
-                    {/* {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>} */}
+                    {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>}
                 </div>
 
                 <div class= "todo">
                     <h5 className="atribuicao">Inicio Atividade</h5>
-                    {((ASSIDUIDADE_INICIO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                    {((ASSIDUIDADE_INICIO == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                    {ASSIDUIDADE_INICIO === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_INICIO === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
                     {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>}
-                    {/* {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>} */}
+                    {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>}
                 </div>
         </div>
     )

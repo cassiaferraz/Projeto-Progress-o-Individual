@@ -79,60 +79,88 @@ export default function Veivulo({ serverIP }){
 {/* ITEM 1 DE Frota */}
                     <div class= "todo">
                         <h5 className="atribuicao">Limpeza Interna</h5>
-                        {((VEICULO_LIMPEZAINTERNA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                        {((VEICULO_LIMPEZAINTERNA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}  
+                        {VEICULO_LIMPEZAINTERNA === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_LIMPEZAINTERNA === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
                         {(VEICULO_LIMPEZAINTERNA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAINTERNA={VEICULO_LIMPEZAINTERNA2}/>}
-                        {/* {(VEICULO_LIMPEZAINTERNA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAINTERNA={VEICULO_LIMPEZAINTERNA2}/>} */}
+                        {(VEICULO_LIMPEZAINTERNA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAINTERNA={VEICULO_LIMPEZAINTERNA2}/>}
                     </div>  
 {/* ITEM 2 DE Frota */}
 
                     <div class= "todo">
                         <h5 className="atribuicao">Limpeza Externa</h5>
-                        {((VEICULO_LIMPEZAEXTERNA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                        {((VEICULO_LIMPEZAEXTERNA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                        {VEICULO_LIMPEZAEXTERNA === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_LIMPEZAEXTERNA === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
                         {(VEICULO_LIMPEZAEXTERNA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAEXTERNA={VEICULO_LIMPEZAEXTERNA2}/>}
-                        {/* {(VEICULO_LIMPEZAEXTERNA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAEXTERNA={VEICULO_LIMPEZAEXTERNA2}/>} */}
+                        {(VEICULO_LIMPEZAEXTERNA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAEXTERNA={VEICULO_LIMPEZAEXTERNA2}/>}
                     </div> 
 {/* ITEM 3 DE Frota */}
 
                     <div class= "todo">
                         <h5 className="atribuicao">Organização Frente</h5>
-                        {((VEICULO_ORGANIZACAOFRENTE == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                        {((VEICULO_ORGANIZACAOFRENTE == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                        {VEICULO_ORGANIZACAOFRENTE === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_ORGANIZACAOFRENTE === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
                         {(VEICULO_ORGANIZACAOFRENTE2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOFRENTE={VEICULO_ORGANIZACAOFRENTE2}/>}
-                        {/* {(VEICULO_ORGANIZACAOFRENTE2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOFRENTE={VEICULO_ORGANIZACAOFRENTE2}/>} */}
+                        {(VEICULO_ORGANIZACAOFRENTE2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOFRENTE={VEICULO_ORGANIZACAOFRENTE2}/>}
                     </div> 
 
                     <div class= "todo">
                         <h5 className="atribuicao">Sinistros</h5>
-                        {((VEICULO_SINISTROS == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                        {((VEICULO_SINISTROS == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                        {VEICULO_SINISTROS === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_SINISTROS === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
                         {(VEICULO_SINISTROS2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_SINISTROS={VEICULO_SINISTROS2}/>}
-                        {/* {(VEICULO_SINISTROS2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_SINISTROS={VEICULO_SINISTROS2}/>} */}
+                        {(VEICULO_SINISTROS2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_SINISTROS={VEICULO_SINISTROS2}/>}
                     </div> 
 
                     <div class= "todo">
                         <h5 className="atribuicao">Horário-Recarga</h5>
-                        {((VEICULO_RECARGA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                        {((VEICULO_RECARGA == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                        {VEICULO_RECARGA === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_RECARGA === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+                        
                         {(VEICULO_RECARGA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_RECARGA={VEICULO_RECARGA2}/>}
-                        {/* {(VEICULO_RECARGA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_RECARGA={VEICULO_RECARGA2}/>} */}
+                        {(VEICULO_RECARGA2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_RECARGA={VEICULO_RECARGA2}/>}
                     </div> 
 
                     <div class= "todo">
                         <h5 className="atribuicao">Multas</h5>
-                        {((VEICULO_MULTAS == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                        {((VEICULO_MULTAS == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
+                        {VEICULO_MULTAS === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_MULTAS === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
                         {(VEICULO_MULTAS2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_MULTAS={VEICULO_MULTAS2}/>}
-                        {/* {(VEICULO_MULTAS2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_MULTAS={VEICULO_MULTAS2}/>} */}
+                        {(VEICULO_MULTAS2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_MULTAS={VEICULO_MULTAS2}/>}
                     </div> 
 
                     <div class= "todo">
                         <h5 className="atribuicao">Organização Baú</h5>
-                        {((VEICULO_ORGANIZACAOBAU == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}
-                        {((VEICULO_ORGANIZACAOBAU == true) ? <button className="finish-todo"></button> : <button className="remove-todo"></button>)}  
+                        {VEICULO_ORGANIZACAOBAU === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_ORGANIZACAOBAU === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
                         {(VEICULO_ORGANIZACAOBAU2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOBAU={VEICULO_ORGANIZACAOBAU2}/>}
-                        {/* {(VEICULO_ORGANIZACAOBAU2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOBAU={VEICULO_ORGANIZACAOBAU2}/>} */}
+                        {(VEICULO_ORGANIZACAOBAU2 == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOBAU={VEICULO_ORGANIZACAOBAU2}/>}
                     </div>
             </div>
         )

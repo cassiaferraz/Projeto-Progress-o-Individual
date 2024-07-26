@@ -149,8 +149,17 @@ export default function Missoes ({ serverIP }) {
               </div> */}
               <div className="todo">
                   <h5 className="atribuicao">Fiscalização</h5>
-                  {FISCALIZACAO ? <button className="finish-todo"></button> : <button className="remove-todo"></button>}
-                  {FISCALIZACAO2 === 'null' ? <button className="null"></button> : <NotNullButton FISCALIZACAO={FISCALIZACAO2} />}
+                   {FISCALIZACAO === true ? (
+                    <button className="finish-todo"></button>) : 
+                    FISCALIZACAO === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                  {FISCALIZACAO2 === 'null' ? <button className="null"></button> : 
+                  <NotNullButton FISCALIZACAO={FISCALIZACAO2} />}
+
+                  {FISCALIZACAO2 === 'null' ? <button className="null"></button> : 
+                  <NotNullButton FISCALIZACAO={FISCALIZACAO2} />}
               </div>
               <Postura serverIP={serverIP}/>
               <Veiculo serverIP={serverIP} />

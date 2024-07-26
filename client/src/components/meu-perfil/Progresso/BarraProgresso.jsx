@@ -6,9 +6,9 @@ import '../Progresso/barraprogresso.css'
 import ProgressBar from "@ramonak/react-progress-bar";
 
 function BarraProgresso({xp}) {
-  const string = xp + "/1000"
+  const string = xp + "/100"
 
-  const completion = (xp/1000)*100;
+  const completion = (xp/100)*10;
 
 
   return (
