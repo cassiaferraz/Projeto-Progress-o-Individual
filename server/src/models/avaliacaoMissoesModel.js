@@ -17,6 +17,17 @@ function getUser(id) {
     return results;
 }   
 
+
+function getTotalAvaliations() {
+    const sql = `SELECT *
+    FROM dbo.Avaliacoes_individuais
+    ORDER BY DATA DESC;`;
+    const results = sqlServer.dispatchQuery(sql)
+    return results;
+}   
+
+
+
 function updateUser(ide) {
     const sql = 'UPDATE SET * FROM dbo.Avaliacoes_individuais WHERE ID_TECNICO = 9';
     const results = sqlServer.dispatchQuery(sql, [ide]);
@@ -42,6 +53,7 @@ module.exports = {
     createUser,
     updateUser,
     getUser,
-    deleteUser
+    deleteUser,
+    getTotalAvaliations
 
 }

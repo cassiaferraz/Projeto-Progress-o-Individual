@@ -8,7 +8,7 @@ function createUser() {
 }  
  
 function getUser(id) {
-    const sql = `SELECT CONECTIVIDADE, CASA_INTELIGENTE, METALICO, ELETRICA, PABX_VOIP, AUDIO_VIDEO FROM dbo.HABILIDADES_TECNICOS WHERE ID_COLABORADOR = '${id}'`;
+    const sql = `SELECT CONECTIVIDADE, CASA_INTELIGENTE, METALICO, ELETRICA, PABX_VOIP, AUDIO_VIDEO FROM dbo._HABILIDADES WHERE ID_COLABORADOR = '${id}'`;
     const results = sqlServer.dispatchQuery(sql);
     return results;
 }  

@@ -1,5 +1,6 @@
 const getUsuario = require('../models/getUserModel.js');
 const getPerfil = require('../models/perfilModel.js');
+const DadosProgression = require('../models/DadosProgression.js');
 
 
 const getUserData = async (req, res) => {
@@ -30,6 +31,28 @@ const getUserData = async (req, res) => {
 
 };
 
+const createUserProgressionData = async(req,res) => {
+  try{
+    const allUser = await getUsuario.getAllUsers()
+    allUser.forEach(user =>{
+      if (user.CARGO == 'tecnico'){
+        const  ParaCriarDadosprogression =  {
+          id:user.ID_COLABORADOR,
+          nivel: 0,
+          moedas: 0,
+          xp: 0
+        }
+        DadosProgression.createTecProgressionData(ParaCriarDadosprogression)
+      }
+    })
+    res.status(200).json({message: 'Dados criados'})
+  }catch(err){
+    console.log(err)
+    res.status(400).json({message: 'Deu ruim'})
+  }
+}
+
 module.exports = {
-  getUserData
+  getUserData,
+  createUserProgressionData
 };

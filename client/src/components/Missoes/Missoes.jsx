@@ -160,7 +160,7 @@ export default function Missoes () {
               <Postura />
               <Veiculo />
               <Assiduidade />
-              <button onClick={completarMissao}>Completar Missão</button>
+              {/* <button onClick={completarMissao}>Completar Missão</button> */}
           </div>
       </>
   );
