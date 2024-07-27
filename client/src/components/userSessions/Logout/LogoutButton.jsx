@@ -7,7 +7,7 @@ const handleLogout = () => {
     sessionStorage.removeItem('token'); 
     // sessionStorage.removeItem('username'); 
 
-    window.location.href = '/login'; 
+    window.location.href = '/'; 
 };
 
 function LogoutButton () {

@@ -11,7 +11,12 @@ const cookieParser = require('cookie-parser')
 const loginRoutes = require('./routes/loginRoutes')
 const registerRoutes = require('./routes/resetPassword.js')
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -27,8 +32,6 @@ app.use("/", loginRoutes);
 
 
 
-
-// Inicia o servidor na porta 3000
-app.listen(3000, () => {
-  console.log('Servidor rodando')
+app.listen(3000, '0.0.0.0', () => {
+  console.log('Servidor rodando na porta 3000');
 });

@@ -6,7 +6,7 @@ import 'primeicons/primeicons.css';
  
 import { useState, useEffect} from 'react'
  
-function Habilidades() {
+function Habilidades({serverIP}) {
  
   const [HAB_CONECTIVIDADE, setHAB_CONECTIVIDADE] = useState('')
   const [HAB_CASA_INTELIGENTE, setHAB_CASA_INTELIGENTE] = useState('')
@@ -24,11 +24,13 @@ function Habilidades() {
   const [PABX_VOIP, setPABX_VOIP] = useState('')
   const [METALICO, setMETALICO] = useState('')
  
+
+
   useEffect(() => {
 
     async function pegarDadosHabilidades(){
       try {
-        const response = await fetch ('http://localhost:3000/habilidades', {
+        const response = await fetch (`${serverIP}/habilidades`, {
           method: 'GET',
           headers:{
               'Content-Type': 'application/json',
@@ -68,7 +70,7 @@ function Habilidades() {
 
    async function pegarDadosAutoavaliacao(){
     try {
-      const response = await fetch ('http://localhost:3000/Auto', {
+      const response = await fetch (`${serverIP}/Auto`, {
         method: 'GET',
     headers:{
       'Content-Type': 'application/json',
@@ -105,7 +107,7 @@ function Habilidades() {
  }
  pegarDadosAutoavaliacao();
 
-}, [])
+}, [serverIP])
 
    
     return(

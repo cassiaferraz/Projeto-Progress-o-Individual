@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express.Router();
-const midamigo = require('../middleware/authMiddleware')
-const missionController = require('../controller/Boxperfil_Missoes');
+const tokenMissoesBoxPerfil = require('../middleware/authMiddleware')
+const boxperfilController = require('../controller/boxperfilController');
 
-app.post('/complete', midamigo, missionController.Boxperfil_Missoes);
+app.post('/complete', tokenMissoesBoxPerfil, boxperfilController.Boxperfil_Missoes);
+
+// app.post('/updateCoins', tokenMissoesBoxPerfil, boxperfilController.updateCoins);
+// app.post('/updateXP', tokenMissoesBoxPerfil, boxperfilController.updateXP);
 
 module.exports = app;

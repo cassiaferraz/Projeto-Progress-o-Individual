@@ -92,10 +92,11 @@ import EmailInput from '../EmailInput/EmailInput';
 import PasswordInput from '../PasswordInput/passwordInput';
 import Logo from '/img/svgs/logoprogressao.png';
 
-function LoginForm() {
+function LoginForm({ serverIP }) {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -103,7 +104,7 @@ function LoginForm() {
         //10.243.251.176
 
         try {
-            const response = await fetch('http://localhost:3000/login', {
+            const response = await fetch(`${serverIP}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -112,7 +113,7 @@ function LoginForm() {
             });
 
             const data = await response.json();
-            console.log('Resposta da API:', data); // Log da resposta da API
+            //console.log('Resposta da API:', data); 
 
             if (response.ok) {
                 console.log('Login bem-sucedido, armazenando token');

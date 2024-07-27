@@ -14,19 +14,20 @@ import Premio from '/img/svgs/Premio.svg'
 
 import { Link } from "react-router-dom"
 
-function Perfil () {
+function Perfil ({serverIP}) {
+
+    
     const [NOME_MEDALHAS1, setNOME_MEDALHAS1] = useState('')
     const [NOME_MEDALHAS2, setNOME_MEDALHAS2] = useState('')
     const [NOME_MEDALHAS3, setNOME_MEDALHAS3] = useState('')
     const [NOME_MEDALHAS4, setNOME_MEDALHAS4] = useState('')
    
-   
-   
+
     useEffect(() => {
  
         async function pegarDadosNomeMedalhas(){
           try {
-            const response = await fetch ('http://localhost:3000/medalhas', {method: 'GET'
+            const response = await fetch (`${serverIP}/medalhas`, {method: 'GET'
           // headers:{
           //   'Content-Type': 'application/json',
           //     }
@@ -48,7 +49,7 @@ function Perfil () {
        }
        pegarDadosNomeMedalhas();
  
-   }, [])
+   }, [serverIP]);
  
  
 
@@ -58,7 +59,7 @@ function Perfil () {
 
      <div className="todocontainer">
          <Navmenu /> 
-         <BoxPerfil/>
+         <BoxPerfil serverIP={serverIP}/>
             
             <div id="titulo-config">
             <h2 className="titulodapagina">Meu Perfil</h2>
@@ -71,7 +72,7 @@ function Perfil () {
                    </Link> <Tooltip id="config" />
                 </div>
             </div>
-         <Habilidades />
+         <Habilidades serverIP={serverIP}/>
         
         
         <div className="tabela-medalhas-recompensas">

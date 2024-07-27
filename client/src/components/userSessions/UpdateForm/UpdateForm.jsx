@@ -4,7 +4,7 @@ import PasswordInput from '../PasswordInput/passwordInput';
 import './updateForm_style.css';
 
  
-function UpdateForm() {
+function UpdateForm({ serverIP }) {
     // const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [userConfirmedPassword, setUserConfirmedPassword] = useState("");
@@ -12,14 +12,14 @@ function UpdateForm() {
     const [showDifferentPasswordsError, setShowDifferentPasswordsError] = useState(false);
 
     const token = sessionStorage.getItem('token')
- 
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
  
         if (userPassword === userConfirmedPassword) {
             if (resultRegex) {
                 try {
-                    const response = await fetch('http://localhost:3000/reset-password', {
+                    const response = await fetch(`${serverIP}/reset-password`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

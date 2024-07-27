@@ -19,16 +19,9 @@ async function getAllUsers() {
 }   
 
 
-//funcao para atualizar moedas e xp do usuario
 
-// async function updateUser(id, coins, xp) {
-//     const sql = `UPDATE dbo.Tecnico SET MOEDAS = ${coins}, XP = ${xp} WHERE ID_COLABORADOR = '${id}'`;
-//     await sqlServer.dispatchQuery(sql);
-// }
-
-// alterei no update o wher de ID_TECNICO PARA ID_COLABORADOR
 module.exports = {
     getUser,
-    // updateUser,
     getAllUsers
 }
+

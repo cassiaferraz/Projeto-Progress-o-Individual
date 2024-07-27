@@ -36,9 +36,7 @@ app.use('/', Boxperfil_Routes);
 
 const userGetRoutes = require('./getUserRoutes.js')
 app.use('/', userGetRoutes)
- 
- 
- 
+
  
 const planilhaRoutes = require('./planilhas.js') // Importe o arquivo de rotas das Habilidades e medalhas
 app.use('/', planilhaRoutes) // Use as rotas das Habilidades e medalhas

@@ -20,7 +20,7 @@ function Navmenu () {
             <li className='botoesdenavegacao' style={activePage == 'Missoes' ? { backgroundColor: 'rgb(178, 128, 204)' } : {textDecoration: ''}}
         onClick={() => handleSetActive('Missoes')}>
             
-             <Link to= "/" style={{ textDecoration: 'none' }}> 
+             <Link to= "/missoes" style={{ textDecoration: 'none' }}> 
              <img className= "icon" src={alvo} />Missões </Link>
             </li>
 
