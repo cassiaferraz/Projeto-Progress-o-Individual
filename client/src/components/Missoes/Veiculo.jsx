@@ -23,13 +23,13 @@ export default function Veivulo({ serverIP }){
     const [VEICULO_MULTAS1, setVEICULO_MULTAS1] = useState('')
     const [VEICULO_SINISTROS1, setVEICULO_SINISTROS1] = useState('')
 
-    // const [VEICULO_LIMPEZAINTERNA2, setVEICULO_LIMPEZAINTERNA2] = useState('')
-    // const [VEICULO_LIMPEZAEXTERNA2, setVEICULO_LIMPEZAEXTERNA2] = useState('')
-    // const [VEICULO_ORGANIZACAOFRENTE2, setVEICULO_ORGANIZACAOFRENTE2] = useState('')
-    // const [VEICULO_ORGANIZACAOBAU2, setVEICULO_ORGANIZACAOBAU2] = useState('')
-    // const [VEICULO_RECARGA2, setVEICULO_RECARGA2] = useState('')
-    // const [VEICULO_MULTAS2, setVEICULO_MULTAS2] = useState('')
-    // const [VEICULO_SINISTROS2, setVEICULO_SINISTROS2] = useState('')
+    const [VEICULO_LIMPEZAINTERNA2, setVEICULO_LIMPEZAINTERNA2] = useState('')
+    const [VEICULO_LIMPEZAEXTERNA2, setVEICULO_LIMPEZAEXTERNA2] = useState('')
+    const [VEICULO_ORGANIZACAOFRENTE2, setVEICULO_ORGANIZACAOFRENTE2] = useState('')
+    const [VEICULO_ORGANIZACAOBAU2, setVEICULO_ORGANIZACAOBAU2] = useState('')
+    const [VEICULO_RECARGA2, setVEICULO_RECARGA2] = useState('')
+    const [VEICULO_MULTAS2, setVEICULO_MULTAS2] = useState('')
+    const [VEICULO_SINISTROS2, setVEICULO_SINISTROS2] = useState('')
 
 
     const VEICULO_LIMPEZAINTERNAnull = "null"
@@ -86,6 +86,21 @@ export default function Veivulo({ serverIP }){
           sessionStorage.setItem('veiculorecarga1', data.VEICULO_RECARGA)
           setVEICULO_SINISTROS1(data[1].VEICULO_SINISTROS)
           sessionStorage.setItem('veiculosinistros1', data.VEICULO_SINISTROS)
+
+          setVEICULO_LIMPEZAINTERNA2(data[2].VEICULO_LIMPEZAINTERNA)
+          sessionStorage.setItem('veiculointerna2', data.VEICULO_LIMPEZAINTERNA)
+          setVEICULO_LIMPEZAEXTERNA2(data[2].VEICULO_LIMPEZAEXTERNA)
+          sessionStorage.setItem('veiculoexterna2', data.VEICULO_LIMPEZAEXTERNA)
+          setVEICULO_ORGANIZACAOFRENTE2(data[2].VEICULO_ORGANIZACAOFRENTE)
+          sessionStorage.setItem('veiculorganizacao2', data.VEICULO_ORGANIZACAOFRENTE)
+          setVEICULO_ORGANIZACAOBAU2(data[2].VEICULO_ORGANIZACAOBAU)
+          sessionStorage.setItem('veiculobau2', data.VEICULO_ORGANIZACAOBAU)
+          setVEICULO_MULTAS2(data[2].VEICULO_MULTAS)
+          sessionStorage.setItem('veiculomultas2', data.VEICULO_MULTAS)
+          setVEICULO_RECARGA2(data[2].VEICULO_RECARGA)
+          sessionStorage.setItem('veiculorecarga2', data.VEICULO_RECARGA)
+          setVEICULO_SINISTROS2(data[2].VEICULO_SINISTROS)
+          sessionStorage.setItem('veiculosinistros2', data.VEICULO_SINISTROS)
   
         //   console.log(data[0].COMUNICACAO)
   
@@ -125,7 +140,13 @@ export default function Veivulo({ serverIP }){
                         (<button className="remove-todo"></button>) : 
                         (<button className="null"></button>)}
 
-                        {(VEICULO_LIMPEZAINTERNAnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAINTERNA={VEICULO_LIMPEZAINTERNAnull}/>}
+                        {VEICULO_LIMPEZAINTERNA2 === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_LIMPEZAINTERNA2 === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
+                        {/* {(VEICULO_LIMPEZAINTERNAnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAINTERNA={VEICULO_LIMPEZAINTERNAnull}/>} */}
                     </div>  
 {/* ITEM 2 DE Frota */}
 
@@ -144,7 +165,14 @@ export default function Veivulo({ serverIP }){
                         (<button className="remove-todo"></button>) : 
                         (<button className="null"></button>)}
 
-                        {(VEICULO_LIMPEZAEXTERNAnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAEXTERNA={VEICULO_LIMPEZAEXTERNAnull}/>}
+                        {VEICULO_LIMPEZAEXTERNA2 === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_LIMPEZAEXTERNA2 === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
+
+                        {/* {(VEICULO_LIMPEZAEXTERNAnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_LIMPEZAEXTERNA={VEICULO_LIMPEZAEXTERNAnull}/>} */}
                     </div> 
 {/* ITEM 3 DE Frota */}
 
@@ -162,7 +190,13 @@ export default function Veivulo({ serverIP }){
                         (<button className="remove-todo"></button>) : 
                         (<button className="null"></button>)}
 
-                        {(VEICULO_ORGANIZACAOFRENTEnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOFRENTE={VEICULO_ORGANIZACAOFRENTEnull}/>}
+                        {VEICULO_ORGANIZACAOFRENTE2 === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_ORGANIZACAOFRENTE2 === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
+                        {/* {(VEICULO_ORGANIZACAOFRENTEnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOFRENTE={VEICULO_ORGANIZACAOFRENTEnull}/>} */}
                     </div> 
 
                     <div class= "todo">
@@ -179,7 +213,13 @@ export default function Veivulo({ serverIP }){
                         (<button className="remove-todo"></button>) : 
                         (<button className="null"></button>)}
 
-                        {(VEICULO_SINISTROSnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_SINISTROS={VEICULO_SINISTROSnull}/>}
+                        {VEICULO_SINISTROS2 === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_SINISTROS2 === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
+                        {/* {(VEICULO_SINISTROSnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_SINISTROS={VEICULO_SINISTROSnull}/>} */}
                     </div> 
 
                     <div class= "todo">
@@ -196,7 +236,13 @@ export default function Veivulo({ serverIP }){
                         (<button className="remove-todo"></button>) : 
                         (<button className="null"></button>)}   
 
-                        {(VEICULO_RECARGAnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_RECARGA={VEICULO_RECARGAnull}/>}
+                        {VEICULO_RECARGA2 === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_RECARGA2 === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)} 
+
+                        {/* {(VEICULO_RECARGAnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_RECARGA={VEICULO_RECARGAnull}/>} */}
                     </div> 
 
                     <div class= "todo">
@@ -213,7 +259,13 @@ export default function Veivulo({ serverIP }){
                         (<button className="remove-todo"></button>) : 
                         (<button className="null"></button>)}
 
-                        {(VEICULO_MULTASnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_MULTAS={VEICULO_MULTASnull}/>}
+                        {VEICULO_MULTAS2 === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_MULTAS2 === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
+                        {/* {(VEICULO_MULTASnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_MULTAS={VEICULO_MULTASnull}/>} */}
                     </div> 
 
                     <div class= "todo">
@@ -230,7 +282,13 @@ export default function Veivulo({ serverIP }){
                         (<button className="remove-todo"></button>) : 
                         (<button className="null"></button>)}
 
-                        {(VEICULO_ORGANIZACAOBAUnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOBAU={VEICULO_ORGANIZACAOBAUnull}/>}
+                        {VEICULO_ORGANIZACAOBAU2 === true ? (
+                        <button className="finish-todo"></button>) : 
+                        VEICULO_ORGANIZACAOBAU2 === false ? 
+                        (<button className="remove-todo"></button>) : 
+                        (<button className="null"></button>)}
+
+                        {/* {(VEICULO_ORGANIZACAOBAUnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOBAU={VEICULO_ORGANIZACAOBAUnull}/>} */}
                     </div>
             </div>
         )

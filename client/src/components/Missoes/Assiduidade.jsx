@@ -17,11 +17,17 @@ export default function Assiduidade({serverIP}){
     const [ASSIDUIDADE_ALMOCO1, setASSIDUIDADE_ALMOCO1] = useState('')
     const [ASSIDUIDADE_INICIO1, setASSIDUIDADE_INICIO1] = useState('')
 
-    const ASSIDUIDADE_ALMOX2 = "null"
-    const ASSIDUIDADE_BANCO2 = "null"
-    const ASSIDUIDADE_ROTA2 = "null"
-    const ASSIDUIDADE_ALMOCO2 = "null"
-    const ASSIDUIDADE_INICIO2 = "null"
+    const [ASSIDUIDADE_ALMOX2, setASSIDUIDADE_ALMOX2] = useState('')
+    const [ASSIDUIDADE_BANCO2, setASSIDUIDADE_BANCO2] = useState('')
+    const [ASSIDUIDADE_ROTA2, setASSIDUIDADE_ROTA2] = useState('')
+    const [ASSIDUIDADE_ALMOCO2, setASSIDUIDADE_ALMOCO2] = useState('')
+    const [ASSIDUIDADE_INICIO2, setASSIDUIDADE_INICIO2] = useState('')
+
+    const ASSIDUIDADE_ALMOXnull = "null"
+    const ASSIDUIDADE_BANCOnull = "null"
+    const ASSIDUIDADE_ROTAnull = "null"
+    const ASSIDUIDADE_ALMOCOnull = "null"
+    const ASSIDUIDADE_INICIOnull = "null"
 
     const token = sessionStorage.getItem('token')
 
@@ -62,6 +68,17 @@ export default function Assiduidade({serverIP}){
             setASSIDUIDADE_INICIO1(data[1].ASSIDUIDADE_INICIO)
             sessionStorage.setItem('assiduidadeinicio1', data.ASSIDUIDADE_INICIO)
 
+            setASSIDUIDADE_ALMOX2(data[2].ASSIDUIDADE_ALMOX)
+            sessionStorage.setItem('assiduidadealmox2', data.ASSIDUIDADE_ALMOX)
+            setASSIDUIDADE_BANCO2(data[2].ASSIDUIDADE_BANCO)
+            sessionStorage.setItem('assiduidadebanco2', data.ASSIDUIDADE_BANCO)
+            setASSIDUIDADE_ROTA2(data[2].ASSIDUIDADE_ROTA)
+            sessionStorage.setItem('assiduidaderota2', data.ASSIDUIDADE_ROTA)
+            setASSIDUIDADE_ALMOCO2(data[2].ASSIDUIDADE_ALMOCO)
+            sessionStorage.setItem('assiduidadealmoco2', data.ASSIDUIDADE_ALMOCO)
+            setASSIDUIDADE_INICIO2(data[2].ASSIDUIDADE_INICIO)
+            sessionStorage.setItem('assiduidadeinicio2', data.ASSIDUIDADE_INICIO)
+
              console.log(data)
             // console.log(data[0])
          } catch (error){
@@ -97,7 +114,13 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                    {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>}
+                    {ASSIDUIDADE_ALMOX2 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ALMOX2 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                    {/* {(ASSIDUIDADE_ALMOXnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOXnull}/>} */}
                 </div>
                         
                 <div class= "todo">
@@ -113,7 +136,14 @@ export default function Assiduidade({serverIP}){
                     ASSIDUIDADE_ALMOCO1 === false ? 
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
-                    {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>}
+
+                    {ASSIDUIDADE_ALMOCO2 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ALMOCO2 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                    {/* {(ASSIDUIDADE_ALMOCOnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCOnull}/>} */}
                 </div>
 
                 <div class= "todo">
@@ -130,7 +160,13 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                    {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>}
+                    {ASSIDUIDADE_ROTA2 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ROTA2 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                    {/* {(ASSIDUIDADE_ROTAnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTAnull}/>} */}
                 </div>
 
                 <div class= "todo">
@@ -147,7 +183,13 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                    {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>}
+                    {ASSIDUIDADE_BANCO2 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_BANCO2 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                    {/* {(ASSIDUIDADE_BANCOnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCOnull}/>} */}
                 </div>
 
                 <div class= "todo">
@@ -164,7 +206,13 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                    {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>}
+                    {ASSIDUIDADE_INICIO2 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_INICIO2 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                    {/* {(ASSIDUIDADE_INICIOnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIOnull}/>} */}
                 </div>
         </div>
     )

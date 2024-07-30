@@ -81,6 +81,8 @@ export default function Missoes ({ serverIP }) {
             sessionStorage.setItem('userfiscalizacao', data.FISCALIZACAO)
             setFISCALIZACAO1(data[1].FISCALIZACAO);
             sessionStorage.setItem('userfiscalizacao1', data.FISCALIZACAO)
+            setFISCALIZACAO2(data[2].FISCALIZACAO);
+            sessionStorage.setItem('userfiscalizacao2', data.FISCALIZACAO)
 
             // console.log(data);
         } catch (error) {
@@ -140,8 +142,14 @@ export default function Missoes ({ serverIP }) {
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                  {FISCALIZACAOnull === 'null' ? <button className="null"></button> : 
-                  <NotNullButton FISCALIZACAO={FISCALIZACAOnull} />}
+                    {FISCALIZACAO2 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    FISCALIZACAO2 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
+                  {/* {FISCALIZACAOnull === 'null' ? <button className="null"></button> : 
+                  <NotNullButton FISCALIZACAO={FISCALIZACAOnull} />} */}
               </div>
               <Postura serverIP={serverIP}/>
               <Veiculo serverIP={serverIP} />

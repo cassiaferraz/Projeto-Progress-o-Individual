@@ -6,8 +6,9 @@ import { useState, useEffect} from 'react'
 export default function Laudos({serverIP}) {
       const [LAUDOS_PREENCHIDOS, setLAUDOS_PREENCHIDOS] = useState('');
       const [LAUDOS_PREENCHIDOS1, setLAUDOS_PREENCHIDOS1] = useState('');
+      const [LAUDOS_PREENCHIDOS2, setLAUDOS_PREENCHIDOS2] = useState('');
 
-      const LAUDOS_PREENCHIDOS2 = "null";
+      const LAUDOS_PREENCHIDOSnull = "null";
 
       const token = sessionStorage.getItem('token')
 
@@ -30,6 +31,8 @@ export default function Laudos({serverIP}) {
             setLAUDOS_PREENCHIDOS1(data[1].LAUDOS_PREENCHIDOS);
             sessionStorage.setItem('userlaudo1', data.LAUDOS_PREENCHIDOS)
 
+            setLAUDOS_PREENCHIDOS2(data[2].LAUDOS_PREENCHIDOS);
+            sessionStorage.setItem('userlaudo2', data.LAUDOS_PREENCHIDOS)
           } catch (error) {
             console.log('Erro ao buscar dados', error);
           }
@@ -63,7 +66,13 @@ export default function Laudos({serverIP}) {
             (<button className="remove-todo"></button>) : 
             (<button className="null"></button>)}
 
-            {(LAUDOS_PREENCHIDOS2 == 'null') ? <button className="null"></button> : <NotNullButton LAUDOS_PREENCHIDOS={LAUDOS_PREENCHIDOS2}/>}
+            {LAUDOS_PREENCHIDOS2 === true ? (
+            <button className="finish-todo"></button>) : 
+            LAUDOS_PREENCHIDOS2 === false ? 
+            (<button className="remove-todo"></button>) : 
+            (<button className="null"></button>)}
+
+            {/* {(LAUDOS_PREENCHIDOSnull == 'null') ? <button className="null"></button> : <NotNullButton LAUDOS_PREENCHIDOS={LAUDOS_PREENCHIDOSnull}/>} */}
 
           </div>
               {/* <div className="todo">
