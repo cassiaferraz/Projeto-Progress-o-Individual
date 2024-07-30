@@ -10,6 +10,8 @@ import QualityProgressIcon from "./QualityProgresso/QualityProgressIcon"
 
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg" 
+import flechaEsquerda from "/img/svgs/Flecha-direita.svg" 
+import flechaDireita from "/img/svgs/flecha-esquerda.svg" 
 
 import { useState, useEffect, useContext} from 'react'
 
@@ -17,8 +19,7 @@ import '../Missoes/missoes.css'
 import '../pages/pages.css'
 import LogoutButton from "../userSessions/Logout/LogoutButton"
 
-import UserContext from '../meu-perfil/BoxPerfil/UserContext';
-
+    
 
 export default function Missoes ({ serverIP }) {
     // const token = sessionStorage.getItem("token")
@@ -29,13 +30,13 @@ export default function Missoes ({ serverIP }) {
 
     const token = sessionStorage.getItem('token')
 
-    const allMissionsComplete = true; 
-    const { user, setUser, isFetching } = useContext(UserContext); // Usando o contexto do usuário
     const [TDNA, setTDNA] = useState('');
     const [IFI, setIFI] = useState('');
     const [IRR, setIRR] = useState('');
     const [FISCALIZACAO, setFISCALIZACAO] = useState('');
-    const FISCALIZACAO2 = "null";
+    const [FISCALIZACAO1, setFISCALIZACAO1] = useState('');
+    const [FISCALIZACAO2, setFISCALIZACAO2] = useState('');
+    const FISCALIZACAOnull = "null";
      
 
     useEffect(() => {
@@ -78,6 +79,8 @@ export default function Missoes ({ serverIP }) {
 
             setFISCALIZACAO(data[0].FISCALIZACAO);
             sessionStorage.setItem('userfiscalizacao', data.FISCALIZACAO)
+            setFISCALIZACAO1(data[1].FISCALIZACAO);
+            sessionStorage.setItem('userfiscalizacao1', data.FISCALIZACAO)
 
             // console.log(data);
         } catch (error) {
@@ -88,35 +91,6 @@ export default function Missoes ({ serverIP }) {
 }, [serverIP]);
 
  
-// const completeMission = async (missionId) => {
-//     const mission = missions.find(m => m.id === missionId);
-//     if (mission) {
-//       try {
-//         const response = await fetch('http://localhost:3000/complete', {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//             'x-access-token': token
-            
-//           },
-//           body: JSON.stringify({ userId: 1, coins: mission.reward, xp: mission.rewardXP }) // Substitua 1 pelo ID real do usuário e adicione rewardXP
-//         });
-//         if (response.ok) {
-//           const updatedUser = await response.json();
-//           setMoedas(updatedUser.MOEDAS);
-//           setXp(updatedUser.XP);
-//           sessionStorage.setItem('usermoedas', updatedUser.MOEDAS);
-//           sessionStorage.setItem('userxp', updatedUser.XP);
-//           alert(`Missão completada! Você ganhou ${mission.reward} moedas e ${mission.rewardXP} XP.`);
-//         } else {
-//           alert('Erro ao atualizar moedas e XP');
-//         }
-//       } catch (error) {
-//         console.error('Erro ao completar missão:', error);
-//       }
-//     }
-//   };
-
   return (
       <>
           <Navmenu serverIP={serverIP}/>
@@ -126,6 +100,13 @@ export default function Missoes ({ serverIP }) {
                   <h2 className="titulodapagina">Missões</h2>
                   <LogoutButton />
               </div>
+
+              <div className="temporada-atual">
+                <img className = "voltar-temporadas" src={flechaDireita} />
+                <h5> Temporada 2 (Maio - Julho/ 2024)</h5>
+                <img className = "voltar-temporadas" src={flechaEsquerda}/>
+              </div>
+
               <Laudos serverIP={serverIP}/>
               <div className="todo">
                   <div className="atributodeavaliacao">
@@ -144,9 +125,7 @@ export default function Missoes ({ serverIP }) {
                   <h5 className="atribuicao">IRR: <QualityProgressIcon value={IRR} referenceValue="1" percent="true" /></h5>
               </div>
 
-              {/* <div className="todo">
-                  <h5 className="atribuicao">Fiscalização: <QualityProgressIcon value={FISCALIZACAO} referenceValue="1" percent="true" /></h5>
-              </div> */}
+
               <div className="todo">
                   <h5 className="atribuicao">Fiscalização</h5>
                    {FISCALIZACAO === true ? (
@@ -155,11 +134,14 @@ export default function Missoes ({ serverIP }) {
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                  {FISCALIZACAO2 === 'null' ? <button className="null"></button> : 
-                  <NotNullButton FISCALIZACAO={FISCALIZACAO2} />}
+                   {FISCALIZACAO1 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    FISCALIZACAO1 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
 
-                  {FISCALIZACAO2 === 'null' ? <button className="null"></button> : 
-                  <NotNullButton FISCALIZACAO={FISCALIZACAO2} />}
+                  {FISCALIZACAOnull === 'null' ? <button className="null"></button> : 
+                  <NotNullButton FISCALIZACAO={FISCALIZACAOnull} />}
               </div>
               <Postura serverIP={serverIP}/>
               <Veiculo serverIP={serverIP} />

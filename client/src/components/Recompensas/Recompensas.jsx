@@ -5,12 +5,12 @@ import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
 
 import '../Recompensas/recompensas.css'
 
-export default function Recompensas () {
+export default function Recompensas ({serverIP}) {
 
     return(
         <div className="todocontainer">
             <Navmenu />
-            <BoxPerfil />
+            <BoxPerfil serverIP={serverIP}/>
                 <div className="tablerecompensas">
                 <div className='coluna-tabela-recompensas'>
                     <li>Recompesa</li>

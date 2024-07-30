@@ -106,3 +106,15 @@
   background-color: #28a745;
   border-color: #28a745;
 }
+
+.voltar-temporadas {
+  width: 4%;
+}
+.temporada-atual{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-left: .9rem;
+  padding-right: .9rem;
+  padding-bottom: .4rem;
+}

@@ -10,6 +10,13 @@ export default function Assiduidade({serverIP}){
     const [ASSIDUIDADE_ROTA, setASSIDUIDADE_ROTA] = useState('')
     const [ASSIDUIDADE_ALMOCO, setASSIDUIDADE_ALMOCO] = useState('')
     const [ASSIDUIDADE_INICIO, setASSIDUIDADE_INICIO] = useState('')
+
+    const [ASSIDUIDADE_ALMOX1, setASSIDUIDADE_ALMOX1] = useState('')
+    const [ASSIDUIDADE_BANCO1, setASSIDUIDADE_BANCO1] = useState('')
+    const [ASSIDUIDADE_ROTA1, setASSIDUIDADE_ROTA1] = useState('')
+    const [ASSIDUIDADE_ALMOCO1, setASSIDUIDADE_ALMOCO1] = useState('')
+    const [ASSIDUIDADE_INICIO1, setASSIDUIDADE_INICIO1] = useState('')
+
     const ASSIDUIDADE_ALMOX2 = "null"
     const ASSIDUIDADE_BANCO2 = "null"
     const ASSIDUIDADE_ROTA2 = "null"
@@ -44,6 +51,17 @@ export default function Assiduidade({serverIP}){
             setASSIDUIDADE_INICIO(data[0].ASSIDUIDADE_INICIO)
             sessionStorage.setItem('assiduidadeinicio', data.ASSIDUIDADE_INICIO)
 
+            setASSIDUIDADE_ALMOX1(data[1].ASSIDUIDADE_ALMOX)
+            sessionStorage.setItem('assiduidadealmox1', data.ASSIDUIDADE_ALMOX)
+            setASSIDUIDADE_BANCO1(data[1].ASSIDUIDADE_BANCO)
+            sessionStorage.setItem('assiduidadebanco1', data.ASSIDUIDADE_BANCO)
+            setASSIDUIDADE_ROTA1(data[1].ASSIDUIDADE_ROTA)
+            sessionStorage.setItem('assiduidaderota1', data.ASSIDUIDADE_ROTA)
+            setASSIDUIDADE_ALMOCO1(data[1].ASSIDUIDADE_ALMOCO)
+            sessionStorage.setItem('assiduidadealmoco1', data.ASSIDUIDADE_ALMOCO)
+            setASSIDUIDADE_INICIO1(data[1].ASSIDUIDADE_INICIO)
+            sessionStorage.setItem('assiduidadeinicio1', data.ASSIDUIDADE_INICIO)
+
              console.log(data)
             // console.log(data[0])
          } catch (error){
@@ -73,9 +91,13 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
+                    {ASSIDUIDADE_ALMOX1 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ALMOX1 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
                     {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>}
-                    {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>}
-                    {/* {(ASSIDUIDADE_ALMOX2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOX2}/>} */}
                 </div>
                         
                 <div class= "todo">
@@ -86,8 +108,11 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-
-                    {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>}
+                    {ASSIDUIDADE_ALMOCO1 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ALMOCO1 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
                     {(ASSIDUIDADE_ALMOCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCO2}/>}
                 </div>
 
@@ -99,7 +124,12 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                    {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>}
+                    {ASSIDUIDADE_ROTA1 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_ROTA1 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
                     {(ASSIDUIDADE_ROTA2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTA2}/>}
                 </div>
 
@@ -111,7 +141,12 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                    {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>}
+                    {ASSIDUIDADE_BANCO1 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_BANCO1 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
                     {(ASSIDUIDADE_BANCO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCO2}/>}
                 </div>
 
@@ -123,7 +158,12 @@ export default function Assiduidade({serverIP}){
                     (<button className="remove-todo"></button>) : 
                     (<button className="null"></button>)}
 
-                    {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>}
+                    {ASSIDUIDADE_INICIO1 === true ? (
+                    <button className="finish-todo"></button>) : 
+                    ASSIDUIDADE_INICIO1 === false ? 
+                    (<button className="remove-todo"></button>) : 
+                    (<button className="null"></button>)}
+
                     {(ASSIDUIDADE_INICIO2 == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIO2}/>}
                 </div>
         </div>

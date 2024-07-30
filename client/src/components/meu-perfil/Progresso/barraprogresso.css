@@ -1,11 +1,11 @@
 
   .label {
-    font-size: 10px;
+    font-size: 8px;
     color: rgb(255, 255, 255);
   }
 
   .progresso{
     margin-left: 0.3rem;
     padding: .3rem;
-    width: 50%;
+    width: 70%;
   }

@@ -11,7 +11,7 @@ import BoxPerfil from '../meu-perfil/BoxPerfil/BoxPerfil'
 import coin from "/img/svgs/moedaroxa.svg"
 
 
-export default function Desafios () {
+export default function Desafios ({serverIP}) {
     // const token = sessionStorage.getItem("token")
     // console.log(token)
     // if(!token) {
@@ -25,7 +25,6 @@ export default function Desafios () {
     const [moedas, setMoedas] = useState('')
     const [descricao, setDescricao] = useState('')
    
-    const serverIP = 'http://192.168.15.56:3000';
 
    useEffect(() => {
  
@@ -54,15 +53,15 @@ export default function Desafios () {
  
       
      }
-     pegarDadosDesafios();
+     pegarDadosDesafios({serverIP});
  
-   }, [])
+   }, [serverIP])
 
 
     return (
     <div className="todocontainer">
           <Navmenu />
-          <BoxPerfil/>
+          <BoxPerfil serverIP={serverIP}/>
 
           <div id="pag-desafios">
                 <div id="sair-app">
