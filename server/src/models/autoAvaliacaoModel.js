@@ -10,7 +10,9 @@ function validateAndConvertValue(value) {
     }
      return value;
 }
- 
+
+// const StrID = ParseString(habilidade)
+
 function createHabilidade(habilidade) {
     const ID_COLABORADOR = validateAndConvertValue(habilidade.ID_COLABORADOR);
     const CONECTIVIDADE = validateAndConvertValue(habilidade.CONECTIVIDADE);
@@ -20,9 +22,9 @@ function createHabilidade(habilidade) {
     const PABX_VOIP = validateAndConvertValue(habilidade.PABX_VOIP);
     const METALICO = validateAndConvertValue(habilidade.METALICO);
  
-    const sqlQuery = `INSERT INTO dbo.HABILIDADES_TECNICOS
+    const sqlQuery = `INSERT INTO dbo._HABILIDADES
         (ID_COLABORADOR, CONECTIVIDADE, CASA_INTELIGENTE, ELETRICA, AUDIO_VIDEO, PABX_VOIP, METALICO)
-        VALUES (${ID_COLABORADOR}, ${CONECTIVIDADE}, ${CASA_INTELIGENTE}, ${ELETRICA}, ${AUDIO_VIDEO}, ${PABX_VOIP}, ${METALICO})`;
+        VALUES ('${ID_COLABORADOR}', ${CONECTIVIDADE}, ${CASA_INTELIGENTE}, ${ELETRICA}, ${AUDIO_VIDEO}, ${PABX_VOIP}, ${METALICO})`;
  
  
  
