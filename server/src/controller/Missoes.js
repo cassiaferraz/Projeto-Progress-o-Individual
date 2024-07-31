@@ -15,21 +15,33 @@ const getUserAvaliations = async (req, res) => {
 };
 
 
-const TotalAvaliations = async(req,res) => {
-  try{
-    const Avaliations = await avaliacaoModel.getTotalAvaliations()
-    Avaliations.forEach(avaliation => {
-      const moedasXP = VerificarXpAvaliations(avaliation)
-      console.log(moedasXP)
-      AdicionarNivelMoedas(avaliation.ID_COLABORADOR, moedasXP.moedas, moedasXP.xp)
-    })
+const TotalAvaliations = async(req, res) => {
+  try {
+    const Avaliations = await avaliacaoModel.getTotalAvaliations();
+    let totalXP = {};
+    let totalMoedas = {};
 
-  res.status(200).json({message: 'Upando de lv'})
-  } catch(err){
-    console.log(err)
+    Avaliations.forEach(avaliation => {
+      const moedasXP = VerificarXpAvaliations(avaliation);
+      if (!totalXP[avaliation.ID_COLABORADOR]) {
+        totalXP[avaliation.ID_COLABORADOR] = 0;
+        totalMoedas[avaliation.ID_COLABORADOR] = 0;
+      }
+      totalXP[avaliation.ID_COLABORADOR] += moedasXP.xp;
+      totalMoedas[avaliation.ID_COLABORADOR] += moedasXP.moedas;
+    });
+
+    Object.keys(totalXP).forEach(ID_COLABORADOR => {
+      AdicionarNivelMoedas(ID_COLABORADOR, totalMoedas[ID_COLABORADOR], totalXP[ID_COLABORADOR]);
+    });
+
+    res.status(200).json({ message: 'Upando de lv' });
+  } catch (err) {
+    console.log(err);
     res.status(500).json({ message: 'Erro no servidor' });
   }
-}
+};
+
 
 const VerificarXpAvaliations = (avaliacao) => {
 

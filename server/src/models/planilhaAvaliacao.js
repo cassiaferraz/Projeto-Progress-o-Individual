@@ -9,7 +9,7 @@ const dbConfig = require('../config/dbConfig');
 
 async function createUser() {
      // Ler dados do Excel
-     const filePath = path.join(__dirname, '../planilhas/AvaliacaoIndividualNew.xlsx');
+     const filePath = path.join(__dirname, '../planilhas/AvaliacaoMissoes.xlsx');
      const workbook = XLSX.readFile(filePath);
      const sheetName = workbook.SheetNames[0];
      const xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
@@ -23,7 +23,7 @@ async function createUser() {
 
     // Mapeamento de nomes de colunas
 const columnMapping = {
-  'ID': 'ID_TECNICO',
+  'Id': 'ID_TECNICO',
   'ID_COLABORADOR': 'ID_COLABORADOR',
   'Data': 'DATA',
   'Nome': 'AVALIADOR',

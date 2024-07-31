@@ -35,7 +35,7 @@ const createUserProgressionData = async(req,res) => {
   try{
     const allUser = await getUsuario.getAllUsers()
     allUser.forEach(user =>{
-      if (user.CARGO == 'tecnico'){
+      if (user.CARGO == 'tecnico', 'gerente', 'coordenador', 'analista'){
         const  ParaCriarDadosprogression =  {
           id:user.ID_COLABORADOR,
           nivel: 0,
