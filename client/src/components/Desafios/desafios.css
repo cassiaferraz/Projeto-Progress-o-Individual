@@ -1,6 +1,7 @@
 #pag-desafios{
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
 }
 .corpodatabela-desafios {
     display: flex;

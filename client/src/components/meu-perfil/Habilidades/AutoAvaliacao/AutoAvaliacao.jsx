@@ -8,11 +8,10 @@ import BackArrow from '/img/svgs/voltar.svg'
 import { useParams } from 'react-router-dom'
 
 
-export default function AutoAvaliacao() {
+export default function AutoAvaliacao({serverIP}) {
 
     const buttons = document.querySelectorAll('.btn');
     const token = sessionStorage.getItem('token')
-    const serverIP = 'http://192.168.15.56:3000';
     
     const technicianId = useParams();
 
@@ -112,7 +111,7 @@ export default function AutoAvaliacao() {
 
     return (
         <div className="todocontainer">
-            <BoxPerfil/>
+            <BoxPerfil serverIP={serverIP}/>
             <Navmenu />
                 <div id="titulopagina">
                     <a href="/perfil">

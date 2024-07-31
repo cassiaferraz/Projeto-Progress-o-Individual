@@ -29,7 +29,7 @@ export default function Router() {
                     <Route path="/Perfil" element={<Perfil serverIP={serverIP} />} />
                     <Route path="/Update" element={<Update serverIP={serverIP} />} />
                     <Route path="/BoxPerfil" element={<BoxPerfil serverIP={serverIP} />} />
-                    <Route path="/Config" element={<Config />} />
+                    <Route path="/Config" element={<Config serverIP={serverIP}/>} />
                     <Route path="/LaudosPendentes" element={<LaudosPendentes serverIP={serverIP} />} />
                     <Route path="/PreenchimentoLaudo" element={<PreenchimentoLaudo serverIP={serverIP} />} />
                     <Route path="/AutoAvaliacao" element={<AutoAvaliacao serverIP={serverIP} />} />

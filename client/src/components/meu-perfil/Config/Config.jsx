@@ -11,7 +11,7 @@ import '../Config/config.css'
 
 
 
-export default function Config () {
+export default function Config ({serverIP}) {
 
 //    const token = sessionStorage.getItem("token")
 //    console.log(token)
@@ -22,7 +22,7 @@ export default function Config () {
 
     return(
      <div className="todocontainer">
-        <BoxPerfil />
+        <BoxPerfil serverIP={serverIP} />
         <Navmenu />
             <div className="pag-config">
                 <div id="sair-app">
