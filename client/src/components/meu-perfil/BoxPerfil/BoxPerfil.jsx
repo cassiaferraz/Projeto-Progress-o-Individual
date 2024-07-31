@@ -74,7 +74,8 @@ function BoxPerfil ({ serverIP }) {
                   <h4 className="subinfo">Nível {nivel}</h4>
               </div>
               <div className='subinfo-progresso'>
-                  <h4 className="subinfo">EXP </h4> <BarraProgresso xp={xp} />
+                  <h4 className="subinfo">EXP </h4>
+                   <BarraProgresso xp={xp} />
               </div>
               <div className="coin-valor">
                   <img className='coin' src={coin} alt="Ícone de Moedas" />
