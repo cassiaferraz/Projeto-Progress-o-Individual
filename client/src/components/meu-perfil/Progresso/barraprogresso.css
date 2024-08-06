@@ -2,6 +2,7 @@
   .label {
     font-size: 10px;
     color: rgb(246, 239, 239);
+    text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5);
   }
 
   .progresso{
@@ -9,3 +10,4 @@
     padding: .3rem;
     width: 65%;
   }
+

@@ -1,4 +1,3 @@
-// import usuario from '/img/svgs/avatarneutro.svg'
 import usuario from '/img/svgs/avatarfeminino.png';
 import novoAvatar from '/img/svgs/avatarmasculino.png';
 import BarraProgresso from '../Progresso/BarraProgresso'
@@ -19,7 +18,6 @@ export const handleAvatarChange = (currentAvatar, setAvatar, defaultAvatar, newA
 
 
 function BoxPerfil ({ serverIP }) {
-  //console.log('serverIP:', serverIP); 
    // const [notificationCount, setNotificationCount] = useState(0); 
   const [nivel, setNivel] = useState('')
   const [xp, setXp] = useState('')
@@ -70,7 +68,7 @@ function BoxPerfil ({ serverIP }) {
           onClick={() => handleAvatarChange(avatar, setAvatar, usuario, novoAvatar)}/>
           <div className="info">
               <div className="nome-e-nivel">
-                  <h2 className="subinfo">{userName}</h2>
+              <h2 className="subinfo typing-effect">{userName}</h2>
                   <h4 className="subinfo">Nível {nivel}</h4>
               </div>
               <div className='subinfo-progresso'>

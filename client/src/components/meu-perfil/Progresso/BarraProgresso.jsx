@@ -1,24 +1,24 @@
 import React from "react";
-
-
-import '../Progresso/barraprogresso.css'
-
+import '../Progresso/barraprogresso.css';
 import ProgressBar from "@ramonak/react-progress-bar";
 
 function BarraProgresso({ xp }) {
   const maxXP = 100;
+  const minCompletion = 15; 
 
   let completion;
   let displayXP;
 
-  
   if (xp >= maxXP) {
     completion = ((xp % maxXP) / maxXP) * 100;
     displayXP = xp % maxXP; 
   } else {
-    completion = (xp / maxXP) * 10;
+    completion = (xp / maxXP) * 100;
     displayXP = xp;
   }
+
+  // Garantir que a barra de progresso nunca fique completamente vazia
+  completion = Math.max(completion, minCompletion);
 
   const string = `${displayXP}/${maxXP}`;
 

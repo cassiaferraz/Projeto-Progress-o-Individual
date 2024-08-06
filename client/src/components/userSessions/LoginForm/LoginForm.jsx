@@ -130,7 +130,7 @@ function LoginForm({ serverIP }) {
                         window.location.href = '/update';
                     });
                 } else {
-                    window.location.href = '/';
+                    window.location.href = '/missoes';
                 }
             } else {
                 setLoginError(true);
