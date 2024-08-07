@@ -3,16 +3,24 @@ const bodyParser = require('body-parser')
 const avaliacaoModel = require('../models/avaliacaoMissoesModel');
 const { AdicionarNivelMoedas } = require('./LevelController');
 
+
 const getUserAvaliations = async (req, res) => {
   try {
     const userId = req.userId
     const avaliacaoData = await avaliacaoModel.getUser(userId)
+
+    avaliacaoData.forEach(avaliacao => {
+      const dateOnly = avaliacao.DATA.toISOString().split('T')[0];
+      avaliacao.DATA = dateOnly;
+    });
+
     res.status(200).json(avaliacaoData)
   } catch (err) {
     console.log(err)
     res.status(404).json({message: 'Deu ruim'})
   }
 };
+
 
 
 const TotalAvaliations = async(req, res) => {

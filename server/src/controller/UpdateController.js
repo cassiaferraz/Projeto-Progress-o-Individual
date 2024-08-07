@@ -15,10 +15,10 @@ const updateUserPassword = async (req, res) => {
       
         await update.updateUser(userId, hash);
 
-        console.log("\n-> Atualização DE Senha:");
-        console.log("ID USUARIO:", userId);
-        console.log("SENHA: ", userPassword);
-        console.log("HASH: ", hash);
+        // console.log("\n-> Atualização DE Senha:");
+        // console.log("ID USUARIO:", userId);
+        // console.log("SENHA: ", userPassword);
+        // console.log("HASH: ", hash);
 
         res.status(201).json({ message: 'Senha do usuário atualizada com sucesso' });
         // }

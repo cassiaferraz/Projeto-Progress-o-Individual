@@ -18,7 +18,7 @@ import { useState, useEffect, useContext} from 'react'
 import '../Missoes/missoes.css'
 import '../pages/pages.css'
 import LogoutButton from "../userSessions/Logout/LogoutButton"
-
+import { Tooltip } from 'react-tooltip'
     
 
 export default function Missoes ({ serverIP }) {
@@ -34,8 +34,12 @@ export default function Missoes ({ serverIP }) {
     const [IFI, setIFI] = useState('');
     const [IRR, setIRR] = useState('');
     const [FISCALIZACAO, setFISCALIZACAO] = useState('');
+    const [DATA, setDATA] = useState('')
     const [FISCALIZACAO1, setFISCALIZACAO1] = useState('');
+    const [DATA1, setDATA1] = useState('')
     const [FISCALIZACAO2, setFISCALIZACAO2] = useState('');
+    const [DATA2, setDATA2] = useState('')
+
     const FISCALIZACAOnull = "null";
      
 
@@ -79,10 +83,16 @@ export default function Missoes ({ serverIP }) {
 
             setFISCALIZACAO(data[0].FISCALIZACAO);
             sessionStorage.setItem('userfiscalizacao', data.FISCALIZACAO)
+            setDATA(data[0].DATA)
+            sessionStorage.setItem('veiculodata', data.DATA)
             setFISCALIZACAO1(data[1].FISCALIZACAO);
             sessionStorage.setItem('userfiscalizacao1', data.FISCALIZACAO)
+            setDATA1(data[1].DATA)
+            sessionStorage.setItem('veiculodata', data.DATA)
             setFISCALIZACAO2(data[2].FISCALIZACAO);
             sessionStorage.setItem('userfiscalizacao2', data.FISCALIZACAO)
+            setDATA2(data[2].DATA)
+            sessionStorage.setItem('veiculodata', data.DATA)
 
             // console.log(data);
         } catch (error) {
@@ -130,23 +140,34 @@ export default function Missoes ({ serverIP }) {
 
               <div className="todo">
                   <h5 className="atribuicao">Fiscalização</h5>
-                   {FISCALIZACAO === true ? (
+                  <div                
+                    data-tooltip-id="tooltipdata"
+                    data-tooltip-content={status ? status : DATA}
+                    data-tooltip-place="top"> {FISCALIZACAO === true ? (
                     <button className="finish-todo"></button>) : 
                     FISCALIZACAO === false ? 
                     (<button className="remove-todo"></button>) : 
-                    (<button className="null"></button>)}
+                    (<button className="null"></button>)}</div>
 
-                   {FISCALIZACAO1 === true ? (
+                    <div                
+                    data-tooltip-id="tooltipdata"
+                    data-tooltip-content={status ? status : DATA1}
+                    data-tooltip-place="top"> {FISCALIZACAO1 === true ? (
                     <button className="finish-todo"></button>) : 
                     FISCALIZACAO1 === false ? 
                     (<button className="remove-todo"></button>) : 
-                    (<button className="null"></button>)}
+                    (<button className="null"></button>)}</div>
 
-                    {FISCALIZACAO2 === true ? (
+                    <div                
+                    data-tooltip-id="tooltipdata"
+                    data-tooltip-content={status ? status : DATA2}
+                    data-tooltip-place="top"> {FISCALIZACAO2 === true ? (
                     <button className="finish-todo"></button>) : 
                     FISCALIZACAO2 === false ? 
                     (<button className="remove-todo"></button>) : 
-                    (<button className="null"></button>)}
+                    (<button className="null"></button>)}</div>
+
+                    <Tooltip id="tooltipdata" />
 
                   {/* {FISCALIZACAOnull === 'null' ? <button className="null"></button> : 
                   <NotNullButton FISCALIZACAO={FISCALIZACAOnull} />} */}
