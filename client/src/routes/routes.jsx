@@ -16,7 +16,7 @@ import BoxPerfil from "../components/meu-perfil/BoxPerfil/BoxPerfil";
 export default function Router() {
     
     const port = '3000'
-    const ipAddress = '192.168.15.56';
+    const ipAddress = 'localhost';
     const serverIP = `http://${ipAddress}:${port}`;
 
     return (

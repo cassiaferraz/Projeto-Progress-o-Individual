@@ -12,6 +12,7 @@ const create = async (req, res) => {
         const AudioVideo = req.body.AUDIO_VIDEO;
         const Pabx = req.body.PABX_VOIP;
         const Metalico = req.body.METALICO;
+        const dataAvaliacao = req.body.DATA_HORA;
  
         // Verificação básica para valores undefined
  
@@ -43,6 +44,7 @@ const create = async (req, res) => {
             AUDIO_VIDEO: AudioVideo,
             PABX_VOIP: Pabx,
             METALICO: Metalico,
+            DATA: dataAvaliacao
  
         };
  

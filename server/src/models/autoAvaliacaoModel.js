@@ -21,10 +21,11 @@ function createHabilidade(habilidade) {
     const AUDIO_VIDEO = validateAndConvertValue(habilidade.AUDIO_VIDEO);
     const PABX_VOIP = validateAndConvertValue(habilidade.PABX_VOIP);
     const METALICO = validateAndConvertValue(habilidade.METALICO);
+    const DATA = habilidade.DATA;
  
     const sqlQuery = `INSERT INTO dbo._HABILIDADES
-        (ID_COLABORADOR, CONECTIVIDADE, CASA_INTELIGENTE, ELETRICA, AUDIO_VIDEO, PABX_VOIP, METALICO)
-        VALUES ('${ID_COLABORADOR}', ${CONECTIVIDADE}, ${CASA_INTELIGENTE}, ${ELETRICA}, ${AUDIO_VIDEO}, ${PABX_VOIP}, ${METALICO})`;
+        (ID_COLABORADOR, CONECTIVIDADE, CASA_INTELIGENTE, ELETRICA, AUDIO_VIDEO, PABX_VOIP, METALICO, DATA)
+        VALUES ('${ID_COLABORADOR}', ${CONECTIVIDADE}, ${CASA_INTELIGENTE}, ${ELETRICA}, ${AUDIO_VIDEO}, ${PABX_VOIP}, ${METALICO}, CONVERT(datetime, '${DATA}', 120))`;
  
  
  
