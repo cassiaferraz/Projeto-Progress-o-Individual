@@ -22,13 +22,12 @@ import { Tooltip } from 'react-tooltip'
     
 
 export default function Missoes ({ serverIP }) {
-    // const token = sessionStorage.getItem("token")
-    // console.log(token)
-    // if(!token) {
-    //     window.location.href = "/perfil";
-    // }
+    const token = sessionStorage.getItem("token")
+    console.log(token)
+    if(!token) {
+        window.location.href = "/";
+    }
 
-    const token = sessionStorage.getItem('token')
 
     const [TDNA, setTDNA] = useState('');
     const [IFI, setIFI] = useState('');

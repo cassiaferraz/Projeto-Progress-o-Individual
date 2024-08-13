@@ -12,11 +12,11 @@ import coin from "/img/svgs/moedaroxa.svg"
 
 
 export default function Desafios ({serverIP}) {
-    // const token = sessionStorage.getItem("token")
-    // console.log(token)
-    // if(!token) {
-    //     window.location.href = "/perfil";
-    // }
+    const token = sessionStorage.getItem("token")
+    console.log(token)
+    if(!token) {
+        window.location.href = "/";
+    }
 
     //FECH DESAFIOS
     const [ID_DESAFIOS, setID_DESAFIOS] = useState('')
