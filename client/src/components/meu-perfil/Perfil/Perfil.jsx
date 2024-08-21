@@ -16,6 +16,14 @@ import { Link } from "react-router-dom"
 
 function Perfil ({serverIP}) {
 
+    // deve conter esse cod abaixo em todas as pag para exigir login
+    const token = sessionStorage.getItem("token")
+    console.log(token)
+    if(!token) {
+        window.location.href = "/";
+    }
+
+
     
     const [NOME_MEDALHAS1, setNOME_MEDALHAS1] = useState('')
     const [NOME_MEDALHAS2, setNOME_MEDALHAS2] = useState('')

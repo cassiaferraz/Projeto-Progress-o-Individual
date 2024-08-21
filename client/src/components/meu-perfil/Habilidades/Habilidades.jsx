@@ -7,16 +7,18 @@ import 'primeicons/primeicons.css';
 import { useState, useEffect} from 'react'
  
 function Habilidades({serverIP}) {
- 
+ // SUGERIDA
   const [HAB_CONECTIVIDADE, setHAB_CONECTIVIDADE] = useState('')
   const [HAB_CASA_INTELIGENTE, setHAB_CASA_INTELIGENTE] = useState('')
   const [HAB_ELETRICA, setHAB_ELETRICA] = useState('')
   const [HAB_AUDIO_VIDEO, setHAB_AUDIO_VIDEO] = useState('')
   const [HAB_PABX_VOIP, setHAB_PABX_VOIP] = useState('')
   const [HAB_METALICO, setHAB_METALICO] = useState('')
+
+  const [avaliacaoDisponivel, setAvaliacaoDisponivel] = useState('');
  
   const token = sessionStorage.getItem('token')
- 
+ //AUTOAVALIACAO
   const [CONECTIVIDADE, setCONECTIVIDADE] = useState('')
   const [CASA_INTELIGENTE, setCASA_INTELIGENTE] = useState('')
   const [ELETRICA, setELETRICA] = useState('')
@@ -28,9 +30,10 @@ function Habilidades({serverIP}) {
 
   useEffect(() => {
 
+
     async function pegarDadosHabilidades(){
       try {
-        const response = await fetch (`${serverIP}/habilidades`, {
+        const response = await fetch (`${serverIP}/Sugerida`, {
           method: 'GET',
           headers:{
               'Content-Type': 'application/json',
@@ -40,18 +43,18 @@ function Habilidades({serverIP}) {
 
         const data = await response.json()
         console.log(data)
-        setHAB_CONECTIVIDADE(data[0].HAB_CONECTIVIDADE)
-        sessionStorage.setItem('habconectividade', data.HAB_CONECTIVIDADE)
-        setHAB_CASA_INTELIGENTE(data[0].HAB_CASA_INTELIGENTE)
-        sessionStorage.setItem('habcasainteligente', data.HAB_CASA_INTELIGENTE)
-        setHAB_ELETRICA(data[0].HAB_ELETRICA)
-        sessionStorage.setItem('habeletrica', data.HAB_ELETRICA)
-        setHAB_AUDIO_VIDEO(data[0].HAB_AUDIO_VIDEO)
-        sessionStorage.setItem('habaudiovideo', data.HAB_AUDIO_VIDEO)
-        setHAB_PABX_VOIP(data[0].HAB_PABX_VOIP)
-        sessionStorage.setItem('habpabxvoip', data.HAB_PABX_VOIP)
-        setHAB_METALICO(data[0].HAB_METALICO)
-        sessionStorage.setItem('habmetalico', data.HAB_METALICO)
+        setHAB_CONECTIVIDADE(data[0].CONECTIVIDADE)
+        sessionStorage.setItem('habconectividade', data.CONECTIVIDADE)
+        setHAB_CASA_INTELIGENTE(data[0].CASA_INTELIGENTE)
+        sessionStorage.setItem('habcasainteligente', data.CASA_INTELIGENTE)
+        setHAB_ELETRICA(data[0].ELETRICA)
+        sessionStorage.setItem('habeletrica', data.ELETRICA)
+        setHAB_AUDIO_VIDEO(data[0].AUDIO_VIDEO)
+        sessionStorage.setItem('habaudiovideo', data.AUDIO_VIDEO)
+        setHAB_PABX_VOIP(data[0].PABX_VOIP)
+        sessionStorage.setItem('habpabxvoip', data.PABX_VOIP)
+        setHAB_METALICO(data[0].METALICO)
+        sessionStorage.setItem('habmetalico', data.METALICO)
 
         console.log(data[0].LAUDOS)
 
@@ -106,6 +109,33 @@ function Habilidades({serverIP}) {
      }
  }
  pegarDadosAutoavaliacao();
+
+
+    async function verificarAvaliacaoDisponivel() {
+    try{
+        const response = await fetch (`${serverIP}/Auto/Verificar`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': token
+          }
+        })
+
+        const data = await response.json();
+        setAvaliacaoDisponivel(data.disponivel);
+        console.log(response)
+        console.log(data)
+      } catch (error) {
+        console.log('Erro ao verificar disponibilidade de avaliação', error);
+      } 
+    }
+    verificarAvaliacaoDisponivel();
+
+    const intervalId = setInterval(() => {
+        verificarAvaliacaoDisponivel();
+    }, 10000); //Verifica a cada 10 segundos
+    
+    return () => clearInterval(intervalId); //Limpa o intervalo ao desmontar o componente
 
 }, [serverIP])
 
@@ -204,7 +234,13 @@ function Habilidades({serverIP}) {
                 </div>
             </div>
             <div className='botao-avaliar'>
-             <a style={{ textDecoration: 'none' }} href="/AutoAvaliacao">Realize auto avaliação aqui</a>
+             <a 
+             style={{ textDecoration: 'none', pointerEvents: avaliacaoDisponivel ? 'auto' : 'none', color: avaliacaoDisponivel ? 'white' : 'black' }} 
+             href={avaliacaoDisponivel ? "/AutoAvaliacao" : "#"}
+            >
+             {avaliacaoDisponivel ? 'Realize auto avaliação aqui.' : 'Limite de autoavaliações atingido para hoje.'}
+             
+             </a>
             </div>
          </div>
  

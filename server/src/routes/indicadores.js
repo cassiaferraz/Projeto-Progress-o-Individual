@@ -1,7 +1,7 @@
 // routes/apiRoutes.js
 const express = require('express');
 const app = express.Router();
-const apiController = require('../controller/APIindicadores');
+const apiController = require('../controller/indicadoresController');
 const authenticateToken = require('../middleware/authMiddleware')
 
 

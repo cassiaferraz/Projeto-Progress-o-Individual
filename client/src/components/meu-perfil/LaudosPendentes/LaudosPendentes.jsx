@@ -8,11 +8,11 @@ import BackArrow from "/img/svgs/voltar.svg"
 
 export default function LaudosPendentes() {
     // deve conter esse cod abaixo em todas as pag para exigir login
-    // const token = sessionStorage.getItem("token")
-    // console.log(token)
-    // if(!token) {
-    //     window.location.href = "/";
-    // }
+    const token = sessionStorage.getItem("token")
+    console.log(token)
+    if(!token) {
+        window.location.href = "/";
+    }
 
     const [data, setData] = useState ('');
     const [tipo, setTipo] = useState ('');

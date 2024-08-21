@@ -13,6 +13,8 @@ function validateAndConvertValue(value) {
 
 // const StrID = ParseString(habilidade)
 
+
+//CREATE
 function createHabilidade(habilidade) {
     const ID_COLABORADOR = validateAndConvertValue(habilidade.ID_COLABORADOR);
     const CONECTIVIDADE = validateAndConvertValue(habilidade.CONECTIVIDADE);
@@ -27,10 +29,24 @@ function createHabilidade(habilidade) {
         (ID_COLABORADOR, CONECTIVIDADE, CASA_INTELIGENTE, ELETRICA, AUDIO_VIDEO, PABX_VOIP, METALICO, DATA)
         VALUES ('${ID_COLABORADOR}', ${CONECTIVIDADE}, ${CASA_INTELIGENTE}, ${ELETRICA}, ${AUDIO_VIDEO}, ${PABX_VOIP}, ${METALICO}, CONVERT(datetime, '${DATA}', 120))`;
  
- 
- 
- 
-    sqlServer.dispatchQuery(sqlQuery)
+     const results = sqlServer.dispatchQuery(sqlQuery)
+     return results
 }
+
+//READ
+function countAvaliacoesMesAtual(id, today) {
+    const sqlQuery = `
+    SELECT COUNT(*) AS TOTAL
+    FROM _HABILIDADES 
+    WHERE ID_COLABORADOR = '${id}' AND CONVERT(DATE, DATA , 120) = '${today}'
+    `;
+    return sqlServer.dispatchQuery(sqlQuery);
+}
+
+
  
-module.exports = createHabilidade;
+module.exports = {
+    createHabilidade,
+    countAvaliacoesMesAtual
+
+}

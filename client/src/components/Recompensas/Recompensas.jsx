@@ -7,6 +7,14 @@ import '../Recompensas/recompensas.css'
 
 export default function Recompensas ({serverIP}) {
 
+
+    const token = sessionStorage.getItem("token")
+    console.log(token)
+    if(!token) {
+        window.location.href = "/";
+    }
+
+
     return(
         <div className="todocontainer">
             <Navmenu />

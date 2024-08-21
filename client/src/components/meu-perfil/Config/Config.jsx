@@ -13,11 +13,11 @@ import '../Config/config.css'
 
 export default function Config ({serverIP}) {
 
-//    const token = sessionStorage.getItem("token")
-//    console.log(token)
-//    if(!token) {
-//        window.location.href = "/perfil";
-//    }
+   const token = sessionStorage.getItem("token")
+   console.log(token)
+   if(!token) {
+       window.location.href = "/";
+   }
 
 
     return(
