@@ -29,7 +29,7 @@ function UpdateForm({ serverIP }) {
                     });
  
                     if (response.ok) {
-                        window.location.href = "/missoes"; 
+                        window.location.href = "/"; 
                     } else {
                         alert("Ocorreu um erro ao redefinir a senha. Por favor, tente novamente.");
                     }

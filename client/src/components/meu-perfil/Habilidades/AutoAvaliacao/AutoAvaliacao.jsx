@@ -9,12 +9,24 @@ import { useParams } from 'react-router-dom'
 
 
 export default function AutoAvaliacao({serverIP}) {
+<<<<<<< HEAD
     const token = sessionStorage.getItem("token")
     // console.log(token)
     if(!token) {
         window.location.href = "/";
     }
     const buttons = document.querySelectorAll('.btn');
+=======
+
+    const token = sessionStorage.getItem("token")
+    console.log(token)
+    if(!token) {
+        window.location.href = "/";
+    }
+
+    const buttons = document.querySelectorAll('.btn');
+    // const token = sessionStorage.getItem('token')
+>>>>>>> 3ed382ffab6f4ceeaaa87531d7b0a3aff66eb83e
     
     const technicianId = useParams();
 

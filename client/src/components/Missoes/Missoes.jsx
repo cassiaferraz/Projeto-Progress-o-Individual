@@ -29,6 +29,7 @@ export default function Missoes ({ serverIP }) {
         window.location.href = "/";
     }
 
+    const token = sessionStorage.getItem('token')
 
     const [TDNA, setTDNA] = useState('');
     const [IFI, setIFI] = useState('');
