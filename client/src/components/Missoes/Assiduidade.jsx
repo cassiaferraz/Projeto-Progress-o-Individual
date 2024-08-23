@@ -108,13 +108,15 @@ export default function Assiduidade({serverIP}){
             <div className= "todo">
                 <div  className="atributodeavaliacao">
                 <h3>Assiduidade</h3>
-                    <img className="check"src={check} /> +200
+                     +200
                     <img className= "moeda-roxa" src={coin}/>+200 EXP
                 </div>
             </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Comparecimento Alm</h5>
+                    <h5 className="atribuicao">Comparecimento Alm
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -149,7 +151,9 @@ export default function Assiduidade({serverIP}){
                 </div>
                         
                 <div class= "todo">
-                    <h5 className="atribuicao">Horário de Almoço</h5>
+                    <h5 className="atribuicao">Horário de Almoço
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -183,7 +187,9 @@ export default function Assiduidade({serverIP}){
                 </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Gestão de Rota</h5>
+                    <h5 className="atribuicao">Gestão de Rota
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -221,7 +227,9 @@ export default function Assiduidade({serverIP}){
                 </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Banco de Horas</h5>
+                    <h5 className="atribuicao">Banco de Horas
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -256,7 +264,9 @@ export default function Assiduidade({serverIP}){
                 </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Inicio Atividade</h5>
+                    <h5 className="atribuicao">Inicio Atividade
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}

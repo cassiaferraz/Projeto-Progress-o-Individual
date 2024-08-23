@@ -13,7 +13,7 @@ import coin from "/img/svgs/moedaroxa.svg"
 
 export default function Desafios ({serverIP}) {
     const token = sessionStorage.getItem("token")
-    console.log(token)
+    // console.log(token)
     if(!token) {
         window.location.href = "/";
     }

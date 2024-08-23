@@ -106,7 +106,7 @@ export default function Postura({ serverIP }){
             <div className= "todo">
                  <div className="atributodeavaliacao">
                     <h3>Postura</h3>
-                     <img className="xmark"src={check} />+250
+                     +250
                      <img className= "moeda-roxa" src={coin}/>+250 EXP
                  </div>
             </div>
@@ -114,7 +114,9 @@ export default function Postura({ serverIP }){
  {/* ITEM 1 DE POSTURA */}
 
                     <div className= "todo">
-                        <h5 className="atribuicao">Comunicação</h5>
+                        <h5 className="atribuicao">Comunicação
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -150,7 +152,9 @@ export default function Postura({ serverIP }){
 
 {/* ITEM 2 DE POSTURA */}
                     <div className= "todo">
-                        <h5 className="atribuicao">Uniforme</h5>
+                        <h5 className="atribuicao">Uniforme
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -182,7 +186,9 @@ export default function Postura({ serverIP }){
  </div>
 {/* ITEM 3 DE POSTURA */}
                     <div class= "todo">
-                        <h5 className="atribuicao">Bota</h5>
+                        <h5 className="atribuicao">Bota
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -215,7 +221,9 @@ export default function Postura({ serverIP }){
                         {/* {(POSTURA_BOTAnull == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_BOTA={POSTURA_BOTAnull}/>} */}
                     </div>
                     <div class= "todo">
-                        <h5 className="atribuicao">Crachá</h5>
+                        <h5 className="atribuicao">Crachá
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -249,7 +257,9 @@ export default function Postura({ serverIP }){
                     </div>
 
                     <div class= "todo">
-                        <h5 className="atribuicao">Mala</h5>
+                        <h5 className="atribuicao">Mala
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}

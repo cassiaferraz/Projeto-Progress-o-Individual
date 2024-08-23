@@ -8,6 +8,4 @@ const authenticateToken = require('../middleware/authMiddleware')
 app.get('/avaliacao/user', authenticateToken ,apiController.getUserAvaliations);
 
 
-
-
 module.exports = app;

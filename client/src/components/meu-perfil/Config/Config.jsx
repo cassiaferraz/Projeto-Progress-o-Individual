@@ -14,7 +14,7 @@ import '../Config/config.css'
 export default function Config ({serverIP}) {
 
     const token = sessionStorage.getItem("token")
-    console.log(token)
+    // console.log(token)
     if(!token) {
         window.location.href = "/";
     }
@@ -40,6 +40,10 @@ export default function Config ({serverIP}) {
 
                     <Link style={{ textDecoration: 'none' }} to="/Update">
                         <button>Alterar Senha</button>
+                    </Link>
+
+                    <Link style={{ textDecoration: 'none' }} to="/Avatar">
+                        <button>Alterar Avatar</button>
                     </Link>
 
                     <Link to="" style={{ textDecoration: 'none' }}>

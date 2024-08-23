@@ -57,14 +57,14 @@ export default function Laudos({serverIP}) {
           <div className="todo">
             <div className="atributodeavaliacao">
               <h3>Laudos</h3>
-              <img className="check" src={check} />
-              +100<img className="moeda-roxa" src={coin} /> +100 EXP
+              +100
+              <img className="moeda-roxa" src={coin} /> +100 EXP
             </div>
           </div>
 
           <div className="todo">
-            <h5 className="atribuicao">Preenchidos</h5>
-            
+            <h5 className="atribuicao">Preenchidos
+            <img className="check" src={check} /></h5>
             <div                
             data-tooltip-id="laudos"
             data-tooltip-content={status ? status : DATA}

@@ -7,6 +7,11 @@ import 'primeicons/primeicons.css';
 import { useState, useEffect} from 'react'
  
 function Habilidades({serverIP}) {
+  const token = sessionStorage.getItem("token")
+  // console.log(token)
+  if(!token) {
+      window.location.href = "/";
+  }
  
   const [HAB_CONECTIVIDADE, setHAB_CONECTIVIDADE] = useState('')
   const [HAB_CASA_INTELIGENTE, setHAB_CASA_INTELIGENTE] = useState('')
@@ -15,7 +20,6 @@ function Habilidades({serverIP}) {
   const [HAB_PABX_VOIP, setHAB_PABX_VOIP] = useState('')
   const [HAB_METALICO, setHAB_METALICO] = useState('')
  
-  const token = sessionStorage.getItem('token')
  
   const [CONECTIVIDADE, setCONECTIVIDADE] = useState('')
   const [CASA_INTELIGENTE, setCASA_INTELIGENTE] = useState('')
@@ -39,7 +43,6 @@ function Habilidades({serverIP}) {
         })
 
         const data = await response.json()
-        console.log(data)
         setHAB_CONECTIVIDADE(data[0].HAB_CONECTIVIDADE)
         sessionStorage.setItem('habconectividade', data.HAB_CONECTIVIDADE)
         setHAB_CASA_INTELIGENTE(data[0].HAB_CASA_INTELIGENTE)
@@ -53,13 +56,11 @@ function Habilidades({serverIP}) {
         setHAB_METALICO(data[0].HAB_METALICO)
         sessionStorage.setItem('habmetalico', data.HAB_METALICO)
 
-        console.log(data[0].LAUDOS)
-
-
+        // console.log(data[0].LAUDOS)
         // console.log(response);
         // console.log(response.json());
-        console.log(data)
-        console.log(data[0])
+        // console.log(data)
+        // console.log(data[0])
      } catch (error){
        console.log('Erro ao buscar dados',error)
        }
@@ -94,13 +95,9 @@ function Habilidades({serverIP}) {
       setMETALICO(data[0].METALICO)
       sessionStorage.setItem('metalico', data.METALICO)
 
-      console.log(data[0].LAUDOS)
-
 
       // console.log(response);
       // console.log(response.json());
-      console.log(data)
-      console.log(data[0])
    } catch (error){
      console.log('Erro ao buscar dados',error)
      }
