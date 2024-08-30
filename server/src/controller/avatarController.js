@@ -21,8 +21,9 @@ const saveAvatar = async (req, res) => {
     try {
         const userId = req.userId;
         const { nameAvatar, avatarPath } = req.body;
+        const avatarFilename = avatarPath.split('/').pop(); 
 
-        await avatarModel.setAvatar(userId, nameAvatar, avatarPath);
+        await avatarModel.setAvatar(userId, nameAvatar, avatarFilename);
 
         res.status(201).json({ message: 'Avatar salvo com sucesso' });
     } catch (err) {
@@ -35,6 +36,9 @@ const getAvatar = async (req, res) => {
     try {
         const userId = req.query.userId;
         const result = await avatarModel.getAvatar(userId);
+        if (result) {
+            result.avatarPath = `/assets/avatar/${result.avatarPath}`; 
+        }
         res.status(200).json(result);
     } catch (err) {
         console.error("Erro em getAvatar:", err);

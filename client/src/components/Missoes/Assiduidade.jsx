@@ -28,11 +28,11 @@ export default function Assiduidade({serverIP}){
     const [ASSIDUIDADE_INICIO2, setASSIDUIDADE_INICIO2] = useState('')
     const [DATA2, setDATA2] = useState('')
 
-    const ASSIDUIDADE_ALMOXnull = "null"
-    const ASSIDUIDADE_BANCOnull = "null"
-    const ASSIDUIDADE_ROTAnull = "null"
-    const ASSIDUIDADE_ALMOCOnull = "null"
-    const ASSIDUIDADE_INICIOnull = "null"
+    // const ASSIDUIDADE_ALMOXnull = "null"
+    // const ASSIDUIDADE_BANCOnull = "null"
+    // const ASSIDUIDADE_ROTAnull = "null"
+    // const ASSIDUIDADE_ALMOCOnull = "null"
+    // const ASSIDUIDADE_INICIOnull = "null"
 
     const token = sessionStorage.getItem('token')
 
@@ -50,7 +50,7 @@ export default function Assiduidade({serverIP}){
             })
 
             const data = await response.json()
-            console.log(data)
+            //console.log(data)
             setASSIDUIDADE_ALMOX(data[0].ASSIDUIDADE_ALMOX)
             sessionStorage.setItem('assiduidadealmox', data.ASSIDUIDADE_ALMOX)
             setASSIDUIDADE_BANCO(data[0].ASSIDUIDADE_BANCO)
@@ -92,7 +92,7 @@ export default function Assiduidade({serverIP}){
             setDATA2(data[2].DATA)
             sessionStorage.setItem('assiduidadedata2', data.DATA)
 
-             console.log(data)
+             //console.log(data)
             // co[0])
          } catch (error){
            console.log('Erro ao buscar dados',error)
@@ -299,15 +299,5 @@ export default function Assiduidade({serverIP}){
                     {/* {(ASSIDUIDADE_INICIOnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIOnull}/>} */}
                 </div>
         </div>
-    )
-}
-
-function NotNullButton({ASSIDUIDADE_INICIO}){
-    return (
-        <>
-        {((ASSIDUIDADE_INICIO == true) ?
-        <button className="finish-todo"></button> :
-        <button className="remove-todo"></button>)}
-        </>
     )
 }

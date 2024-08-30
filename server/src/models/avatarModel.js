@@ -1,9 +1,9 @@
 const sqlServer = require('../utils/sqlServer');
 
-function setAvatar(userId, nameAvatar, avatarPath) {
+function setAvatar(userId, nameAvatar, avatarFilename) {
     const sql = `INSERT INTO UserAvatars (ID_COLABORADOR, nameAvatar, avatarPath) 
-                 VALUES ('${userId}', '${nameAvatar}', '${avatarPath}')
-                 ON DUPLICATE KEY UPDATE nameAvatar = '${nameAvatar}', avatarPath = '${avatarPath}'`;
+                 VALUES ('${userId}', '${nameAvatar}', '${avatarFilename}')
+                 ON DUPLICATE KEY UPDATE nameAvatar = '${nameAvatar}', avatarPath = '${avatarFilename}'`;
     const results = sqlServer.dispatchQuery(sql);
     return results;
 }

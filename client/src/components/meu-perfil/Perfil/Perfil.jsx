@@ -23,13 +23,6 @@ function Perfil ({serverIP}) {
         window.location.href = "/";
     }
 
-
-    const token = sessionStorage.getItem("token")
-    console.log(token)
-    if(!token) {
-        window.location.href = "/";
-    }
-    
     const [NOME_MEDALHAS1, setNOME_MEDALHAS1] = useState('')
     const [NOME_MEDALHAS2, setNOME_MEDALHAS2] = useState('')
     const [NOME_MEDALHAS3, setNOME_MEDALHAS3] = useState('')
