@@ -1,88 +1,124 @@
+#titulopagina {
 
-#titulopagina{
   display: flex;
   align-items: center;
   margin-top: 1rem;
   padding-left: 1rem;
-}
-/* abaixo css da tabela de medalhas */
 
-.tabela-medalhas-recompensas{
+}
+ 
+/* CSS da tabela de medalhas */
+
+.tabela-medalhas-recompensas {
   margin-top: 6%;
   background-color: #e0cceb;
   justify-content: space-between;
   align-items: center;
   border-radius: 15px;
+  display: flex; /* Adicionado para habilitar flexbox */
+  flex-wrap: wrap; /* Permite que as medalhas "quebrem" para a próxima linha se não houver espaço suficiente */
+  gap: 20px; /* Espaço entre as medalhas */
+  padding: 1.5rem; /* Adiciona um pouco de espaço interno */
 }
-
+ 
 .icon-medalhas-perfil {
- width: 30%;
- display: flex;
- align-items: center;
+  width: 4rem; /* Define um tamanho fixo para as imagens das medalhas */
+  display: block; /* Muda para block para se alinhar corretamente */
+  margin-bottom: 0.5rem; /* Espaço abaixo da imagem da medalha */
 }
-
-.cabecalho-medalhas{
+ 
+.cabecalho-medalhas {
   background-color: #e0cceb;
   color: black;
   font-weight: 600;
   padding: 8px 10px;
   font-size: larger;
   border-radius: 15px;
+  width: 100%; /* Ocupa toda a largura disponível */
+  text-align:start; /* Centraliza o texto */
 }
-
-.medalhas-adquiridas{
-  display: flex;
-  margin-bottom: 2.5rem;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 1.2rem;
-  /* background-color: #fff; */
-  
-}
-
-.tabela-medalhas-recompensas p{
- font-size: small;
-}
-
-.coluna-medalhas h4{
-  align-items: center;
-}
-
-.coluna-medalhas{
+ 
+.medalhas-adquiridas {
+  flex: 50px; /* Controla o tamanho flexível das medalhas, permitindo que se ajustem conforme necessário */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  padding: 1.2rem;
+  border-radius: 10px; /* Adiciona cantos arredondados */
 }
+ 
+.tabela-medalhas-recompensas p {
+  font-size: small;
+}
+ 
+.coluna-medalhas h4 {
+  align-items: center;
+  margin-top: 0.5rem; /* Adiciona um pequeno espaço acima do título */
+  
 
-#config{
+}
+ 
+.coluna-medalhas {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+ 
+#config {
+
   width: 5%;
   margin-top: 1rem;
-}
 
-#titulo-config{
+}
+ 
+#titulo-config {
+
   display: flex;
+
   justify-content: space-between;
-}
 
-#alerta{
+}
+ 
+#alerta {
+
   display: flex;
+
   justify-content: center;
+
   border: #dddddd;
-}
 
-#botao-laudospendentes{
+}
+ 
+#botao-laudospendentes {
+
   display: flex;
+
   align-items: center;
+
   width: 50%;
+
   margin-bottom: 10px;
+
   padding-left: 2.5rem;
+
+}
+ 
+#botao-laudospendentes a {
+
+  background-color: #eb3d7d;
+
+  border-radius: 15%;
+
+  font-size: small;
+
+  border: #eb3d7d solid 8px;
+
+  color: white;
+
 }
 
-#botao-laudospendentes a{
-  background-color: #eb3d7d;
-  border-radius: 15%;
-  border-radius: 15px;
-  font-size: small;
-  border: #eb3d7d solid 8px;
-  color: white;
-}
+ 

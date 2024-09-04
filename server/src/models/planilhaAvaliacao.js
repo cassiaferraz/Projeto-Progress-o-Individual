@@ -2,8 +2,8 @@ const sqlServer = require('../utils/sqlServer');
 const express = require('express');
 const app = express();
 const sql = require('mssql/msnodesqlv8'); 
-const XLSX = require('xlsx');
-const path = require('path');
+const XLSX = require('xlsx');// Planilhas
+const path = require('path');// Planilhas
 const dbConfig = require('../config/dbConfig');
 
 
