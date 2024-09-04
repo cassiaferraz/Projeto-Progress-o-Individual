@@ -12,6 +12,7 @@ import LaudosPendentes from "../components/meu-perfil/LaudosPendentes/LaudosPend
 import AutoAvaliacao from "../components/meu-perfil/Habilidades/AutoAvaliacao/AutoAvaliacao";
 import PreenchimentoLaudo from '../components/meu-perfil/LaudosPendentes/PreenchimentoLaudo'
 import BoxPerfil from "../components/meu-perfil/BoxPerfil/BoxPerfil";
+import Avatar  from "../components/meu-perfil/Avatar/Avatar";
 
 export default function Router() {
     
@@ -33,6 +34,7 @@ export default function Router() {
                     <Route path="/LaudosPendentes" element={<LaudosPendentes serverIP={serverIP} />} />
                     <Route path="/PreenchimentoLaudo" element={<PreenchimentoLaudo serverIP={serverIP} />} />
                     <Route path="/AutoAvaliacao" element={<AutoAvaliacao serverIP={serverIP} />} />
+                    <Route path="/Avatar" element={<Avatar serverIP={serverIP} />} />
                 </Routes>
             </BrowserRouter>
     )

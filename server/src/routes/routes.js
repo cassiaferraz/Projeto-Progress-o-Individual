@@ -34,6 +34,10 @@ app.use('/', autoavaliacaoRoutes) // Use as rotas das  Auto Avaliações
 const userGetRoutes = require('./getUserRoutes.js');
 app.use('/', userGetRoutes)
 
+
+const avatarRoutes = require('./avatarRoutes'); 
+app.use('/api', avatarRoutes);
+
 const ChallengeRoutes = require('./ChallengeRoutes.js');
 app.use('/', ChallengeRoutes)
 

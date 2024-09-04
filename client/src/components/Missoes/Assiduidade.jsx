@@ -28,11 +28,11 @@ export default function Assiduidade({serverIP}){
     const [ASSIDUIDADE_INICIO2, setASSIDUIDADE_INICIO2] = useState('')
     const [DATA2, setDATA2] = useState('')
 
-    const ASSIDUIDADE_ALMOXnull = "null"
-    const ASSIDUIDADE_BANCOnull = "null"
-    const ASSIDUIDADE_ROTAnull = "null"
-    const ASSIDUIDADE_ALMOCOnull = "null"
-    const ASSIDUIDADE_INICIOnull = "null"
+    // const ASSIDUIDADE_ALMOXnull = "null"
+    // const ASSIDUIDADE_BANCOnull = "null"
+    // const ASSIDUIDADE_ROTAnull = "null"
+    // const ASSIDUIDADE_ALMOCOnull = "null"
+    // const ASSIDUIDADE_INICIOnull = "null"
 
     const token = sessionStorage.getItem('token')
 
@@ -50,7 +50,7 @@ export default function Assiduidade({serverIP}){
             })
 
             const data = await response.json()
-            console.log(data)
+            //console.log(data)
             setASSIDUIDADE_ALMOX(data[0].ASSIDUIDADE_ALMOX)
             sessionStorage.setItem('assiduidadealmox', data.ASSIDUIDADE_ALMOX)
             setASSIDUIDADE_BANCO(data[0].ASSIDUIDADE_BANCO)
@@ -92,7 +92,7 @@ export default function Assiduidade({serverIP}){
             setDATA2(data[2].DATA)
             sessionStorage.setItem('assiduidadedata2', data.DATA)
 
-             console.log(data)
+             //console.log(data)
             // co[0])
          } catch (error){
            console.log('Erro ao buscar dados',error)
@@ -108,13 +108,15 @@ export default function Assiduidade({serverIP}){
             <div className= "todo">
                 <div  className="atributodeavaliacao">
                 <h3>Assiduidade</h3>
-                    <img className="check"src={check} /> +200
+                     +200
                     <img className= "moeda-roxa" src={coin}/>+200 EXP
                 </div>
             </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Comparecimento Alm</h5>
+                    <h5 className="atribuicao">Comparecimento Alm
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -149,7 +151,9 @@ export default function Assiduidade({serverIP}){
                 </div>
                         
                 <div class= "todo">
-                    <h5 className="atribuicao">Horário de Almoço</h5>
+                    <h5 className="atribuicao">Horário de Almoço
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -183,7 +187,9 @@ export default function Assiduidade({serverIP}){
                 </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Gestão de Rota</h5>
+                    <h5 className="atribuicao">Gestão de Rota
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -221,7 +227,9 @@ export default function Assiduidade({serverIP}){
                 </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Banco de Horas</h5>
+                    <h5 className="atribuicao">Banco de Horas
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -256,7 +264,9 @@ export default function Assiduidade({serverIP}){
                 </div>
 
                 <div class= "todo">
-                    <h5 className="atribuicao">Inicio Atividade</h5>
+                    <h5 className="atribuicao">Inicio Atividade
+                    <img className="check" src={check} />
+                    </h5>
                     <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -289,15 +299,5 @@ export default function Assiduidade({serverIP}){
                     {/* {(ASSIDUIDADE_INICIOnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_INICIO={ASSIDUIDADE_INICIOnull}/>} */}
                 </div>
         </div>
-    )
-}
-
-function NotNullButton({ASSIDUIDADE_INICIO}){
-    return (
-        <>
-        {((ASSIDUIDADE_INICIO == true) ?
-        <button className="finish-todo"></button> :
-        <button className="remove-todo"></button>)}
-        </>
     )
 }

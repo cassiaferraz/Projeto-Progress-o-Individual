@@ -32,6 +32,8 @@ app.use("/", registerRoutes);
 app.use("/", loginRoutes);
 
 
+app.use('/assets/avatar', express.static(path.join(__dirname, 'C:\\src\\assets\\avatar')));
+
 
 app.listen(3000, '0.0.0.0', () => {
   console.log('Servidor rodando na porta 3000');

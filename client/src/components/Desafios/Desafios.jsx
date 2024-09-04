@@ -15,7 +15,7 @@ import AlvoDesafios from "/img/svgs/AlvoDesafios.webp"
 
 export default function Desafios ({serverIP}) {
     const token = sessionStorage.getItem("token")
-    console.log(token)
+    // console.log(token)
     if(!token) {
         window.location.href = "/";
     }

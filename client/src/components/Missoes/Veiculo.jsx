@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
+import xmark from "/img/svgs/xmark.svg"
 import { Tooltip } from 'react-tooltip'
 
 export default function Veivulo({ serverIP }){
@@ -128,7 +129,7 @@ export default function Veivulo({ serverIP }){
             <div className= "todo">
                 <div className="atributodeavaliacao">
                     <h3>Veículo </h3>
-                    <img className="xmark" src={check} />+200
+                    +200
                     <img className= "moeda-roxa" src={coin} />+200 EXP
                  </div>
               
@@ -136,7 +137,9 @@ export default function Veivulo({ serverIP }){
 
 {/* ITEM 1 DE Frota */}
                     <div class= "todo">
-                        <h5 className="atribuicao">Limpeza Interna</h5>
+                        <h5 className="atribuicao">Limpeza Interna
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -171,7 +174,9 @@ export default function Veivulo({ serverIP }){
 {/* ITEM 2 DE Frota */}
 
                     <div class= "todo">
-                        <h5 className="atribuicao">Limpeza Externa</h5>
+                        <h5 className="atribuicao">Limpeza Externa
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -208,7 +213,9 @@ export default function Veivulo({ serverIP }){
 {/* ITEM 3 DE Frota */}
 
                     <div class= "todo">
-                        <h5 className="atribuicao">Organização Frente</h5>
+                        <h5 className="atribuicao">Organização Frente
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -242,7 +249,9 @@ export default function Veivulo({ serverIP }){
                     </div> 
 
                     <div class= "todo">
-                        <h5 className="atribuicao">Sinistros</h5>
+                        <h5 className="atribuicao">Sinistros
+                        <img className= "xmark" src={xmark}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -276,7 +285,9 @@ export default function Veivulo({ serverIP }){
                     </div> 
 
                     <div class= "todo">
-                        <h5 className="atribuicao">Horário-Recarga</h5>
+                        <h5 className="atribuicao">Horário-Recarga
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -310,7 +321,9 @@ export default function Veivulo({ serverIP }){
                     </div> 
 
                     <div class= "todo">
-                        <h5 className="atribuicao">Multas</h5>
+                        <h5 className="atribuicao">Multas
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}
@@ -344,7 +357,9 @@ export default function Veivulo({ serverIP }){
                     </div> 
 
                     <div class= "todo">
-                        <h5 className="atribuicao">Organização Baú</h5>
+                        <h5 className="atribuicao">Organização Baú
+                        <img className= "check" src={check}/>
+                        </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
                         data-tooltip-content={status ? status : DATA}

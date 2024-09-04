@@ -12,6 +12,7 @@
   display: flex;
   width: 25%;
   width: 28%;
+  border-radius: 50%;
 }
 
 .info .subinfo, .exp-perfil{

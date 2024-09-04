@@ -10,6 +10,7 @@ import QualityProgressIcon from "./QualityProgresso/QualityProgressIcon"
 
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg" 
+import xmark from "/img/svgs/xmark.svg" 
 import flechaEsquerda from "/img/svgs/Flecha-direita.svg" 
 import flechaDireita from "/img/svgs/flecha-esquerda.svg" 
 
@@ -23,12 +24,11 @@ import { Tooltip } from 'react-tooltip'
 
 export default function Missoes ({ serverIP }) {
     const token = sessionStorage.getItem("token")
-    console.log(token)
+    // console.log(token)
     if(!token) {
         window.location.href = "/";
     }
 
-    const token = sessionStorage.getItem('token')
 
     const [TDNA, setTDNA] = useState('');
     const [IFI, setIFI] = useState('');
@@ -123,23 +123,29 @@ export default function Missoes ({ serverIP }) {
               <div className="todo">
                   <div className="atributodeavaliacao">
                       <h3>Qualidade</h3>
-                      <img className="check" src={check} />+250
+                      +250
                       <img className="moeda-roxa" src={coin} />+250 EXP
                   </div>
               </div>
               <div className="todo">
-                  <h5 className="atribuicao">TDNA:<QualityProgressIcon value={TDNA} realMax="5" referenceValue="5" /></h5>
+                  <h5 className="atribuicao">TDNA: <img className="xmark" src={xmark}/>
+                    <QualityProgressIcon value={TDNA} realMax="5" referenceValue="5" /></h5>
               </div>
               <div className="todo">
-                  <h5 className="atribuicao">IFI: <QualityProgressIcon value={IFI} referenceValue="1" percent="true" style={{ backgroundColor: IFI >= 1 ? 'blue' : 'yellow' }} /></h5>
+                  <h5 className="atribuicao">IFI: <img className="xmark" src={xmark}/> 
+                  <QualityProgressIcon value={IFI} referenceValue="1" percent="true" style={{ backgroundColor: IFI >= 1 ? 'blue' : 'yellow' }} /></h5>
               </div>
               <div className="todo">
-                  <h5 className="atribuicao">IRR: <QualityProgressIcon value={IRR} referenceValue="1" percent="true" /></h5>
+                  <h5 className="atribuicao">IRR: <img className="xmark" src={xmark}/> 
+                  <QualityProgressIcon value={IRR} referenceValue="1" percent="true" /></h5>
               </div>
 
 
               <div className="todo">
-                  <h5 className="atribuicao">Fiscalização</h5>
+                  <h5 className="atribuicao">Fiscalização
+                  <img className="check" src={check}/>
+                  </h5>
+                  
                   <div                
                     data-tooltip-id="tooltipdata"
                     data-tooltip-content={status ? status : DATA}

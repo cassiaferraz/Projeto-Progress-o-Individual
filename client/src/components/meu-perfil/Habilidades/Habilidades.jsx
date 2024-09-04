@@ -17,6 +17,8 @@ function Habilidades({serverIP}) {
 
   const [avaliacaoDisponivel, setAvaliacaoDisponivel] = useState('');
  
+
+
   const token = sessionStorage.getItem('token')
  //AUTOAVALIACAO
   const [CONECTIVIDADE, setCONECTIVIDADE] = useState('')
@@ -56,13 +58,11 @@ function Habilidades({serverIP}) {
         setHAB_METALICO(data[0].METALICO)
         sessionStorage.setItem('habmetalico', data.METALICO)
 
-        console.log(data[0].LAUDOS)
-
-
+        // console.log(data[0].LAUDOS)
         // console.log(response);
         // console.log(response.json());
-        console.log(data)
-        console.log(data[0])
+        // console.log(data)
+        // console.log(data[0])
      } catch (error){
        console.log('Erro ao buscar dados',error)
        }
@@ -97,13 +97,9 @@ function Habilidades({serverIP}) {
       setMETALICO(data[0].METALICO)
       sessionStorage.setItem('metalico', data.METALICO)
 
-      console.log(data[0].LAUDOS)
-
 
       // console.log(response);
       // console.log(response.json());
-      console.log(data)
-      console.log(data[0])
    } catch (error){
      console.log('Erro ao buscar dados',error)
      }
