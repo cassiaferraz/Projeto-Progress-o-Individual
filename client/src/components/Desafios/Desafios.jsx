@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Tooltip } from 'react-tooltip'
 import Navmenu from '../Navbar/Navmenu'
 import LogoutButton from '../userSessions/Logout/LogoutButton'
+import React from 'react'
 
 import '../Desafios/desafios.css'
 import "../Navbar/navmenu.css"
@@ -80,7 +81,7 @@ export default function Desafios ({serverIP}) {
 
              <div className='corpodatabela-desafios'>
                         {incompleteChallenges.map((challenge, index) => (
-                            <>
+                            <React.Fragment key={`challenge_${index}`}>
                             <div key={index} className='linha-tabela-desafios'>
                                 <h4 
                                     data-tooltip-id="nomeItem"
@@ -100,7 +101,7 @@ export default function Desafios ({serverIP}) {
                             <div>
                             <p>{challenge.DESCRICAO}</p>
                             </div>
-                            </>
+                            </React.Fragment>
                         ))}
                     </div>
                   </div>
@@ -121,7 +122,7 @@ export default function Desafios ({serverIP}) {
 
              <div className='corpodatabela-desafios'>
                         {completedChallenges.map((challenge, index) => (
-                            <>
+                             <React.Fragment key={`challengeComplete_${index}`}>
                             <div key={index} className='linha-tabela-desafios'>
                                 <h4 
                                     data-tooltip-id="nomeItem"
@@ -141,7 +142,7 @@ export default function Desafios ({serverIP}) {
                     <div> 
                     <p>{challenge.DESCRICAO}</p>
                     </div>
-                    </>
+                    </React.Fragment>
                         ))}
                     </div>
                   </div>
