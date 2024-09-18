@@ -1,13 +1,7 @@
 const sqlUtils = require('../utils/sqlServer.js');
 
 
-// Create PROMISSE 
-function createChallenge(ChallengeData) {
-    const sql = `INSERT INTO dbo.DESAFIOS_TECNICOS (ID_COLABORADOR, NOME, DESCRICAO, STATUS) 
-                VALUES (${ChallengeData.id}, '${ChallengeData.name}', '${ChallengeData.description}', '${ChallengeData.status}')`;
-    sqlUtils.dispatchQuery(sql);
-} 
- 
+
 // Read
 function findChallenges(id){
     const sql = `SELECT * FROM dbo.DESAFIOS_TECNICOS WHERE ID_COLABORADOR = '${id}'`;
@@ -16,7 +10,25 @@ function findChallenges(id){
 }
 
 
+// Insert 
+function insertChallengeProgressionData(data){
+    const sql = `
+        INSERT INTO dbo._DADOS_PROGRESSAO (XP, MOEDAS)
+        SELECT  '${data.xp}', '${data.moedas}'
+        WHERE NOT EXISTS (
+            SELECT 1 FROM dbo._DADOS_PROGRESSAO WHERE ID_COLABORADOR = '${data.id}'
+        )
+    `;
+    const result = sqlUtils.dispatchQuery(sql);
+    return result;   
+}
+
+
+
+
+
 module.exports = {
-    createChallenge, 
-    findChallenges
+   
+    findChallenges,
+    insertChallengeProgressionData
 };

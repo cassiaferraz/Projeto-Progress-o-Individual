@@ -2,13 +2,25 @@
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
+    
 }
+
+
+/* #pag-desafios2{
+  display: flex;
+  flex-direction: column;
+  
+  
+} */
+
+
 .corpodatabela-desafios {
     display: flex;
     flex-direction: column;
     padding: .8rem;
     align-content: center;
-    
+
+
   }
 
   .coluna-tabela-desafios{
@@ -43,4 +55,29 @@
   padding-left: 2.2rem;
   margin-bottom: 5%;
 }
+
+
+.checkdesafios{
+  width: 5%;
+  margin-left: 20%;
+  margin-right: 15%;
+  position: relative;
+  right: 12.5rem;
+  top: 0.6rem;
+  object-fit:contain
+}
+
+.alvodesafios{
+  width: 6%;
+  margin-left: 20%;
+  margin-right: 15%;
+  position: relative;
+  right: 10rem;
+  top: 0.6rem;
+  object-fit:contain
+
+}
+
+
+
 
