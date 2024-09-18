@@ -101,7 +101,6 @@ function LoginForm({ serverIP }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        //10.243.251.176
 
         try {
             const response = await fetch(`${serverIP}/login`, {
@@ -113,12 +112,15 @@ function LoginForm({ serverIP }) {
             });
 
             const data = await response.json();
-            //console.log('Resposta da API:', data); 
+            console.log('Resposta da API:', data); 
 
             if (response.ok) {
-                console.log('Login bem-sucedido, armazenando token');
+                console.log('Login bem-sucedido, armazenando token e userId');
                 sessionStorage.setItem('token', data.token);
-                console.log('Token armazenado no sessionStorage:', sessionStorage.getItem('token')); // Log do token armazenado
+                sessionStorage.setItem('userId', data.userId);
+
+                console.log('Token armazenado no sessionStorage:', sessionStorage.getItem('token'));
+                console.log('User ID armazenado no sessionStorage:', sessionStorage.getItem('userId'));
 
                 if (data.isFirstAccess) {
                     Swal.fire({
