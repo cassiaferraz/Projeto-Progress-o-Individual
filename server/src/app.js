@@ -4,7 +4,7 @@ const app = express();
 const sql = require('mssql/msnodesqlv8');
 const XLSX = require('xlsx');
 const excel = require('read-excel-file/node');
-const path = require('path');
+
 const cors = require ('cors');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -20,7 +20,8 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+const path = require('path');
+app.use('/avatar', express.static(path.join(__dirname, 'public/avatar')));
 
 
 // ROTAS DA APLICAÇÃO 
@@ -32,7 +33,6 @@ app.use("/", registerRoutes);
 app.use("/", loginRoutes);
 
 
-app.use('/assets/avatar', express.static(path.join(__dirname, 'C:\\src\\assets\\avatar')));
 
 
 app.listen(3000, '0.0.0.0', () => {

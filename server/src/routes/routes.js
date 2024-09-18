@@ -36,7 +36,7 @@ app.use('/', userGetRoutes)
 
 
 const avatarRoutes = require('./avatarRoutes'); 
-app.use('/api', avatarRoutes);
+app.use('/avatar', avatarRoutes);
 
 const ChallengeRoutes = require('./ChallengeRoutes.js');
 app.use('/', ChallengeRoutes)
