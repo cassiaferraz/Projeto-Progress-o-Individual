@@ -5,8 +5,8 @@ const app = express.Router();
 const avatarController = require('../controller/avatarController');
 const authenticateToken = require('../middleware/authMiddleware');
 
-// Rota para listar avatares
-app.get('/list-avatars', authenticateToken, avatarController.listAvatars);
+// Rota para criar avatares
+app.get('/create-avatar', authenticateToken, avatarController.createAvatar);
 
 // Rota para salvar o avatar
 app.post('/set-avatar', authenticateToken, avatarController.saveAvatar);
