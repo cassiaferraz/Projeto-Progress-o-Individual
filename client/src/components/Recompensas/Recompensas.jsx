@@ -82,6 +82,29 @@ export default function Recompensas ({serverIP}) {
                     });
     
                     if (response.ok) {
+                        const notification = {
+                            notificationCategory: 'recompensas.solicitacao',
+                            receiverId: '40417761000', //Alterar pelo ID do Coordenador responsavel
+                            senderId: dadosRewards.ID_COLABORADOR,
+                            complementaryData: {
+                                technicianName: dadosRewards.NOME,
+                                rewardId: technicianRewards.ID_RECOMPENSA
+                            }
+                        
+                        }
+                        const responseNotification = await fetch(`${serverIP}/createNotification`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(notification)
+                            
+                        })
+                        if(!responseNotification.ok) {
+                            console.log(responseNotification)
+                            alert('ERROU')
+                        }
+
                         Swal.fire({
                             title: 'Sucesso!',
                             text: 'Recompensa resgatada com sucesso.',
