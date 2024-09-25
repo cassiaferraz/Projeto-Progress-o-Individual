@@ -5,10 +5,11 @@ const fs = require('fs');
 const createAvatar = async (req, res) => {
     try {
         const userId = req.userId
-        const avatarId = await avatarModel.createAvatar(userId)
+        const avatarId = req.body.avatarId;
+        const result = await avatarModel.setAvatar(avatarId[0].ID_Avatar, userId);
 
         console.log('avatar criado no banco de dados');
-        res.status(200).json(avatarId)
+        res.status(200).json(result)
     } catch (err) {
         console.log(err)
         res.status(404).json({message: 'Deu ruim'})
@@ -18,12 +19,14 @@ const createAvatar = async (req, res) => {
 
 const fetchAvatar = async (req, res) => {
     const userId = req.userId;
-    console.log('userId from token:', userId);
+    const avatarId = req.body.avatarId;
+
+    //console.log('userId from token:', userId);
     try {
         if (!userId) {
             return res.status(400).json({ error: 'userId não fornecido' });
         }
-        const avatar = await avatarModel.getAvatar(userId);
+        const avatar = await avatarModel.getAvatar(avatarId, userId);
         console.log('avatar obtido do banco de dados:', avatar);
         
         if (avatar) {
@@ -39,16 +42,22 @@ const fetchAvatar = async (req, res) => {
 
 const saveAvatar = async (req, res) => {
     try {
-      const userId = req.userId
-      const avatarId = await avatarModel.setAvatar(userId)
+        const userId = req.userId;
+        let avatarPath = req.body.avatarId; //pega o ID do avatar do corpo da requisição
 
-      console.log('avatar atualizado no banco de dados');
-      res.status(200).json(avatarId)
-    } catch (err) {
-      console.log(err)
-      res.status(404).json({message: 'Deu ruim'})
-    }
-  };
+        avatarPath = avatarPath.replace(/\//g, '\\')
+        //console.log('avatarPath:', avatarPath)
+        const avatarId = await avatarModel.findIdAvatarbyPath(avatarPath)
+        console.log(avatarId)
+        const result = await avatarModel.setAvatar(avatarId[0].ID_Avatar, userId);
+
+        //console.log('avatar atualizado no banco de dados');
+        res.status(200).json(avatarId)
+        } catch (err) {
+        console.log(err)
+        res.status(404).json({message: 'Deu ruim'})
+        }
+    };
    
 
 module.exports = { createAvatar, saveAvatar, fetchAvatar };
