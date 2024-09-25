@@ -4,13 +4,16 @@ const sqlServer = require('../utils/sqlServer');
 
 
 async function getUser(id) {
-   
     const sql = `SELECT NOME FROM dbo.COLABORADORES WHERE ID_COLABORADOR = '${id}' `;
     const results = await sqlServer.dispatchQuery(sql)
     return results;
 }   
 
-
+async function getUserByRole(role) {
+    const sql = `SELECT * FROM dbo.COLABORADORES WHERE CARGO = '${role}' `;
+    const results = await sqlServer.dispatchQuery(sql)
+    return results;
+}   
 
 async function getAllUsers() {
     const sql = `SELECT * FROM dbo.COLABORADORES`;
@@ -22,6 +25,7 @@ async function getAllUsers() {
 
 module.exports = {
     getUser,
-    getAllUsers
+    getAllUsers,
+    getUserByRole
 }
 

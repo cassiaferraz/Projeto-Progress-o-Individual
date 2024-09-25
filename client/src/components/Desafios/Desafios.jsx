@@ -16,7 +16,6 @@ import AlvoDesafios from "/img/svgs/AlvoDesafios.webp"
 
 export default function Desafios ({serverIP}) {
     const token = sessionStorage.getItem("token")
-    // console.log(token)
     if(!token) {
         window.location.href = "/";
     }
@@ -24,128 +23,119 @@ export default function Desafios ({serverIP}) {
     const [incompleteChallenges, setIncompleteChallenges] = useState([]);
     const [completedChallenges, setCompletedChallenges] = useState([]);
 
-   
+    useEffect(() => {
+        async function pegarDadosDesafios(){
+            try {
+                const response = await fetch (`${serverIP}/Challenge`, {
+                    method: 'GET',
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'x-access-token': token
+                    }
+                })
 
-   useEffect(() => {
- 
-     async function pegarDadosDesafios(){
-       try {
-         const response = await fetch (`${serverIP}/Challenge`, {
-            method: 'GET',
-            headers:{
-                'Content-Type': 'application/json',
-                'x-access-token': token
+                const data = await response.json()
+                setIncompleteChallenges(data.incompleteChallenges || [])
+                setCompletedChallenges(data.completedChallenges || [])
 
-           }
-         })
- 
-         const data = await response.json()
-         setIncompleteChallenges(data.incompleteChallenges)
-         setCompletedChallenges(data.completedChallenges)
-
-     
-        
- 
-         console.log(data)
-    
-      } catch (error){
-        console.log('Erro ao buscar dados',error)
+            } catch (error){
+                console.log('Erro ao buscar dados', error)
+            }
         }
- 
-      
-     }
-     pegarDadosDesafios({serverIP});
- 
-   }, [serverIP])
-
+        pegarDadosDesafios();
+    }, [serverIP, token])
 
     return (
-    
-    <div className="todocontainer">
-          <Navmenu />
-          <BoxPerfil serverIP={serverIP}/>
+        <div className="todocontainer">
+            <Navmenu />
+            <BoxPerfil serverIP={serverIP}/>
 
-          <div id="pag-desafios">
+            <div id="pag-desafios">
                 <div id="sair-app">
-                    
-                        <h2 className="titulodapagina"> Meus Desafios</h2>
-                        <img className="alvodesafios" src={AlvoDesafios} />
-                        <LogoutButton />
+                    <h2 className="titulodapagina">Meus Desafios</h2>
+                    <img className="alvodesafios" src={AlvoDesafios} />
+                    <LogoutButton />
                 </div>
 
-             <div className='coluna-tabela-desafios'>
+                <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
                     <li>Moedas</li>
                     <li>XP</li>
-             </div>
-
-             <div className='corpodatabela-desafios'>
-                        {incompleteChallenges.map((challenge, index) => (
-                            <React.Fragment key={`challenge_${index}`}>
-                            <div key={index} className='linha-tabela-desafios'>
-                                <h4 
-                                    data-tooltip-id="nomeItem"
-                                    data-tooltip-content={challenge.STATUS ? challenge.NOME : ""}
-                                    data-tooltip-place="top">
-                                    {challenge.NOME}
-                                </h4>
-                                <Tooltip id="nomeItem" />
-                                <div>
-                                    <p>{challenge.MOEDAS}<img className="moeda-roxa" src={coin} /></p>
-                                </div>
-                                <div>
-                                    <p>{challenge.XP} EXP</p>
-                                </div>
-                            </div>
-
-                            <div>
-                            <p>{challenge.DESCRICAO}</p>
-                            </div>
-                            </React.Fragment>
-                        ))}
-                    </div>
-                  </div>
-
-                  
-          <div id="pag-desafios">
-                <div id="sair-app">
-                        <h2 className="titulodapagina">Desafios Concluidos</h2>
-                        <img className="checkdesafios" src={check} />
-        
                 </div>
 
-             <div className='coluna-tabela-desafios'>
+                <div className='corpodatabela-desafios'>
+                    {incompleteChallenges.length === 0 ? (
+                        <p><strong>Não há desafios atribuídos.</strong></p>
+                    ) : (
+                        incompleteChallenges.map((challenge, index) => (
+                            <React.Fragment key={`challenge_${index}`}>
+                                <div key={index} className='linha-tabela-desafios'>
+                                    <h4 
+                                        data-tooltip-id="nomeItem"
+                                        data-tooltip-content={challenge.STATUS ? challenge.NOME : ""}
+                                        data-tooltip-place="top">
+                                        {challenge.NOME}
+                                    </h4>
+                                    <Tooltip id="nomeItem" />
+                                    <div>
+                                        <p>{challenge.MOEDAS}<img className="moeda-roxa" src={coin} /></p>
+                                    </div>
+                                    <div>
+                                        <p>{challenge.XP} EXP</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p>{challenge.DESCRICAO}</p>
+                                </div>
+                            </React.Fragment>
+                        ))
+                    )}
+                </div>
+            </div>
+
+            <div id="pag-desafios">
+                <div id="sair-app">
+                    <h2 className="titulodapagina">Desafios Concluídos</h2>
+                    <img className="checkdesafios" src={check} />
+                </div>
+
+                <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
                     <li>Moedas ganhas</li>
                     <li>XP ganho</li>
-             </div>
-
-             <div className='corpodatabela-desafios'>
-                        {completedChallenges.map((challenge, index) => (
-                             <React.Fragment key={`challengeComplete_${index}`}>
-                            <div key={index} className='linha-tabela-desafios'>
-                                <h4 
-                                    data-tooltip-id="nomeItem"
-                                    data-tooltip-content={challenge.STATUS ? challenge.NOME : ""}
-                                    data-tooltip-place="top">
-                                    {challenge.NOME}
-                                   
-                                </h4>
-                                <Tooltip id="nomeItem" />
-                                <div>
-                                    <p>{challenge.MOEDAS}<img className="moeda-roxa" src={coin} /></p>
-                                </div>
-                                <div>
-                                    <p>{challenge.XP} EXP</p>
-                                </div>
-                            </div>
-                    <div> 
-                    <p>{challenge.DESCRICAO}</p>
-                    </div>
-                    </React.Fragment>
-                        ))}
-                    </div>
-                  </div>
                 </div>
-        )
+
+                <div className='corpodatabela-desafios'>
+                    {completedChallenges.length === 0 ? (
+                        <p><strong>Não há desafios completados.</strong></p>
+                    ) : (
+                        completedChallenges.map((challenge, index) => (
+                            <React.Fragment key={`challengeComplete_${index}`}>
+                                <div key={index} className='linha-tabela-desafios'>
+                                    <h4 
+                                        data-tooltip-id="nomeItem"
+                                        data-tooltip-content={challenge.STATUS ? challenge.NOME : ""}
+                                        data-tooltip-place="top">
+                                        {challenge.NOME}
+                                    </h4>
+                                    <Tooltip id="nomeItem" />
+                                    <div>
+                                        <p>{challenge.MOEDAS}<img className="moeda-roxa" src={coin} /></p>
+                                    </div>
+                                    <div>
+                                        <p>{challenge.XP} EXP</p>
+                                    </div>
+                                </div>
+
+                                <div> 
+                                    <p>{challenge.DESCRICAO}</p>
+                                </div>
+                            </React.Fragment>
+                        ))
+                    )}
+                </div>
+            </div>
+        </div>
+    )
 }

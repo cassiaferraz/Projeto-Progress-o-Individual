@@ -22,8 +22,9 @@ function findAllTecProgressionDatas(){
 // Update
 function updateTecProgressionData(data){
     const sql = `UPDATE dbo._DADOS_PROGRESSAO SET XP = '${data.xp}', MOEDAS = '${data.moedas}', NIVEL = '${data.nivel}' WHERE ID_COLABORADOR = '${data.id}'`;
-    const result = sqlUtils.dispatchQuery(sql);
-    return result;   
+    const result =  sqlUtils.dispatchQuery(sql);
+    return result
+      
 }
 
 // Delete

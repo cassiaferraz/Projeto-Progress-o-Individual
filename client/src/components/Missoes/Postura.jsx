@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
+import xmark from "/img/svgs/xmark.svg"
+
 
 import { Tooltip } from 'react-tooltip'
 
@@ -101,6 +103,16 @@ export default function Postura({ serverIP }){
 
  }, [serverIP])
 
+
+  // Verifica se dois ou mais valores de POSTURA sãoTRUE
+  const posturaUniforme = [POSTURA_UNIFORME, POSTURA_UNIFORME1, POSTURA_UNIFORME2].filter(val => val === true).length >= 2;
+  const posturaCracha = [POSTURA_CRACHA, POSTURA_CRACHA1, POSTURA_CRACHA2].filter(val => val === true).length >= 2;
+  const posturaComunicacao = [POSTURA_COMUNICACAO, POSTURA_COMUNICACAO1, POSTURA_COMUNICACAO2].filter(val => val === true).length >= 2;
+  const posturaBota = [POSTURA_BOTA, POSTURA_BOTA1, POSTURA_BOTA2].filter(val => val === true).length >= 2;
+  const posturaMala = [POSTURA_MALA, POSTURA_MALA1, POSTURA_MALA2].filter(val => val === true).length >= 2;
+ 
+
+
         return(
           <div>
             <div className= "todo">
@@ -115,7 +127,8 @@ export default function Postura({ serverIP }){
 
                     <div className= "todo">
                         <h5 className="atribuicao">Comunicação
-                        <img className= "check" src={check}/>
+                         {/* Condicional que muda a imagem baseada nos valores de POSTURA */}
+                         <img className="check" src={posturaComunicacao ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -153,7 +166,7 @@ export default function Postura({ serverIP }){
 {/* ITEM 2 DE POSTURA */}
                     <div className= "todo">
                         <h5 className="atribuicao">Uniforme
-                        <img className= "check" src={check}/>
+                        <img className="check" src={posturaUniforme ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -187,7 +200,7 @@ export default function Postura({ serverIP }){
 {/* ITEM 3 DE POSTURA */}
                     <div class= "todo">
                         <h5 className="atribuicao">Bota
-                        <img className= "check" src={check}/>
+                        <img className="check" src={posturaBota ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -222,7 +235,7 @@ export default function Postura({ serverIP }){
                     </div>
                     <div class= "todo">
                         <h5 className="atribuicao">Crachá
-                        <img className= "check" src={check}/>
+                        <img className="check" src={posturaCracha ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -258,7 +271,7 @@ export default function Postura({ serverIP }){
 
                     <div class= "todo">
                         <h5 className="atribuicao">Mala
-                        <img className= "check" src={check}/>
+                        <img className="check" src={posturaMala ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"

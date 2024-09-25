@@ -33,15 +33,29 @@
 .solicitar-recompensa{
   border: 1px solid #660099;
   border-radius: 10px;
-  width: 14%;
+  width: 20%;
   font-size: small;
-  height: 26px;
+  height: 35px;
   align-self: center;
   background-color: #eb3d7d;
   color: white;
   margin-right: 1rem;
   cursor: pointer;
 }
+
+.requer-nivel{
+  border: 1px solid #660099;
+  border-radius: 10px;
+  width: 20%;
+  font-size: small;
+  height: 35px;
+  align-self: center;
+  background-color: #999999;
+  color: white;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
 .solicitar-recompensa:hover{
   background-color: #660099;
 }
