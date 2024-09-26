@@ -18,6 +18,7 @@ const getUserData = async (req, res) => {
  
     const userData = {
       NOME: userName[0].NOME,
+      ID_COLABORADOR: userPerfil[0].ID_COLABORADOR,
       MOEDAS: userPerfil[0].MOEDAS,
       XP: userPerfil[0].XP,
       NIVEL: userPerfil[0].NIVEL

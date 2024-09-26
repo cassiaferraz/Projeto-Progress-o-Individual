@@ -1,5 +1,7 @@
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg"
+import xmark from "/img/svgs/xmark.svg"
+
 
 import { useState, useEffect} from 'react'
 import { Tooltip } from 'react-tooltip'
@@ -52,6 +54,9 @@ export default function Laudos({serverIP}) {
         pegarDadosLaudos();
       }, [serverIP]);
 
+      const laudos = [LAUDOS_PREENCHIDOS, LAUDOS_PREENCHIDOS1, LAUDOS_PREENCHIDOS2].filter(val => val === true).length >= 2;
+
+
       return (
         <>
           <div className="todo">
@@ -64,7 +69,9 @@ export default function Laudos({serverIP}) {
 
           <div className="todo">
             <h5 className="atribuicao">Preenchidos
-            <img className="check" src={check} /></h5>
+            {/* Condicional que muda a imagem baseada nos valores de LAUDOS */}
+            <img className="check" src={laudos ? check : xmark} />
+            </h5>
             <div                
             data-tooltip-id="laudos"
             data-tooltip-content={status ? status : DATA}

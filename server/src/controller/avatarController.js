@@ -56,6 +56,20 @@ const fetchAvatar = async (req, res) => {
         }
     };
    
+    const fetchAvatar = async (req, res) => {
+        try {
+            const userId = req.userId;
+            let avatarId = req.body.avatarId; //pega o ID do avatar do corpo da requisição
+    
+            //const avatar = await avatarModel.getAvatar(avatarId)
+            const avatar = await avatarModel.getAvatar(avatarId, userId);
+    
+            res.status(200).json(avatar)
+            } catch (err) {
+            console.log(err)
+            res.status(404).json({message: 'Deu ruim'})
+            }
+        };
 
 const saveAvatar = async (req, res) => {
     try {
@@ -65,7 +79,6 @@ const saveAvatar = async (req, res) => {
         avatarPath = avatarPath.replace(/\//g, '\\')
         //console.log('avatarPath:', avatarPath)
         const avatarId = await avatarModel.findIdAvatarbyPath(avatarPath)
-        console.log(avatarId)
         const result = await avatarModel.setAvatar(avatarId[0].ID_Avatar, userId);
 
         //console.log('avatar atualizado no banco de dados');

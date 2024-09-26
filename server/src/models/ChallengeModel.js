@@ -1,34 +1,58 @@
 const sqlUtils = require('../utils/sqlServer.js');
 
-
-
-// Read
-function findChallenges(id){
+//Seleciona todos os desafios
+function findChallenges(id) {
     const sql = `SELECT * FROM dbo.DESAFIOS_TECNICOS WHERE ID_COLABORADOR = '${id}'`;
     const result = sqlUtils.dispatchQuery(sql);
     return result;
 }
 
+// Seleciona o XP, Moedas e NIVEL totais do usuario
+function getUserProgression(id) {
+    const sql = `SELECT XP, MOEDAS, NIVEL FROM dbo._DADOS_PROGRESSAO WHERE ID_COLABORADOR = '${id}'`;
+    const result = sqlUtils.dispatchQuery(sql);
+    return result;
+}
 
-// Insert 
-function insertChallengeProgressionData(data){
+// Atualize a progressão do usuário com novos XP e MOEDAS
+function updateChallengeProgressionData(id, xp, moedas, nivel) {
     const sql = `
-        INSERT INTO dbo._DADOS_PROGRESSAO (XP, MOEDAS)
-        SELECT  '${data.xp}', '${data.moedas}'
+        UPDATE dbo._DADOS_PROGRESSAO
+        SET XP = '${xp}', MOEDAS = '${moedas}', NIVEL = '${nivel}'
+        WHERE ID_COLABORADOR = '${id}'
+    `;
+    const result = sqlUtils.dispatchQuery(sql);
+    return result;
+}
+
+// Marca desafios como reivindicados definindo seu valor como True
+function markRewardAsClaimed(id) {
+    const sql = `
+        UPDATE dbo.DESAFIOS_TECNICOS
+        SET RECOMPENSA_RESGATADA = 1
+        WHERE ID_LINHA = '${id}'
+    `;
+    const result = sqlUtils.dispatchQuery(sql);
+    return result;
+}
+
+//  Inserir dados de progressão do usuário (se não existir)
+function insertChallengeProgressionData(data) {
+    const sql = `
+        INSERT INTO dbo._DADOS_PROGRESSAO (ID_COLABORADOR, XP, MOEDAS, NIVEL)
+        SELECT '${data.id}', '${data.xp}', '${data.moedas}', '${data.nivel}'
         WHERE NOT EXISTS (
             SELECT 1 FROM dbo._DADOS_PROGRESSAO WHERE ID_COLABORADOR = '${data.id}'
         )
     `;
     const result = sqlUtils.dispatchQuery(sql);
-    return result;   
+    return result;
 }
 
-
-
-
-
 module.exports = {
-   
     findChallenges,
+    getUserProgression,
+    updateChallengeProgressionData,
+    markRewardAsClaimed,
     insertChallengeProgressionData
 };

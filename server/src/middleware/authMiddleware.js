@@ -11,7 +11,7 @@ function authenticateToken(req, res, next) {
             console.error('error na verificação do token:', err)
             return res.status(403).json({ auth: false, message: 'Falha na autenticação do token' });
         }
-        console.log('token decodificado:', decoded)
+        // console.log('token decodificado:', decoded)
         req.userId = decoded.userId;
         next();
     });

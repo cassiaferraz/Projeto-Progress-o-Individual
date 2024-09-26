@@ -124,13 +124,25 @@ export default function Veivulo({ serverIP }){
  
  }, [serverIP])
 
+ // Verifica se dois ou mais valores de VEICULO são TRUE
+    const veiculoLimpezainterna = [VEICULO_LIMPEZAINTERNA, VEICULO_LIMPEZAINTERNA1, VEICULO_LIMPEZAINTERNA2].filter(val => val === true).length >= 2;
+    const veiculoLimpezaexterna = [VEICULO_LIMPEZAEXTERNA, VEICULO_LIMPEZAEXTERNA1, VEICULO_LIMPEZAEXTERNA2].filter(val => val === true).length >= 2;
+    const veiculoOrganizacaobau = [VEICULO_ORGANIZACAOBAU, VEICULO_ORGANIZACAOBAU1, VEICULO_ORGANIZACAOBAU2].filter(val => val === true).length >= 2;
+    const veiculoOrganizacaofrente = [VEICULO_ORGANIZACAOFRENTE, VEICULO_ORGANIZACAOFRENTE1, VEICULO_ORGANIZACAOFRENTE2].filter(val => val === true).length >= 2;
+    const veiculoSinistros = [VEICULO_SINISTROS, VEICULO_SINISTROS1, VEICULO_SINISTROS2].filter(val => val === true).length >= 2;
+    const veiculoMultas = [VEICULO_MULTAS, VEICULO_MULTAS1, VEICULO_MULTAS2].filter(val => val === true).length >= 2;
+    const veiculoRecarga = [VEICULO_RECARGA, VEICULO_RECARGA1, VEICULO_RECARGA2].filter(val => val === true).length >= 2;
+
+
+
+
         return(
           <div>
             <div className= "todo">
                 <div className="atributodeavaliacao">
                     <h3>Veículo </h3>
-                    +200
-                    <img className= "moeda-roxa" src={coin} />+200 EXP
+                    +250
+                    <img className= "moeda-roxa" src={coin} />+250 EXP
                  </div>
               
             </div>
@@ -138,7 +150,8 @@ export default function Veivulo({ serverIP }){
 {/* ITEM 1 DE Frota */}
                     <div class= "todo">
                         <h5 className="atribuicao">Limpeza Interna
-                        <img className= "check" src={check}/>
+                        {/* Condicional que muda a imagem baseada nos valores de VEICULO */}
+                        <img className="check" src={veiculoLimpezainterna ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -175,7 +188,7 @@ export default function Veivulo({ serverIP }){
 
                     <div class= "todo">
                         <h5 className="atribuicao">Limpeza Externa
-                        <img className= "check" src={check}/>
+                       <img className="check" src={veiculoLimpezaexterna ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -214,7 +227,7 @@ export default function Veivulo({ serverIP }){
 
                     <div class= "todo">
                         <h5 className="atribuicao">Organização Frente
-                        <img className= "check" src={check}/>
+                        <img className="check" src={veiculoOrganizacaofrente ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -250,7 +263,7 @@ export default function Veivulo({ serverIP }){
 
                     <div class= "todo">
                         <h5 className="atribuicao">Sinistros
-                        <img className= "xmark" src={xmark}/>
+                        <img className="check" src={veiculoSinistros ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -286,7 +299,7 @@ export default function Veivulo({ serverIP }){
 
                     <div class= "todo">
                         <h5 className="atribuicao">Horário-Recarga
-                        <img className= "check" src={check}/>
+                        <img className="check" src={veiculoRecarga ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -322,7 +335,7 @@ export default function Veivulo({ serverIP }){
 
                     <div class= "todo">
                         <h5 className="atribuicao">Multas
-                        <img className= "check" src={check}/>
+                        <img className="check" src={veiculoMultas ? check : xmark} />
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
@@ -358,7 +371,8 @@ export default function Veivulo({ serverIP }){
 
                     <div class= "todo">
                         <h5 className="atribuicao">Organização Baú
-                        <img className= "check" src={check}/>
+                        <img className="check" src={veiculoOrganizacaobau ? check : xmark} />
+                    
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
