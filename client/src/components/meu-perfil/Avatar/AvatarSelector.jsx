@@ -1,70 +1,17 @@
-// import React, { useState } from 'react';
-
-
-// const avatarUrls = [
-//   '/avatar/Avatar1.png',
-//   '/avatar/Avatar2.png',
-//   '/avatar/Avatar3.png',
-//   '/avatar/Avatar4.svg',
-//   '/avatar/Avatar5.png',
-//   '/avatar/Avatar6.png',
-//   '/avatar/Avatar7.svg',
-//   '/avatar/Avatar8.svg',
-//   '/avatar/Avatar9.svg',
-//   '/avatar/Avatar10.svg',
-//   '/avatar/Avatar11.svg',
-//   '/avatar/Avatar12.png'
-// ];
-
-// function AvatarSelector({ onSelect }) {
-//   const [selectedAvatar, setSelectedAvatar] = useState(null);
-
-//   const handleSelect = (avatar) => {
-//     setSelectedAvatar(avatar);
-//     onSelect(avatar);
-//   };
-
-//   return (
-//     <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-//       {avatarUrls.map((avatarUrl, index) => (
-//         <img
-//           key={index}
-//           src={avatarUrl}
-//           alt={`Avatar ${index + 1}`}
-//           onClick={() => handleSelect(avatarUrl)}
-//           style={{
-//             cursor: 'pointer',
-//             border: selectedAvatar === avatarUrl ? '4px solid rgb(102, 0, 153)' : 'none',
-//             borderRadius: '50%',
-//             width: '100px',
-//             height: '100px',
-//           }}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default AvatarSelector;
-
- 
-
-
-
-
-
-
-
-
-
 
 import React, { useState } from 'react';
-import avatar1 from '../../../assets/avatar/avatar1.png'
-import avatar2 from '../../../assets/avatar/avatar2.png'
-import avatar3 from '../../../assets/avatar/avatar3.png'
-import avatar4 from '../../../assets/avatar/avatar4.png'
-import avatar5 from '../../../assets/avatar/avatar5.png'
-import avatar6 from '../../../assets/avatar/avatar6.png'
+import avatar1 from '/public/avatar/Avatar1.png'
+import avatar2 from '/public/avatar/Avatar2.png'
+import avatar3 from '/public/avatar/Avatar3.png'
+import avatar4 from '/public/avatar/Avatar4.svg'
+import avatar5 from '/public/avatar/Avatar5.png'
+import avatar6 from '/public/avatar/Avatar6.png'
+import avatar7 from '/public/avatar/Avatar7.svg'
+import avatar8 from '/public/avatar/Avatar8.svg'
+import avatar9 from '/public/avatar/Avatar9.svg'
+import avatar10 from '/public/avatar/Avatar10.svg'
+import avatar11 from '/public/avatar/Avatar11.svg'
+import avatar12 from '/public/avatar/Avatar12.png'
 
 const avatars = [
   avatar1,
@@ -87,6 +34,7 @@ function AvatarSelector({ onSelect }) {
   const handleSelect = (avatar) => {
     setSelectedAvatar(avatar);
     onSelect(avatar);
+    console.log('avatars:', avatars)
   };
 
   return (

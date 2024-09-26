@@ -46,13 +46,13 @@ function BoxPerfil({ serverIP, avatar }) {
     const handleStorageChange = (event) => {
       if (event.key === 'avatar') {
         setCurrentAvatar(event.newValue || usuario);
-        console.log('avatar atualizado no storage', event.newValue);
+        //console.log('avatar atualizado no storage', event.newValue);
       }
     };
 
     window.addEventListener('storage', handleStorageChange);
 
-    const storedAvatar = localStorage.getItem('avatar');
+    const storedAvatar = sessionStorage.getItem('avatar');
     if(storedAvatar){
       setCurrentAvatar(storedAvatar);
       //console.log('avatar inicial do localstorage')

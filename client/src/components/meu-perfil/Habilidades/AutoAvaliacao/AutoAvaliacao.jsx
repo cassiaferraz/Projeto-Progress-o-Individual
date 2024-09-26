@@ -56,21 +56,6 @@ export default function AutoAvaliacao({serverIP}) {
         DATA_HORA: currentDateTime
     }
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-
-    //     console.log(formBodyData)
-
-    //     // setTechnician(null)
-    //     setCONECTIVIDADE(null)
-    //     setCASA_INTELIGENTE(null)
-    //     setELETRICA(null)
-    //     setMETALICO(null)
-    //     setPABX_VOIP(null)
-    //     setAUDIO_VIDEO(null)
-    //     setSubmited(true)
-    // }
-
     function handleSelection(event, setter, value, button) {
         event.preventDefault();
         setter(value)

@@ -18,7 +18,6 @@ function Habilidades({serverIP}) {
   const [avaliacaoDisponivel, setAvaliacaoDisponivel] = useState('');
  
 
-
   const token = sessionStorage.getItem('token')
  //AUTOAVALIACAO
   const [CONECTIVIDADE, setCONECTIVIDADE] = useState('')
@@ -105,8 +104,6 @@ function Habilidades({serverIP}) {
      }
  }
  pegarDadosAutoavaliacao();
-
-
     async function verificarAvaliacaoDisponivel() {
     try{
         const response = await fetch (`${serverIP}/Auto/Verificar`, {

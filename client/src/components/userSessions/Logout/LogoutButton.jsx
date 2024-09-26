@@ -5,7 +5,9 @@ import React from 'react';
 const handleLogout = () => {
     
     sessionStorage.removeItem('token'); 
-    // sessionStorage.removeItem('username'); 
+    sessionStorage.removeItem('userId'); 
+
+    //sessionStorage.removeItem('avatar'); 
 
     window.location.href = '/'; 
 };

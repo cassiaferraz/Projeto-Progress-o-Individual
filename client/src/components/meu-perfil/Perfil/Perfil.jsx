@@ -45,10 +45,7 @@ function Perfil ({serverIP}) {
  
             const data = await response.json()
             setmedalsTechnician(data.medalsTechnician)
-           
-         
-            
- 
+
             console.log(data)
           
          } catch (error){
