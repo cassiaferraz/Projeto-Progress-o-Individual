@@ -1,29 +1,25 @@
 import Navmenu from "../../Navbar/Navmenu"
 import Habilidades from '../Habilidades/Habilidades'
 import BoxPerfil from "../BoxPerfil/BoxPerfil"
-
+import { useAvatar } from "../../Context/AvatarContext"
 import { Tooltip } from 'react-tooltip'
-
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
 
 import '../Perfil/perfil.css'
-// import '../tabela.css'
-
 import Ajustes from '/img/svgs/Ajustes.svg'
 import Premio from '/img/svgs/Premio.svg'
 
-import { Link } from "react-router-dom"
+
 
 function Perfil({ serverIP }) {
 
-    // deve conter esse cod abaixo em todas as pag para exigir login
+    const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
     console.log(token)
     if (!token) {
         window.location.href = "/";
     }
-
-
 
 
     const [medalsTechnician, setmedalsTechnician] = useState([])
@@ -57,14 +53,11 @@ function Perfil({ serverIP }) {
    }, [serverIP]);
  
  
-
-
-
     return (
 
         <div className="todocontainer">
             <Navmenu />
-            <BoxPerfil serverIP={serverIP} />
+            <BoxPerfil serverIP={serverIP} avatar={avatar}/>
 
             <div id="titulo-config">
                 <h2 className="titulodapagina">Meu Perfil</h2>

@@ -3,7 +3,7 @@ import Navmenu from "../../Navbar/Navmenu"
 import LogoutButton from "../../userSessions/Logout/LogoutButton"
 
 import { Link } from "react-router-dom"
-
+import { useAvatar } from "../../Context/AvatarContext"
 import Lua from '/img/svgs/Lua.svg'
 import BackArrow from "/img/svgs/voltar.svg"
 
@@ -12,7 +12,7 @@ import '../Config/config.css'
 
 
 export default function Config ({serverIP}) {
-
+    const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
     // console.log(token)
     if(!token) {
@@ -23,7 +23,7 @@ export default function Config ({serverIP}) {
 
     return(
      <div className="todocontainer">
-        <BoxPerfil serverIP={serverIP} />
+        <BoxPerfil serverIP={serverIP} avatar={avatar}/>
         <Navmenu />
             <div className="pag-config">
                 <div id="sair-app">

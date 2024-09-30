@@ -87,16 +87,18 @@
 // MOSTRAR A MENSAGEM DE ALTERAR A SENHA EM TODOS OS ACESSOS
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-
+import { useAvatar } from '../../Context/AvatarContext';
 import EmailInput from '../EmailInput/EmailInput';
 import PasswordInput from '../PasswordInput/passwordInput';
 import Logo from '/img/svgs/logoprogressao.png';
+import { useNavigate } from 'react-router-dom'
 
 function LoginForm({ serverIP }) {
+    const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
-
+    const { setAvatar } = useAvatar();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -115,12 +117,34 @@ function LoginForm({ serverIP }) {
             console.log('Resposta da API:', data); 
 
             if (response.ok) {
-                console.log('Login bem-sucedido, armazenando token e userId');
+                //console.log('Login bem-sucedido, armazenando token e userId');
                 sessionStorage.setItem('token', data.token);
                 sessionStorage.setItem('userId', data.userId);
 
-                console.log('Token armazenado no sessionStorage:', sessionStorage.getItem('token'));
-                console.log('User ID armazenado no sessionStorage:', sessionStorage.getItem('userId'));
+                //console.log('Token armazenado no sessionStorage:', sessionStorage.getItem('token'));
+                //console.log('User ID armazenado no sessionStorage:', sessionStorage.getItem('userId'));
+
+                fetch(`${serverIP}/avatar/get-avatar?userId=${data.userId}`, {
+                    headers: {
+                        'x-access-token': data.token
+                    }
+                })
+                .then(responsee => {
+                    if (!responsee.ok) {
+                        throw new Error('Erro ao buscar o avatar');
+                    }
+                    return responsee.json();
+                })
+                .then(dataa => {
+                    if (dataa && dataa.avatarPath) {
+                        // Atualize para usar avatarId em vez de avatarPath
+                        setAvatar(dataa.avatarPath); // Armazene o ID do avatar
+                    } else {
+                        console.error('ID do avatar não encontrado na resposta:', dataa);
+                    }
+                })
+                .catch(error => console.error('Erro ao buscar o avatar:', error));
+
 
                 if (data.isFirstAccess) {
                     Swal.fire({
@@ -129,10 +153,10 @@ function LoginForm({ serverIP }) {
                         icon: 'warning',
                         confirmButtonText: 'OK',
                     }).then(() => {
-                        window.location.href = '/update';
+                        navigate ('/update');
                     });
                 } else {
-                    window.location.href = '/missoes';
+                    navigate ('/missoes');
                 }
             } else {
                 setLoginError(true);
@@ -143,6 +167,8 @@ function LoginForm({ serverIP }) {
             alert("Ocorreu um erro ao fazer login. Por favor, tente novamente.");
         }
     };
+
+    
 
     return (
         <div className="login-container">

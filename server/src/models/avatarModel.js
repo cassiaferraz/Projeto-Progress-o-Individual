@@ -1,13 +1,12 @@
 const sqlServer = require('../utils/sqlServer');
 
-async function createAvatar(data) {
-    console.log('execuando create');
+async function createAvatar(userId, avatarId) {
+    //console.log('execuando create');
 
         const sql = `INSERT INTO dbo.AVATAR_do_COLABORADOR (ID_COLABORADOR, ID_Avatar) 
-        VALUES ( '${data.userId}', '${data.avatarId}')`;
-        const result = sqlServer.dispatchQuery(sql);
-        return result;
-
+        VALUES ( '${userId}', '${avatarId}')`;
+        const results = await sqlServer.dispatchQuery(sql);
+        return results;
 }
 
 // async function getAvatar(avatarId, userId) {
@@ -42,10 +41,17 @@ async function findIdAvatarbyPath(avatarPath) {
     return results;
 }
 
+async function getAvatarDetails(avatarId) {
+    const sql = `SELECT avatarPath FROM UserAvatars WHERE ID_Avatar = '${avatarId}'`;
+    const results = await sqlServer.dispatchQuery(sql);
+    return results;
+}
+
 module.exports = {
     createAvatar,
     getAvatar,
     setAvatar,
+    getAvatarDetails,
     findIdAvatarbyPath
 };
 

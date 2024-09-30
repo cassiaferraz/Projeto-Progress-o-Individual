@@ -13,6 +13,7 @@ import AutoAvaliacao from "../components/meu-perfil/Habilidades/AutoAvaliacao/Au
 import PreenchimentoLaudo from '../components/meu-perfil/LaudosPendentes/PreenchimentoLaudo'
 import BoxPerfil from "../components/meu-perfil/BoxPerfil/BoxPerfil";
 import Avatar  from "../components/meu-perfil/Avatar/Avatar";
+import { AvatarProvider } from "../components/Context/AvatarContext";
 
 export default function Router() {
     
@@ -21,6 +22,7 @@ export default function Router() {
     const serverIP = `http://${ipAddress}:${port}`;
 
     return (
+        <AvatarProvider>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login serverIP={serverIP} />} />
@@ -37,6 +39,7 @@ export default function Router() {
                     <Route path="/Avatar" element={<Avatar serverIP={serverIP} />} />
                 </Routes>
             </BrowserRouter>
+        </AvatarProvider>
     )
 }
 

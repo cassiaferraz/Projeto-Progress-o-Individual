@@ -1,14 +1,15 @@
 import { Tooltip } from 'react-tooltip'
+import { useState, useEffect } from 'react'
 import Navmenu from "../Navbar/Navmenu"
 import coin from '/img/svgs/moedaroxa.svg'
 import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
-import { useState, useEffect } from 'react'
-import LogoutButton from '../userSessions/Logout/LogoutButton'
+import { useAvatar } from '../Context/AvatarContext'
 import Swal from "sweetalert2"
 
 import '../Recompensas/recompensas.css'
 
 export default function Recompensas ({serverIP}) {
+    const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
     // console.log(token)
     if(!token) {
@@ -216,7 +217,7 @@ export default function Recompensas ({serverIP}) {
     return(
         <div className="todocontainer">
             <Navmenu />
-            <BoxPerfil serverIP={serverIP}/>
+            <BoxPerfil serverIP={serverIP} avatar={avatar}/>
 
                 {/* RECOMPENSAS DISPONIVEIS */}
                 <div className="tablerecompensas">

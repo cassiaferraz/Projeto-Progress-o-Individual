@@ -3,6 +3,7 @@ import { Tooltip } from 'react-tooltip'
 import Navmenu from '../Navbar/Navmenu'
 import LogoutButton from '../userSessions/Logout/LogoutButton'
 import React from 'react'
+import { useAvatar } from '../Context/AvatarContext'
 
 import '../Desafios/desafios.css'
 import "../Navbar/navmenu.css"
@@ -15,6 +16,7 @@ import AlvoDesafios from "/img/svgs/AlvoDesafios.webp"
 
 
 export default function Desafios ({serverIP}) {
+    const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
     if(!token) {
         window.location.href = "/";
@@ -48,7 +50,7 @@ export default function Desafios ({serverIP}) {
     return (
         <div className="todocontainer">
             <Navmenu />
-            <BoxPerfil serverIP={serverIP}/>
+            <BoxPerfil serverIP={serverIP} avatar={avatar}/>
 
             <div id="pag-desafios">
                 <div id="sair-app">

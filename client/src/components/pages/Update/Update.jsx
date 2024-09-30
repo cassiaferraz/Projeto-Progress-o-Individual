@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom'
 import "./register_style.css"
 
 import BackArrow from "/img/svgs/voltar.svg"
@@ -14,13 +14,12 @@ function Update({serverIP}) {
 
             <div className="register-container">
               
-                <a href="/missoes">
-                    <img 
+                <Link to= "/missoes"> <img 
                         className="btn-backPage"
                         src={BackArrow} 
                         alt="Voltar"
-                        />
-                </a>
+                        /> </Link>
+               
                 <div className='subtitulo-cadastro'>
 
                 </div>

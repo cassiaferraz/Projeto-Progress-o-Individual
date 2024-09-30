@@ -6,11 +6,14 @@ import '../../../pages/pages.css'
 import './autoavaliacao.css'
 import BackArrow from '/img/svgs/voltar.svg'
 import { useParams } from 'react-router-dom'
+import { useAvatar } from '../../../Context/AvatarContext';
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export default function AutoAvaliacao({serverIP}) {
 
-
+    const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
     //console.log(token)
     if(!token) {
@@ -21,7 +24,7 @@ export default function AutoAvaliacao({serverIP}) {
 
     
     const technicianId = useParams();
-
+    const navigate = useNavigate();
     //const [technician, setTechnician] = useState(null)
     const [CONECTIVIDADE, setCONECTIVIDADE] = useState(0)
     const [CASA_INTELIGENTE, setCASA_INTELIGENTE] = useState(0)
@@ -102,7 +105,7 @@ export default function AutoAvaliacao({serverIP}) {
                     confirmButtonText: 'OK',
                 }).then(() => {
 
-                    window.location.href = '/perfil';
+                    navigate ('/perfil');
                 });
 
             } else {
@@ -118,16 +121,15 @@ export default function AutoAvaliacao({serverIP}) {
 
     return (
         <div className="todocontainer">
-            <BoxPerfil serverIP={serverIP}/>
+            <BoxPerfil serverIP={serverIP} avatar={avatar}/>
             <Navmenu />
                 <div id="titulopagina">
-                    <a href="/perfil">
-                        <img
+                    <Link to= '/perfil'><img
                             className="btn-backPage"
                             src={BackArrow}
                             alt="Voltar"
                         />
-                    </a>
+                    </Link>
                     <h2 className="titulodapagina">Auto Avaliação</h2>
                 </div>
 

@@ -6,13 +6,10 @@ import Laudos from "./Laudos"
 import Postura from "./Postura"
 import Veiculo from "./Veiculo"
 import Assiduidade from "./Assiduidade"
-import QualityProgressIcon from "./QualityProgresso/QualityProgressIcon"
 
 import coin from "/img/svgs/moedaroxa.svg"
 import check from "/img/svgs/check.svg" 
 import xmark from "/img/svgs/xmark.svg" 
-import flechaEsquerda from "/img/svgs/Flecha-direita.svg" 
-import flechaDireita from "/img/svgs/flecha-esquerda.svg" 
 
 import { useState, useEffect, useContext} from 'react'
 
@@ -20,8 +17,12 @@ import '../Missoes/missoes.css'
 import '../pages/pages.css'
 import LogoutButton from "../userSessions/Logout/LogoutButton"
 import { Tooltip } from 'react-tooltip'
-    
-export default function Missoes({ serverIP }) {
+import { useAvatar } from '../../components/Context/AvatarContext'; 
+
+
+export default function Missoes({ serverIP}) {
+
+    const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token");
     if (!token) {
         window.location.href = "/";
@@ -88,11 +89,13 @@ export default function Missoes({ serverIP }) {
     // Verifica se dois ou mais valores de fiscalização são TRUE
     const fiscalizacaoOk = [FISCALIZACAO, FISCALIZACAO1, FISCALIZACAO2].filter(val => val === true).length >= 2;
 
+
     return (
         <>
+        
             <Navmenu serverIP={serverIP} />
             <div className="todocontainer">
-                <BoxPerfil serverIP={serverIP} />
+                <BoxPerfil serverIP={serverIP} avatar={avatar} />
                 <div id="paginamissoes">
                     <h2 className="titulodapagina">Missões</h2>
                     <LogoutButton />

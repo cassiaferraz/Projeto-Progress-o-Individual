@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PasswordInput from '../PasswordInput/passwordInput';
 //  import EmailInput from '../EmailInput/EmailInput';
 import './updateForm_style.css';
-
+import { useNavigate } from 'react-router-dom'
  
 function UpdateForm({ serverIP }) {
     // const [userEmail, setUserEmail] = useState("");
@@ -10,7 +10,8 @@ function UpdateForm({ serverIP }) {
     const [userConfirmedPassword, setUserConfirmedPassword] = useState("");
     const [resultRegex, setResultRegex] = useState(false);
     const [showDifferentPasswordsError, setShowDifferentPasswordsError] = useState(false);
-
+    const navigate = useNavigate();
+    
     const token = sessionStorage.getItem('token')
     
     const handleSubmit = async (e) => {
@@ -29,7 +30,7 @@ function UpdateForm({ serverIP }) {
                     });
  
                     if (response.ok) {
-                        window.location.href = "/"; 
+                        navigate  ("/"); 
                     } else {
                         alert("Ocorreu um erro ao redefinir a senha. Por favor, tente novamente.");
                     }
