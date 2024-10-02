@@ -1,4 +1,6 @@
 const challengeModel = require('../models/ChallengeModel');
+const getPerfil = require('../models/perfilModel.js');
+
 
 const getTechnicianChallenges = async (req, res) => {
     try {
@@ -31,11 +33,11 @@ const getTechnicianChallenges = async (req, res) => {
         unclaimedChallenges.forEach(challenge => {
             totalMoedas += challenge.MOEDAS;
             totalXp += challenge.XP;
-            claimedChallenges.push(challenge.ID_LINHA); 
+            claimedChallenges.push(challenge.ID_DESAFIO); 
         });
 
         // Pega o XP e Moedas atuais de _DADOS_PROGRESSAO
-        const userProgression = await challengeModel.getUserProgression(techId);
+        const userProgression = await getPerfil.getUser(techId);
 
         let currentXp = userProgression[0]?.XP || 0;
         let currentMoedas = userProgression[0]?.MOEDAS || 0;
