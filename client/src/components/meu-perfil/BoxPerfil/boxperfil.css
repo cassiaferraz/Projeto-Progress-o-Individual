@@ -1,6 +1,8 @@
 .header-perfil{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  position: relative;
   background-color: #6f2b92;
   border-radius: 30px;
   padding: 1rem;

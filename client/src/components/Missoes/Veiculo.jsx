@@ -35,14 +35,6 @@ export default function Veivulo({ serverIP }){
     const [VEICULO_MULTAS2, setVEICULO_MULTAS2] = useState('')
     const [VEICULO_SINISTROS2, setVEICULO_SINISTROS2] = useState('')
     const [DATA2, setDATA2] = useState('')
-
-    const VEICULO_LIMPEZAINTERNAnull = "null"
-    const VEICULO_LIMPEZAEXTERNAnull = "null"
-    const VEICULO_ORGANIZACAOFRENTEnull = "null"
-    const VEICULO_ORGANIZACAOBAUnull = "null"
-    const VEICULO_RECARGAnull = "null"
-    const VEICULO_MULTASnull = "null"
-    const VEICULO_SINISTROSnull = "null"
  
     const token = sessionStorage.getItem('token')
  
@@ -148,7 +140,7 @@ export default function Veivulo({ serverIP }){
             </div>
 
 {/* ITEM 1 DE Frota */}
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Limpeza Interna
                         {/* Condicional que muda a imagem baseada nos valores de VEICULO */}
                         <img className="check" src={veiculoLimpezainterna ? check : xmark} />
@@ -186,7 +178,7 @@ export default function Veivulo({ serverIP }){
                     </div>  
 {/* ITEM 2 DE Frota */}
 
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Limpeza Externa
                        <img className="check" src={veiculoLimpezaexterna ? check : xmark} />
                         </h5>
@@ -225,7 +217,7 @@ export default function Veivulo({ serverIP }){
                     </div> 
 {/* ITEM 3 DE Frota */}
 
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Organização Frente
                         <img className="check" src={veiculoOrganizacaofrente ? check : xmark} />
                         </h5>
@@ -261,7 +253,7 @@ export default function Veivulo({ serverIP }){
                         {/* {(VEICULO_ORGANIZACAOFRENTEnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_ORGANIZACAOFRENTE={VEICULO_ORGANIZACAOFRENTEnull}/>} */}
                     </div> 
 
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Sinistros
                         <img className="check" src={veiculoSinistros ? check : xmark} />
                         </h5>
@@ -297,7 +289,7 @@ export default function Veivulo({ serverIP }){
                         {/* {(VEICULO_SINISTROSnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_SINISTROS={VEICULO_SINISTROSnull}/>} */}
                     </div> 
 
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Horário-Recarga
                         <img className="check" src={veiculoRecarga ? check : xmark} />
                         </h5>
@@ -333,7 +325,7 @@ export default function Veivulo({ serverIP }){
                         {/* {(VEICULO_RECARGAnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_RECARGA={VEICULO_RECARGAnull}/>} */}
                     </div> 
 
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Multas
                         <img className="check" src={veiculoMultas ? check : xmark} />
                         </h5>
@@ -369,7 +361,7 @@ export default function Veivulo({ serverIP }){
                         {/* {(VEICULO_MULTASnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_MULTAS={VEICULO_MULTASnull}/>} */}
                     </div> 
 
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Organização Baú
                         <img className="check" src={veiculoOrganizacaobau ? check : xmark} />
                     

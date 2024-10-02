@@ -6,7 +6,7 @@ import './Avatar.css';
 import Swal from 'sweetalert2';
 import BackArrow from "/img/svgs/voltar.svg";
 import LogoutButton from "../../userSessions/Logout/LogoutButton";
-import { useAvatar } from '../../Context/AvatarContext';
+import { useAvatar } from '../../../context/AvatarContext';
 import { Link } from 'react-router-dom'
 
 

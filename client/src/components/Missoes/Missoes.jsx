@@ -1,7 +1,7 @@
 import Navmenu from "../Navbar/Navmenu"
 import '../meu-perfil/Perfil/Perfil'
 import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
-
+import React from "react"
 import Laudos from "./Laudos"
 import Postura from "./Postura"
 import Veiculo from "./Veiculo"
@@ -17,7 +17,7 @@ import '../Missoes/missoes.css'
 import '../pages/pages.css'
 import LogoutButton from "../userSessions/Logout/LogoutButton"
 import { Tooltip } from 'react-tooltip'
-import { useAvatar } from '../../components/Context/AvatarContext'; 
+import { useAvatar } from '../../context/AvatarContext'; 
 
 
 export default function Missoes({ serverIP}) {
@@ -91,7 +91,7 @@ export default function Missoes({ serverIP}) {
 
 
     return (
-        <>
+        <React.Fragment>
         
             <Navmenu serverIP={serverIP} />
             <div className="todocontainer">
@@ -153,6 +153,6 @@ export default function Missoes({ serverIP}) {
                 <Veiculo serverIP={serverIP} />
                 <Assiduidade serverIP={serverIP} />
             </div>
-        </>
+        </React.Fragment>
     );
 }

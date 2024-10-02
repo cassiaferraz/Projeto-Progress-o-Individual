@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 
 import Desafios from '../components/Desafios/Desafios';
 import Perfil from "../components/meu-perfil/Perfil/Perfil";
@@ -13,7 +12,7 @@ import AutoAvaliacao from "../components/meu-perfil/Habilidades/AutoAvaliacao/Au
 import PreenchimentoLaudo from '../components/meu-perfil/LaudosPendentes/PreenchimentoLaudo'
 import BoxPerfil from "../components/meu-perfil/BoxPerfil/BoxPerfil";
 import Avatar  from "../components/meu-perfil/Avatar/Avatar";
-import { AvatarProvider } from "../components/Context/AvatarContext";
+import { AvatarProvider } from "../context/AvatarContext";
 
 export default function Router() {
     

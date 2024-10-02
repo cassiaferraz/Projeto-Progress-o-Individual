@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../BoxPerfil/boxperfil.css';
 
+import Notifications from '../../Notificação/Notifications'; // Importa o componente de notificações
+
 function BoxPerfil({ serverIP, avatar }) {
   const [nivel, setNivel] = useState('');
   const [xp, setXp] = useState('');
   const [moedas, setMoedas] = useState('');
   const [userName, setUsername] = useState('');
-  const [currentAvatar, setCurrentAvatar] = useState(usuario); // Avatar padrão
+  const [currentAvatar, setCurrentAvatar] = useState(usuario);
 
   const token = sessionStorage.getItem('token');
 
@@ -26,13 +28,9 @@ function BoxPerfil({ serverIP, avatar }) {
         });
         const data = await response.json();
         setUsername(data.NOME);
-        sessionStorage.setItem('username', data.NOME);
         setMoedas(data.MOEDAS);
-        sessionStorage.setItem('usermoedas', data.MOEDAS);
         setNivel(data.NIVEL);
-        sessionStorage.setItem('usernivel', data.NIVEL);
         setXp(data.XP);
-        sessionStorage.setItem('userxp', data.XP);
       } catch (error) {
         console.log('Erro ao buscar os dados:', error);
       }
@@ -42,11 +40,10 @@ function BoxPerfil({ serverIP, avatar }) {
   }, [serverIP]);
 
   useEffect(() => {
-    // Atualiza o avatar com base no que vem do props
     if (avatar) {
       setCurrentAvatar(avatar);
     } else {
-      setCurrentAvatar(usuario); // Se não houver avatar, usa o padrão
+      setCurrentAvatar(usuario);
     }
   }, [avatar]);
 
@@ -54,6 +51,8 @@ function BoxPerfil({ serverIP, avatar }) {
     <div>
       <Link to="/Perfil" style={{ textDecoration: 'none' }}>
         <header className="header-perfil">
+          {/* Substitui o ícone de notificação pelo componente Notifications */}
+          <Notifications />  
           <img className="icon-usuario" src={currentAvatar} alt="usuario" />
           <div className="info">
             <div className="nome-e-nivel">

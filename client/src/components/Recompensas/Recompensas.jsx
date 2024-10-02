@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Navmenu from "../Navbar/Navmenu"
 import coin from '/img/svgs/moedaroxa.svg'
 import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
-import { useAvatar } from '../Context/AvatarContext'
+import { useAvatar } from "../../context/AvatarContext"
 import Swal from "sweetalert2"
 
 import '../Recompensas/recompensas.css'

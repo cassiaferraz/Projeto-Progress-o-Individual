@@ -8,6 +8,7 @@ import xmark from "/img/svgs/xmark.svg"
 import { Tooltip } from 'react-tooltip'
 
 export default function Postura({ serverIP }){
+
     const [POSTURA_COMUNICACAO, setCOMUNICACAO] = useState('')
     const [POSTURA_UNIFORME, setUNIFORME] = useState('')
     const [POSTURA_CRACHA, setCRACHA] = useState('')
@@ -28,12 +29,6 @@ export default function Postura({ serverIP }){
     const [POSTURA_BOTA2, setBOTA2] = useState('')
     const [POSTURA_MALA2, setMALA2] = useState('')
     const [DATA2, setDATA2] = useState('')
-    
-    const POSTURA_COMUNICACAOnull = "null"
-    const POSTURA_MALAnull = "null"
-    const POSTURA_CRACHAnull = "null"
-    const POSTURA_UNIFORMEnull = "null"
-    const POSTURA_BOTAnull = "null"
 
     const token = sessionStorage.getItem('token')
 
@@ -160,7 +155,6 @@ export default function Postura({ serverIP }){
 
                           <Tooltip id="tooltipdata" />
 
-                    {/* {(POSTURA_COMUNICACAOnull == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_COMUNICACAO={POSTURA_COMUNICACAOnull}/>} */}
                     </div>  
 
 {/* ITEM 2 DE POSTURA */}
@@ -195,10 +189,9 @@ export default function Postura({ serverIP }){
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
-                        {/* {(POSTURA_UNIFORMEnull == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_UNIFORME={POSTURA_UNIFORMEnull}/>} */}
  </div>
 {/* ITEM 3 DE POSTURA */}
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Bota
                         <img className="check" src={posturaBota ? check : xmark} />
                         </h5>
@@ -231,9 +224,8 @@ export default function Postura({ serverIP }){
 
                           <Tooltip id="tooltipdata" />
 
-                        {/* {(POSTURA_BOTAnull == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_BOTA={POSTURA_BOTAnull}/>} */}
                     </div>
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Crachá
                         <img className="check" src={posturaCracha ? check : xmark} />
                         </h5>
@@ -266,10 +258,9 @@ export default function Postura({ serverIP }){
 
                           <Tooltip id="tooltipdata" />
 
-                        {/* {(POSTURA_CRACHAnull == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_CRACHA={POSTURA_CRACHAnull}/>} */}
                     </div>
 
-                    <div class= "todo">
+                    <div className= "todo">
                         <h5 className="atribuicao">Mala
                         <img className="check" src={posturaMala ? check : xmark} />
                         </h5>
@@ -302,18 +293,8 @@ export default function Postura({ serverIP }){
 
                           <Tooltip id="tooltipdata" />
 
-                        {/* {(POSTURA_MALAnull == 'null') ? <button className="null"></button> : <NotNullButton POSTURA_MALA={POSTURA_MALAnull}/>} */}
                     </div>
             </div>
         )
 }
 
- function NotNullButton({POSTURA_COMUNICACAO}){
-     return (
-         <>
-         {((POSTURA_COMUNICACAO == true) ? 
-         <button className="finish-todo"></button> : 
-         <button className="remove-todo"></button>)}
-         </>
-     )
- }

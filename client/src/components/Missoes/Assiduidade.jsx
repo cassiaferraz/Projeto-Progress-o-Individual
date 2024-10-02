@@ -122,7 +122,7 @@ export default function Assiduidade({serverIP}){
                 </div>
             </div>
 
-                <div class= "todo">
+                <div className= "todo">
                     <h5 className="atribuicao">Comparecimento Alm
                      {/* Condicional que muda a imagem baseada nos valores de ASSIDUIDADE */}
                      <img className="check" src={assiduidadeAlmox ? check : xmark} />
@@ -161,7 +161,7 @@ export default function Assiduidade({serverIP}){
                     {/* {(ASSIDUIDADE_ALMOXnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOX={ASSIDUIDADE_ALMOXnull}/>} */}
                 </div>
                         
-                <div class= "todo">
+                <div className= "todo">
                     <h5 className="atribuicao">Horário de Almoço
                     <img className="check" src={assiduidadeAlmoco ? check : xmark} />
                     </h5>
@@ -197,7 +197,7 @@ export default function Assiduidade({serverIP}){
                     {/* {(ASSIDUIDADE_ALMOCOnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ALMOCO={ASSIDUIDADE_ALMOCOnull}/>} */}
                 </div>
 
-                <div class= "todo">
+                <div className= "todo">
                     <h5 className="atribuicao">Gestão de Rota
                     <img className="check" src={assiduidadeRota ? check : xmark} />
                     </h5>
@@ -237,7 +237,7 @@ export default function Assiduidade({serverIP}){
                     {/* {(ASSIDUIDADE_ROTAnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_ROTA={ASSIDUIDADE_ROTAnull}/>} */}
                 </div>
 
-                <div class= "todo">
+                <div className= "todo">
                     <h5 className="atribuicao">Banco de Horas
                     <img className="check" src={assiduidadeBanco ? check : xmark} />
                     </h5>
@@ -274,7 +274,7 @@ export default function Assiduidade({serverIP}){
                     {/* {(ASSIDUIDADE_BANCOnull == 'null') ? <button className="null"></button> : <NotNullButton ASSIDUIDADE_BANCO={ASSIDUIDADE_BANCOnull}/>} */}
                 </div>
 
-                <div class= "todo">
+                <div className= "todo">
                     <h5 className="atribuicao">Inicio Atividade
                     <img className="check" src={assiduidadeInicio ? check : xmark} />
                     </h5>

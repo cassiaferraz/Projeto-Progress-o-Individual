@@ -87,7 +87,7 @@
 // MOSTRAR A MENSAGEM DE ALTERAR A SENHA EM TODOS OS ACESSOS
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import { useAvatar } from '../../Context/AvatarContext';
+import { useAvatar } from '../../../context/AvatarContext';
 import EmailInput from '../EmailInput/EmailInput';
 import PasswordInput from '../PasswordInput/passwordInput';
 import Logo from '/img/svgs/logoprogressao.png';
@@ -114,7 +114,7 @@ function LoginForm({ serverIP }) {
             });
 
             const data = await response.json();
-            console.log('Resposta da API:', data); 
+            //console.log('Resposta da API:', data); 
 
             if (response.ok) {
                 //console.log('Login bem-sucedido, armazenando token e userId');

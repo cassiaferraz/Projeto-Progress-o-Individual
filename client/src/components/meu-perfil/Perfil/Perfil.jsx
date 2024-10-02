@@ -1,7 +1,7 @@
 import Navmenu from "../../Navbar/Navmenu"
 import Habilidades from '../Habilidades/Habilidades'
 import BoxPerfil from "../BoxPerfil/BoxPerfil"
-import { useAvatar } from "../../Context/AvatarContext"
+import { useAvatar } from "../../../context/AvatarContext"
 import { Tooltip } from 'react-tooltip'
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"

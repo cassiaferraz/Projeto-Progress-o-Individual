@@ -3,7 +3,7 @@ import Navmenu from "../../Navbar/Navmenu"
 import LogoutButton from "../../userSessions/Logout/LogoutButton"
 
 import { Link } from "react-router-dom"
-import { useAvatar } from "../../Context/AvatarContext"
+import { useAvatar } from "../../../context/AvatarContext"
 import Lua from '/img/svgs/Lua.svg'
 import BackArrow from "/img/svgs/voltar.svg"
 

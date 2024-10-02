@@ -3,7 +3,7 @@ import { Tooltip } from 'react-tooltip'
 import Navmenu from '../Navbar/Navmenu'
 import LogoutButton from '../userSessions/Logout/LogoutButton'
 import React from 'react'
-import { useAvatar } from '../Context/AvatarContext'
+import { useAvatar } from "../../context/AvatarContext"
 
 import '../Desafios/desafios.css'
 import "../Navbar/navmenu.css"

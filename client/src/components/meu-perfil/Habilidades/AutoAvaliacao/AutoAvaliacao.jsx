@@ -6,7 +6,7 @@ import '../../../pages/pages.css'
 import './autoavaliacao.css'
 import BackArrow from '/img/svgs/voltar.svg'
 import { useParams } from 'react-router-dom'
-import { useAvatar } from '../../../Context/AvatarContext';
+import { useAvatar } from '../../../../context/AvatarContext';
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
