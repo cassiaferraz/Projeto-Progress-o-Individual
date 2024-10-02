@@ -59,3 +59,12 @@
 .solicitar-recompensa:hover{
   background-color: #660099;
 }
+
+
+.descricao-recompensa{
+  display: flex;
+  justify-content: space-between;
+  background-color: #e0cceb;
+  padding: .8rem;
+  border: white solid;
+}

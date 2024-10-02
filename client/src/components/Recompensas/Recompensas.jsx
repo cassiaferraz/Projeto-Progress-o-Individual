@@ -2,7 +2,7 @@ import { Tooltip } from 'react-tooltip'
 import Navmenu from "../Navbar/Navmenu"
 import coin from '/img/svgs/moedaroxa.svg'
 import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
-import { useAvatar } from '../Context/AvatarContext'
+import { useAvatar } from '../../context/AvatarContext'
 import { useState, useEffect } from 'react'
 import LogoutButton from '../userSessions/Logout/LogoutButton'
 import Swal from "sweetalert2"
@@ -312,6 +312,7 @@ export default function Recompensas ({serverIP}) {
                 className='linha-tabela-recompensa'
                 onMouseEnter={() => setHoveredRewardIndex(index)}  // Definir o índice ao passar o mouse
                 onMouseLeave={() => setHoveredRewardIndex(null)}   // Limpar o índice ao sair o mouse
+                style={hoveredRewardIndex == index ? {borderBottom: 'none'} : {}}
                 >
                 <h4>{reward.NOME}</h4>
                 <p>Req. Nível {reward.NIVEL_REQUERIDO}</p>
@@ -328,7 +329,7 @@ export default function Recompensas ({serverIP}) {
                 </div>
                 
                 {hoveredRewardIndex == index && (
-                    <div className="descricao-recompensa">
+                    <div className="descricao-recompensa" style={{borderTop: 'none'}}>
                     <p>{reward.DESCRICAO}</p>
                     </div>
                     
@@ -357,7 +358,7 @@ export default function Recompensas ({serverIP}) {
                     technicianRewardsRedeemed.map((reward, index) => (
                         <div key={index} className='linha-tabela-recompensa'>
                             <h4>{reward.NOME}</h4>
-                            <p>Resgatada em: {reward.DATA_RESGATE}</p>
+                            <p>Resgatada em: {formatDatetime(reward.DATA_RESGATE)}</p>
                         </div>
                     ))
                     )}
@@ -368,4 +369,14 @@ export default function Recompensas ({serverIP}) {
         
     )
     
+}
+// IN: "2024-08-05T09:45:00.000Z"
+// OUT: "05/08/24 09:45"
+
+ function formatDatetime(dateStr) {
+    let date = dateStr?.split("T")[0]
+    let dateParts = date?.split("-")
+    let time = dateStr?.split("T")[1].split(".")[0]
+    
+    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0].slice(-2)} ${time}`
 }
