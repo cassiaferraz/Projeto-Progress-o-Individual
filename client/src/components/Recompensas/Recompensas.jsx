@@ -1,9 +1,10 @@
 import { Tooltip } from 'react-tooltip'
-import { useState, useEffect } from 'react'
 import Navmenu from "../Navbar/Navmenu"
 import coin from '/img/svgs/moedaroxa.svg'
 import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
-import { useAvatar } from "../../context/AvatarContext"
+import { useAvatar } from '../Context/AvatarContext'
+import { useState, useEffect } from 'react'
+import LogoutButton from '../userSessions/Logout/LogoutButton'
 import Swal from "sweetalert2"
 
 import '../Recompensas/recompensas.css'
@@ -20,6 +21,9 @@ export default function Recompensas ({serverIP}) {
      const [technicianRewardsRedeemed, setTechnicianRewardsRedeemed] = useState([]);
 
      const [dadosRewards, setdadosRewards] = useState([]);
+
+    
+        const [hoveredRewardIndex, setHoveredRewardIndex] = useState(null)
 
 
     //Verificação se o usuario possui moedas suficientes
@@ -57,6 +61,8 @@ export default function Recompensas ({serverIP}) {
                   const hours = String(now.getHours()).padStart(2, '0');
                   const minutes = String(now.getMinutes()).padStart(2, '0');
                   const seconds = String(now.getSeconds()).padStart(2, '0');
+                  
+                  
                   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
               };
 
@@ -68,7 +74,9 @@ export default function Recompensas ({serverIP}) {
                     ID_RECOMPENSA: reward.ID_RECOMPENSA,
                     ID_TECNICO: dadosRewards.ID_COLABORADOR, // Pegue o ID do técnico logado
                     DATA_RESGATE: currentDate,
-                    STATUS_RECOMPENSA: 0 // Valor booleano inicial
+                    STATUS_RECOMPENSA: 0, // Valor booleano inicial
+                    CUSTO_MOEDAS: reward.CUSTO_MOEDAS,
+                    MOEDAS_SUBTRAIDAS: reward.MOEDAS_SUBTRAIDAS
                 };
                 console.log(formBodyData)
     
@@ -83,6 +91,16 @@ export default function Recompensas ({serverIP}) {
                     });
     
                     if (response.ok) {
+
+                        const responseSubtration = await fetch(`${serverIP}/getSubtration`,{
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'x-access-token': token
+                            }
+                        })
+                       
+
                         const notification = {
                             notificationCategory: 'recompensas.solicitacao',
                             receiverId: '40417761000', //Alterar pelo ID do Coordenador responsavel
@@ -106,15 +124,17 @@ export default function Recompensas ({serverIP}) {
                             alert('ERROU')
                         }
 
+                        if(responseSubtration) {
                         Swal.fire({
                             title: 'Sucesso!',
-                            text: 'Recompensa resgatada com sucesso.',
+                            text: 'Recompensa resgatada com sucesso, aguarde a aprovação pelo seu coordenador.',
                             icon: 'success',
                             confirmButtonText: 'OK'
                         }).then(() => {
                             // Atualize os dados após o resgate
                             window.location.reload();
                         });
+                    }
                     } else {
                         Swal.fire({
                             title: 'Erro!',
@@ -129,6 +149,36 @@ export default function Recompensas ({serverIP}) {
             }
         });
     };
+
+
+    // Função para verificar recompensas nulas e realizar extorno
+    // const verificarRecompensasNulas = async () => {
+    //     try {
+    //         const response = await fetch(`${serverIP}/VerificationNull`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'x-access-token': token
+    //             }
+    //         });
+
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             if (data.newTotalMoedas) {
+    //                 Swal.fire({
+    //                     title: 'Resgate de Recompensa, recusado!',
+    //                     text: `Extorno de moedas realizado.`,
+    //                     icon: 'success',
+    //                     confirmButtonText: 'OK'
+    //                 });
+    //             }
+    //         } else {
+    //             console.error('Erro ao realizar o extorno das recompensas nulas.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Erro ao verificar recompensas nulas:', error);
+    //     }
+    // };
 
   
 
@@ -172,9 +222,7 @@ export default function Recompensas ({serverIP}) {
           })
 
           const data = await response.json()
-          // const data2 = dadosRewards.technicianRewards.map(reward => {
-          //   let canRequire = 
-          // })
+        
           setTechnicianRewards(data.technicianRewards)
           
 
@@ -212,7 +260,33 @@ export default function Recompensas ({serverIP}) {
       }
       PushRewardsRedeemed({serverIP});
 
+
+      // Fetch para verificar recompensas nulas e realizar extorno
+    const verificarRecompensasNulas = async () => {
+        try {
+            const response = await fetch(`${serverIP}/VerificationNull`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': token
+                }
+            });
+
+            const data = await response.json()
+  
+            console.log(data)
+  
+          }catch (error){
+          console.log('Erro ao buscar dados', error)
+          }
+        }
+
+      verificarRecompensasNulas({serverIP});
+
      }, [serverIP])
+
+     
+     
 
     return(
         <div className="todocontainer">
@@ -232,24 +306,37 @@ export default function Recompensas ({serverIP}) {
 
                   <div className='corpodatabela'>
                   {technicianRewards.map((reward, index) => (
-                      <>
-                      <div key={index} className='linha-tabela-recompensa'>
-                          <h4>{reward.NOME}</h4>
-                          <p>Req. Nível {reward.NIVEL_REQUERIDO}</p>
-                          <p> {reward.CUSTO_MOEDAS}<img className= "moeda-roxa" src={coin} /></p>
-                          {/*Verifica se o usuario tem o nivel necessário para resgatar a recompensa */}
-                          {dadosRewards?.NIVEL >= reward.NIVEL_REQUERIDO ? (
-
-                            <button className="solicitar-recompensa" onClick={() => solicitarRecompensa(reward)}>Solicitar</button>
-                          ) : ( 
-                            <button className="requer-nivel" disabled>Solicitar</button>
-                          )} 
-                          
-                      </div>
-                     
-                      </>
-                  ))}
-                  </div>
+                            <>
+                <div 
+                key={index} 
+                className='linha-tabela-recompensa'
+                onMouseEnter={() => setHoveredRewardIndex(index)}  // Definir o índice ao passar o mouse
+                onMouseLeave={() => setHoveredRewardIndex(null)}   // Limpar o índice ao sair o mouse
+                >
+                <h4>{reward.NOME}</h4>
+                <p>Req. Nível {reward.NIVEL_REQUERIDO}</p>
+                <p>{reward.CUSTO_MOEDAS}<img className="moeda-roxa" src={coin} /></p>
+                
+                {/* Verifica se o usuário tem o nível necessário para resgatar a recompensa */}
+                {dadosRewards?.NIVEL >= reward.NIVEL_REQUERIDO ? (
+                    <button className="solicitar-recompensa" onClick={() => solicitarRecompensa(reward)}>Solicitar</button>
+                ) : (
+                    <button className="requer-nivel" disabled>Solicitar</button>
+                )}
+        
+                
+                </div>
+                
+                {hoveredRewardIndex == index && (
+                    <div className="descricao-recompensa">
+                    <p>{reward.DESCRICAO}</p>
+                    </div>
+                    
+                )}
+        </>
+            ))}
+            </div>
+         
                 
                 </div>
 
@@ -276,6 +363,9 @@ export default function Recompensas ({serverIP}) {
                     )}
                 </div>
             </div>
+            
         </div>
+        
     )
+    
 }

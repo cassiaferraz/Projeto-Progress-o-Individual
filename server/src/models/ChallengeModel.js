@@ -7,12 +7,7 @@ function findChallenges(id) {
     return result;
 }
 
-// Seleciona o XP, Moedas e NIVEL totais do usuario
-function getUserProgression(id) {
-    const sql = `SELECT XP, MOEDAS, NIVEL FROM dbo._DADOS_PROGRESSAO WHERE ID_COLABORADOR = '${id}'`;
-    const result = sqlUtils.dispatchQuery(sql);
-    return result;
-}
+
 
 // Atualize a progressão do usuário com novos XP e MOEDAS
 function updateChallengeProgressionData(id, xp, moedas, nivel) {
@@ -30,7 +25,7 @@ function markRewardAsClaimed(id) {
     const sql = `
         UPDATE dbo.DESAFIOS_TECNICOS
         SET RECOMPENSA_RESGATADA = 1
-        WHERE ID_LINHA = '${id}'
+        WHERE ID_DESAFIO = '${id}'
     `;
     const result = sqlUtils.dispatchQuery(sql);
     return result;
@@ -51,7 +46,6 @@ function insertChallengeProgressionData(data) {
 
 module.exports = {
     findChallenges,
-    getUserProgression,
     updateChallengeProgressionData,
     markRewardAsClaimed,
     insertChallengeProgressionData
