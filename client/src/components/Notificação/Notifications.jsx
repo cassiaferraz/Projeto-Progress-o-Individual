@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+
 import './notification.css'
 import notification from '../../../public/img/svgs/notificacao.svg'
 import NotificationItem from './notificationItem/NotificationItem'
