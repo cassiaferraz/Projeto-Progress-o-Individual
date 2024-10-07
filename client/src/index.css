@@ -1,8 +1,24 @@
+@font-face {
+  font-family: VivoTypeLight;
+  src: url('./assets/fonts/Vivo_Type/Vivo_Type_MID-017370_D-015255/Web_Fonts/VivoTypeW05-Light.woff');
+}
+
+@font-face {
+  font-family: VivoTypeBold;
+  src: url('./assets/fonts/Vivo_Type/Vivo_Type_MID-017370_D-015255/Web_Fonts/VivoTypeW05-Bold.woff');
+}
+
+@font-face {
+  font-family: VivoTypeRegular;
+  src: url("./assets/fonts/Vivo_Type/Vivo_Type_MID-017370_D-015255/Web_Fonts/VivoTypeW05-Regular.woff");
+}
+
 * {
   margin: 0;
   padding: 0;
   border: none;
   box-sizing: none;
+  font-family:VivoTypeRegular;
 }
 
 :root {

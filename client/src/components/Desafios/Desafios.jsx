@@ -11,8 +11,8 @@ import "../Navbar/navmenu.css"
 import BoxPerfil from '../meu-perfil/BoxPerfil/BoxPerfil'
 
 import coin from "/img/svgs/moedaroxa.svg"
-import check from "/img/svgs/check.svg" 
-import AlvoDesafios from "/img/svgs/AlvoDesafios.webp" 
+// import check from "/img/svgs/checkVivo.svg" 
+// import AlvoDesafios from "/img/svgs/AlvoVivo.svg" 
 
 
 export default function Desafios ({serverIP}) {
@@ -55,7 +55,7 @@ export default function Desafios ({serverIP}) {
             <div id="pag-desafios">
                 <div id="sair-app">
                     <h2 className="titulodapagina">Meus Desafios</h2>
-                    <img className="alvodesafios" src={AlvoDesafios} />
+                
                     <LogoutButton />
                 </div>
         <div className='estruturaDesafios'>
@@ -100,7 +100,7 @@ export default function Desafios ({serverIP}) {
             <div id="pag-desafios">
                 <div id="sair-app">
                     <h2 className="titulodapagina">Desafios Concluídos</h2>
-                    <img className="checkdesafios" src={check} />
+                 
                 </div>
 
                 <div className='coluna-tabela-desafios'>
