@@ -72,14 +72,15 @@ export default function Recompensas ({serverIP}) {
                 // Dados para enviar ao backend
                 const formBodyData = {
                     ID_RECOMPENSA: reward.ID_RECOMPENSA,
-                    ID_TECNICO: dadosRewards.ID_COLABORADOR, // Pegue o ID do técnico logado
+                    ID_TECNICO: dadosRewards.ID_COLABORADOR, 
                     DATA_RESGATE: currentDate,
-                    STATUS_RECOMPENSA: 0, // Valor booleano inicial
+                    STATUS_RECOMPENSA: 0, 
                     CUSTO_MOEDAS: reward.CUSTO_MOEDAS,
                     MOEDAS_SUBTRAIDAS: reward.MOEDAS_SUBTRAIDAS
                 };
                 console.log(formBodyData)
-    
+
+                //fetch Envio de dados para o Back-end
                 try {
                     const response = await fetch(`${serverIP}/RewardTechnician`, {
                         method: 'POST',
@@ -92,6 +93,7 @@ export default function Recompensas ({serverIP}) {
     
                     if (response.ok) {
 
+                        //fetch Calculo de Subtração das moedas
                         const responseSubtration = await fetch(`${serverIP}/getSubtration`,{
                             method: 'GET',
                             headers: {
@@ -111,6 +113,7 @@ export default function Recompensas ({serverIP}) {
                             }
                         
                         }
+                        //fetch Notificação
                         const responseNotification = await fetch(`${serverIP}/createNotification`, {
                             method: 'POST',
                             headers: {
@@ -149,37 +152,6 @@ export default function Recompensas ({serverIP}) {
             }
         });
     };
-
-
-    // Função para verificar recompensas nulas e realizar extorno
-    // const verificarRecompensasNulas = async () => {
-    //     try {
-    //         const response = await fetch(`${serverIP}/VerificationNull`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'x-access-token': token
-    //             }
-    //         });
-
-    //         if (response.ok) {
-    //             const data = await response.json();
-    //             if (data.newTotalMoedas) {
-    //                 Swal.fire({
-    //                     title: 'Resgate de Recompensa, recusado!',
-    //                     text: `Extorno de moedas realizado.`,
-    //                     icon: 'success',
-    //                     confirmButtonText: 'OK'
-    //                 });
-    //             }
-    //         } else {
-    //             console.error('Erro ao realizar o extorno das recompensas nulas.');
-    //         }
-    //     } catch (error) {
-    //         console.error('Erro ao verificar recompensas nulas:', error);
-    //     }
-    // };
-
   
 
      useEffect(() => {
@@ -285,16 +257,24 @@ export default function Recompensas ({serverIP}) {
 
      }, [serverIP])
 
-     
-     
 
-    return(
+     // Função para abreviar o nome se for maior que 20 caracteres
+    const abreviarNome = (nome) => {
+        if (nome.length > 20) {
+            return `${nome.substring(0, 20)}...`;
+        }
+        return nome;
+    };
+
+     
+     
+    return (
         <div className="todocontainer">
             <Navmenu />
-            <BoxPerfil serverIP={serverIP} avatar={avatar}/>
+            <BoxPerfil serverIP={serverIP} avatar={avatar} />
 
-                {/* RECOMPENSAS DISPONIVEIS */}
-                <div className="tablerecompensas">
+            {/* RECOMPENSAS DISPONIVEIS */}
+            <div className="tablerecompensas">
                 <h2 className="titulodapagina"> Recompensas Disponiveis</h2>
                 <div className='coluna-tabela-recompensas'>
                     <li>Recompensa</li>
@@ -304,79 +284,74 @@ export default function Recompensas ({serverIP}) {
                     <li></li>
                 </div>
 
-                  <div className='corpodatabela'>
-                  {technicianRewards.map((reward, index) => (
-                            <>
-                <div 
-                key={index} 
-                className='linha-tabela-recompensa'
-                onMouseEnter={() => setHoveredRewardIndex(index)}  // Definir o índice ao passar o mouse
-                onMouseLeave={() => setHoveredRewardIndex(null)}   // Limpar o índice ao sair o mouse
-                style={hoveredRewardIndex == index ? {borderBottom: 'none'} : {}}
-                >
-                <h4>{reward.NOME}</h4>
-                <p>Req. Nível {reward.NIVEL_REQUERIDO}</p>
-                <p>{reward.CUSTO_MOEDAS}<img className="moeda-roxa" src={coin} /></p>
-                
-                {/* Verifica se o usuário tem o nível necessário para resgatar a recompensa */}
-                {dadosRewards?.NIVEL >= reward.NIVEL_REQUERIDO ? (
-                    <button className="solicitar-recompensa" onClick={() => solicitarRecompensa(reward)}>Solicitar</button>
-                ) : (
-                    <button className="requer-nivel" disabled>Solicitar</button>
-                )}
-        
-                
-                </div>
-                
-                {hoveredRewardIndex == index && (
-                    <div className="descricao-recompensa" style={{borderTop: 'none'}}>
-                    <p>{reward.DESCRICAO}</p>
+        <div className='corpodatabela'>
+            {technicianRewards.map((reward, index) => (
+                <>
+                    <div 
+                        key={index} 
+                        className='linha-tabela-recompensa'
+                        onMouseEnter={() => setHoveredRewardIndex(index)}  // Definir o índice ao passar o mouse
+                        onMouseLeave={() => setHoveredRewardIndex(null)}   // Limpar o índice ao sair o mouse
+                        style={hoveredRewardIndex == index ? {borderBottom: 'none'} : {}}
+                    >
+                        {/* Abreviação do nome com tooltip */}
+                        <h4 data-tooltip-id={`tooltip-${index}`} data-tooltip-content={reward.NOME}>
+                            {abreviarNome(reward.NOME)}
+                        </h4>
+                        <Tooltip id={`tooltip-${index}`} />
+                        
+                        <p>Req. Nível {reward.NIVEL_REQUERIDO}</p>
+                        <p className='precoRecompensa'>{reward.CUSTO_MOEDAS}<img className="moeda-roxa" src={coin} alt="moeda" /></p>
+
+                        {dadosRewards?.NIVEL >= reward.NIVEL_REQUERIDO ? (
+                            <button className="solicitar-recompensa" onClick={() => solicitarRecompensa(reward)}>Solicitar</button>
+                        ) : (
+                            <button className="requer-nivel" disabled>Solicitar</button>
+                        )}
                     </div>
-                    
-                )}
-        </>
-            ))}
-            </div>
-         
-                
+
+                    {hoveredRewardIndex == index && (
+                        <div className="descricao-recompensa" style={{borderTop: 'none'}}>
+                            <p className='textoRecompensa' ><strong>{reward.DESCRICAO}</strong></p>
+                        </div>
+                    )}
+                </>
+                    ))}
                 </div>
+            </div>
 
             {/* RECOMPENSAS RESGATADAS */}
             <div className="tablerecompensas">
                 <h2 className="titulodapagina">Recompensas Resgatadas</h2>
                 <div className='coluna-tabela-recompensas'>
-                    <li>Recompensa</li>
-                    <li>Data de Resgate</li>
+                    <li className='TituloRecompensaResgatada' >Recompensa</li>
+                    <li className='DataResgateTitulo'>Data de Resgate</li>
                     <li></li>
                     <li></li>
                 </div>
 
                 <div className='corpodatabela'>
-                {technicianRewardsRedeemed.length === 0 ? (
+                    {technicianRewardsRedeemed.length === 0 ? (
                         <p><strong>Nenhuma recompensa resgatada.</strong></p>
                     ) : (
-                    technicianRewardsRedeemed.map((reward, index) => (
-                        <div key={index} className='linha-tabela-recompensa'>
-                            <h4>{reward.NOME}</h4>
-                            <p>Resgatada em: {formatDatetime(reward.DATA_RESGATE)}</p>
-                        </div>
-                    ))
+                        technicianRewardsRedeemed.map((reward, index) => (
+                            <div key={index} className='linha-tabela-recompensa'>
+                                <h4 className='NomeRecompensaResgatada'>{reward.NOME}</h4>
+                                <p className='DataResgate'>Resgatada em: {formatDatetime(reward.DATA_RESGATE)}</p>
+                            </div>
+                        ))
                     )}
                 </div>
             </div>
-            
         </div>
-        
-    )
-    
+    );
 }
-// IN: "2024-08-05T09:45:00.000Z"
-// OUT: "05/08/24 09:45"
 
- function formatDatetime(dateStr) {
-    let date = dateStr?.split("T")[0]
-    let dateParts = date?.split("-")
-    let time = dateStr?.split("T")[1].split(".")[0]
-    
-    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0].slice(-2)} ${time}`
-}
+        // Função para formatar a data
+        function formatDatetime(dateStr) {
+            let date = dateStr?.split("T")[0];
+            let dateParts = date?.split("-");
+            let time = dateStr?.split("T")[1].split(".")[0];
+            
+            return `${dateParts[2]}/${dateParts[1]}/${dateParts[0].slice(-2)} ${time}`;
+        }

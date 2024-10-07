@@ -13,6 +13,10 @@
   
 } */
 
+.estruturaDesafios {
+  width: 100%;
+}
+
 
 .corpodatabela-desafios {
     display: flex;
@@ -23,13 +27,16 @@
 
   }
 
-  .coluna-tabela-desafios{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.4rem;
-    background-color: #e0cceb;
-    border-radius: 8px;
-    padding: 1rem;
+
+
+.coluna-tabela-desafios{
+  display: grid;
+  grid-template-columns:33.3% 33.3% 33.3%;
+  gap: 2.5rem;
+  margin-top: 1.4rem;
+  background-color: #e0cceb;
+  border-radius: 8px;
+  padding: 1rem;
 }
 
   .coluna-tabela-desafios li{
@@ -38,14 +45,17 @@
 }
 
 .linha-tabela-desafios{
-    display: flex;
-    justify-content: space-between;
+    display: grid;  
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    gap: 1rem;
     background-color: #EFE5F4;
-    padding: .8rem;
+    padding: .8rem; 
+    margin-bottom: 0;
 
   }
 
-.coluna-tabela-desafios > div, .linha-tabela-desafios {
+
+.coluna-tabela-desafios > div {
   display: flex;
   align-items:center;
   justify-content: space-between;
@@ -76,6 +86,24 @@
   top: 0.6rem;
   object-fit:contain
 
+}
+
+.descricao-desafio {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(246, 246, 246);
+  padding: 10px 30px;
+  text-align:justify;
+  margin-top: 0rem;
+  border: none;
+  
+  
+}
+
+.textoDesafios {
+  font-size:0.8rem;
+  position: relative;
+  left: 0.5rem;
 }
 
 

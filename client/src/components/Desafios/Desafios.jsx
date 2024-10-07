@@ -58,7 +58,7 @@ export default function Desafios ({serverIP}) {
                     <img className="alvodesafios" src={AlvoDesafios} />
                     <LogoutButton />
                 </div>
-
+        <div className='estruturaDesafios'>
                 <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
                     <li>Moedas</li>
@@ -87,13 +87,14 @@ export default function Desafios ({serverIP}) {
                                     </div>
                                 </div>
 
-                                <div>
-                                    <p>{challenge.DESCRICAO}</p>
+                                <div className='descricao-desafio'>
+                                    <p className='textoDesafios'><strong>{challenge.DESCRICAO}</strong></p>
                                 </div>
                             </React.Fragment>
                         ))
                     )}
                 </div>
+            </div>
             </div>
 
             <div id="pag-desafios">
@@ -104,8 +105,8 @@ export default function Desafios ({serverIP}) {
 
                 <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
-                    <li>Moedas ganhas</li>
-                    <li>XP ganho</li>
+                    <li>Moedas  </li>
+                    <li>XP </li>
                 </div>
 
                 <div className='corpodatabela-desafios'>
@@ -114,6 +115,7 @@ export default function Desafios ({serverIP}) {
                     ) : (
                         completedChallenges.map((challenge, index) => (
                             <React.Fragment key={`challengeComplete_${index}`}>
+                                
                                 <div key={index} className='linha-tabela-desafios'>
                                     <h4 
                                         data-tooltip-id="nomeItem"
@@ -127,12 +129,15 @@ export default function Desafios ({serverIP}) {
                                     </div>
                                     <div>
                                         <p>{challenge.XP} EXP</p>
+                                        
                                     </div>
+                                    
+                                </div>
+                                
+                                <div className='descricao-desafio'> 
+                                    <p className='textoDesafios'><strong>{challenge.DESCRICAO}</strong></p>
                                 </div>
 
-                                <div> 
-                                    <p>{challenge.DESCRICAO}</p>
-                                </div>
                             </React.Fragment>
                         ))
                     )}
