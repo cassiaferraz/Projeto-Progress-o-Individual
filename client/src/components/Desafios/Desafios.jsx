@@ -11,8 +11,8 @@ import "../Navbar/navmenu.css"
 import BoxPerfil from '../meu-perfil/BoxPerfil/BoxPerfil'
 
 import coin from "/img/svgs/moedaroxa.svg"
-import check from "/img/svgs/check.svg" 
-import AlvoDesafios from "/img/svgs/AlvoDesafios.webp" 
+// import check from "/img/svgs/checkVivo.svg" 
+// import AlvoDesafios from "/img/svgs/AlvoVivo.svg" 
 
 
 export default function Desafios ({serverIP}) {
@@ -55,10 +55,10 @@ export default function Desafios ({serverIP}) {
             <div id="pag-desafios">
                 <div id="sair-app">
                     <h2 className="titulodapagina">Meus Desafios</h2>
-                    <img className="alvodesafios" src={AlvoDesafios} />
+                
                     <LogoutButton />
                 </div>
-
+        <div className='estruturaDesafios'>
                 <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
                     <li>Moedas</li>
@@ -87,25 +87,26 @@ export default function Desafios ({serverIP}) {
                                     </div>
                                 </div>
 
-                                <div>
-                                    <p>{challenge.DESCRICAO}</p>
+                                <div className='descricao-desafio'>
+                                    <p className='textoDesafios'><strong>{challenge.DESCRICAO}</strong></p>
                                 </div>
                             </React.Fragment>
                         ))
                     )}
                 </div>
             </div>
+            </div>
 
             <div id="pag-desafios">
                 <div id="sair-app">
                     <h2 className="titulodapagina">Desafios Concluídos</h2>
-                    <img className="checkdesafios" src={check} />
+                 
                 </div>
 
                 <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
-                    <li>Moedas ganhas</li>
-                    <li>XP ganho</li>
+                    <li>Moedas  </li>
+                    <li>XP </li>
                 </div>
 
                 <div className='corpodatabela-desafios'>
@@ -114,6 +115,7 @@ export default function Desafios ({serverIP}) {
                     ) : (
                         completedChallenges.map((challenge, index) => (
                             <React.Fragment key={`challengeComplete_${index}`}>
+                                
                                 <div key={index} className='linha-tabela-desafios'>
                                     <h4 
                                         data-tooltip-id="nomeItem"
@@ -127,12 +129,15 @@ export default function Desafios ({serverIP}) {
                                     </div>
                                     <div>
                                         <p>{challenge.XP} EXP</p>
+                                        
                                     </div>
+                                    
+                                </div>
+                                
+                                <div className='descricao-desafio'> 
+                                    <p className='textoDesafios'><strong>{challenge.DESCRICAO}</strong></p>
                                 </div>
 
-                                <div> 
-                                    <p>{challenge.DESCRICAO}</p>
-                                </div>
                             </React.Fragment>
                         ))
                     )}
