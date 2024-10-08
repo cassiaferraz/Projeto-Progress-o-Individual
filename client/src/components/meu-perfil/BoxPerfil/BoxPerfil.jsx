@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../BoxPerfil/boxperfil.css';
 
-import Notifications from '../../Notificação/Notifications'; // Importa o componente de notificações
+import Notifications from '../../Notificação/Notifications'; 
+import fetchUserNotifications from '../../../services/notifications/fetchUserNotifications';
 
 function BoxPerfil({ serverIP, avatar }) {
   const [nivel, setNivel] = useState('');
@@ -13,6 +14,7 @@ function BoxPerfil({ serverIP, avatar }) {
   const [moedas, setMoedas] = useState('');
   const [userName, setUsername] = useState('');
   const [currentAvatar, setCurrentAvatar] = useState(usuario);
+  const [notifications, setNotifications] = useState([]); // Estado para as notificações
 
   const token = sessionStorage.getItem('token');
 
@@ -37,7 +39,26 @@ function BoxPerfil({ serverIP, avatar }) {
     }
 
     fetchData();
-  }, [serverIP]);
+  }, [serverIP, token]);
+
+  useEffect(() => {
+    async function fetchNotifications() {
+      try {
+        const response = await fetchUserNotifications({ token, serverIP });
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Notificações recebidas:', data);
+          setNotifications(data);
+        } else {
+          console.error('Erro ao buscar notificações:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar notificações:', error);
+      }
+    }
+
+    fetchNotifications();
+  }, [token, serverIP]);
 
   useEffect(() => {
     if (avatar) {
@@ -49,10 +70,11 @@ function BoxPerfil({ serverIP, avatar }) {
 
   return (
     <div>
+      
       <Link to="/Perfil" style={{ textDecoration: 'none' }}>
         <header className="header-perfil">
-          {/* Substitui o ícone de notificação pelo componente Notifications */}
-          <Notifications />  
+          <Notifications notification={notifications} />  {/* Passa as notificações para o componente */}
+          
           <img className="icon-usuario" src={currentAvatar} alt="usuario" />
           <div className="info">
             <div className="nome-e-nivel">

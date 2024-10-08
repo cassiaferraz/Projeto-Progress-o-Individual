@@ -21,7 +21,8 @@
     bottom: -2px;
     width: 14px;
     height: 14px;
-    background-color: var(--vivo-pepper);
+    background-color: red;
+    color: white;
     border-radius: 50%;
     font-size: 12px;
 }

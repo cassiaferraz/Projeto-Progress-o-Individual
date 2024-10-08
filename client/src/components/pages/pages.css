@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color:rgb(102, 0, 153);
+    background: linear-gradient(to bottom, #660099, #f6f6f6) ;
     background-position: center;
     background-size: cover;
 }
