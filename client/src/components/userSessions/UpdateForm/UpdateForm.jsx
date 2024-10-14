@@ -77,7 +77,7 @@ function UpdateForm({ serverIP }) {
                     <h4 className='differentPasswordsError'>Senhas divergentes!</h4>
                 </div>
             )}
-            <button type='submit'>Redefinir Senha</button>
+            <button id= 'updateformbutton' type='submit'>Redefinir Senha</button>
         </form>
     );
 }

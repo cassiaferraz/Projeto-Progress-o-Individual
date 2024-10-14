@@ -39,6 +39,10 @@
     font-size: 14px;
     font-weight: bold;
 }
-button:hover{
+
+#updateformbutton {
+    cursor: pointer;
+}
+#updateformbutton:hover{
     background-color: #ddcbe5;
     }

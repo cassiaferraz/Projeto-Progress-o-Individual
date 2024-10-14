@@ -87,11 +87,12 @@ align-items: center;
   margin-left: 25%;
 }
  
-.botao-avaliar a{
+#realizarautoavaliacao {
   background-color: #eb3d7d;
   border-radius: 15%;
   border-radius: 15px;
   font-size: small;
   border: #eb3d7d solid 8px;
   color: white;
+  cursor: pointer;
 }

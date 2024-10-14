@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom'
 
 export default function AutoAvaliacao({serverIP}) {
 
-    const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
     //console.log(token)
     if(!token) {
@@ -21,8 +20,8 @@ export default function AutoAvaliacao({serverIP}) {
     }
 
     const buttons = document.querySelectorAll('.btn');
-
     
+    const { avatar } = useAvatar();
     const technicianId = useParams();
     const navigate = useNavigate();
     //const [technician, setTechnician] = useState(null)

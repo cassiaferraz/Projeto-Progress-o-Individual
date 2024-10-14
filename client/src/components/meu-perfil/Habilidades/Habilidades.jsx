@@ -3,7 +3,7 @@ import '../Habilidades/progresso.css'
 
 import { Tooltip } from 'react-tooltip'
 import 'primeicons/primeicons.css';
- 
+ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect} from 'react'
  
 function Habilidades({serverIP}) {
@@ -16,7 +16,7 @@ function Habilidades({serverIP}) {
   const [HAB_METALICO, setHAB_METALICO] = useState('')
 
   const [avaliacaoDisponivel, setAvaliacaoDisponivel] = useState('');
- 
+  const navigate = useNavigate();
 
   const token = sessionStorage.getItem('token')
  //AUTOAVALIACAO
@@ -43,7 +43,7 @@ function Habilidades({serverIP}) {
         })
 
         const data = await response.json()
-        console.log(data)
+        //console.log(data)
         setHAB_CONECTIVIDADE(data[0].CONECTIVIDADE)
         sessionStorage.setItem('habconectividade', data.CONECTIVIDADE)
         setHAB_CASA_INTELIGENTE(data[0].CASA_INTELIGENTE)
@@ -116,8 +116,8 @@ function Habilidades({serverIP}) {
 
         const data = await response.json();
         setAvaliacaoDisponivel(data.disponivel);
-        console.log(response)
-        console.log(data)
+        //console.log(response)
+        //console.log(data)
       } catch (error) {
         console.log('Erro ao verificar disponibilidade de avaliação', error);
       } 
@@ -227,13 +227,22 @@ function Habilidades({serverIP}) {
                 </div>
             </div>
             <div className='botao-avaliar'>
-             <a 
-             style={{ textDecoration: 'none', pointerEvents: avaliacaoDisponivel ? 'auto' : 'none', color: avaliacaoDisponivel ? 'white' : 'white' }} 
-             href={avaliacaoDisponivel ? "/AutoAvaliacao" : "#"}
+            <button id='realizarautoavaliacao'
+                style={{
+                    textDecoration: 'none',
+                    pointerEvents: avaliacaoDisponivel ? 'auto' : 'none',
+                    color: avaliacaoDisponivel ? 'white' : 'white',
+                }}
+                onClick={() => {
+                    if (avaliacaoDisponivel) {
+                        navigate("/AutoAvaliacao");
+                    }
+                }}
+                disabled={!avaliacaoDisponivel}
             >
-             {avaliacaoDisponivel ? 'Realize auto avaliação aqui.' : 'Limite de autoavaliações atingido para hoje.'}
-             
-             </a>
+                {avaliacaoDisponivel ? 'Realize auto avaliação aqui.' : 'Limite de autoavaliações atingido para hoje.'}
+            </button>
+
             </div>
          </div>
  

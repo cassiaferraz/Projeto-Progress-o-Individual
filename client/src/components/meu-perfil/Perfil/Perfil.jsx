@@ -16,7 +16,7 @@ function Perfil({ serverIP }) {
 
     const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
-    console.log(token)
+    //console.log(token)
     if (!token) {
         window.location.href = "/";
     }
@@ -42,7 +42,7 @@ function Perfil({ serverIP }) {
             const data = await response.json()
             setmedalsTechnician(data.medalsTechnician)
 
-            console.log(data)
+            //console.log(data)
           
          } catch (error){
            console.log('Erro ao buscar dados',error)
