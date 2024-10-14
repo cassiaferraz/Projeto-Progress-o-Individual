@@ -9,5 +9,7 @@ router.post('/createNotification', notificationController.createNotification)
 router.get('/getUserNotifications', authenticateToken, notificationController.getNotificationsByReceiverId)
 router.put('/readNotification/:id', authenticateToken, notificationController.changeNotificationToReaded)
 router.delete('/deleteNotification/:id', authenticateToken, notificationController.deleteNotification)
+router.get('/getIDCoordenador', authenticateToken, notificationController.getIDCoordenador)
+
 
 module.exports = router;

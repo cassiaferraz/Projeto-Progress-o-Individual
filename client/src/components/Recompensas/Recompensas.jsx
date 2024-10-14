@@ -9,21 +9,24 @@ import Swal from "sweetalert2"
 
 import '../Recompensas/recompensas.css'
 
-export default function Recompensas ({serverIP}) {
+export default function Recompensas({ serverIP }) {
     const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
     // console.log(token)
-    if(!token) {
+    if (!token) {
         window.location.href = "/";
     }
 
-     const [technicianRewards, setTechnicianRewards] = useState([]);
-     const [technicianRewardsRedeemed, setTechnicianRewardsRedeemed] = useState([]);
+    const [technicianRewards, setTechnicianRewards] = useState([]);
+    const [technicianRewardsRedeemed, setTechnicianRewardsRedeemed] = useState([]);
 
-     const [dadosRewards, setdadosRewards] = useState([]);
+    const [dadosRewards, setdadosRewards] = useState([]);
 
-    
-        const [hoveredRewardIndex, setHoveredRewardIndex] = useState(null)
+    const [getIdCoordenador, setIdCoordenador] = useState([]);
+
+
+
+    const [hoveredRewardIndex, setHoveredRewardIndex] = useState(null)
 
 
     //Verificação se o usuario possui moedas suficientes
@@ -40,7 +43,7 @@ export default function Recompensas ({serverIP}) {
             });
             return;
         }
-    
+
         // Confirmação com o usuário
 
         Swal.fire({
@@ -54,27 +57,27 @@ export default function Recompensas ({serverIP}) {
             if (result.isConfirmed) {
                 // Capturar data e hora atual
                 const getCurrentDateTime = () => {
-                  const now = new Date();
-                  const year = now.getFullYear();
-                  const month = String(now.getMonth() + 1).padStart(2, '0');
-                  const day = String(now.getDate()).padStart(2, '0');
-                  const hours = String(now.getHours()).padStart(2, '0');
-                  const minutes = String(now.getMinutes()).padStart(2, '0');
-                  const seconds = String(now.getSeconds()).padStart(2, '0');
-                  
-                  
-                  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-              };
+                    const now = new Date();
+                    const year = now.getFullYear();
+                    const month = String(now.getMonth() + 1).padStart(2, '0');
+                    const day = String(now.getDate()).padStart(2, '0');
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+
+                    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                };
 
 
                 const currentDate = getCurrentDateTime()
-    
+
                 // Dados para enviar ao backend
                 const formBodyData = {
                     ID_RECOMPENSA: reward.ID_RECOMPENSA,
-                    ID_TECNICO: dadosRewards.ID_COLABORADOR, 
+                    ID_TECNICO: dadosRewards.ID_COLABORADOR,
                     DATA_RESGATE: currentDate,
-                    STATUS_RECOMPENSA: 0, 
+                    STATUS_RECOMPENSA: 0,
                     CUSTO_MOEDAS: reward.CUSTO_MOEDAS,
                     MOEDAS_SUBTRAIDAS: reward.MOEDAS_SUBTRAIDAS
                 };
@@ -90,29 +93,31 @@ export default function Recompensas ({serverIP}) {
                         },
                         body: JSON.stringify(formBodyData)
                     });
-    
+
                     if (response.ok) {
 
                         //fetch Calculo de Subtração das moedas
-                        const responseSubtration = await fetch(`${serverIP}/getSubtration`,{
+                        const responseSubtration = await fetch(`${serverIP}/getSubtration`, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'x-access-token': token
                             }
                         })
-                       
+
 
                         const notification = {
                             notificationCategory: 'recompensas.solicitacao',
-                            receiverId: '40417761000', //Alterar pelo ID do Coordenador responsavel
+                            receiverId: getIdCoordenador.ID_COORDENADOR, //Alterar pelo ID do Coordenador responsavel
                             senderId: dadosRewards.ID_COLABORADOR,
                             complementaryData: {
                                 technicianName: dadosRewards.NOME,
                                 rewardId: technicianRewards.ID_RECOMPENSA
                             }
-                        
+
+
                         }
+                        console.log('NOTIFICAÇÕES:', notification)
                         //fetch Notificação
                         const responseNotification = await fetch(`${serverIP}/createNotification`, {
                             method: 'POST',
@@ -120,24 +125,24 @@ export default function Recompensas ({serverIP}) {
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify(notification)
-                            
+
                         })
-                        if(!responseNotification.ok) {
+                        if (!responseNotification.ok) {
                             console.log(responseNotification)
                             alert('ERROU')
                         }
 
-                        if(responseSubtration) {
-                        Swal.fire({
-                            title: 'Sucesso!',
-                            text: 'Recompensa resgatada com sucesso, aguarde a aprovação pelo seu coordenador.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            // Atualize os dados após o resgate
-                            window.location.reload();
-                        });
-                    }
+                        if (responseSubtration) {
+                            Swal.fire({
+                                title: 'Sucesso!',
+                                text: 'Recompensa resgatada com sucesso, aguarde a aprovação pelo seu coordenador.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                // Atualize os dados após o resgate
+                                window.location.reload();
+                            });
+                        }
                     } else {
                         Swal.fire({
                             title: 'Erro!',
@@ -152,113 +157,138 @@ export default function Recompensas ({serverIP}) {
             }
         });
     };
-  
 
-     useEffect(() => {
+
+    useEffect(() => {
 
         // Fetch DADOS do Usuario(NIVEL E MOEDAS)
-        async function DadosRewards(){
-          try {
-            const response = await fetch(`${serverIP}/getUserData`, {
-              method: 'GET',
-              headers:{
-                  'Content-Type': 'application/json',
-                  'x-access-token': token
-              }
-            })
+        async function DadosRewards() {
+            try {
+                const response = await fetch(`${serverIP}/getUserData`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': token
+                    }
+                })
 
 
-            const data = await response.json()
-            setdadosRewards(data)
+                const data = await response.json()
+                setdadosRewards(data)
 
-            console.log(data)
+                console.log(data)
 
-          }catch (error){
-          console.log('Erro ao buscar dados', error)
-          }
+            } catch (error) {
+                console.log('Erro ao buscar dados', error)
+            }
         }
-        DadosRewards({serverIP});
+        DadosRewards({ serverIP });
 
 
 
 
         // Fetch RECOMPENSAS DISPONIVEIS
-      async function PushRewards(){
-        try {
-          const response = await fetch(`${serverIP}/Rewards`, {
-            method: 'GET',
-            headers:{
-                'Content-Type': 'application/json',
-                'x-access-token': token
+        async function PushRewards() {
+            try {
+                const response = await fetch(`${serverIP}/Rewards`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': token
+                    }
+                })
+
+                const data = await response.json()
+
+                setTechnicianRewards(data.technicianRewards)
+
+
+                console.log(data)
+
+            } catch (error) {
+                console.log('Erro ao buscar dados', error)
             }
-          })
-
-          const data = await response.json()
-        
-          setTechnicianRewards(data.technicianRewards)
-          
-
-          console.log(data)
-
-        }catch (error){
-        console.log('Erro ao buscar dados', error)
         }
-    }
-    PushRewards({serverIP});
+        PushRewards({ serverIP });
 
 
 
 
-    
-    // Fetch RECOMPENSAS RESGATADAS
-    async function PushRewardsRedeemed(){
-        try {
-          const response = await fetch(`${serverIP}/RewardsRedeemed`, {
-            method: 'GET',
-            headers:{
-                'Content-Type': 'application/json',
-                'x-access-token': token
+
+        // Fetch RECOMPENSAS RESGATADAS
+        async function PushRewardsRedeemed() {
+            try {
+                const response = await fetch(`${serverIP}/RewardsRedeemed`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': token
+                    }
+                })
+
+                const data = await response.json()
+                setTechnicianRewardsRedeemed(data.technicianRewardsRedeemed)
+
+                console.log(data)
+
+            } catch (error) {
+                console.log('Erro ao buscar dados', error)
             }
-          })
-
-          const data = await response.json()
-          setTechnicianRewardsRedeemed(data.technicianRewardsRedeemed)
-
-          console.log(data)
-
-        }catch (error){
-        console.log('Erro ao buscar dados', error)
         }
-      }
-      PushRewardsRedeemed({serverIP});
+        PushRewardsRedeemed({ serverIP });
 
 
-      // Fetch para verificar recompensas nulas e realizar extorno
-    const verificarRecompensasNulas = async () => {
-        try {
-            const response = await fetch(`${serverIP}/VerificationNull`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-access-token': token
-                }
-            });
+        //ID_COORDENADOR
+        async function getIdCoordenador() {
+            try {
+                const response = await fetch(`${serverIP}/getIDCoordenador`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': token
+                    }
+                })
 
-            const data = await response.json()
-  
-            console.log(data)
-  
-          }catch (error){
-          console.log('Erro ao buscar dados', error)
-          }
+
+                const data = await response.json()
+                setIdCoordenador(data[0])
+
+                console.log('ID COORDENADOR:', data)
+
+            } catch (error) {
+                console.log('Erro ao buscar dados', error)
+            }
+        }
+        getIdCoordenador({ serverIP });
+
+
+
+        // Fetch para verificar recompensas nulas e realizar extorno
+        const verificarRecompensasNulas = async () => {
+            try {
+                const response = await fetch(`${serverIP}/VerificationNull`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': token
+                    }
+                });
+
+                const data = await response.json()
+
+                console.log(data)
+
+            } catch (error) {
+                console.log('Erro ao buscar dados', error)
+            }
         }
 
-      verificarRecompensasNulas({serverIP});
+        verificarRecompensasNulas({ serverIP });
 
-     }, [serverIP])
+    }, [serverIP])
 
 
-     // Função para abreviar o nome se for maior que 20 caracteres
+    // Função para abreviar o nome se for maior que 20 caracteres
     const abreviarNome = (nome) => {
         if (nome.length > 20) {
             return `${nome.substring(0, 20)}...`;
@@ -266,8 +296,8 @@ export default function Recompensas ({serverIP}) {
         return nome;
     };
 
-     
-     
+
+
     return (
         <div className="todocontainer">
             <Navmenu />
@@ -284,38 +314,38 @@ export default function Recompensas ({serverIP}) {
                     <li></li>
                 </div>
 
-        <div className='corpodatabela'>
-            {technicianRewards.map((reward, index) => (
-                <>
-                    <div 
-                        key={index} 
-                        className='linha-tabela-recompensa'
-                        onMouseEnter={() => setHoveredRewardIndex(index)}  // Definir o índice ao passar o mouse
-                        onMouseLeave={() => setHoveredRewardIndex(null)}   // Limpar o índice ao sair o mouse
-                        style={hoveredRewardIndex == index ? {borderBottom: 'none'} : {}}
-                    >
-                        {/* Abreviação do nome com tooltip */}
-                        <h4 data-tooltip-id={`tooltip-${index}`} data-tooltip-content={reward.NOME}>
-                            {abreviarNome(reward.NOME)}
-                        </h4>
-                        <Tooltip id={`tooltip-${index}`} />
-                        
-                        <p>Req. Nível {reward.NIVEL_REQUERIDO}</p>
-                        <p className='precoRecompensa'>{reward.CUSTO_MOEDAS}<img className="moeda-roxa" src={coin} alt="moeda" /></p>
+                <div className='corpodatabela'>
+                    {technicianRewards.map((reward, index) => (
+                        <>
+                            <div
+                                key={index}
+                                className='linha-tabela-recompensa'
+                                onMouseEnter={() => setHoveredRewardIndex(index)}  // Definir o índice ao passar o mouse
+                                onMouseLeave={() => setHoveredRewardIndex(null)}   // Limpar o índice ao sair o mouse
+                                style={hoveredRewardIndex == index ? { borderBottom: 'none' } : {}}
+                            >
+                                {/* Abreviação do nome com tooltip */}
+                                <h4 data-tooltip-id={`tooltip-${index}`} data-tooltip-content={reward.NOME}>
+                                    {abreviarNome(reward.NOME)}
+                                </h4>
+                                <Tooltip id={`tooltip-${index}`} />
 
-                        {dadosRewards?.NIVEL >= reward.NIVEL_REQUERIDO ? (
-                            <button className="solicitar-recompensa" onClick={() => solicitarRecompensa(reward)}>Solicitar</button>
-                        ) : (
-                            <button className="requer-nivel" disabled>Solicitar</button>
-                        )}
-                    </div>
+                                <p>Req. Nível {reward.NIVEL_REQUERIDO}</p>
+                                <p className='precoRecompensa'>{reward.CUSTO_MOEDAS}<img className="moeda-roxa" src={coin} alt="moeda" /></p>
 
-                    {hoveredRewardIndex == index && (
-                        <div className="descricao-recompensa" style={{borderTop: 'none'}}>
-                            <p className='textoRecompensa' ><strong>{reward.DESCRICAO}</strong></p>
-                        </div>
-                    )}
-                </>
+                                {dadosRewards?.NIVEL >= reward.NIVEL_REQUERIDO ? (
+                                    <button className="solicitar-recompensa" onClick={() => solicitarRecompensa(reward)}>Solicitar</button>
+                                ) : (
+                                    <button className="requer-nivel" disabled>Solicitar</button>
+                                )}
+                            </div>
+
+                            {hoveredRewardIndex == index && (
+                                <div className="descricao-recompensa" style={{ borderTop: 'none' }}>
+                                    <p className='textoRecompensa' ><strong>{reward.DESCRICAO}</strong></p>
+                                </div>
+                            )}
+                        </>
                     ))}
                 </div>
             </div>
@@ -347,11 +377,11 @@ export default function Recompensas ({serverIP}) {
     );
 }
 
-        // Função para formatar a data
-        function formatDatetime(dateStr) {
-            let date = dateStr?.split("T")[0];
-            let dateParts = date?.split("-");
-            let time = dateStr?.split("T")[1].split(".")[0];
-            
-            return `${dateParts[2]}/${dateParts[1]}/${dateParts[0].slice(-2)} ${time}`;
-        }
+// Função para formatar a data
+function formatDatetime(dateStr) {
+    let date = dateStr?.split("T")[0];
+    let dateParts = date?.split("-");
+    let time = dateStr?.split("T")[1].split(".")[0];
+
+    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0].slice(-2)} ${time}`;
+}

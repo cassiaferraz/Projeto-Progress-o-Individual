@@ -21,8 +21,8 @@ RECOMPENSAS:
 // Formato categoria -> 'categoria.subcategoria'
 
 function returnTextAndReferenceByCategory(category, data) {
-    switch(category?.split('.')[0]) {
-        case 'recompensas': 
+    switch (category?.split('.')[0]) {
+        case 'recompensas':
             return interpretRewardsCategory(category, data)
         default:
             return { error: 'Categoria inválida' }
@@ -31,46 +31,46 @@ function returnTextAndReferenceByCategory(category, data) {
 
 function interpretRewardsCategory(category, data) {
 
-    switch(category?.split('.')[1]) {
+    switch (category?.split('.')[1]) {
         case 'solicitacao':
-            return { text: `${data.technicianName} solicitou uma recompensa`, reference: {path: 'team/approve_rewards', rewardId: data.rewardId}}
+            return { text: `${data.technicianName} solicitou uma recompensa`, reference: { path: 'team/approve_rewards', rewardId: data.rewardId } }
 
         case 'aprovacao':
-            return { text: 'Seu coordenador aprovou sua requisição de recompensa', reference: {rewardId: data.rewardId}}
+            return { text: 'Seu coordenador aprovou sua requisição de recompensa', reference: { rewardId: data.rewardId } }
 
         case 'desaprovacao':
-            return { text: 'Seu coordenador desaprovou sua requisição de recompensa', reference: {rewardId: data.rewardId}}
+            return { text: 'Seu coordenador desaprovou sua requisição de recompensa', reference: { rewardId: data.rewardId } }
 
         default:
             return { error: 'Subcategoria de recompensas inválida' }
     }
-} 
+}
 
-const createNotification = async(req, res) => {
+const createNotification = async (req, res) => {
     try {
         const category = req.body.notificationCategory
         const receiverId = req.body.receiverId
         const senderId = req.body.senderId
         const complementaryData = req.body.complementaryData
 
-        const { text, reference, error } = returnTextAndReferenceByCategory(category, {receiverId, senderId, ...complementaryData})
-        
-        if(error) {
-            res.status(400).json({message: error})
+        const { text, reference, error } = returnTextAndReferenceByCategory(category, { receiverId, senderId, ...complementaryData })
+
+        if (error) {
+            res.status(400).json({ message: error })
             return
         }
 
         const response = await notificationModel.createNotification(receiverId, senderId, text, JSON.stringify(reference))
-    
-        res.status(200).json({message: 'Notificação criada', ...response})
 
-    } catch(error) {
+        res.status(200).json({ message: 'Notificação criada', ...response })
+
+    } catch (error) {
         console.error(error)
-        res.status(400).json({message: 'Deu ruim - createNotification'})
+        res.status(400).json({ message: 'Deu ruim - createNotification' })
     }
 }
 
-const getNotificationsByReceiverId = async(req, res) => {
+const getNotificationsByReceiverId = async (req, res) => {
     try {
         const userId = req.userId
         let notifications = await notificationModel.findNotificationsByReceiverId(userId)
@@ -84,21 +84,21 @@ const getNotificationsByReceiverId = async(req, res) => {
 
         res.status(200).json(notifications)
 
-    } catch(error) {
+    } catch (error) {
         console.error(error)
-        res.status(400).json({message: 'Deu ruim - getNotificationsByReceiverId'})
+        res.status(400).json({ message: 'Deu ruim - getNotificationsByReceiverId' })
     }
 }
 
-const changeNotificationToReaded = async(req, res) => {
+const changeNotificationToReaded = async (req, res) => {
     try {
         const notificationId = req.params.id
         const response = await notificationModel.updateNotificationStatus(notificationId, true)
-        res.status(200).json({message: 'Notificação atualizada', ...response})
+        res.status(200).json({ message: 'Notificação atualizada', ...response })
 
-    } catch(error) {
+    } catch (error) {
         console.error(error)
-        res.status(400).json({message: 'Deu ruim - changeNotificationToReaded'})
+        res.status(400).json({ message: 'Deu ruim - changeNotificationToReaded' })
     }
 }
 
@@ -106,17 +106,35 @@ const deleteNotification = async (req, res) => {
     try {
         const notificationId = req.params.id
         const response = await notificationModel.deleteNotification(notificationId)
-        res.status(200).json({message: 'Notificação deletada', ...response})
+        res.status(200).json({ message: 'Notificação deletada', ...response })
 
-    } catch(error) {
+    } catch (error) {
         console.error(error)
-        res.status(400).json({message: 'Deu ruim - deleteNotification'})
+        res.status(400).json({ message: 'Deu ruim - deleteNotification' })
     }
 }
+
+const getIDCoordenador = async (req, res) => {
+    try {
+        const techId = req.userId;
+        const idCoordenador = await notificationModel.coordenadorNotification(techId);
+        res.status(200).json(
+            idCoordenador
+        );
+        console.log(idCoordenador)
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: 'deu ruim' });
+    }
+};
+
+
+
 
 module.exports = {
     createNotification,
     getNotificationsByReceiverId,
     changeNotificationToReaded,
     deleteNotification,
+    getIDCoordenador
 }

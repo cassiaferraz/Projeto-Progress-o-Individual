@@ -46,10 +46,23 @@ function deleteNotification(notificationId) {
 }
 
 
+function coordenadorNotification(id) {
+    const sql = `SELECT t.ID_COLABORADOR, e.ID_COORDENADOR
+    FROM dbo._TECNICOS t
+    INNER JOIN dbo.EQUIPES e ON t.ID_EQUIPE = e.ID_EQUIPE
+    WHERE t.ID_COLABORADOR = '${id}';`
 
-module.exports = { 
+    const response = sqlUtils.dispatchQuery(sql)
+    return response
+
+}
+
+
+
+module.exports = {
     createNotification,
     findNotificationsByReceiverId,
     updateNotificationStatus,
     deleteNotification,
+    coordenadorNotification
 }
