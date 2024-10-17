@@ -62,7 +62,7 @@ export default function Desafios ({serverIP}) {
                 <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
                     <li>Moedas</li>
-                    <li>XP</li>
+                    <li>EXP</li>
                 </div>
 
                 <div className='corpodatabela-desafios'>
@@ -106,7 +106,7 @@ export default function Desafios ({serverIP}) {
                 <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>
                     <li>Moedas  </li>
-                    <li>XP </li>
+                    <li>EXP </li>
                 </div>
 
                 <div className='corpodatabela-desafios'>
