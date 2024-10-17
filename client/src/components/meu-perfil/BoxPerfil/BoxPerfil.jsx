@@ -1,5 +1,5 @@
 import usuario from '/img/svgs/avatarmasculino.png';
-import BarraProgresso from '../Progresso/BarraProgresso';
+import BarraProgresso from './Progresso/BarraProgresso';
 import coin from '/img/svgs/Dolar_Dinero_Moneda_1Light.svg';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';

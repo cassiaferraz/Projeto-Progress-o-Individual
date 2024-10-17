@@ -1,0 +1,24 @@
+Routes.jsx é o nosso Main (arquivo principal)
+
+TELAS (componentes) DO APP:
+
+* NAVBAR: Missoes; Recompensas; Desafios; 
+
+*BoxPerfil (leva até o Perfil); 
+  * AutoAvaliação (Técnico se autoavalia)
+  * Configurações (ícone Config na tela do perfil);
+     * Alteração de avatar
+
+
+* Laudos Pendentes (essa tela existe, mas não possui botão dentro do app para acessá-la, 
+pois ainda não possuímos recursos para fazê-la funcionar)
+
+_______________________________________________________________________________________________________________
+
+Em Pages/pages.css possui a estilização geral do app ( estrutura do container, body e button)
+
+
+_______________________________________________________________________________________________________________
+
+Em *Missoes* a pasta *QualityProgresso* possui a barra de progresso já estilizada dos dados de Qaulidade
+porém, os dados, fetch e componente de Qualidade está comentado dentro de Missoes, até trazermos os dados corretos.
