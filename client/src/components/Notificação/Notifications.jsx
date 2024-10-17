@@ -6,9 +6,12 @@ import NotificationItem from './notificationItem/NotificationItem'
 import fetchUserNotifications from '../../services/notifications/fetchUserNotifications'
 import React from 'react'
 
-export default function Notifications({notification}) {
+export default function Notifications({notification, setNotification, serverIP}) {
 
     const divRef = useRef(null)
+    const [ isMenuOpened, setIsMenuOpened ] = useState(false)
+    
+    //console.log('Server IP em Notification:', serverIP)
 
     const handleClickOutside = (e) => {
         if(divRef.current && !divRef.current.contains(e.target)) {
@@ -24,8 +27,7 @@ export default function Notifications({notification}) {
 
     const token = sessionStorage.getItem('token')
 
-    //const [ notificationList, setNotificationList ] = useState([])
-    const [ isMenuOpened, setIsMenuOpened ] = useState(false)
+
 
     // useEffect(() => {
     //     const fetchData = async() => {
@@ -42,11 +44,12 @@ export default function Notifications({notification}) {
 
     // }, [ token ])  
 
-    // const removeNotificationFromList = (idNotification) => {
-    //     let aux = [...notificationList];
-    //     aux = aux.filter(not => not.ID_NOTIFICACAO != idNotification)
-    //     setNotificationList(aux)
-    // }
+    const removeNotificationFromList = (idNotification) => {
+        let aux = [...notification];
+        aux = aux.filter(not => not.ID_NOTIFICACAO != idNotification)
+        setNotification(aux)
+    }
+
 
     return (
         <div className='notifications_menu' ref={divRef}>
@@ -62,7 +65,8 @@ export default function Notifications({notification}) {
                     notification.map((item, index) => 
                         <React.Fragment key={`notification_${item?.TEXTO}_${index}`}>
                             <NotificationItem notification={item}
-                            //  handleExclusion={removeNotificationFromList}
+                             handleExclusion={removeNotificationFromList}
+                             serverIP={serverIP}
                               />
                             { index != notification.length - 1 ? <div className='division'></div> : '' }
                         </React.Fragment>

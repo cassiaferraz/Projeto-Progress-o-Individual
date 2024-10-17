@@ -47,7 +47,7 @@ function BoxPerfil({ serverIP, avatar }) {
         const response = await fetchUserNotifications({ token, serverIP });
         if (response.ok) {
           const data = await response.json();
-          console.log('Notificações recebidas:', data);
+          //console.log('Notificações recebidas:', data);
           setNotifications(data);
         } else {
           console.error('Erro ao buscar notificações:', response.statusText);
@@ -73,7 +73,9 @@ function BoxPerfil({ serverIP, avatar }) {
       
       <Link to="/Perfil" style={{ textDecoration: 'none' }}>
         <header className="header-perfil">
-          <Notifications notification={notifications} />  {/* Passa as notificações para o componente */}
+          <Notifications notification={notifications} 
+          setNotification={setNotifications}
+          serverIP={serverIP}/> 
           
           <img className="icon-usuario" src={currentAvatar} alt="usuario" />
           <div className="info">
