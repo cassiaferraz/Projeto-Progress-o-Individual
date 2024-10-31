@@ -2,19 +2,19 @@ const avatarModel = require('../models/avatarModel');
 const path = require('path');
 const fs = require('fs');
 
-const createAvatar = async (req, res) => {
-    try {
-        const userId = req.userId
-        const avatarId = req.body.avatarId;
-        const result = await avatarModel.setAvatar(avatarId[0].ID_Avatar, userId);
+// const createAvatar = async (req, res) => {
+//     try {
+//         const userId = req.userId
+//         const avatarId = req.body.avatarId;
+//         const result = await avatarModel.setAvatar(avatarId[0].ID_Avatar, userId);
 
-        console.log('avatar criado no banco de dados');
-        res.status(200).json(result)
-    } catch (err) {
-        console.log(err)
-        res.status(404).json({message: 'Deu ruim'})
-    }
-    };
+//         console.log('avatar criado no banco de dados');
+//         res.status(200).json(result)
+//     } catch (err) {
+//         console.log(err)
+//         res.status(404).json({message: 'Deu ruim'})
+//     }
+//     };
 
 const fetchAvatar = async (req, res) => {
     try {
@@ -41,6 +41,8 @@ const fetchAvatar = async (req, res) => {
         res.status(500).json({ message: 'Erro ao buscar avatar' });
     }
 };
+
+//Função saveAvatar faz update se existe e Cria se não tiver cadastrado, não estamos usando a função create
 
 const saveAvatar = async (req, res) => { try { const userId = req.userId; let avatarPath = req.body.avatarId;
 
@@ -71,5 +73,5 @@ const saveAvatar = async (req, res) => { try { const userId = req.userId; let av
 };
 
 
-module.exports = { createAvatar, saveAvatar, fetchAvatar };
+module.exports = { saveAvatar, fetchAvatar };
 

@@ -16,9 +16,122 @@ pois ainda não possuímos recursos para fazê-la funcionar)
 _______________________________________________________________________________________________________________
 
 Em Pages/pages.css possui a estilização geral do app ( estrutura do container, body e button)
-
-
 _______________________________________________________________________________________________________________
 
 Em *Missoes* a pasta *QualityProgresso* possui a barra de progresso já estilizada dos dados de Qaulidade
 porém, os dados, fetch e componente de Qualidade está comentado dentro de Missoes, até trazermos os dados corretos.
+_______________________________________________________________________________________________________________
+*AVATAR* 
+ 🠖 'Avatar.jsx' é o componente pai (principal), trata-se da tela que visualizamos no front
+ 🠖 'AvatarSelector.jsx' é o componente onde importo as fotos dos avatares e crio o style da seleção 
+ dos avatares.
+ 🠖 Para adicionar mais avatares no front, faça a importação 'import avatar21 from xxx' no componente AvatarSelector
+  e no 'const avatares' adicione mais uma linha com o mesmo nome 'avatar21'/ não esqueça de add a foto do avatar
+  na pasta 'client/public/avatar'.
+ 🠖 Todos os avatares estão em png.
+
+  *COMO FUNCIONA*
+  Ao acessar a tela de Avatares e selecionar seu avatar o controlador (back) analisa pelo userId se o usuário
+  já possui algum ID_Avatar cadastrado;
+  Se sim - ele chama o MODEL setAvatar que faz o UPDATE do atual e altera na tabela SQL o ID_Avatar para o atual
+  Se não possui - ele chama o model createAvatar que cria um ID_Avatar para o ID_COLABORADOR na tabela.
+
+  Ou seja, no avatarController as funções que estão funcional são: saveAvatar, fetchAvatar.
+  Sendo saveAvatar para atualizar ou criar um avatar para o usuário.
+  E fetchAvatar para buscar qual ID_Avatar está associado ao usuário pelo ID_COLABORADOR. Essa busca (GET) 
+  é feita assim que o usuário faz login no app para que caso a busca encontre um avatar vinculado a ele, sempre
+  seja mostrado o avatar que ele cadastrou. 
+
+  *AS TABELAS SQL funcionam da seguinte forma: 
+  A tabela UserAvatars possui os dados de todos os avatares (name, id, path)
+
+  A tabela AVATAR_do_COLABORADOR o nome é sugestivo, é onde o avatar vincula ao usuário, sendo: 
+  ID_Avatar e ID_COLABORADOR
+
+
+  *EXPLICANDO MODEL DO AVATAR*
+  No model foi criado a função findIdAvatarbyPath para que ao salvar o novo avatar do usuário, ele encontre 
+ a foto correta pelo caminho, e armazene seu ID_Avatar. [No controller vc irá encontrar:
+ await avatarModel.findIdAvatarbyPath(avatarPath)] Em outras palavras ele busca o ID pelo caminho da foto.
+
+  No model foi criado a função getAvatarDetails que é semelhante a findIdAvatarbyPath, porém ele é usado no 
+  controlador na função fetchAvatar, pois trata-se da busca da foto do usuário logado. Então diferente do findIdAvatarbyPath
+  Ele busca o caminho da foto pelo ID, para ser mostrada no front. 
+
+ No controller também existe a seguinte linha: 
+ avatarPath = avatarPath.replace(/\//g, '\\');
+Trata-se de uma inversão de barras, já que na tabela as barras do caminho da foto, ficaram '\' invertidas
+Foi necessário essa linha de código para converte-la para: /
+
+
+ 🠖 O fetch para buscar o Avatar do banco de dados está sendo feito no login e na tela de alterar avatar;
+ Para navegar até outra tela ao clicar em algum botão ou componente, é ideal usar o navigate do React, pois
+ outros hocks podem bugar o avatar;
+
+ 🠖 A função handleSaveAvatar no componente 'Avatar.jsx' que faz o fetch de POST para alterar o avatar,
+ essa função é chamada ao clicar no button 'Alterar Avatar'.
+
+ IMPORTANTE: No inicio de cada componente há uma constante para importar a prop do avatar:
+ "const { avatar } = useAvatar();"
+ e abaixo na função do componente você irá importar o BoxPerfil com a prop do avatar para que ele funcione em 
+ seu novo componente.
+
+<BoxPerfil serverIP={serverIP} avatar={avatar}/>
+ _______________________________________________________________________________________________________________
+
+ *NOTIFICAÇÕES*
+ 🠖 os fetchs de notificação estão separados dos componentes, estão na pasta 'services'. 
+ 🠖 no BOXPERFIL importamos o:
+ 'fetchUserNotifications' é o fetch do usuário, para receber a notificação do user logado e o 
+ 'Notifications' é o componente pai.
+
+
+_______________________________________________________________________________________________________________
+*BOXPERFIL*
+
+É o componente que mostra todas as informações dos usuários (nível, moedas, progresso em xp, foto e notficações)
+
+Esse componente está sendo importado em todas as telas do app.
+
+Ao clicar no BOXPERFIL o usuário é direcionado para o Meu Perfil, onde terá acesso a tabela de habilidades, ícone
+de Configurações, medalhas e auto avaliação.
+
+Para importar o componente em uma nova tela abra a tag coloque o nome do componente e feche-a: <BoxPerfil />
+é necessário acrescentar as props de serverIP e avatar dentro dessa importação para funcione os dados trazidos 
+do backend: <BoxPerfil serverIP={serverIP} avatar={avatar}/>
+
+Caso o avatar não funcione, esse pode ser o principal motivo.
+-------
+Há uma importação de foto chamada 'usuario' que é usada como foto base, padrão, caso o usuario seja novo e não
+possua um avatar cadastrado.
+-------
+Ao iniciar a função do componente obrigatóriamente deve-se usar a prop serverIP com colchetes, exemplo: 
+export default function Desafios ({ serverIP }) 
+export default function Perfil ({ serverIP }) e apenas no BOXPERFIL é utilizado a prop avatar, pois é apenas nele
+que mostramos o avatar.
+export default function BoxPerfil ({ serverIP, avatar })
+
+_______________________________________________________________________________________________________________
+*SERVERIP*
+
+No arquivo routes, onde tem todas as rotas do app, eu criei o serverIP, ele é uma prop nos outros componentes, que
+foi definido dentro de routes.
+    const port = '3000'
+    const ipAddress = 'localhost';
+    const serverIP = `http://${ipAddress}:${port}`;
+
+esse serverIP funciona para que não seja necessario adicionar o localhost:3000 (porta do back end) em todos os outros
+componentes, pois todas as telas usam dados do back.
+Dessa maneira, caso a porta do back end mude, eu altero o 'port' apenas no routes, e todos os outros componentes
+vão receber essa alteração, sem precisar mexer em todos eles. 
+
+Isso ocorre porquê nos componentes assim que iniciamos a função adicionamos o serverIP como prop entre colchetes:
+Exemplo:
+export default function Desafios ({ serverIP }) 
+export default function Perfil ({ serverIP })
+
+_______________________________________________________________________________________________________________
+*LAUDOS PENDENTES*
+
+O botão no front para acessar essa tela foi removido, pois não será adicionado na primeira versão do app.
+_______________________________________________________________________________________________________________
