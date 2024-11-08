@@ -13,6 +13,10 @@ import BoxPerfil from '../meu-perfil/BoxPerfil/BoxPerfil'
 import coin from "/img/svgs/moedaroxa.svg"
 // import check from "/img/svgs/checkVivo.svg" 
 // import AlvoDesafios from "/img/svgs/AlvoVivo.svg" 
+import flechaEsquerda from "/img/svgs/Flecha-direita.svg";
+import flechaDireita from "/img/svgs/flecha-esquerda.svg";
+
+import NavegacaoTemporada from '../Missoes/Temporadas/navegationTemporada'
 
 
 export default function Desafios ({serverIP}) {
@@ -22,30 +26,49 @@ export default function Desafios ({serverIP}) {
         window.location.href = "/";
     }
 
+    //Variavel contendo o ano de inicio e de fim da temporada
+    const [dateTemporada, setDateTemporada] = useState(2024);
+    const fimTemporada = dateTemporada + 1
+
+    //Dados dos desafios
     const [incompleteChallenges, setIncompleteChallenges] = useState([]);
     const [completedChallenges, setCompletedChallenges] = useState([]);
 
-    useEffect(() => {
-        async function pegarDadosDesafios(){
+    //Funções de soma e subtração dos anos das temporadas
+    const handleSubtrairTemporada = () => {
+        setDateTemporada(prevDate => prevDate - 1);
+      };
+    
+      const handleAdicionarTemporada = () => {
+        setDateTemporada(prevDate => prevDate + 1);
+      };
+
+      //Fetch para pegar os dados dos desafios com base no ano selecionado
+        async function pegarDadosDesafios(ano){
             try {
                 const response = await fetch (`${serverIP}/Challenge`, {
-                    method: 'GET',
+                    method: 'POST',
                     headers:{
                         'Content-Type': 'application/json',
                         'x-access-token': token
-                    }
-                })
+                    },
+                    body: JSON.stringify({dateTemporada: ano})
+                });
 
                 const data = await response.json()
                 setIncompleteChallenges(data.incompleteChallenges || [])
                 setCompletedChallenges(data.completedChallenges || [])
 
+            console.log(ano)
+            console.log(data)
             } catch (error){
                 console.log('Erro ao buscar dados', error)
             }
         }
-        pegarDadosDesafios();
-    }, [serverIP, token])
+        useEffect(() =>{
+            pegarDadosDesafios(dateTemporada)
+        }, [dateTemporada])
+   
 
     return (
         <div className="todocontainer">
@@ -58,6 +81,17 @@ export default function Desafios ({serverIP}) {
                 
                     <LogoutButton />
                 </div>
+
+                 {/* Componente de navegação de temporadas com botões e texto */}
+                <NavegacaoTemporada 
+                    dateTemporada={dateTemporada} 
+                    fimTemporada={fimTemporada} 
+                    handleSubtrairTemporada={handleSubtrairTemporada} 
+                    handleAdicionarTemporada={handleAdicionarTemporada} 
+                    flechaDireita={flechaDireita} 
+                    flechaEsquerda={flechaEsquerda} 
+                />
+
         <div className='estruturaDesafios'>
                 <div className='coluna-tabela-desafios'>
                     <li>Desafios</li>

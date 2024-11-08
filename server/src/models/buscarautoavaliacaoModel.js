@@ -15,7 +15,7 @@ function getUser(id) {
 //AVALIACAO SUGERIDA
 function getUserSugerida(id) {
     const sql = `SELECT CONECTIVIDADE, CASA_INTELIGENTE, METALICO, ELETRICA, PABX_VOIP, AUDIO_VIDEO FROM dbo._HABILIDADES_TECNICOS_SUGERIDO WHERE ID_TECNICO = '${id}'
-    ORDER BY DATA DESC;`;
+    ORDER BY DATA_AVALIACAO DESC;`;
     const results = sqlServer.dispatchQuery(sql);
     return results;
 }  

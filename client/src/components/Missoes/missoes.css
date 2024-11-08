@@ -115,6 +115,8 @@ border-color: #461e5f;
 
 .voltar-temporadas {
   width: 4%;
+  cursor:pointer
+  
 }
 
 .temporada-atual{
@@ -124,4 +126,17 @@ border-color: #461e5f;
   padding-left: .9rem;
   padding-right: .9rem;
   padding-bottom: .4rem;
+ 
 }
+
+.temporada-destaque {
+  color:#eb3d7d;
+  font-weight: bold;
+}
+
+
+
+
+
+
+

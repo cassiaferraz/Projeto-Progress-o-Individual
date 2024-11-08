@@ -1,8 +1,9 @@
 const sqlUtils = require('../utils/sqlServer.js');
 
 //Seleciona todos os desafios
-function findChallenges(id) {
-    const sql = `SELECT * FROM dbo.DESAFIOS_TECNICOS WHERE ID_COLABORADOR = '${id}'`;
+function findChallenges(id, ano) {
+    const sql = `SELECT * FROM dbo.DESAFIOS_TECNICOS WHERE ID_COLABORADOR = '${id}' AND YEAR(DATA_DESAFIO) = ${ano}
+    ORDER BY DATA_DESAFIO ASC;`;
     const result = sqlUtils.dispatchQuery(sql);
     return result;
 }
@@ -44,9 +45,12 @@ function insertChallengeProgressionData(data) {
     return result;
 }
 
+
+
 module.exports = {
     findChallenges,
     updateChallengeProgressionData,
     markRewardAsClaimed,
     insertChallengeProgressionData
 };
+

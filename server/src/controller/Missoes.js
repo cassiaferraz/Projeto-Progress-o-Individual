@@ -1,12 +1,16 @@
-const bodyParser = require('body-parser');
 const avaliacaoModel = require('../models/avaliacaoMissoesModel');
 const collaboratorModel = require('../models/getUserModel');
 const { AdicionarNivelMoedas } = require('./LevelController');
 
+ 
+
 const getUserAvaliations = async (req, res) => {
   try {
     const userId = req.userId;
-    const avaliacaoData = await avaliacaoModel.getUser(userId);
+    const anoSelecionado = req.body.dateTemporada
+    console.log(anoSelecionado)
+    const avaliacaoData = await avaliacaoModel.getUser(userId, anoSelecionado);
+
 
     avaliacaoData.forEach(avaliacao => {
       const dateOnly = avaliacao.DATA.toISOString().split('T')[0];
@@ -17,9 +21,27 @@ const getUserAvaliations = async (req, res) => {
     res.status(200).json(avaliacaoData);
   } catch (err) {
     console.log(err);
-    res.status(404).json({ message: 'Deu ruim' });
+    res.status(500).json({ error: 'Erro ao buscar as avaliações' });
   }
 };
+
+// const getYear = async (req, res) => {
+//   try {
+//     const { ano } = req.body;
+//     if (ano) {
+//       anoAtual = ano;
+//       res.status(200).send('Ano atualizado com sucesso');
+//     } else {
+//       res.status(400).send('Ano inválido');
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ error: 'Erro ao atualizar o ano' });
+//   }
+// };
+
+
+
 
 const TotalAvaliations = async (req, res) => {
   try {

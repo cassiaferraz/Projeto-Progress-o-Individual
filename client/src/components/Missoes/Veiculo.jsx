@@ -5,125 +5,23 @@ import check from "/img/svgs/check.svg"
 import xmark from "/img/svgs/xmark.svg"
 import { Tooltip } from 'react-tooltip'
 
-export default function Veivulo({ serverIP }){
+export default function Veivulo({ dataMissions }){
 
     
-    const [VEICULO_LIMPEZAINTERNA, setVEICULO_LIMPEZAINTERNA] = useState('')
-    const [VEICULO_LIMPEZAEXTERNA, setVEICULO_LIMPEZAEXTERNA] = useState('')
-    const [VEICULO_ORGANIZACAOFRENTE, setVEICULO_ORGANIZACAOFRENTE] = useState('')
-    const [VEICULO_ORGANIZACAOBAU, setVEICULO_ORGANIZACAOBAU] = useState('')
-    const [VEICULO_RECARGA, setVEICULO_RECARGA] = useState('')
-    const [VEICULO_MULTAS, setVEICULO_MULTAS] = useState('')
-    const [VEICULO_SINISTROS, setVEICULO_SINISTROS] = useState('')
-    const [DATA, setDATA] = useState('')
-
-        
-    const [VEICULO_LIMPEZAINTERNA1, setVEICULO_LIMPEZAINTERNA1] = useState('')
-    const [VEICULO_LIMPEZAEXTERNA1, setVEICULO_LIMPEZAEXTERNA1] = useState('')
-    const [VEICULO_ORGANIZACAOFRENTE1, setVEICULO_ORGANIZACAOFRENTE1] = useState('')
-    const [VEICULO_ORGANIZACAOBAU1, setVEICULO_ORGANIZACAOBAU1] = useState('')
-    const [VEICULO_RECARGA1, setVEICULO_RECARGA1] = useState('')
-    const [VEICULO_MULTAS1, setVEICULO_MULTAS1] = useState('')
-    const [VEICULO_SINISTROS1, setVEICULO_SINISTROS1] = useState('')
-    const [DATA1, setDATA1] = useState('')
-
-    const [VEICULO_LIMPEZAINTERNA2, setVEICULO_LIMPEZAINTERNA2] = useState('')
-    const [VEICULO_LIMPEZAEXTERNA2, setVEICULO_LIMPEZAEXTERNA2] = useState('')
-    const [VEICULO_ORGANIZACAOFRENTE2, setVEICULO_ORGANIZACAOFRENTE2] = useState('')
-    const [VEICULO_ORGANIZACAOBAU2, setVEICULO_ORGANIZACAOBAU2] = useState('')
-    const [VEICULO_RECARGA2, setVEICULO_RECARGA2] = useState('')
-    const [VEICULO_MULTAS2, setVEICULO_MULTAS2] = useState('')
-    const [VEICULO_SINISTROS2, setVEICULO_SINISTROS2] = useState('')
-    const [DATA2, setDATA2] = useState('')
+   
  
     const token = sessionStorage.getItem('token')
  
-    useEffect(() => {
-  
-      async function pegarDadosVeivulo(){
-        try {
-          const response = await fetch (`${serverIP}/avaliacao/user`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': token
-            }
-        
-          })
-  
-          const data = await response.json()
-        //   console.log(data)
-          setVEICULO_LIMPEZAINTERNA(data[0].VEICULO_LIMPEZAINTERNA)
-          sessionStorage.setItem('veiculointerna', data.VEICULO_LIMPEZAINTERNA)
-          setVEICULO_LIMPEZAEXTERNA(data[0].VEICULO_LIMPEZAEXTERNA)
-          sessionStorage.setItem('veiculoexterna', data.VEICULO_LIMPEZAEXTERNA)
-          setVEICULO_ORGANIZACAOFRENTE(data[0].VEICULO_ORGANIZACAOFRENTE)
-          sessionStorage.setItem('veiculorganizacao', data.VEICULO_ORGANIZACAOFRENTE)
-          setVEICULO_ORGANIZACAOBAU(data[0].VEICULO_ORGANIZACAOBAU)
-          sessionStorage.setItem('veiculobau', data.VEICULO_ORGANIZACAOBAU)
-          setVEICULO_MULTAS(data[0].VEICULO_MULTAS)
-          sessionStorage.setItem('veiculomultas', data.VEICULO_MULTAS)
-          setVEICULO_RECARGA(data[0].VEICULO_RECARGA)
-          sessionStorage.setItem('veiculorecarga', data.VEICULO_RECARGA)
-          setVEICULO_SINISTROS(data[0].VEICULO_SINISTROS)
-          sessionStorage.setItem('veiculosinistros', data.VEICULO_SINISTROS)
-          setDATA(data[0].DATA)
-          sessionStorage.setItem('veiculodata', data.DATA)
-
-          setVEICULO_LIMPEZAINTERNA1(data[1].VEICULO_LIMPEZAINTERNA)
-          sessionStorage.setItem('veiculointerna1', data.VEICULO_LIMPEZAINTERNA)
-          setVEICULO_LIMPEZAEXTERNA1(data[1].VEICULO_LIMPEZAEXTERNA)
-          sessionStorage.setItem('veiculoexterna1', data.VEICULO_LIMPEZAEXTERNA)
-          setVEICULO_ORGANIZACAOFRENTE1(data[1].VEICULO_ORGANIZACAOFRENTE)
-          sessionStorage.setItem('veiculorganizacao1', data.VEICULO_ORGANIZACAOFRENTE)
-          setVEICULO_ORGANIZACAOBAU1(data[1].VEICULO_ORGANIZACAOBAU)
-          sessionStorage.setItem('veiculobau1', data.VEICULO_ORGANIZACAOBAU)
-          setVEICULO_MULTAS1(data[1].VEICULO_MULTAS)
-          sessionStorage.setItem('veiculomultas1', data.VEICULO_MULTAS)
-          setVEICULO_RECARGA1(data[1].VEICULO_RECARGA)
-          sessionStorage.setItem('veiculorecarga1', data.VEICULO_RECARGA)
-          setVEICULO_SINISTROS1(data[1].VEICULO_SINISTROS)
-          sessionStorage.setItem('veiculosinistros1', data.VEICULO_SINISTROS)
-          setDATA1(data[1].DATA)
-          sessionStorage.setItem('veiculodata', data.DATA)
-
-          setVEICULO_LIMPEZAINTERNA2(data[2].VEICULO_LIMPEZAINTERNA)
-          sessionStorage.setItem('veiculointerna2', data.VEICULO_LIMPEZAINTERNA)
-          setVEICULO_LIMPEZAEXTERNA2(data[2].VEICULO_LIMPEZAEXTERNA)
-          sessionStorage.setItem('veiculoexterna2', data.VEICULO_LIMPEZAEXTERNA)
-          setVEICULO_ORGANIZACAOFRENTE2(data[2].VEICULO_ORGANIZACAOFRENTE)
-          sessionStorage.setItem('veiculorganizacao2', data.VEICULO_ORGANIZACAOFRENTE)
-          setVEICULO_ORGANIZACAOBAU2(data[2].VEICULO_ORGANIZACAOBAU)
-          sessionStorage.setItem('veiculobau2', data.VEICULO_ORGANIZACAOBAU)
-          setVEICULO_MULTAS2(data[2].VEICULO_MULTAS)
-          sessionStorage.setItem('veiculomultas2', data.VEICULO_MULTAS)
-          setVEICULO_RECARGA2(data[2].VEICULO_RECARGA)
-          sessionStorage.setItem('veiculorecarga2', data.VEICULO_RECARGA)
-          setVEICULO_SINISTROS2(data[2].VEICULO_SINISTROS)
-          sessionStorage.setItem('veiculosinistros2', data.VEICULO_SINISTROS)
-          setDATA2(data[2].DATA)
-          sessionStorage.setItem('veiculodata', data.DATA)
-  
-        //   console.log(data[0].COMUNICACAO)
-  
-        //   console.log(data)
-        //   console.log(data[0])
-       } catch (error){
-         console.log('Erro ao buscar dados',error)
-         }
-     } 
-     pegarDadosVeivulo();
- 
- }, [serverIP])
+    
 
  // Verifica se dois ou mais valores de VEICULO são TRUE
-    const veiculoLimpezainterna = [VEICULO_LIMPEZAINTERNA, VEICULO_LIMPEZAINTERNA1, VEICULO_LIMPEZAINTERNA2].filter(val => val === true).length >= 2;
-    const veiculoLimpezaexterna = [VEICULO_LIMPEZAEXTERNA, VEICULO_LIMPEZAEXTERNA1, VEICULO_LIMPEZAEXTERNA2].filter(val => val === true).length >= 2;
-    const veiculoOrganizacaobau = [VEICULO_ORGANIZACAOBAU, VEICULO_ORGANIZACAOBAU1, VEICULO_ORGANIZACAOBAU2].filter(val => val === true).length >= 2;
-    const veiculoOrganizacaofrente = [VEICULO_ORGANIZACAOFRENTE, VEICULO_ORGANIZACAOFRENTE1, VEICULO_ORGANIZACAOFRENTE2].filter(val => val === true).length >= 2;
-    const veiculoSinistros = [VEICULO_SINISTROS, VEICULO_SINISTROS1, VEICULO_SINISTROS2].filter(val => val === true).length >= 2;
-    const veiculoMultas = [VEICULO_MULTAS, VEICULO_MULTAS1, VEICULO_MULTAS2].filter(val => val === true).length >= 2;
-    const veiculoRecarga = [VEICULO_RECARGA, VEICULO_RECARGA1, VEICULO_RECARGA2].filter(val => val === true).length >= 2;
+    const veiculoLimpezainterna = [dataMissions[0]?.VEICULO_LIMPEZAINTERNA, dataMissions[1]?.VEICULO_LIMPEZAINTERNA, dataMissions[2]?.VEICULO_LIMPEZAINTERNA].filter(val => val === true).length >= 2;
+    const veiculoLimpezaexterna = [dataMissions[0]?.VEICULO_LIMPEZAEXTERNA, dataMissions[1]?.VEICULO_LIMPEZAEXTERNA, dataMissions[2]?.VEICULO_LIMPEZAEXTERNA].filter(val => val === true).length >= 2;
+    const veiculoOrganizacaobau = [dataMissions[0]?.VEICULO_ORGANIZACAOFRENTE, dataMissions[1]?.VEICULO_ORGANIZACAOFRENTE, dataMissions[2]?.VEICULO_ORGANIZACAOFRENTE].filter(val => val === true).length >= 2;
+    const veiculoOrganizacaofrente = [dataMissions[0]?.VEICULO_ORGANIZACAOFRENTE, dataMissions[1]?.VEICULO_ORGANIZACAOFRENTE, dataMissions[2]?.VEICULO_ORGANIZACAOFRENTE].filter(val => val === true).length >= 2;
+    const veiculoSinistros = [dataMissions[0]?.VEICULO_SINISTROS, dataMissions[1]?.VEICULO_SINISTROS, dataMissions[2]?.VEICULO_SINISTROS].filter(val => val === true).length >= 2;
+    const veiculoMultas = [dataMissions[0]?.VEICULO_MULTAS, dataMissions[1]?.VEICULO_MULTAS, dataMissions[2]?.VEICULO_MULTAS].filter(val => val === true).length >= 2;
+    const veiculoRecarga = [dataMissions[0]?.VEICULO_RECARGA, dataMissions[1]?.VEICULO_RECARGA, dataMissions[2]?.VEICULO_RECARGA].filter(val => val === true).length >= 2;
 
 
 
@@ -147,28 +45,28 @@ export default function Veivulo({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {VEICULO_LIMPEZAINTERNA === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.VEICULO_LIMPEZAINTERNA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_LIMPEZAINTERNA === false ? 
+                          dataMissions[0]?.VEICULO_LIMPEZAINTERNA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {VEICULO_LIMPEZAINTERNA1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.VEICULO_LIMPEZAINTERNA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_LIMPEZAINTERNA1 === false ? 
+                          dataMissions[1]?.VEICULO_LIMPEZAINTERNA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {VEICULO_LIMPEZAINTERNA2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.VEICULO_LIMPEZAINTERNA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_LIMPEZAINTERNA2 === false ? 
+                          dataMissions[2]?.VEICULO_LIMPEZAINTERNA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -184,29 +82,29 @@ export default function Veivulo({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {VEICULO_LIMPEZAEXTERNA === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.VEICULO_LIMPEZAEXTERNA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_LIMPEZAEXTERNA === false ? 
+                          dataMissions[0]?.VEICULO_LIMPEZAEXTERNA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {VEICULO_LIMPEZAEXTERNA1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.VEICULO_LIMPEZAEXTERNA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_LIMPEZAEXTERNA1 === false ? 
+                          dataMissions[1]?.VEICULO_LIMPEZAEXTERNA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {VEICULO_LIMPEZAEXTERNA2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.VEICULO_LIMPEZAEXTERNA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_LIMPEZAEXTERNA2 === false ? 
+                          dataMissions[2]?.VEICULO_LIMPEZAEXTERNA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -223,28 +121,28 @@ export default function Veivulo({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {VEICULO_ORGANIZACAOFRENTE === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.VEICULO_ORGANIZACAOFRENTE === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_ORGANIZACAOFRENTE === false ? 
+                          dataMissions[0]?.VEICULO_ORGANIZACAOFRENTE === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {VEICULO_ORGANIZACAOFRENTE1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.VEICULO_ORGANIZACAOFRENTE === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_ORGANIZACAOFRENTE1 === false ? 
+                          dataMissions[1]?.VEICULO_ORGANIZACAOFRENTE === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {VEICULO_ORGANIZACAOFRENTE2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.VEICULO_ORGANIZACAOFRENTE === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_ORGANIZACAOFRENTE2 === false ? 
+                          dataMissions[2]?.VEICULO_ORGANIZACAOFRENTE === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -259,28 +157,28 @@ export default function Veivulo({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {VEICULO_SINISTROS === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.VEICULO_SINISTROS === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_SINISTROS === false ? 
+                          dataMissions[0]?.VEICULO_SINISTROS === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {VEICULO_SINISTROS1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.VEICULO_SINISTROS === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_SINISTROS1 === false ? 
+                          dataMissions[1]?.VEICULO_SINISTROS === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {VEICULO_SINISTROS2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.VEICULO_SINISTROS === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_SINISTROS2 === false ? 
+                          dataMissions[2]?.VEICULO_SINISTROS === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -295,28 +193,28 @@ export default function Veivulo({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {VEICULO_RECARGA === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.VEICULO_RECARGA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_RECARGA === false ? 
+                          dataMissions[0]?.VEICULO_RECARGA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {VEICULO_RECARGA1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.VEICULO_RECARGA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_RECARGA1 === false ? 
+                          dataMissions[1]?.VEICULO_RECARGA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {VEICULO_RECARGA2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.VEICULO_RECARGA === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_RECARGA2 === false ? 
+                          dataMissions[2]?.VEICULO_RECARGA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -331,28 +229,28 @@ export default function Veivulo({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {VEICULO_MULTAS === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.VEICULO_MULTAS === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_MULTAS === false ? 
+                          dataMissions[0]?.VEICULO_MULTAS === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {VEICULO_MULTAS1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.VEICULO_MULTAS === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_MULTAS1 === false ? 
+                          dataMissions[1]?.VEICULO_MULTAS === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {VEICULO_MULTAS2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.VEICULO_MULTAS === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_MULTAS2 === false ? 
+                          dataMissions[2]?.VEICULO_MULTAS === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -360,7 +258,7 @@ export default function Veivulo({ serverIP }){
 
                         {/* {(VEICULO_MULTASnull == 'null') ? <button className="null"></button> : <NotNullButton VEICULO_MULTAS={VEICULO_MULTASnull}/>} */}
                     </div> 
-
+                    
                     <div className= "todo">
                         <h5 className="atribuicao">Organização Baú
                         <img className="check" src={veiculoOrganizacaobau ? check : xmark} />
@@ -368,28 +266,28 @@ export default function Veivulo({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {VEICULO_ORGANIZACAOBAU === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.VEICULO_ORGANIZACAOBAU === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_ORGANIZACAOBAU === false ? 
+                          dataMissions[0]?.VEICULO_ORGANIZACAOBAU === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {VEICULO_ORGANIZACAOBAU1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.VEICULO_ORGANIZACAOBAU === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_ORGANIZACAOBAU1 === false ? 
+                          dataMissions[1]?.VEICULO_ORGANIZACAOBAU === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {VEICULO_ORGANIZACAOBAU2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.VEICULO_ORGANIZACAOBAU === true ? (
                           <button className="finish-todo"></button>) : 
-                          VEICULO_ORGANIZACAOBAU2 === false ? 
+                          dataMissions[2]?.VEICULO_ORGANIZACAOBAU === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 

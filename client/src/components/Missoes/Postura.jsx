@@ -5,111 +5,29 @@ import check from "/img/svgs/check.svg"
 import xmark from "/img/svgs/xmark.svg"
 
 
+
+
 import { Tooltip } from 'react-tooltip'
 
-export default function Postura({ serverIP }){
+export default function Postura({ dataMissions }){
 
-    const [POSTURA_COMUNICACAO, setCOMUNICACAO] = useState('')
-    const [POSTURA_UNIFORME, setUNIFORME] = useState('')
-    const [POSTURA_CRACHA, setCRACHA] = useState('')
-    const [POSTURA_BOTA, setBOTA] = useState('')
-    const [POSTURA_MALA, setMALA] = useState('')
-    const [DATA, setDATA] = useState('')
+    
+   const token = sessionStorage.getItem('token')
 
-    const [POSTURA_COMUNICACAO1, setCOMUNICACAO1] = useState('')
-    const [POSTURA_UNIFORME1, setUNIFORME1] = useState('')
-    const [POSTURA_CRACHA1, setCRACHA1] = useState('')
-    const [POSTURA_BOTA1, setBOTA1] = useState('')
-    const [POSTURA_MALA1, setMALA1] = useState('')
-    const [DATA1, setDATA1] = useState('')
-
-    const [POSTURA_COMUNICACAO2, setCOMUNICACAO2] = useState('')
-    const [POSTURA_UNIFORME2, setUNIFORME2] = useState('')
-    const [POSTURA_CRACHA2, setCRACHA2] = useState('')
-    const [POSTURA_BOTA2, setBOTA2] = useState('')
-    const [POSTURA_MALA2, setMALA2] = useState('')
-    const [DATA2, setDATA2] = useState('')
-
-    const token = sessionStorage.getItem('token')
-
-
-    useEffect(() => {
-
-      async function pegarDadosPostura(){
-        try {
-          const response = await fetch (`${serverIP}/avaliacao/user`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': token
-            }
-
-          })
-
-          const data = await response.json()
-          // console.log(data)
-          setCOMUNICACAO(data[0].POSTURA_COMUNICACAO)
-          sessionStorage.setItem('posturacomunicacao', data.POSTURA_COMUNICACAO)
-          setUNIFORME(data[0].POSTURA_UNIFORME)
-          sessionStorage.setItem('posturauniforme', data.POSTURA_UNIFORME)
-          setCRACHA(data[0].POSTURA_CRACHA)
-          sessionStorage.setItem('posturacracha', data.POSTURA_CRACHA)
-          setBOTA(data[0].POSTURA_BOTA)
-          sessionStorage.setItem('posturabota', data.POSTURA_BOTA)
-          setMALA(data[0].POSTURA_MALA)
-          sessionStorage.setItem('posturamala', data.POSTURA_MALA)
-          setDATA(data[0].DATA)
-          sessionStorage.setItem('assiduidadedata', data.DATA)
-
-          setCOMUNICACAO1(data[1].POSTURA_COMUNICACAO)
-          sessionStorage.setItem('posturacomunicacao1', data.POSTURA_COMUNICACAO)
-          setUNIFORME1(data[1].POSTURA_UNIFORME)
-          sessionStorage.setItem('posturauniforme1', data.POSTURA_UNIFORME)
-          setCRACHA1(data[1].POSTURA_CRACHA)
-          sessionStorage.setItem('posturacracha1', data.POSTURA_CRACHA)
-          setBOTA1(data[1].POSTURA_BOTA)
-          sessionStorage.setItem('posturabota1', data.POSTURA_BOTA)
-          setMALA1(data[1].POSTURA_MALA)
-          sessionStorage.setItem('posturamala1', data.POSTURA_MALA)
-          setDATA1(data[1].DATA)
-          sessionStorage.setItem('assiduidadedata', data.DATA)
-
-          setCOMUNICACAO2(data[2].POSTURA_COMUNICACAO)
-          sessionStorage.setItem('posturacomunicacao2', data.POSTURA_COMUNICACAO)
-          setUNIFORME2(data[2].POSTURA_UNIFORME)
-          sessionStorage.setItem('posturauniforme2', data.POSTURA_UNIFORME)
-          setCRACHA2(data[2].POSTURA_CRACHA)
-          sessionStorage.setItem('posturacracha2', data.POSTURA_CRACHA)
-          setBOTA2(data[2].POSTURA_BOTA)
-          sessionStorage.setItem('posturabota2', data.POSTURA_BOTA)
-          setMALA2(data[2].POSTURA_MALA)
-          sessionStorage.setItem('posturamala2', data.POSTURA_MALA)
-          setDATA2(data[2].DATA)
-          sessionStorage.setItem('assiduidadedata', data.DATA)
-
-        //   console.log(data[0].COMUNICACAO)
-
-          // console.log(data)
-       } catch (error){
-         console.log('Erro ao buscar dados',error)
-         }
-     }
-     pegarDadosPostura();
-
- }, [serverIP])
 
 
   // Verifica se dois ou mais valores de POSTURA sãoTRUE
-  const posturaUniforme = [POSTURA_UNIFORME, POSTURA_UNIFORME1, POSTURA_UNIFORME2].filter(val => val === true).length >= 2;
-  const posturaCracha = [POSTURA_CRACHA, POSTURA_CRACHA1, POSTURA_CRACHA2].filter(val => val === true).length >= 2;
-  const posturaComunicacao = [POSTURA_COMUNICACAO, POSTURA_COMUNICACAO1, POSTURA_COMUNICACAO2].filter(val => val === true).length >= 2;
-  const posturaBota = [POSTURA_BOTA, POSTURA_BOTA1, POSTURA_BOTA2].filter(val => val === true).length >= 2;
-  const posturaMala = [POSTURA_MALA, POSTURA_MALA1, POSTURA_MALA2].filter(val => val === true).length >= 2;
+  const posturaUniforme = [dataMissions[0]?.POSTURA_UNIFORME, dataMissions[1]?.POSTURA_UNIFORME, dataMissions[2]?.POSTURA_UNIFORME].filter(val => val === true).length >= 2;
+  const posturaCracha = [dataMissions[0]?.POSTURA_CRACHA, dataMissions[1]?.POSTURA_CRACHA, dataMissions[2]?.POSTURA_CRACHA].filter(val => val === true).length >= 2;
+  const posturaComunicacao = [dataMissions[0]?.POSTURA_COMUNICACAO, dataMissions[1]?.POSTURA_COMUNICACAO, dataMissions[2]?.POSTURA_COMUNICACAO].filter(val => val === true).length >= 2;
+  const posturaBota = [dataMissions[0]?.POSTURA_BOTA, dataMissions[1]?.POSTURA_BOTA, dataMissions[2]?.POSTURA_BOTA].filter(val => val === true).length >= 2;
+  const posturaMala = [dataMissions[0]?.POSTURA_MALA, dataMissions[1]?.POSTURA_MALA, dataMissions[2]?.POSTURA_MALA].filter(val => val === true).length >= 2;
  
 
 
         return(
           <div>
+            
             <div className= "todo">
                  <div className="atributodeavaliacao">
                     <h3>Postura</h3>
@@ -127,29 +45,29 @@ export default function Postura({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {POSTURA_COMUNICACAO === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.POSTURA_COMUNICACAO === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_COMUNICACAO === false ? 
+                          dataMissions[0]?.POSTURA_COMUNICACAO === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                     
 <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {POSTURA_COMUNICACAO1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.POSTURA_COMUNICACAO === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_COMUNICACAO1 === false ? 
+                          dataMissions[1]?.POSTURA_COMUNICACAO === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
 <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {POSTURA_COMUNICACAO2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.POSTURA_COMUNICACAO === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_COMUNICACAO2 === false ? 
+                          dataMissions[2]?.POSTURA_COMUNICACAO === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -164,28 +82,28 @@ export default function Postura({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {POSTURA_UNIFORME === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.POSTURA_UNIFORME === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_UNIFORME === false ? 
+                          dataMissions[0]?.POSTURA_UNIFORME === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
 <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {POSTURA_UNIFORME1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.POSTURA_UNIFORME === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_UNIFORME1 === false ? 
+                          dataMissions[1]?.POSTURA_UNIFORME === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
 <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {POSTURA_UNIFORME2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA }
+                        data-tooltip-place="top"> {dataMissions[2]?.POSTURA_UNIFORME === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_UNIFORME2 === false ? 
+                          dataMissions[2]?.POSTURA_UNIFORME === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -197,28 +115,28 @@ export default function Postura({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {POSTURA_BOTA === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.POSTURA_BOTA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_BOTA === false ? 
+                          dataMissions[0]?.POSTURA_BOTA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
 <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {POSTURA_BOTA1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.POSTURA_BOTA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_BOTA1 === false ? 
+                          dataMissions[1]?.POSTURA_BOTA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
 <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {POSTURA_BOTA2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.POSTURA_BOTA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_BOTA2 === false ? 
+                          dataMissions[2]?.POSTURA_BOTA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -231,28 +149,28 @@ export default function Postura({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {POSTURA_CRACHA === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.POSTURA_CRACHA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_CRACHA === false ? 
+                          dataMissions[0]?.POSTURA_CRACHA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {POSTURA_CRACHA1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.POSTURA_CRACHA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_CRACHA1 === false ? 
+                          dataMissions[1]?.POSTURA_CRACHA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {POSTURA_CRACHA2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.POSTURA_CRACHA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_CRACHA2 === false ? 
+                          dataMissions[2]?.POSTURA_CRACHA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -266,28 +184,28 @@ export default function Postura({ serverIP }){
                         </h5>
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA}
-                        data-tooltip-place="top"> {POSTURA_MALA === true ? (
+                        data-tooltip-content={status ? status : dataMissions[0]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[0]?.POSTURA_MALA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_MALA === false ? 
+                          dataMissions[0]?.POSTURA_MALA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA1}
-                        data-tooltip-place="top"> {POSTURA_MALA1 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[1]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[1]?.POSTURA_MALA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_MALA1 === false ? 
+                          dataMissions[1]?.POSTURA_MALA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
                         <div                
                         data-tooltip-id="tooltipdata"
-                        data-tooltip-content={status ? status : DATA2}
-                        data-tooltip-place="top"> {POSTURA_MALA2 === true ? (
+                        data-tooltip-content={status ? status : dataMissions[2]?.DATA}
+                        data-tooltip-place="top"> {dataMissions[2]?.POSTURA_MALA === true ? (
                           <button className="finish-todo"></button>) : 
-                          POSTURA_MALA2 === false ? 
+                          dataMissions[2]?.POSTURA_MALA === false ? 
                           (<button className="remove-todo"></button>) : 
                           (<button className="null"></button>)}</div>
 
@@ -297,4 +215,3 @@ export default function Postura({ serverIP }){
             </div>
         )
 }
-

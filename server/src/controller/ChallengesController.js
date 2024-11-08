@@ -5,9 +5,12 @@ const getPerfil = require('../models/perfilModel.js');
 const getTechnicianChallenges = async (req, res) => {
     try {
         const techId = req.userId;
+        const anoSelecionado = req.body.dateTemporada
+        console.log(anoSelecionado)
 
-        // Pega todos os desafios com base no id
-        const technicianChallenges = await challengeModel.findChallenges(techId);
+        // Pega todos os desafios com base no id e ano
+        const technicianChallenges = await challengeModel.findChallenges(techId, anoSelecionado);
+        console.log(technicianChallenges)
 
         // Separa os desafios incompletos
         const incompleteChallenges = technicianChallenges.filter(challenge => {

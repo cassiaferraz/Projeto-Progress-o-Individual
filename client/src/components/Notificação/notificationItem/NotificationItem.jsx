@@ -41,8 +41,8 @@ export default function NotificationItem({ notification, handleExclusion, server
     };
 
     return (
-        <div className="notification_item" style={isRead ? { color: 'var(--vivo-lightpurple50)' } : { color: 'var(--vivo-green)', fontWeight: '600' }}>
-            <div className="text" onClick={handleOnClick}>
+        <div className="notification_item" >
+            <div className="text" onClick={handleOnClick} style={isRead ? { color: 'var(--vivo-lightpurple50)' } : { color: 'var(--vivo-green)', fontWeight: '600' }}>
                 {notification?.TEXTO}
             </div>
             <div className="actions">

@@ -1,98 +1,85 @@
-import Navmenu from "../Navbar/Navmenu"
-import '../meu-perfil/Perfil/Perfil'
-import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil"
-import React from "react"
-import Laudos from "./Laudos"
-import Postura from "./Postura"
-import Veiculo from "./Veiculo"
-import Assiduidade from "./Assiduidade"
+import React, { useEffect, useState } from "react";
+import Navmenu from "../Navbar/Navmenu";
+import BoxPerfil from "../meu-perfil/BoxPerfil/BoxPerfil";
+import Laudos from "./Laudos";
+import Postura from "./Postura";
+import Veiculo from "./Veiculo";
+import Assiduidade from "./Assiduidade";
+import LogoutButton from "../userSessions/Logout/LogoutButton";
+import { Tooltip } from 'react-tooltip';
+import { useAvatar } from '../../context/AvatarContext';
 
-import coin from "/img/svgs/moedaroxa.svg"
-import check from "/img/svgs/check.svg" 
-import xmark from "/img/svgs/xmark.svg" 
-
-import { useState, useEffect, useContext} from 'react'
-
-import '../Missoes/missoes.css'
-import '../pages/pages.css'
-import LogoutButton from "../userSessions/Logout/LogoutButton"
-import { Tooltip } from 'react-tooltip'
-import { useAvatar } from '../../context/AvatarContext'; 
+import coin from "/img/svgs/moedaroxa.svg";
+import check from "/img/svgs/check.svg";
+import xmark from "/img/svgs/xmark.svg";
+import flechaEsquerda from "/img/svgs/Flecha-direita.svg";
+import flechaDireita from "/img/svgs/flecha-esquerda.svg";
 
 
-export default function Missoes({ serverIP}) {
+import NavegacaoTemporada from './Temporadas/navegationTemporada';
 
+import '../Missoes/missoes.css';
+import '../pages/pages.css';
+
+export default function Missoes({ serverIP }) {
     const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token");
     if (!token) {
         window.location.href = "/";
     }
 
-    // const [TDNA, setTDNA] = useState('');
-    // const [IFI, setIFI] = useState('');
-    // const [IRR, setIRR] = useState('');
-    const [FISCALIZACAO, setFISCALIZACAO] = useState('');
-    const [DATA, setDATA] = useState('');
-    const [FISCALIZACAO1, setFISCALIZACAO1] = useState('');
-    const [DATA1, setDATA1] = useState('');
-    const [FISCALIZACAO2, setFISCALIZACAO2] = useState('');
-    const [DATA2, setDATA2] = useState('');
+   
+    //Variavel contendo o ano de inicio e de fim da temporada
+    const [dateTemporada, setDateTemporada] = useState(2024);
+    const fimTemporada = dateTemporada + 1
 
-    // useEffect(() => {
-    //     async function pegarDadosQualidade() {
-    //         try {
-    //             const response = await fetch(`${serverIP}/indicadores`, {
-    //                 method: 'GET',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                     'x-access-token': token
-    //                 }
-    //             });
-    //             const data = await response.json();
-    //             setTDNA(data[0].TDNA);
-    //             sessionStorage.setItem('usertdna', data.TDNA);
-    //             setIFI(data[0].IFI);
-    //             sessionStorage.setItem('userifi', data.IFI);
-    //             setIRR(data[0].IRR);
-    //             sessionStorage.setItem('userirr', data.IRR);
-    //         } catch (error) {
-    //             console.log('Erro ao buscar dados', error);
-    //         }
-    //     }
-    //     pegarDadosQualidade();
-    // }, [serverIP]);
+    //Dados das missões
+    const [dataMissions, setDataMissions] = useState([])
 
-    useEffect(() => {
-        async function pegarDadosFiscalizacao() {
-            try {
-                const response = await fetch(`${serverIP}/avaliacao/user`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-access-token': token
-                    }
-                });
-                const data = await response.json();
-                setFISCALIZACAO(data[0].FISCALIZACAO);
-                setDATA(data[0].DATA);
-                setFISCALIZACAO1(data[1].FISCALIZACAO);
-                setDATA1(data[1].DATA);
-                setFISCALIZACAO2(data[2].FISCALIZACAO);
-                setDATA2(data[2].DATA);
-            } catch (error) {
-                console.log('Erro ao buscar dados', error);
-            }
+     //Funções de soma e subtração dos anos das temporadas
+    const handleSubtrairTemporada = () => {
+        setDateTemporada(prevDate => prevDate - 1);
+      };
+    
+      const handleAdicionarTemporada = () => {
+        setDateTemporada(prevDate => prevDate + 1);
+      };
+
+
+    
+    
+    // Função para buscar dados com base no ano selecionado
+    async function pegarDados(ano) {
+        try {
+            const response = await fetch(`${serverIP}/avaliacao/user`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': token,         
+                },
+                body: JSON.stringify({dateTemporada: ano})
+
+            });
+            const data = await response.json();
+
+            setDataMissions(data)
+          
+
+            console.log(ano)
+            console.log(data)
+        } catch (error) {
+            console.log('Erro ao buscar dados', error);
         }
-        pegarDadosFiscalizacao();
-    }, [serverIP]);
+    }
+    useEffect(() => {
+        pegarDados(dateTemporada)
+    }, [dateTemporada])
 
-    // Verifica se dois ou mais valores de fiscalização são TRUE
-    const fiscalizacaoOk = [FISCALIZACAO, FISCALIZACAO1, FISCALIZACAO2].filter(val => val === true).length >= 2;
-
+    // Condição para verificar se duas ou mais fiscalizações estão OK
+    const fiscalizacaoOk = [dataMissions[0]?.FISCALIZACAO, dataMissions[1]?.FISCALIZACAO, dataMissions[2]?.FISCALIZACAO].filter(val => val === true).length >= 2;
 
     return (
         <React.Fragment>
-        
             <Navmenu serverIP={serverIP} />
             <div className="todocontainer">
                 <BoxPerfil serverIP={serverIP} avatar={avatar} />
@@ -101,7 +88,19 @@ export default function Missoes({ serverIP}) {
                     <LogoutButton />
                 </div>
 
-                <Laudos serverIP={serverIP} />
+             
+                {/* Componente de navegação de temporadas com botões e texto */}
+                <NavegacaoTemporada 
+                    dateTemporada={dateTemporada} 
+                    fimTemporada={fimTemporada} 
+                    handleSubtrairTemporada={handleSubtrairTemporada} 
+                    handleAdicionarTemporada={handleAdicionarTemporada} 
+                    flechaDireita={flechaDireita} 
+                    flechaEsquerda={flechaEsquerda} 
+                />
+                
+
+                <Laudos serverIP={serverIP} dataMissions={dataMissions} />
                 <div className="todo">
                     <div className="atributodeavaliacao">
                         <h3>Qualidade</h3>
@@ -110,48 +109,34 @@ export default function Missoes({ serverIP}) {
                     </div>
                 </div>
 
-                {/* <div className="todo">
-                  <h5 className="atribuicao">TDNA: <img className="xmark" src={xmark}/>
-                    <QualityProgressIcon value={TDNA} realMax="5" referenceValue="5" /></h5>
-              </div>
-              <div className="todo">
-                  <h5 className="atribuicao">IFI: <img className="xmark" src={xmark}/> 
-                  <QualityProgressIcon value={IFI} referenceValue="1" percent="true" style={{ backgroundColor: IFI >= 1 ? 'blue' : 'yellow' }} /></h5>
-              </div>
-              <div className="todo">
-                  <h5 className="atribuicao">IRR: <img className="xmark" src={xmark}/> 
-                  <QualityProgressIcon value={IRR} referenceValue="1" percent="true" /></h5>
-              </div> */}
-
                 <div className="todo">
                     <h5 className="atribuicao">Fiscalização
-                        {/* Condicional que muda a imagem baseada nos valores de FISCALIZACAO */}
                         <img className="check" src={fiscalizacaoOk ? check : xmark} />
                     </h5>
 
-                    <div data-tooltip-id="tooltipdata" data-tooltip-content={DATA} data-tooltip-place="top">
-                        {FISCALIZACAO === true ? (<button className="finish-todo"></button>) :
-                            FISCALIZACAO === false ? (<button className="remove-todo"></button>) :
+                    <div data-tooltip-id="tooltipdata" data-tooltip-content={dataMissions[0]?.DATA} data-tooltip-place="top">
+                        {dataMissions[0]?.FISCALIZACAO === true ? (<button className="finish-todo"></button>) :
+                            dataMissions[0]?.FISCALIZACAO === false ? (<button className="remove-todo"></button>) :
                                 (<button className="null"></button>)}
                     </div>
 
-                    <div data-tooltip-id="tooltipdata" data-tooltip-content={DATA1} data-tooltip-place="top">
-                        {FISCALIZACAO1 === true ? (<button className="finish-todo"></button>) :
-                            FISCALIZACAO1 === false ? (<button className="remove-todo"></button>) :
+                    <div data-tooltip-id="tooltipdata" data-tooltip-content={dataMissions[1]?.DATA} data-tooltip-place="top">
+                        {dataMissions[1]?.FISCALIZACAO === true ? (<button className="finish-todo"></button>) :
+                           dataMissions[1]?.FISCALIZACAO  === false ? (<button className="remove-todo"></button>) :
                                 (<button className="null"></button>)}
                     </div>
 
-                    <div data-tooltip-id="tooltipdata" data-tooltip-content={DATA2} data-tooltip-place="top">
-                        {FISCALIZACAO2 === true ? (<button className="finish-todo"></button>) :
-                            FISCALIZACAO2 === false ? (<button className="remove-todo"></button>) :
+                    <div data-tooltip-id="tooltipdata" data-tooltip-content={dataMissions[2]?.DATA} data-tooltip-place="top">
+                        {dataMissions[2]?.FISCALIZACAO === true ? (<button className="finish-todo"></button>) :
+                            dataMissions[2]?.FISCALIZACAO === false ? (<button className="remove-todo"></button>) :
                                 (<button className="null"></button>)}
                     </div>
 
                     <Tooltip id="tooltipdata" />
                 </div>
-                <Postura serverIP={serverIP} />
-                <Veiculo serverIP={serverIP} />
-                <Assiduidade serverIP={serverIP} />
+                <Postura serverIP={serverIP} dataMissions={dataMissions} />
+                <Veiculo serverIP={serverIP} dataMissions={dataMissions} />
+                <Assiduidade serverIP={serverIP} dataMissions={dataMissions} />
             </div>
         </React.Fragment>
     );
