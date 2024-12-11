@@ -83,6 +83,22 @@ gap: 1rem;
   left: 2rem;
 }
 
+.prazo{
+  font-size:0.8rem;
+  position: relative;
+  right: 21.5rem;
+  margin-top: 2.5rem;
+  
+}
+
+.quantidade{
+  font-size:0.8rem;
+  position: relative;
+  right: 19rem;
+  margin-top: 2.5rem;
+  
+}
+
 
 
 .tooltip {

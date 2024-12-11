@@ -6,30 +6,23 @@ const perfilRoutes = require('./perfil.js') // Importe o arquivo de rotas dos pe
 app.use('/', perfilRoutes) // Use as rotas dos perfis
  
  
-const indicadoresRoutes = require('./indicadores.js') // Importe o arquivo de rotas dos indicadores
-app.use('/', indicadoresRoutes) // Use as rotas dos indicadores
+const indicatorsRoutes = require('./indicatorsRoutes.js') // Importe o arquivo de rotas dos indicadores
+app.use('/', indicatorsRoutes) // Use as rotas dos indicadores
  
  
-const avaliacaoRoutes = require('./avaliacaoMissoes.js') // Importe o arquivo de rotas das avaliações
-app.use('/', avaliacaoRoutes) // Use as rotas das avaliações
+const assessmentsQuestsRoutes = require('./assessmentsQuestsRoutes.js') // Importe o arquivo de rotas das avaliações
+app.use('/', assessmentsQuestsRoutes) // Use as rotas das avaliações
  
  
- 
-const habRoutes = require('./habilidadesRoutes.js') //  Importe o arquivo de rotas das Habilidades
-app.use('/', habRoutes)  // Use as rotas das Habilidades
- 
- 
-const medalhaRoutes = require('./medalhasRoutes.js') //  Importe o arquivo de rotas das  Medalhas
-app.use('/', medalhaRoutes) // Use as rotas das  Medalhas
+const medalsRoutes = require('./medalsRoutes.js') //  Importe o arquivo de rotas das  Medalhas
+app.use('/', medalsRoutes) // Use as rotas das  Medalhas
 
-const desafiosRoutes = require('./desafiosRoutes.js') //  Importe o arquivo de rotas das  Medalhas
-app.use('/', desafiosRoutes) // Use as rotas das  Medalhas
+
+const selfAssessmentRoutes = require('./selfAssessmentRoutes.js') //  rota do insert da auto avaliacao no banco
+app.use('/', selfAssessmentRoutes)
  
-const autoRoutes = require('./autoavaliacaoRoutes.js') //  rota do insert da auto avaliacao no banco
-app.use('/', autoRoutes)
- 
-const autoavaliacaoRoutes = require('./buscarAvaliacaoRoutes.js') //  Importe o arquivo de rotas das Auto Avaliações
-app.use('/', autoavaliacaoRoutes) // Use as rotas das  Auto Avaliações
+const searchSelfAssessmentRoutes = require('./searchSelfAssessmentRoutes.js') //  Importe o arquivo de rotas das Auto Avaliações
+app.use('/', searchSelfAssessmentRoutes) // Use as rotas das  Auto Avaliações
  
 const userGetRoutes = require('./getUserRoutes.js');
 app.use('/', userGetRoutes)

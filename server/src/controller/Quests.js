@@ -1,4 +1,4 @@
-const avaliacaoModel = require('../models/avaliacaoMissoesModel');
+const avaliacaoModel = require('../models/assessmentsQuestsModel');
 const collaboratorModel = require('../models/getUserModel');
 const { AdicionarNivelMoedas } = require('./LevelController');
 
@@ -25,20 +25,18 @@ const getUserAvaliations = async (req, res) => {
   }
 };
 
-// const getYear = async (req, res) => {
-//   try {
-//     const { ano } = req.body;
-//     if (ano) {
-//       anoAtual = ano;
-//       res.status(200).send('Ano atualizado com sucesso');
-//     } else {
-//       res.status(400).send('Ano inválido');
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json({ error: 'Erro ao atualizar o ano' });
-//   }
-// };
+const getMissionsYear = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const avaliacaoYear = await avaliacaoModel.getYearAvaliation(userId);
+
+    res.status(200).json(avaliacaoYear);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Erro ao buscar ano da avaliação' });
+  }
+};
+
 
 
 
@@ -281,6 +279,7 @@ const VerificarXpAvaliations = (avaliacoes) => {
 
 module.exports = {
   getUserAvaliations,
+  getMissionsYear,
   TotalAvaliations
 };
 

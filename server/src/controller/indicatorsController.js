@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser')
 
-const indicadoresModel = require('../models/indicadoresModel');
+const indicadoresModel = require('../models/indicatorsModel');
 
 const getUserindicadores = async (req, res) => {
   try {

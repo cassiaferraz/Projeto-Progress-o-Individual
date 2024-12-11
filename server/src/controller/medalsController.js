@@ -1,4 +1,4 @@
-const medalhasModel = require('../models/medalhasModel');
+const medalhasModel = require('../models/medalsModel');
  
  
  

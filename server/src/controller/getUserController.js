@@ -1,6 +1,6 @@
 const getUsuario = require('../models/getUserModel.js');
 const getPerfil = require('../models/perfilModel.js');
-const DadosProgression = require('../models/DadosProgression.js');
+const DadosProgression = require('../models/progressionData.js');
 
 
 const getUserData = async (req, res) => {
@@ -36,7 +36,7 @@ const createUserProgressionData = async(req,res) => {
   try{
     const allUser = await getUsuario.getAllUsers()
     allUser.forEach(user =>{
-      if (user.CARGO == 'tecnico', 'gerente', 'coordenador', 'analista'){
+      if (user.CARGO == 'tecnico'){
         const  ParaCriarDadosprogression =  {
           id:user.ID_COLABORADOR,
           nivel: 0,

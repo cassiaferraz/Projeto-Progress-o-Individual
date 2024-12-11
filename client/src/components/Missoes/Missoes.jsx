@@ -23,18 +23,20 @@ import '../pages/pages.css';
 
 export default function Missoes({ serverIP }) {
     const { avatar } = useAvatar();
-    const token = sessionStorage.getItem("token");
-    if (!token) {
-        window.location.href = "/";
-    }
+   
+    // const token = sessionStorage.getItem("token");
+    // if (!token) {
+    //     window.location.href = "/";
+    // }
 
    
     //Variavel contendo o ano de inicio e de fim da temporada
     const [dateTemporada, setDateTemporada] = useState(2024);
+    
     const fimTemporada = dateTemporada + 1
 
-    //Dados das missões
-    const [dataMissions, setDataMissions] = useState([])
+    
+    const [dataMissions, setDataMissions] = useState([]) //Dados das missões
 
      //Funções de soma e subtração dos anos das temporadas
     const handleSubtrairTemporada = () => {

@@ -1,5 +1,5 @@
 const { user } = require('../config/dbConfig');
-const DadosProgression = require('../models/DadosProgression');
+const DadosProgression = require('../models/progressionData');
 
 
 const AdicionarNivelMoedas = async(data) => {

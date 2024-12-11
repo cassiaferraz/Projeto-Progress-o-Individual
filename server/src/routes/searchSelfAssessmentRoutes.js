@@ -1,9 +1,9 @@
 // routes/apiRoutes.js
 const express = require('express');
 const app = express.Router();
-const apiController = require('../controller/buscarAutoAvaliacaoController.js');
-const apiControllerSug = require('../controller/buscarAutoAvaliacaoController.js');
-const authenticateToken = require('../middleware/authMiddleware');
+const apiController = require('../controller/searchSelfAssessmentController.js');
+const apiControllerSug = require('../controller/searchSelfAssessmentController.js');
+const authenticateToken = require('../middleware/authMiddleware.js');
  
  
 

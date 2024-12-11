@@ -1,5 +1,5 @@
-const {createHabilidade} = require('../models/autoAvaliacaoModel');
-const {countAvaliacoesMesAtual} = require('../models/autoAvaliacaoModel')
+const {createHabilidade} = require('../models/selfAssessmentModel');
+const {countAvaliacoesMesAtual} = require('../models/selfAssessmentModel')
 
  
 const verificationAvaliation = async (req, res) => {
@@ -13,7 +13,7 @@ const verificationAvaliation = async (req, res) => {
         const id = req.userId;
         const today = new Date().toISOString().split('T')[0]; // Obtém a data atual no formato YYYY-MM-DD
 
-        // Verificar se o usuário já fez 3 avaliações no dia atual
+        // Verificar se o usuário já fez uma avaliação no dia atual
         const result = await countAvaliacoesMesAtual(id, today);
         const totalAvaliacoes = result.recordset ? result.recordset[0].TOTAL : result[0].TOTAL;
         console.log(today)

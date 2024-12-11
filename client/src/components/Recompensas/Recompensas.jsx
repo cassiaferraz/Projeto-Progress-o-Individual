@@ -342,7 +342,13 @@ export default function Recompensas({ serverIP }) {
 
                             {hoveredRewardIndex == index && (
                                 <div className="descricao-recompensa" style={{ borderTop: 'none' }}>
-                                    <p className='textoRecompensa' ><strong>{reward.DESCRICAO}</strong></p>
+                                    <p className='textoRecompensa'><strong>{reward.DESCRICAO}</strong></p>
+                                    {reward.PRAZO && (
+                                        <p className='prazo'><strong>PRAZO:</strong> {formatDatetime(reward.PRAZO)}</p>
+                                    )}
+                                    {reward.QUANTIDADE_DISPONIVEL && (
+                                        <p className='quantidade'><strong>VAGAS DISPONÍVEIS:</strong> {reward.QUANTIDADE_DISPONIVEL}</p>
+                                    )}
                                 </div>
                             )}
                         </>
@@ -381,7 +387,8 @@ export default function Recompensas({ serverIP }) {
 function formatDatetime(dateStr) {
     let date = dateStr?.split("T")[0];
     let dateParts = date?.split("-");
-    let time = dateStr?.split("T")[1].split(".")[0];
+    
 
-    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0].slice(-2)} ${time}`;
+    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0].slice(-2)} `;
 }
+

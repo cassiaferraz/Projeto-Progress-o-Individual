@@ -1,6 +1,6 @@
 const express = require('express')
 const getUserController = require('../controller/getUserController')
-const getUserAvaliations = require('../controller/Missoes')
+const getUserAvaliations = require('../controller/Quests')
 const authenticateToken = require('../middleware/authMiddleware')
 const router = express.Router();
 

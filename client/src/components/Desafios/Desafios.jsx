@@ -22,9 +22,9 @@ import NavegacaoTemporada from '../Missoes/Temporadas/navegationTemporada'
 export default function Desafios ({serverIP}) {
     const { avatar } = useAvatar();
     const token = sessionStorage.getItem("token")
-    if(!token) {
-        window.location.href = "/";
-    }
+    // if(!token) {
+    //     window.location.href = "/";
+    // }
 
     //Variavel contendo o ano de inicio e de fim da temporada
     const [dateTemporada, setDateTemporada] = useState(2024);

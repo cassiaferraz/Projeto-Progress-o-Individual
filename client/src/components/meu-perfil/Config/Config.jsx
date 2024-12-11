@@ -16,11 +16,11 @@ export default function Config ({serverIP}) {
     const navigate = useNavigate();
     const { avatar } = useAvatar();
     
-    const token = sessionStorage.getItem("token")
-    // console.log(token)
-    if(!token) {
-        window.location.href = "/";
-    }
+    // const token = sessionStorage.getItem("token")
+    // // console.log(token)
+    // if(!token) {
+    //     window.location.href = "/";
+    // }
 
 
 

@@ -16,6 +16,7 @@ const fs = require('fs');
 //     }
 //     };
 
+
 const fetchAvatar = async (req, res) => {
     try {
         const userId = req.userId;

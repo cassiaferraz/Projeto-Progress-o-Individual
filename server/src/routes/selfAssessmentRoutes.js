@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const apiController = require('../controller/autoAvaliacaoController');
-const verification = require('../controller/autoAvaliacaoController');
+const apiController = require('../controller/selfAssessmentController');
+const verification = require('../controller/selfAssessmentController');
 const authenticateToken = require('../middleware/authMiddleware'); 
 
 

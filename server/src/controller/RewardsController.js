@@ -6,16 +6,49 @@ const getPerfil = require('../models/perfilModel.js');
 // View AllRewards
 const getRewards = async (req, res) => {
     try {
-        const techId = req.userId;
-        const technicianRewards = await rewardModel.findRewards(techId);
-        res.status(200).json({
-            technicianRewards
+        const techId = req.userId; 
+        const rewards = await rewardModel.findRewards(techId);
+        const currentDate = new Date();
+
+        console.log("Data atual do sistema:",currentDate)
+
+
+        // Processar recompensas com base no prazo
+        const processedRewards = rewards.map(reward => {
+            if (reward.PRAZO === null) {
+                // Recompensa sem prazo (permanente)
+                reward.disponivel = true;
+            } else {
+                // Converter o prazo para uma data
+                const prazoDate = new Date(reward.PRAZO);
+
+                
+                // Adicionar um dia ao prazo
+                prazoDate.setDate(prazoDate.getDate() + 1);
+
+                // Disponível se a data atual for menor que o prazo ajustado
+                reward.disponivel = currentDate < prazoDate;
+
+            
+            }
+
+            if(reward.QUANTIDADE_DISPONIVEL !== null && reward.QUANTIDADE_DISPONIVEL <= 0){
+                reward.disponivel = false;
+            }
+
+            return reward;
         });
+
+        // Filtrar apenas recompensas disponíveis para o front-end
+        const technicianRewards = processedRewards.filter(reward => reward.disponivel);
+
+        res.status(200).json({ technicianRewards });
     } catch (err) {
-        console.log(err);
-        res.status(400).json({ message:'deu ruim'});
+        console.error(err);
+        res.status(400).json({ message: 'Falha ao buscar recompensas' });
     }
 };
+
 
 // View Rewards Redeemeds
 const getRewardsRedeemed = async (req, res) => {
@@ -32,10 +65,15 @@ const getRewardsRedeemed = async (req, res) => {
 
 };
 
+
+
 //  Get Reward Redeemed
 const redeemReward = async (req, res) => {
     try {
         const { ID_RECOMPENSA, ID_TECNICO, DATA_RESGATE, STATUS_RECOMPENSA, CUSTO_MOEDAS, MOEDAS_SUBTRAIDAS } = req.body;
+       
+        await rewardModel.updateRewardQuantity(ID_RECOMPENSA)
+
         const reward = {
             ID_RECOMPENSA,
             ID_TECNICO,
@@ -99,6 +137,7 @@ const VerificationNull = async (req, res) => {
 
                 // Deleta a recompensa com STATUS_RECOMPENSA NULL
                 await rewardModel.handleRewardRestoration(reward.ID_RECOMPENSA, techId);
+                await rewardModel.restoreRewardQuantity(reward.ID_RECOMPENSA)
             }
         }
 

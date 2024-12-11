@@ -11,6 +11,7 @@ ORDER BY CUSTO_MOEDAS ASC `
 
 
 
+
 function findRewardsRedeemed(id){
     const sql = `SELECT resg.*, rec.NOME
     FROM [ELITE].[dbo].[RECOMPENSAS_RESGATADAS] as resg
@@ -105,6 +106,20 @@ function createReward(reward) {
      return results
 }
 
+async function updateRewardQuantity(id) {
+    const sql = `UPDATE dbo.RECOMPENSAS 
+                 SET QUANTIDADE_DISPONIVEL = QUANTIDADE_DISPONIVEL - 1 
+                 WHERE ID_RECOMPENSA = '${id}' AND QUANTIDADE_DISPONIVEL > 0`;
+    return sqlUtils.dispatchQuery(sql);
+}
+
+async function restoreRewardQuantity(id) {
+    const sql = `UPDATE dbo.RECOMPENSAS 
+                 SET QUANTIDADE_DISPONIVEL = QUANTIDADE_DISPONIVEL + 1 
+                 WHERE ID_RECOMPENSA = '${id}' AND QUANTIDADE_DISPONIVEL IS NOT NULL`;
+    return sqlUtils.dispatchQuery(sql);
+}
+
 
 
 
@@ -116,5 +131,8 @@ module.exports = {
     findRewardsSubtration,
     findRewardsNull,
     updateMarkSubtration,
-    createReward
+    createReward,
+    updateRewardQuantity,
+    restoreRewardQuantity
+   
 }

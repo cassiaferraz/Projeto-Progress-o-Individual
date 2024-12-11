@@ -13,6 +13,7 @@ function findTecProgressionData(id){
     const result = sqlUtils.dispatchQuery(sql);
     return result;
 }
+
 function findAllTecProgressionDatas(){
     const sql = `SELECT * FROM dbo._DADOS_PROGRESSAO`;
     const result = sqlUtils.dispatchQuery(sql);

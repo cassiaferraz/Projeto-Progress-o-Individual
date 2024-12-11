@@ -1,5 +1,5 @@
-const buscaravaliacao = require ('../models/buscarautoavaliacaoModel')
-const buscaravaliacaosugerida = require ('../models/buscarautoavaliacaoModel')
+const buscaravaliacao = require ('../models/searchSelfAssessmentModel')
+const buscaravaliacaosugerida = require ('../models/searchSelfAssessmentModel')
  
 
 //AUTO AVALIACAO

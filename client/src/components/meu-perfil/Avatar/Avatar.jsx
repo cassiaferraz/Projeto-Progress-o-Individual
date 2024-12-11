@@ -16,9 +16,9 @@ export default function Avatar({ serverIP }) {
     const userId = sessionStorage.getItem('userId');
     const [selectedAvatar, setSelectedAvatar] = useState(null);
 
-    if (!token) {
-        window.location.href = "/";
-    }
+    // if (!token) {
+    //     window.location.href = "/";
+    // }
 
     useEffect(() => {
         if (token) {
